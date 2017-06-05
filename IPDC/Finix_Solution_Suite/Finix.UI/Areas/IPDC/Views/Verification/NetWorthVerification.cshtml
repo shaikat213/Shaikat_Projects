@@ -1,0 +1,623 @@
+﻿
+@{
+    ViewBag.Title = "NetWorthVerification";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/NetWorhVerification.js"></script>
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .no-right-padding {
+        padding-right: 0;
+    }
+
+    .no-left-padding {
+        padding-left: 0;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .lineHeightDate {
+        line-height: 15px !important;
+    }
+
+    tr > td > input {
+        min-height: 22px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="networhverification">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Net Worth Verification</b>
+        </h2>
+    </header>
+    <br />
+
+    <div>
+        <div class="form-group row row_design_detail">
+            <div class="col-sm-2 col-sm-offset-2">
+                <label class="control-label" style="text-align: left;">Person Verified :</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationPersonRole" disabled="disabled">Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationPersonRole" disabled="disabled">Co-Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="3" data-bind="checked: VerificationPersonRole" disabled="disabled">Guarantor</label>
+            </div>
+
+        </div>
+
+
+        <section class="rm">
+            <div class="container-fluid ">
+
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2 col-sm-offset-2">
+                                    <label class="control-label" style="text-align: left;">CIF No. :</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <strong><span data-bind="text:CIFNo"></span></strong>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="text-align: left;">Name</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <strong><span data-bind="text:CIFName"></span></strong>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3 col-sm-offset-2">
+                                    <button type="submit" class="btn-q btn-default btnLarge" data-bind="click:NWHistory">History</button>
+                                </div>
+                            </div>
+
+                            @*<div class="form-group row row_design">
+
+
+                                    <div class="col-sm-3 col-sm-offset-2">
+                                        <label for="ContactAddress" class="control-label" style="text-align: left;">CIF Net Worth No. :</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span data-bind="value:CIF_PersonalId"></span>
+                                    </div>
+
+                                    <div class="col-sm-3 col-sm-offset-2">
+                                        <label for="ContactAddress" class="control-label" style="text-align: left;">Name</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <span data-bind="value:CIF_PersonalId"></span>
+                                    </div>
+
+                                </div>*@
+
+                            @*<div class="form-group row row_design">
+
+
+                                    <div class="col-sm-3 col-sm-offset-2">
+                                        <label for="ContactAddress" class="control-label" style="text-align: left;">Action :</label>
+                                    </div>
+                                    <div class="col-sm-6">
+
+                                        <button type="button" class="btn-q btn-success">Record New</button>
+
+                                        <button type="button" class="btn-q btn-success">Re-Entry</button>
+
+                                        <button type="button" class="btn-q btn-success">Not Required</button>
+                                    </div>
+
+                                </div>*@
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+        <hr class="horizontal">
+
+
+        <br />
+
+
+        <section class="panel-bodycontent">
+            <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#netWorth" aria-expanded="true">
+                <h2 class="panel-title font"><b>Net Worth Informations</b></h2>
+            </header>
+            <br />
+            <div class="panel-body" id="netWorth">
+                <div class="col-sm-12">
+                    <form class="form-horizontal" role="form">
+                        <fieldset>
+
+                            <div class="row">
+                                <div class="col-sm-12">
+
+                                    <div class="panel-bodycontent">
+                                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#asset" aria-expanded="true">
+                                            <h2 class="panel-title font">
+                                                <b>Assets</b>
+                                            </h2>
+                                        </header>
+                                        <div class="panel-body" id="asset">
+                                            <div class="panel-body">
+                                                <div class="col-sm-1">
+
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Cash At hand</label>
+                                                </div>
+                                                <div class="col-sm-3">
+
+                                                    <input type="number" data-bind="value:CashAtHand" class="form-control" />
+                                                </div>
+                                            </div>
+                                            <div class="panel-body">
+
+                                                <div class="panel-bodycontent">
+                                                    <div class="panel-heading row_design_cifNetworth">
+                                                        <label>Savings Bank</label>
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                        <table class="table table-striped table-bordered">
+                                                            <thead class="headcolor">
+                                                                <tr>
+                                                                    <th class="col-sm-4">Bank Name</th>
+                                                                    <th class="col-sm-3">Deposit Type</th>
+                                                                    <th class="col-sm-3">Current Balance</th>
+                                                                    <th class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: AddBankSavings"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                    </th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody data-bind='foreach: SavingsInBank'>
+                                                                <tr>
+                                                                    <td class="col-sm-4">
+                                                                        <input type="text" data-bind="value:BankName" class="form-control" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-3">
+                                                                        <select data-bind="options:$parent.BankDepositTypes,value: BankDepositTypeId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:BankDepositType" class="form-control"></select>
+
+                                                                    </td>
+
+                                                                    <td class="col-sm-3">
+                                                                        <input type="number" data-bind="value:CurrentBalance" class="form-control" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: $parent.AddBankSavings"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                        <a class="minus" href="#" data-bind="click: $parent.RemoveBankSavings"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="panel-bodycontent">
+                                                    <div class="panel-heading row_design_cifNetworth">
+                                                        <label>Investments</label>
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                        <table class="table table-striped table-bordered">
+                                                            <thead class="headcolor">
+                                                                <tr>
+                                                                    <th class="col-sm-5">Type</th>
+                                                                    <th class="col-sm-4">Amount</th>
+                                                                    <th class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: AddInvestments"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                    </th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody data-bind='foreach:Investments'>
+                                                                <tr>
+                                                                    <td class="col-sm-5">
+                                                                        <select data-bind="options:$parent.InvestmentTypes, value: InvestmentTypeId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:InvestmentType" class="form-control"></select>
+
+                                                                    </td>
+                                                                    <td class="col-sm-5">
+                                                                        <input type="number" data-bind="value:Amount" class="form-control" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: $parent.AddInvestments"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                        <a class="minus" href="#" data-bind="click: $parent.RemoveInvestments"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="panel-body">
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Others</label>
+                                                    </div>
+
+                                                    <div class="col-sm-3">
+                                                        <input type="number" data-bind="value:OtherSavings" class="form-control" />
+
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="panel-bodycontent">
+                                                    <div class="panel-heading row_design_cifNetworth">
+                                                        <label>Properties</label>
+                                                    </div>
+
+                                                    <div class="panel-body">
+                                                        <table class="table table-striped table-bordered">
+                                                            <thead class="headcolor">
+                                                                <tr>
+                                                                    <th class="col-sm-5">Description</th>
+                                                                    <th class="col-sm-4">Market Value</th>
+                                                                    <th class="col-sm-1">Encumbered (Y/N)</th>
+                                                                    <th class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: AddProperties"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                    </th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody data-bind='foreach:Properties'>
+                                                                <tr>
+                                                                    <td class="col-sm-5">
+                                                                        <input type="text" data-bind="value:Description" class="form-control" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-4">
+                                                                        <input type="number" data-bind="value:MarketValue" class="form-control" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-1">
+                                                                        <input type="checkbox" data-bind="checked:Encumbered" />
+
+                                                                    </td>
+                                                                    <td class="col-sm-2">
+                                                                        <a class="plus" href="#" data-bind="click: $parent.AddProperties"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                        <a class="minus" href="#" data-bind="click: $parent.RemoveProperties"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+
+                                                <div class="panel panel-default">
+                                                    <div class="panel-bodycontent">
+                                                        <div class="panel-heading row_design_cifNetworth">
+                                                            <label>Share Business</label>
+                                                        </div>
+
+                                                        <div class="panel-body">
+                                                            <table class="table table-striped table-bordered">
+                                                                <thead class="headcolor">
+                                                                    <tr>
+                                                                        <th class="col-sm-5">Business Share Type</th>
+                                                                        <th class="col-sm-5">Value of Ownership</th>
+                                                                        <th class="col-sm-2">
+                                                                            <a class="plus" href='#' data-bind='click: AddBusinessShares'><span class="glyphicon glyphicon-plus"></span></a>
+
+                                                                        </th>
+                                                                    </tr>
+                                                                </thead>
+                                                                <tbody data-bind='foreach:BusinessShares'>
+                                                                    <tr>
+                                                                        <td class="col-sm-5">
+                                                                            <select data-bind="options:$parent.BusinessShareTypes, value: BusinessShareTypeId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:BusinessShareType" class="form-control"></select>
+
+                                                                        </td>
+                                                                        <td class="col-sm-5">
+                                                                            <input type="number" data-bind="value:ValueOfOwnership" class="form-control" />
+
+                                                                        </td>
+                                                                        <td class="col-sm-2">
+                                                                            <a class="plus" href="#" data-bind="click: $parent.AddBusinessShares"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                            <a class="minus" href="#" data-bind="click: $parent.RemoveShareinBusines"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                                        </td>
+                                                                    </tr>
+                                                                </tbody>
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Total Asset</label>
+                                                    </div>
+
+                                                    <div class="col-sm-3">
+                                                        <span data-bind="text:TotalAsset" class="form-control"></span>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-sm-12">
+
+                                    <div class="panel-bodycontent">
+                                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#liabilities" aria-expanded="true">
+                                            <h2 class="panel-title font">
+                                                <b>Liabilities</b>
+                                            </h2>
+                                        </header>
+
+                                        <div class="panel-body" id="liabilities">
+
+                                            <div class="panel-bodycontent">
+                                                <div class="panel-heading row_design_cifNetworth">
+                                                    <label>Details of borrowing & liabilities</label>
+                                                </div>
+
+                                                <div class="panel-body">
+                                                    <table class="table table-striped table-bordered">
+                                                        <thead class="headcolor">
+                                                            <tr>
+                                                                <th class="col-sm-2">Type of loan</th>
+                                                                <th class="col-sm-2">Amount/limit</th>
+                                                                <th class="col-sm-2">Installment amount</th>
+                                                                <th class="col-sm-2">Term (Months)</th>
+                                                                <th class="col-sm-2">Remaining term</th>
+                                                                <th class="col-sm-2">Outstanding Amount</th>
+                                                                <th class="col-sm-4">Name of bank/Financial institution </th>
+                                                                <th class="col-sm-4">Borrower</th>
+                                                                <th class="col-sm-2">
+                                                                    <a class="plus" href="#" data-bind="click: AddLiabilities"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody data-bind='foreach:Liabilities'>
+                                                            <tr>
+                                                                <td class="col-sm-2">
+                                                                    <select data-bind="options:$parent.LoanTypes, value: LoanTypeId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:LoanType" class="form-control"></select>
+
+                                                                </td>
+                                                                <td class="col-sm-2">
+                                                                    <input type="number" data-bind="value:LoanAmountOrLimit" class="form-control" />
+
+                                                                </td>
+
+                                                                <td class="col-sm-2">
+                                                                    <input type="number" data-bind="value:InstallmentAmount" class="form-control" />
+
+                                                                </td>
+                                                                <td class="col-sm-2">
+                                                                    <input type="number" data-bind="value:Term" class="form-control" />
+
+                                                                </td>
+                                                                <td class="col-sm-2">
+                                                                    <input type="number" data-bind="value:RemainingTerm" class="form-control" />
+
+                                                                </td>
+
+                                                                <td class="col-sm-2">
+                                                                    <input type="number" data-bind="value:OutstandingAmount" class="form-control" />
+
+                                                                </td>
+                                                                <td class="col-sm-4">
+                                                                    <input type="text" data-bind="value:BankOrFIName" class="form-control" />
+
+                                                                </td>
+                                                                <td class="col-sm-4">
+                                                                    <select data-bind="options:$parent.LiabilityTypes, value:LiabilityTypeId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:LiabilityType" class="form-control"></select>
+
+                                                                </td>
+                                                                <td class="col-sm-2">
+                                                                    <a class="plus" href="#" data-bind="click: $parent.AddLiabilities"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                    <a class="minus" href="#" data-bind="click: $parent.RemoveLiabilities"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Office Loan</label>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <input type="number" data-bind="value:OfficeLoan" class="form-control" />
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Unpaid Taxes</label>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <input type="number" data-bind="value:UnpaidTaxes" class="form-control" />
+                                                </div>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Others</label>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <input type="number" data-bind="value:OtherLiabilities" class="form-control" />
+
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Total Liabilities</label>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:TotalLiabilities" class="form-control"></span>
+
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                            </div>
+
+                                            <div class="panel-body">
+                                                <div class="col-sm-1"></div>
+                                                <div class="col-sm-2">
+                                                    <label class="control-label">Net Worth </label>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:NetWorth" class="form-control"></span>
+                                                </div>
+                                                <div class="col-sm-1"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            @*<br />*@
+
+            <div class="form-group row row_design">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <label class="control-label">Remarks</label>
+                </div>
+                <div class="col-sm-7">
+                    <textarea data-bind="value:Remarks" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="form-group row row_design">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2">
+                    <label class="control-label">Verification Date :</label>
+                </div>
+                <div class="col-sm-3 input-group input-group_cif date" style="padding-left: 15px; padding-right: 15px;">
+                    <input type="text" class="form-control" data-bind="datepicker:VerificationDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="form-group row row_design">
+                <div class="col-sm-1"></div>
+                <div class="col-sm-2 ">
+                    <label class="control-label" style="text-align: left;">Verification Status :</label>
+                </div>
+
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationState">Verification Pending</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationState">Verified</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="3" data-bind="checked: VerificationState">Not Required</label>
+                </div>
+
+            </div>
+
+
+
+            <br />
+        </section>
+        <hr class="horizontal">
+
+        <br />
+
+
+        <div class="form-group row row_design">
+
+            <div class="col-sm-4 pull-right">
+                @*<button type="button" class="btn btn-success" data-bind="click:Save">Save</button>*@
+                <button type="button" class="btn-q btn-default" data-bind="click:SaveAsNew">Save</button>
+            </div>
+        </div>
+        <div class="form-group">
+            <div id="cibSuccessModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="cibSuccessModalText"></p>
+
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+</section>
+

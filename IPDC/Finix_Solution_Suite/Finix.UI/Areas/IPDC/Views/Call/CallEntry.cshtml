@@ -1,0 +1,541 @@
+﻿<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<script src="~/Areas/IPDC/Scripts/Call/callEntry.js"></script>
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+@{
+    ViewBag.Title = "Call Entry";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .btn-q {
+        margin-right: 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+</style>
+<div id="callEntry">
+    <section class="panel-bodycontent">
+        <header class="panel-heading bodytitle">
+            <h2 class="panel-title font"><b>Call Entry</b></h2>
+        </header>
+        <section>
+            <div class="container-fluid ">
+                <div class="col-sm-12">
+                    <form class="form-horizontal" role="form">
+                        <br />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-2">
+                                <label class="control-label duplicateAlignment">Contact Type</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="radio" data-bind="checked: IsOrganization" value=false /> <label class="control-label duplicateAlignment">Individual</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="radio" data-bind="checked: IsOrganization" value=true /><label class="control-label duplicateAlignment">Organization</label>
+                            </div>
+                            <div class="col-sm-2" data-bind="visible:CallId">
+                                <label class="control-label duplicateAlignment">Call ID</label>
+                            </div>
+                            <div class="col-sm-2" data-bind="visible:CallId">
+                                <label class="control-label duplicateAlignment" data-bind="text: CallId"></label>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4"></div>
+                                            <div class="form-group row row_design_cifr">
+                                                <div class="col-sm-4">
+                                                    <label class="heading" style="padding-right: 0px;">Basic Info</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                        <!--<fieldset>-->
+                                        
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Customer Name</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: CustomerName" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Organization Name</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: CustomerName" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Nature of Business</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: NatureOfBusiness" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Contact Person</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: ContactPerson" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Contact Person Designation</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: ContactPersonDesignation" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Organization</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: CustomerOrganization" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Designation</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <input type="text" data-bind="value: CustomerDesignation" class="form-control" />
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+
+                                            <div class="col-sm-4" data-bind="visible: !(IsOrganization() === 'true')">
+                                                <label class="control-label">Customer Phone No.</label>
+                                            </div>
+                                            <div class="col-sm-4" data-bind="visible: IsOrganization() === 'true'">
+                                                <label class="control-label">Contact Person Phone </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" data-bind="value: CustomerPhone" class="form-control" />
+                                            </div>
+                                        </div>
+                                        @*New Field*@
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Gender</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" id="gender" data-bind="options:GenderList, optionsValue: 'Key', optionsText:'Value', optionsCaption:'--Select--',value:Gender"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Age</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:AgeRanges, optionsValue: 'Id', optionsText:'Name', optionsCaption:'--Select--',value:AgeRange"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Marital Status</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:MaritalStatuses, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:MaritalStatus "></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Profession</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" id="ProfessionId" data-bind="options:ProfessionList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:ProfessionId "></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: (!(IsOrganization() === 'true') && ProfessionId() === 7)">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Other Profession</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" class="form-control" data-bind="value:OtherProfession" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Income (BDT)</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:IncomeRanges, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:IncomeRange "></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Contact Priority</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CustomerPriorities, value: CustomerPriority, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4"></div>
+                                            <div class="form-group row row_design_cifr">
+                                                <div class="col-sm-4">
+                                                    <label class="heading" style="padding-right: 0px;">Call Info</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Category</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CallSourceList, value: CallCategory, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Mode</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CallModes, value: CallMode, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Source</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" data-bind="value: CallSourceText" class="form-control" />
+
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Product</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:ProductList, value: ProductId, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Amount</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" data-bind="value: AmountFormatted" class="form-control" />
+                                                <input type="number" data-bind="value: Amount, valueUpdate:'keyup'" class="form-control hidden" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Remarks</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <textarea data-bind="value: Remarks" class="form-control"></textarea>
+
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-4"></div>
+                                    <div class="form-group row row_design_cifr">
+                                        <div class="col-sm-4">
+                                            <label class="heading" style="padding-right: 0px;">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 1</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" data-bind="value:CustomerAddress.AddressLine1" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 2</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" data-bind="value:CustomerAddress.AddressLine2" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 3</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <input type="text" data-bind="value:CustomerAddress.AddressLine3" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Country</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerCountryList, value:CustomerAddress.CountryId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>@*event:{change : LoadFactoryDivisionByCountry}*@
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Division</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.DivisionList, value: CustomerAddress.DivisionId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'DivisionNameEng'" class="form-control"></select>@*,event:{change : getFactoryDistrictByDivision}*@
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">District</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.DistrictList, value: CustomerAddress.DistrictId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'DistrictNameEng'" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Thana</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.ThanaList, value: CustomerAddress.ThanaId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'ThanaNameEng'" class="form-control"></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @*<div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Cell Phone</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="text" data-bind="value:CustomerAddress.CellPhoneNo" class="form-control" />
+                                            </div>
+                                        </div>*@
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">E-mail</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="email" data-bind="value:CustomerAddress.Email" class="form-control" />
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Assign To</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select data-bind="options:CallTypeList, value: CallType, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                    </div>
+                                    <div class="col-sm-2" data-bind="if: CallType() === 2">
+                                        <label class="control-label">Referred To</label>
+                                    </div>
+                                    <div class="col-sm-3" data-bind="if: CallType() === 2">
+                                        <select data-bind="options:ReferredToDegList, value: ReferredTo, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Originator</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="email" data-bind="value:CallOriginator" class="form-control" readonly/>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6 btn-group">
+                                        <div class="btn-group" data-bind="if: CallType() === 1">
+                                            <button type="button" data-toggle="modal" data-target="#successFulModal" class="btnLarge btn-q btn-success" title="Save as Successful">Save & Submit</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" data-bind="click:SubmitUnfinished" class="btnLarge btn-q btn-default" title="Save as Unfinished">Save for Now</button>
+                                        </div>
+                                        <div class="btn-group" data-bind="if: CallType() === 1">
+                                            <button type="button" data-toggle="modal" data-target="#unsuccessModal" class="btnLarge btn-q btn-danger" title="Save as Unsuccessful">Save & Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        <div>
+            <div id="successModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="successModalText"></p>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="successFulModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <!-- Modal content-->
+                    <div class="modal-content modalWidth">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4">
+                                    <label class="control-label">FollowUp CallTime</label>
+                                </div>
+                                <div class="col-sm-6 input-group" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: DateOfBirth">
+                                    <input type="text" class="form-control" data-bind="datepicker:FollowUpCallTime, datepickerOptions: {minDate: moment()}, valueUpdate:'keyup'">
+                                    <span class="help-block" style="display: none;"></span>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12">
+                                <div class="form-group row row_design">
+                                    <div>
+                                        <button type="button" data-bind='click:SubmitSuccessful' class="btnLarge btn-q btn-default" data-dismiss="modal">Save & Submit</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="unsuccessModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <!-- Modal content-->
+                    <div class="modal-content modalWidth">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4">
+                                    <label class="control-label">Call Failed Reason</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="LegalStatus" data-bind="options:CallFailReasonList, value: CallFailReason, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Remarks</label>
+                                </div>
+                                <div class="col-sm-6" data-bind="validationElement:FailedRemarks">
+                                    <textarea type="text" data-bind="value: FailedRemarks, valueUpdate:'keyup'" class="form-control"></textarea>
+                                </div>
+                            </div>
+                            @*<br />*@
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <div class="col-sm-12">
+                                <div class="form-group row row_design">
+                                    <div>
+                                        <button type="button" data-bind='click:SubmitUnSuccessful' class="btnLarge btn-q btn-default" data-dismiss="modal">Save Reason</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+

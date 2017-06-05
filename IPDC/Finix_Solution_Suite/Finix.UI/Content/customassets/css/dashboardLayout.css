@@ -1,0 +1,214 @@
+﻿.stats_box {
+        /*margin-left: 30px !important;*/
+        text-align:center;
+        padding-left: 0px;
+
+    }
+
+    .stats_box li {
+        background: #eee;
+        /*-webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;*/
+        box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
+        display: inline-block;
+        line-height: 18px;
+        margin: 0 4px 10px;
+        padding: 5px 10px 0px 5px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+        /*float: left;*/
+    }
+
+    .bg-light {
+        color: #333 !important;
+    }
+
+    .call_progress {
+        background: #eee;
+        /*-webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;*/
+        box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
+        display: inline-block;
+        line-height: 18px;
+        margin: 10px 10px 10px;
+        padding: 18px 64px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+        /*float: left;*/
+    }
+
+    .disbursement {
+        background: #eee;
+        /*-webkit-box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;*/
+        box-shadow: 0 0 0 1px #F8F8F8 inset, 0 0 0 1px #CCCCCC;
+        display: inline-block;
+        line-height: 18px;
+        margin: 10px 10px 10px;
+        padding: 0px 10px;
+        text-shadow: 0 1px 0 rgba(255,255,255,0.6);
+        float: left;
+    }
+
+    .p {
+        /*float:left !important;*/
+        margin: 30px 24px 10px 25px;
+        /*float: right;*/
+    }
+    /*.h5 {
+        font-family: inherit;
+        font-weight: 500;
+        line-height: 1.1;
+        color: inherit;
+
+        text-align: center !important;
+    }*/
+
+    .table {
+        /*width: 20% !important;*/
+    }
+
+    
+  
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .btn-q {
+        margin-right: 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .heading {
+        margin-left: 40px !important;
+        margin-top: 5px !important;
+    }
+
+    .hr {
+        margin-top: 0px !important;
+        border-top: 2px solid #eee;
+    }
+
+    .radio-inline input[type="radio"] {
+        margin-top: 2px;
+    }
+
+    .well-sm {
+        padding: 3px 3px 3px 3px;
+        margin-left: 5px;
+        margin-bottom: 10px;
+    }
+    .md {
+        margin-left: 10px;
+    }
+    #loanHighlights {
+        height: 300px;
+	    max-width: 800px;
+    }
+    #depositHighlights {
+        height: 300px;
+	    max-width: 800px;
+    }
+     tr th.LS {
+        height: 40px;
+    }
+
+    tr td.LS {
+        font-size: 2em !important;
+    }
+    tr th.DS {
+        height: 40px;
+    }
+
+    tr td.DS {
+        font-size: 2em !important;
+    }
+    .value-text {
+        margin-top: 5px;
+        font-size: 2em !important;
+    }
+
+    .call_progress {
+        padding: 10px 30px;
+    }
+
+    .schedulePanel {
+        font-size: 10px;
+    }
+
+#ProductivityMatrix {     
+        height: 300px;
+	    max-width: 800px;
+    }
+
+#containera {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containerb {
+        height: 300px;
+	    max-width: 800px;
+}
+#containerc {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containerd {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containere {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containerp {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containerf {
+        height: 300px;
+	    max-width: 800px;
+}
+
+#containerG {
+        height: 300px;
+	    max-width: 800px;
+}
+#ProfessionWiseBreakdown {
+     height: 300px;
+	    max-width: 800px;
+}
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+#containerIN {
+        height: 300px;
+	    max-width: 800px;
+}
+#IncomeRange {
+     height: 300px;
+	    max-width: 800px;
+}
+#AgeGorup {
+    height: 300px;
+	    max-width: 800px;
+}
+#container {
+    height: 300px;
+	    max-width: 800px;
+}
+
+
+

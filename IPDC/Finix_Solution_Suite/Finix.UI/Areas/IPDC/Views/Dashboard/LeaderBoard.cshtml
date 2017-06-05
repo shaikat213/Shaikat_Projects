@@ -1,0 +1,231 @@
+﻿<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Dashboard/LeaderBoard.js"></script>
+@{
+    ViewBag.Title = "LeaderBoard";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<div class="container-fluid ">
+    <div class="row" id="LeaderBoardVW">
+        <div class="col-sm-12">
+            <div class="form-group row row_design_cifr">
+                <label class="heading" style="padding-right: 0px;">LEADER BOARD</label>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <!--<fieldset>-->
+                            <strong>ASSESSMENT CRITERIA</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Timeline :</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine, event:{change: GetHighlights}"></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Stage :</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" id="" data-bind="options:Stages,optionsValue: 'Id',optionsText:'Name', optionsCaption:'--Select--', value:StageId, event:{change: GetHighlights}"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Criteria :</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" data-bind="options:Criterias,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedCriteria, event:{change: GetHighlights}"></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Cost Center :</label>
+                                </div>
+                                <div class="col-sm-5">
+                                    <select class="form-control" data-bind="options:CostCenters,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CostCenter , event:{change: GetHighlights}"></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Product :</label>
+                                </div>
+                                <div class="col-sm-5">
+
+                                    <select class="form-control" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductId , event:{change: GetHighlights}"></select>
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-4">
+                                    <label class="control-label">Branch :</label>
+                                </div>
+                                <div class="col-sm-5">
+
+                                    <select class="form-control" data-bind="options:Offices,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:OfficeId, event:{change: GetHighlights}"></select> @*, event:{change: GetHighlights}*@
+                                </div>
+
+                            </div>
+
+                        </div>
+                        @*<td class="center"><span data-bind="visible: !CurrentHolding" style="color:red">Unassigned</span><span data-bind="visible: CurrentHolding">Assigned</span></td>*@
+                        <div class="col-sm-9">
+                            <strong>TOP TEN PERFORMERS</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <div class="col-sm-6">
+                                <strong>MDT</strong>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" frame="box">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="center">SL</th>
+                                                <th class="center">NAME</th>
+                                                <th class="center">BRANCH</th>
+                                                <th class="center"><span data-bind="visible:$root.SelectedCriteria()===1">No.</span><span data-bind="visible: $root.SelectedCriteria()===2">Amt.</span></th>
+                                                <th class="center">WAR</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:TopFirst">
+                                            <tr>
+
+                                                <td><strong class="center" data-bind="text:$index()+1"></strong></td>
+                                                <td><strong class="center" data-bind="text:RMName"></strong></td>
+                                                <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                                <td class="center">
+                                                    <span data-bind="text:Number,visible: $root.SelectedCriteria()===1"></span>
+                                                    <span data-bind="text:Amount,visible: $root.SelectedCriteria()===2"></span>
+                                                </td>
+                                                @*<td><strong class="pull-right" data-bind="text:Number"></strong></td>*@
+                                                <td><strong class="pull-right" data-bind="text:WAR"></strong></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-6">
+                                <strong>LMDT</strong>
+                                <div class="table-responsive">
+                                    <table class="table table-striped table-bordered" frame="box">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="center">SL</th>
+                                                <th class="center">NAME</th>
+                                                <th class="center">BRANCH</th>
+                                                <th class="center">NO.</th>
+                                                <th class="center">WAR</th>
+
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+
+                                                <td class="center"></td>
+                                                <td class="center"></td>
+                                                <td class="center"></td>
+                                                <td class="center"></td>
+                                                <td class="center"></td>
+
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-3">
+                    </div>
+                    <div class="col-sm-9">
+                        <strong>BOTTOM TEN PERFORMERS</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div class="col-sm-6">
+                            <strong>MDT</strong>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" frame="box">
+                                    <thead class="headcolor">
+                                        <tr>
+                                            <th class="center">SL</th>
+                                            <th class="center">NAME</th>
+                                            <th class="center">BRANCH</th>
+                                            <th class="center"><span data-bind="visible:$root.SelectedCriteria()===1">No.</span><span data-bind="visible: $root.SelectedCriteria()===2">Amt.</span></th>
+                                            <th class="center">WAR</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:BottomFirst">
+                                        <tr>
+
+                                            <td><strong class="center" data-bind="text:$index()+1"></strong></td>
+                                            <td><strong class="center" data-bind="text:RMName"></strong></td>
+                                            <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                            <td class="center">
+                                                <span data-bind="text:Number,visible: $root.SelectedCriteria()===1"></span>
+                                                <span data-bind="text:Amount,visible: $root.SelectedCriteria()===2"></span>
+                                            </td>
+                                            @*<td><strong class="pull-right" data-bind="text:Number"></strong></td>*@
+                                            <td><strong class="pull-right" data-bind="text:WAR"></strong></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <strong>LMDT</strong>
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" frame="box">
+                                    <thead class="headcolor">
+                                        <tr>
+                                            <th class="center">SL</th>
+                                            <th class="center">NAME</th>
+                                            <th class="center">BRANCH</th>
+                                            <th class="center">NO.</th>
+                                            <th class="center">WAR</th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+                                            <td class="center"></td>
+
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+
+
+
+

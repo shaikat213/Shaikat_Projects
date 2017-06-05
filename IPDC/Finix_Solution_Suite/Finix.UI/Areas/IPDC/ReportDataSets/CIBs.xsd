@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CIBs" targetNamespace="http://tempuri.org/CIBs.xsd" xmlns:mstns="http://tempuri.org/CIBs.xsd" xmlns="http://tempuri.org/CIBs.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CIBs" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CIBs" msprop:Generator_UserDSName="CIBs">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CIBs" msprop:Generator_TableClassName="CIBsDataTable" msprop:Generator_TableVarName="tableCIBs" msprop:Generator_TablePropName="_CIBs" msprop:Generator_RowDeletingName="CIBsRowDeleting" msprop:Generator_RowChangingName="CIBsRowChanging" msprop:Generator_RowEvHandlerName="CIBsRowChangeEventHandler" msprop:Generator_RowDeletedName="CIBsRowDeleted" msprop:Generator_UserTableName="CIBs" msprop:Generator_RowChangedName="CIBsRowChanged" msprop:Generator_RowEvArgName="CIBsRowChangeEvent" msprop:Generator_RowClassName="CIBsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientRole" msprop:Generator_ColumnVarNameInTable="columnClientRole" msprop:Generator_ColumnPropNameInRow="ClientRole" msprop:Generator_ColumnPropNameInTable="ClientRoleColumn" msprop:Generator_UserColumnName="ClientRole" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientRoleName" msprop:Generator_ColumnVarNameInTable="columnClientRoleName" msprop:Generator_ColumnPropNameInRow="ClientRoleName" msprop:Generator_ColumnPropNameInTable="ClientRoleNameColumn" msprop:Generator_UserColumnName="ClientRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="CIBStatus" msprop:Generator_ColumnVarNameInTable="columnCIBStatus" msprop:Generator_ColumnPropNameInRow="CIBStatus" msprop:Generator_ColumnPropNameInTable="CIBStatusColumn" msprop:Generator_UserColumnName="CIBStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="CIBStatusName" msprop:Generator_ColumnVarNameInTable="columnCIBStatusName" msprop:Generator_ColumnPropNameInRow="CIBStatusName" msprop:Generator_ColumnPropNameInTable="CIBStatusNameColumn" msprop:Generator_UserColumnName="CIBStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="CIBDate" msprop:Generator_ColumnVarNameInTable="columnCIBDate" msprop:Generator_ColumnPropNameInRow="CIBDate" msprop:Generator_ColumnPropNameInTable="CIBDateColumn" msprop:Generator_UserColumnName="CIBDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CIBDateTxt" msprop:Generator_ColumnVarNameInTable="columnCIBDateTxt" msprop:Generator_ColumnPropNameInRow="CIBDateTxt" msprop:Generator_ColumnPropNameInTable="CIBDateTxtColumn" msprop:Generator_UserColumnName="CIBDateTxt" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="CIBsKey1">
+      <xs:selector xpath=".//mstns:CIBs" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="CIBsKey2">
+      <xs:selector xpath=".//mstns:CIBs" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

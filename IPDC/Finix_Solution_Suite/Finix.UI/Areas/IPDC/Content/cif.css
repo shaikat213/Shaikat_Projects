@@ -1,0 +1,39 @@
+﻿/*.input-group_cif {
+        padding-left: 1.5% !important;
+}*/
+
+.duplicateAlignment{
+    text-align:left !important;
+
+}
+
+.lignHeightDate{
+    line-height: normal !important;
+}
+
+.lineSpaceFactoryAddress{
+    padding-left: 75%;    
+}
+.colTextFactory{
+    font-weight:bold;    
+}
+.factoryAddressBorder{
+    border-bottom:1px solid;
+    padding-top:10px;
+}
+.leftAlignment {
+    text-align: left !important;
+}
+.rightAlignment {
+    text-align: right !important;
+}
+
+.centerAlignment {
+    text-align: center !important;
+}
+
+
+/*.btnLarge{
+    width:130px !important;
+}*/
+

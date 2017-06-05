@@ -1,0 +1,921 @@
+﻿
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
+     google.charts.load('current', {packages: ['corechart']});
+</script>
+
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+
+
+@{
+    ViewBag.Title = "NSMDashboard";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .CALL {
+        max-width: 310px;
+    }
+
+    .LEAD {
+        max-width: 310px;
+    }
+
+    .STATUS {
+        max-width: 310px;
+    }
+
+    .SUBMITTED {
+        max-width: 310px;
+    }
+
+    .DISB {
+        max-width: 310px;
+    }
+
+    .RMS {
+        max-width: 310px;
+    }
+
+    .table > tbody > tr > td {
+        text-align: left;
+    }
+
+    .control-label {
+        margin-top: 7px;
+    }
+
+    .form-control {
+        margin-top: 5px;
+    }
+</style>
+
+
+
+<section>
+    <div class="container-fluid ">
+
+        <form class="form-horizontal" role="form">
+
+            <div class="row">
+                <div class="col-sm-12">
+
+
+                    <div class="form-group row row_design_cifr">
+                        <div class="col-sm-3">
+                            <label class="heading" style="padding-right: 0px;">HIGHLIGHTS</label>
+
+                        </div>
+
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2">
+                                    <label class="control-label">Branch :</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine, event:{change: GetHighlights}"></select>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="control-label">Timeline :</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine, event:{change: GetHighlights}"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><br />
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <strong>CALL</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped CALL">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_Liability"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Undefined</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_Undefined"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>LEAD</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped LEAD">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_Liability"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                    @*<div>
+                            <div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Lead_HomeLoan"></strong></div>
+                            <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Lead_PersonalLoan"></strong></div>
+                            <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Lead_AutoLoan"></strong></div>
+                            <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:Lead_Liability"></strong></div>
+                        </div>*@
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>NO. OF FILES SUBMITTED</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped SUBMITTED">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_Liability"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    @*<div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Application_HomeLoan"></strong></div>
+                        <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Application_PersonalLoan"></strong></div>
+                        <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Application_AutoLoan"></strong></div>
+                        <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:Application_Liability"></strong></div>*@
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <strong>FILE APPROVAL STATUS</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+                                <div class="table-responsive">
+                                    <table class="table table-striped STATUS">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_HomeLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_HomeLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoanAmount"></strong>)</td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoanAmount"></strong>)</td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_AutoLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_AutoLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoanAmount"></strong>)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>AMOUNT DISB./REC.</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped DISB">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_HomeLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_PersonalLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_AutoLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:ReceivedDepositAmount"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    @*<div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Disbursed_HomeLoanAmount"></strong></div>
+                        <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Disbursed_PersonalLoanAmount"></strong></div>
+                        <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Disbursed_AutoLoanAmount"></strong></div>
+                        <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:ReceivedDepositAmount"></strong></div>*@
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <strong>TOP RMS</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped RMS">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMHomeLoan1"></strong><br />
+                                                    <strong data-bind="text:RMHomeLoan2"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMHomeLoan1Amount"></strong><br />
+                                                    <strong data-bind="text:RMHomeLoan2Amount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMHomeLoan1Count"></strong>)<br />
+                                                    (<strong data-bind="text:RMHomeLoan2Count"></strong>)
+                                                </td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMPersonalLoan"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMPersonalLoanAmount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMPersonalLoanCount"></strong>)
+                                                </td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMAutoLoan"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMAutoLoanAmount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMAutoLoanCount"></strong>)
+                                                </td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMLiability1"></strong><br />
+                                                    <strong data-bind="text:RMLiability2"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMLiability1Amount"></strong><br />
+                                                    <strong data-bind="text:RMLiability2Amount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMLiability1Count"></strong>)<br />
+                                                    (<strong data-bind="text:RMLiability2Count"></strong>)
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+           
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    
+
+                        <div class="form-group row row_design_cifr">
+                            <div class="col-sm-3">
+                                <label class="heading" style="padding-right: 0px;">BUSINESS OVERVIEW</label>
+
+                            </div>
+
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3 col-sm-offset-5">
+                                    <label class="control-label">Select Criteria :</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine, event:{change: GetHighlights}"></select>
+                                </div>
+                                
+                            </div>
+                        </div>
+
+                    </div><br/>
+
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">ASSET VS LIABILITY :</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                            </div>
+
+                        </div>
+
+
+                        <div id="containerp" style="margin: 0 auto"></div>
+                        <script language="JavaScript">
+                            function drawChart() {
+                                // Define the chart to be drawn.
+                                var data = new google.visualization.DataTable();
+                                data.addColumn('string', 'Browser');
+                                data.addColumn('number', 'Percentage');
+                                data.addRows([
+                                   ['Liability', 38],
+                                   ['Asset', 62]
+
+                                ]);
+
+                                // Set chart options
+                                var options = {
+                                    'title': '',                                   
+                                    pieHole: 0.4,                                  
+                                    'colors': ['#979797', '#EC017F'],
+                                    responsive:{
+                                        rules: [{
+                                            condition: {
+                                                maxWidth: 800
+                                            },
+                                            chartOptions: {
+                                                legend: {
+                                                    align: 'center',
+                                                    verticalAlign: 'bottom',
+                                                    layout: 'horizontal'
+                                                },
+                                                yAxis: {
+                                                    labels: {
+                                                        align: 'left',
+                                                        x: 0,
+                                                        y: -5
+                                                    },
+                                                    title: {
+                                                        text: null
+                                                    }
+                                                },
+                                                subtitle: {
+                                                    text: null
+                                                },
+                                                credits: {
+                                                    enabled: false
+                                                }
+                                            }
+                                        }]
+                                    }
+                                
+                                };
+
+
+
+                                // Instantiate and draw the chart.
+                                var chart = new google.visualization.PieChart(document.getElementById('containerp'));
+                                chart.draw(data, options);
+                            }
+                            google.charts.setOnLoadCallback(drawChart);
+                        </script>
+
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+
+                        <strong>BUSINESS CONTRIBUTION-ASSET</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerf" style="margin: 0 auto;"></div>
+                        <script language="JavaScript">
+                            $(document).ready(function () {
+                                var chart = {
+                                    type: 'bar'
+                                };
+                                var title = {
+                                    text: ''
+
+                                };
+                                var subtitle = {
+                                    text: ''
+                                };
+                                var xAxis = {
+                                    categories: ['Gulshan Br', 'Motijheel Br', 'Dhanmondi Br', 'Uttara Br', 'Chittagong Br', 'Sylhet Br', 'Gazipur Br'],
+                                    title: {
+                                        text: null
+                                    }
+                                };
+                                var yAxis = {
+                                    min: 0,
+                                    title: {
+                                        text: '',
+                                        align: 'high'
+                                    },
+                                    labels: {
+                                        overflow: 'justify'
+                                    }
+                                };
+                                var tooltip = {
+                                    valueSuffix: '',
+                                    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                       '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                                    footerFormat: '</table>',
+                                    shared: true,
+                                    useHTML: true
+                                };
+                                var plotOptions = {
+                                    bar: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
+                                };
+                                //var legend = {
+                                //   layout: 'vertical',
+                                //   align: 'left',
+                                //   verticalAlign: 'top',
+                                //   x: 0,
+                                //   y: -10,
+                                //   floating: true,
+                                //   borderWidth: 1,
+                                //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                //   shadow: true
+                                //};
+                                var credits = {
+                                    enabled: false
+                                };
+
+                                var series = [{
+                                    name: 'ASSET',
+                                    data: [300, 130, 20, 300, 130, 20, 20]
+                                }
+                                ];
+
+                                var colors = ['#979797'
+                                ];
+
+                                var json = {};
+                                json.chart = chart;
+                                json.title = title;
+                                json.subtitle = subtitle;
+                                json.tooltip = tooltip;
+                                json.xAxis = xAxis;
+                                json.yAxis = yAxis;
+                                json.series = series;
+                                json.colors = colors;
+                                json.plotOptions = plotOptions;
+                                // json.legend = legend;
+                                json.credits = credits;
+                                $('#containerf').highcharts(json);
+
+                            });
+                        </script>
+
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+
+                        <strong>BUSINESS CONTRIBUTION-LIABILITY</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerG" style="margin: 0 auto;"></div>
+                        <script language="JavaScript">
+                            $(document).ready(function () {
+                                var chart = {
+                                    type: 'bar'
+                                };
+                                var title = {
+                                    text: ''
+
+                                };
+                                var subtitle = {
+                                    text: ''
+                                };
+                                var xAxis = {
+                                    categories: ['Gulshan Br', 'Motijheel Br', 'Dhanmondi Br', 'Uttara Br', 'Chittagong Br', 'Sylhet Br', 'Gazipur Br'],
+                                    title: {
+                                        text: null
+                                    }
+                                };
+                                var yAxis = {
+                                    min: 0,
+                                    title: {
+                                        text: '',
+                                        align: 'high'
+                                    },
+                                    labels: {
+                                        overflow: 'justify'
+                                    }
+                                };
+                                //var tooltip = {
+                                //    valueSuffix: '',
+                                //    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                //    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                //       '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                                //    footerFormat: '</table>',
+                                //    shared: true,
+                                //    useHTML: true
+                                //};
+                                var plotOptions = {
+                                    bar: {
+                                        dataLabels: {
+                                            enabled: true
+                                        }
+                                    }
+                                };
+                                //var legend = {
+                                //   layout: 'vertical',
+                                //   align: 'left',
+                                //   verticalAlign: 'top',
+                                //   x: 0,
+                                //   y: -10,
+                                //   floating: true,
+                                //   borderWidth: 1,
+                                //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+                                //   shadow: true
+                                //};
+                                var credits = {
+                                    enabled: false
+                                };
+
+                                var series = [{
+                                    name: 'LIABILITY',
+                                    data: [300, 130, 20, 300, 130, 20, 20]
+                                }
+                                ];
+
+                                var colors = ['#EC017F'
+                                ];
+
+                                var json = {};
+                                json.chart = chart;
+                                json.title = title;
+                                json.subtitle = subtitle;
+                                //json.tooltip = tooltip;
+                                json.xAxis = xAxis;
+                                json.yAxis = yAxis;
+                                json.series = series;
+                                json.colors = colors;
+                                json.plotOptions = plotOptions;
+                                // json.legend = legend;
+                                json.credits = credits;
+                                $('#containerG').highcharts(json);
+
+                            });
+                        </script>
+
+                    </div>
+
+
+
+                </div>
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+                    
+
+                        <div class="form-group row row_design_cifr">
+                            <div class="col-sm-3">
+                                <label class="heading" style="padding-right: 0px;">PRODUCTIVITY MATRIX</label>
+
+                            </div>
+
+                            <div class="col-sm-9">
+                                <div class="col-sm-4">
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Criteria :</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-4">
+                                            <label class="control-label">From :</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-3">
+                                            <label class="control-label">To :</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+
+                                </div>
+
+
+                            </div><br/>
+                  
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <strong>ASSESMENT CRITERIA</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Stage :</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Cost Center :</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                                    </div>
+
+
+                                </div>
+
+                                <strong>PRODUCT SELECTION</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">All Products</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Personal Loan</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Home Loan</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Fixed Deposit</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Auto Loan</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Recurrent Deposit</label>
+                                    </div>
+
+                                </div>
+
+
+
+                                <strong>BRANCH SELECTION</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">All Branch</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Bogra</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Gulshan</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Shylhet</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Motijheel</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Chittagong</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Dhanmondi</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Gazipur</label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Uttara</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <label class="radio-inline"><input type="radio">Narayanganj</label>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-7">
+
+                                <div id="container" style="margin: 0 auto"></div>
+                                <script language="JavaScript">
+                                    function drawChart() {
+                                        // Define the chart to be drawn.
+                                        var data = google.visualization.arrayToDataTable([
+                                           ['Month', 'No Call', 'Success %', 'Cumulative Success %'],
+                                           ['Jan', 400, 145, 245],
+                                           ['Feb', 200, 360, 152],
+                                           ['Mar', 550, 431, 245],
+                                           ['Apr', 330, 141, 244],
+                                           ['May', 180, 362, 248],
+                                           ['Jun', 670, 140, 246],
+                                           ['Jul', 327, 218, 142],
+                                           ['Aug', 467, 314, 139],
+                                           ['Sep', 395, 124, 237],
+                                           ['Oct', 208, 116, 335],
+                                           ['Nov', 225, 320, 134],
+                                           ['Dec', 778, 135, 234]
+                                        ]);
+
+                                        // Set chart options
+                                        var options = {
+                                            title: '',
+                                            vAxis: { title: 'No Call' },
+                                            hAxis: { title: 'Month' },
+                                            seriesType: 'bars',
+                                            series: {
+                                                1: {
+                                                    type: 'line',
+                                                    lineWidth: 2,
+                                                    lineDashStyle: [3]
+
+                                                },
+
+                                                2: {
+                                                    type: 'line'
+
+                                                }
+
+                                            },
+                                            colors: ['#979797', '#EC017F', '#005098'],
+                                            responsive: {
+                                                rules: [{
+                                                    condition: {
+                                                        maxWidth: 800
+                                                    },
+                                                    chartOptions: {
+                                                        legend: {
+                                                            align: 'center',
+                                                            verticalAlign: 'bottom',
+                                                            layout: 'horizontal'
+                                                        },
+                                                        yAxis: {
+                                                            labels: {
+                                                                align: 'left',
+                                                                x: 0,
+                                                                y: -5
+                                                            },
+                                                            title: {
+                                                                text: null
+                                                            }
+                                                        },
+                                                        subtitle: {
+                                                            text: null
+                                                        },
+                                                        credits: {
+                                                            enabled: false
+                                                        }
+                                                    }
+                                                }]
+                                            }
+                                        };
+
+                                        // Instantiate and draw the chart.
+                                        var chart = new google.visualization.ComboChart(document.getElementById('container'));
+                                        chart.draw(data, options);
+                                    }
+                                    google.charts.setOnLoadCallback(drawChart);
+                                </script>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+
+
+
+
+

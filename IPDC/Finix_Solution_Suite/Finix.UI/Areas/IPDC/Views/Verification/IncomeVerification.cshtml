@@ -1,0 +1,445 @@
+﻿
+@{
+    ViewBag.Title = "IncomeVerification";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/incomeVerification.js"></script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .col-sm-2 {
+        width: 22.4444447% !important;
+    }
+</style>
+
+
+<section class="panel-bodycontent" id="cifIncomeStatementVerification">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Income Verification</b>
+        </h2>
+    </header><br />
+
+    <div>
+        <div class="form-group row row_design_detail">
+            <div class="col-sm-offset-1 col-sm-2 control-label">
+                <label class="control-label" style="text-align: left;">Person Verified :</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationPersonRole" disabled>Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationPersonRole" disabled>Co-Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="3" data-bind="checked: VerificationPersonRole" disabled>Guarantor</label>
+            </div>
+
+        </div>
+
+        <section class="rm">
+            <div class="form-group row row_design_detail">
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-2 col-sm-offset-2">
+                                    <label for="test" class="control-label">CIF No :</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span class="control-label" data-bind="text:CifNo"></span>
+                                </div>
+
+                                <div class="col-sm-2 col-sm-offset-4">
+                                    <button type="submit" class="btn-q btn-default" data-bind="click:IncomeHistory">History</button>
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-2 col-sm-offset-2">
+                                    <label for="test" class="control-label">Name :</label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <span class="control-label" data-bind="text:CifName"></span>
+                                </div>
+                                @*<div class="col-sm-2 col-sm-offset-1">
+                                        <label for="test" class="control-label">Action :</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <select class="form-control"></select>
+                                    </div>*@
+
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </section>
+        <br />
+        <section>
+            <div class="container-fluid ">
+                <div class="col-sm-12">
+                    <form class="form-horizontal" role="form" id="employee-info">
+                        <fieldset>
+                            @*<div class="form-group row row_design">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label">Verification Date :</label>
+                                    <div class="col-sm-3 input-group input-group_cif date" style="padding-right: 15px; padding-left: 15px;">
+                                        <input data-bind="value:VerificationDateText" id="VarificationDateId" class="form-control" type="text">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div><br />*@
+
+                            <div class="form-group row row_design_cifr">
+                                <div class="col-sm-offset-1 col-sm-3">
+                                    <label>Labels</label>
+                                </div>
+                                <div class="col-sm-offset-1 col-sm-3">
+                                    <label class="heading">Declared</label>
+                                </div>
+                                <div class="col-sm-offset-1 col-sm-3">
+                                    <label>Assessed</label>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="form-group row row_design">
+                                <div class="form-group">
+                                    <label id="lblNetSalary" class="col-sm-offset-1 col-sm-3 control-label">Salary (Net) TK :</label>
+                                    <div class="col-sm-3">
+                                        <input id="txtSalryDeclared" type="number" data-bind="value: MonthlySalaryDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+
+                                    <div class="col-sm-offset-1 col-sm-2">
+                                        <input id="txtSalaryAssessed" type="number" data-bind="value: MonthlySalaryAssessed, valueUpdate:'keyup'" class="form-control" />
+
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" data-bind="checked: MonthlySalaryAssessedConsidered">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblInterestIncome" class="col-sm-offset-1 col-sm-3 control-label">Interest Income :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtInterestIncomeDeclared" type="number" data-bind="value: MonthlyInterestIncomeDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-2">
+                                        <input for="txtInterestIncomeAssessed" type="number" data-bind="value: MonthlyInterestIncomeAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" data-bind="checked: MonthlyInterestIncomeAssessedConsidered">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblRentalIncome" class="col-sm-offset-1 col-sm-3 control-label">Rental income(Tk) :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtRentalIncomeDeclared" type="number" data-bind="value: MonthlyRentalIncomeDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-2">
+                                        <input for="txtRentalIncomeAssessed" type="number" data-bind="value: MonthlyRentalIncomeAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" data-bind="checked: MonthlyRentalIncomeAssessedConsidered">
+                                    </div>
+                                </div>
+
+                                @*<div class="form-group">
+                                        <label id="lblOtherIncome" class="col-sm-offset-1 col-sm-3 control-label">Other income :<span class="required"></span></label>
+                                        <div class="col-sm-3">
+                                            <input for="txtOtherIncomeDeclared" type="number" data-bind="value: MonthlyOtherIncomeDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                        </div>
+                                        <div class="col-sm-offset-1 col-sm-3">
+                                            <input for="txtOtherIncomeAssessed" type="number" data-bind="value: MonthlyOtherIncomeAssessed, valueUpdate:'keyup'" class="form-control"/>
+                                        </div>
+
+                                    </div>*@
+
+                                <div class="form-group">
+                                    <label id="lblOtherSource" class="col-sm-offset-1 col-sm-3 control-label">Other Source :<span class="required"></span></label>
+                                    <div class="col-sm-3">
+                                        <input for="txtOtherSource" type="text" data-bind="value: OtherIncomeSource, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                    @*<div class="col-sm-offset-1 col-sm-3">
+                                            <input for="txtBusinessAssessed" type="text" data-bind="value: MonthlyOtherIncomeAssessed, valueUpdate:'keyup'" class="form-control" readonly="readonly"/>
+                                        </div>*@
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblBusiness" class="col-sm-offset-1 col-sm-3 control-label">Business (monthly) Tk :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtBusinessDeclared" type="number" data-bind="value: MonthlyBusinessIncomeDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    @*<div class="col-sm-offset-1 col-sm-3">
+                                            <strong>
+                                                <span for="txtTotalIncomeAssessed" type="number" data-bind="text: MonthlyBusinessIncomeAssessed" class="control-label"></span>
+                                            </strong>
+                                        </div>*@
+                                    <div class="col-sm-offset-1 col-sm-2">
+                                        <input for="txtTotalIncomeAssessed" type="number" data-bind="value: MonthlyBusinessIncomeAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" data-bind="checked: MonthlyBusinessIncomeAssessedConsidered">
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <label id="lblBusiness" class="col-sm-offset-1 col-sm-3 control-label">Source Of Income</label>
+                                    <div class="col-sm-3">
+                                        <table class="table table-striped table-bordered">
+                                            <thead class="headcolor">
+                                                <tr>
+                                                    <th>Source Of Income</th>
+                                                    <th>Amount</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach:AdditionalIncomeDeclared">
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" data-bind="value:SourceOfIncome" class="form-control" id="FDRAccountNo" placeholder="Source Of Income">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" data-bind="value:IncomeAmount,valueUpdate:'keyup'" class="form-control" id="Amount" placeholder="Amount">
+                                                    </td>
+
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <table class="table table-striped table-bordered">
+                                            <thead class="headcolor">
+                                                <tr>
+
+                                                    <th>Source Of Income</th>
+                                                    <th>Amount</th>
+                                                    <th></th>
+                                                    <th>
+                                                        <a class="plus" href="#" data-bind="click: AddAdditionalIncome"><span class="glyphicon glyphicon-plus"></span></a>
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach:AssesedAdditionalIncome">
+                                                <tr>
+                                                    <td>
+                                                        <input type="text" data-bind="value:SourceOfIncome" class="form-control" id="FDRAccountNo" placeholder="Source Of Income">
+                                                    </td>
+                                                    <td>
+                                                        <input type="number" data-bind="value:IncomeAmount,valueUpdate:'keyup'" class="form-control" placeholder="Amount">
+                                                    </td>
+                                                    <td>
+                                                        <input type="checkbox" data-bind="checked: IsConsidered">
+                                                    </td>
+                                                    <td>
+                                                        <a class="plus" href='#' data-bind='click: $parent.AddAdditionalIncome'><span class="glyphicon glyphicon-plus"></span></a>
+                                                        <a class="minus" href='#' data-bind='click: $parent.RemoveAdditionalIncome'><span class="glyphicon glyphicon-minus"></span></a>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label id="lblTotalIncome" class="col-sm-offset-1 col-sm-3 control-label"><strong>Total Income :</strong></label>
+                                    <div class="col-sm-3">
+                                        <div>
+                                            <input type="number" data-bind="value:  MonthlyIncomeTotalDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                        </div>
+
+                                    </div>
+
+                                    <div class="col-sm-offset-1 col-sm-2">
+                                        <span for="txtTotalExpenseAssessed" type="number" data-bind="text: MonthlyIncomeTotalAssessedComputed" class="control-label"></span>
+                                    </div>
+                                    @*<div>
+                                            <input type="checkbox" data-bind="checked: MonthlyIncomeTotalAssessedConsidered">
+                                        </div>*@
+
+                                </div><br />
+
+                                <div class="form-group">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label">Expenses(Tk) :</label>
+                                    <div class="col-sm-3">
+
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+
+                                    </div>
+                                </div><br />
+
+                                <div class="form-group">
+                                    <label id="lblFoodClothing" class="col-sm-offset-1 col-sm-3 control-label">Food, Clothing(Tk) :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtFoodClothingDeclared" type="number" data-bind="value: MonthlyExpenseFoodAndClothingDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtFoodClothingAssessed" type="number" data-bind="value: MonthlyExpenseFoodAndClothingAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="form-group">
+                                    <label id="lblFoodClothing" class="col-sm-offset-1 col-sm-3 control-label">Transportation :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtFoodClothingDeclared" type="number" data-bind="value: MonthlyExpenseTransportationDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtFoodClothingAssessed" type="number" data-bind="value: MonthlyExpenseTransportationAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblEducation" class="col-sm-offset-1 col-sm-3 control-label">Education(Tk) :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtEducationDclared" type="number" data-bind="value: MonthlyExpenseEducationDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtEducationAssessed" type="number" data-bind="value: MonthlyExpenseEducationAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblRenUtilityBill" class="col-sm-offset-1 col-sm-3 control-label">Rent, Utility bill (Tk) :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtRenUtilityBillDeclared" type="number" data-bind="value: MonthlyExpenseRentAndUtilityDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtRenUtilityBillAssessed" type="number" data-bind="value: MonthlyExpenseRentAndUtilityAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblInstallments" class="col-sm-offset-1 col-sm-3 control-label">Installments(Tk) :<span class="required"></span></label>
+                                    <div class="col-sm-3">
+                                        <input for="txtInstallmentsDeclared" type="number" data-bind="value: MonthlyExpenseInstallmentsDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtInstallmentsAssessed" type="number" data-bind="value: MonthlyExpenseInstallmentsAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblOthersExpense" class="col-sm-offset-1 col-sm-3 control-label">Others(Tk) :</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtOthersExpenseDeclared" type="number" data-bind="value: MonthlyExpenseOthersDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtOthersExpenseAssessed" type="number" data-bind="value: MonthlyExpenseOthersAssessed, valueUpdate:'keyup'" class="form-control" />
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblTotalExpense" class="col-sm-offset-1 col-sm-3 control-label">Total Expense :<span class="required"></span></label>
+                                    <div class="col-sm-3">
+                                        <div data-bind="visible:!EnableFieldsTotalexpense()">
+                                            <strong>
+                                                <span type="number" data-bind="text: MonthlyExpenseTotalDeclaredComputer" class="control-label"></span>
+                                            </strong>
+                                        </div>
+                                        <div data-bind="visible:EnableFieldsTotalexpense()">
+                                            <input type="number" data-bind="value: MonthlyExpenseTotalDeclared, valueUpdate:'keyup'" class="form-control" readonly="readonly" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <span for="txtTotalExpenseAssessed" type="number" data-bind="text: MonthlyExpenseTotalAssessed" class="control-label"></span>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label id="lblPayableLoanInstallment" class="col-sm-offset-1 col-sm-3 control-label">How much can you pay from your monthly income as loan installment?</label>
+                                    <div class="col-sm-3">
+                                        <input for="txtPayableLoanInstallmentAssessed" type="number" data-bind="value: MonthlyPayableLoanInstallmentDeclared, valueUpdate: 'keyup'" class="form-control" readonly="readonly" />
+                                    </div>
+                                    <div class="col-sm-offset-1 col-sm-3">
+                                        <input for="txtPayableLoanInstallmentAssessed" type="number" data-bind="value: MonthlyPayableLoanInstallmentAssessed, valueUpdate: 'keyup'" class="form-control" />
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-group">
+                                    <label id="lblIncomeAssessmentDate" class="col-sm-offset-1 col-sm-3 control-label">Income Assessment Date<span class="required"></span></label>
+
+                                    <div class="col-sm-3 input-group input-group_cif date" style="padding-right: 15px; padding-left: 15px;">
+                                        @*<input id="txtIncomeAssessmentDate" type="datetime" data-bind="value:IncomeAssessmentDate" class="form-control" />*@
+                                        <input data-bind="value:IncomeAssessmentDateTxt" id="txtIncomeAssessmentDate" class="form-control" type="text">
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+
+                                    </div>
+
+                                </div><br />
+                                <div class="form-group row row_design">
+                                    <label class="col-sm-offset-1 col-sm-3 control-label">Verification Status :</label>
+                                    <div class="col-sm-2">
+                                        <label class="radio-inline"><input type="radio" value="0" data-bind="checked: VerificationState">Not Required</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationState">Verification Pending</label>
+                                    </div>
+                                    <div class="col-sm-1">
+                                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationState">Verified</label>
+                                    </div>
+                                </div>
+                                <br />
+                            </div>
+
+                            <div class="form-group">
+
+                                <div class="col-sm-offset-7 col-sm-5">
+                                    @*<button type="submit" data-bind="click:Submit" class="btn btn-success" style="float:left; margin-right: 3px !important;">Save</button>*@
+                                    <button type="submit" data-bind="click:IsNew" class="btn-q btn-default" style="float:left">Save</button>
+                                </div>
+
+                            </div>
+                            <div id="ISsuccessModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Response</h4>
+                                        </div>
+                                        <div class="modal-body" align="center">
+                                            <p id="ISsuccessModalText"></p>
+
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+</section>
+

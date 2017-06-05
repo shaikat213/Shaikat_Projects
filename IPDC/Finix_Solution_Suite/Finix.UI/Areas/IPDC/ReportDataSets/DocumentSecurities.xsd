@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DocumentSecurities" targetNamespace="http://tempuri.org/DocumentSecurities.xsd" xmlns:mstns="http://tempuri.org/DocumentSecurities.xsd" xmlns="http://tempuri.org/DocumentSecurities.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DocumentSecurities" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DocumentSecurities" msprop:Generator_UserDSName="DocumentSecurities">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DocumentSecurities" msprop:Generator_TableClassName="DocumentSecuritiesDataTable" msprop:Generator_TableVarName="tableDocumentSecurities" msprop:Generator_TablePropName="_DocumentSecurities" msprop:Generator_RowDeletingName="DocumentSecuritiesRowDeleting" msprop:Generator_RowChangingName="DocumentSecuritiesRowChanging" msprop:Generator_RowEvHandlerName="DocumentSecuritiesRowChangeEventHandler" msprop:Generator_RowDeletedName="DocumentSecuritiesRowDeleted" msprop:Generator_UserTableName="DocumentSecurities" msprop:Generator_RowChangedName="DocumentSecuritiesRowChanged" msprop:Generator_RowEvArgName="DocumentSecuritiesRowChangeEvent" msprop:Generator_RowClassName="DocumentSecuritiesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="DCLId" msprop:Generator_ColumnVarNameInTable="columnDCLId" msprop:Generator_ColumnPropNameInRow="DCLId" msprop:Generator_ColumnPropNameInTable="DCLIdColumn" msprop:Generator_UserColumnName="DCLId" type="xs:string" minOccurs="0" />
+              <xs:element name="SecurityDescription" msprop:Generator_ColumnVarNameInTable="columnSecurityDescription" msprop:Generator_ColumnPropNameInRow="SecurityDescription" msprop:Generator_ColumnPropNameInTable="SecurityDescriptionColumn" msprop:Generator_UserColumnName="SecurityDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="Value" msprop:Generator_ColumnVarNameInTable="columnValue" msprop:Generator_ColumnPropNameInRow="Value" msprop:Generator_ColumnPropNameInTable="ValueColumn" msprop:Generator_UserColumnName="Value" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

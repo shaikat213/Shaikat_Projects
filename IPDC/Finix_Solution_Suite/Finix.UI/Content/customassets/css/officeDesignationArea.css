@@ -1,0 +1,117 @@
+﻿.btn-success {
+    margin-bottom: 0px !important;
+}
+
+.btn {
+    padding: 2px 10px !important;
+}
+
+.row_design_cif {
+    background-color: #ECEBEB !important;
+    color: #1D5987 !important;
+    
+}
+
+.row_design_cifr {
+    background-color: #ECEBEB !important;
+    color: #1D5987 !important;
+    margin-bottom: 20px;
+}
+
+.col-sm-8 {
+    width: 100% !important;    
+    padding-top: 30px !important;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+}
+
+.hr {
+    height: 3px !important;
+    border-top: 2px solid #eee !important;
+    width: 91% !important;
+   float: left;
+}
+
+body {
+    font-size: 12px !important;
+}
+
+.table-responsive {
+    font-size: 12px !important;
+}
+.form-control {
+    font-size: 12px !important;
+}
+.ds-content {
+   
+    padding: 0px 0px 22px 0px;
+}
+
+.heading {
+
+    text-align:center;
+}
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 1em !important;
+}
+
+.input-group[class*="col-"] {
+    
+    padding-right: -1px !important;
+    padding-left: -1px !important;
+}
+
+.container-fluid {
+   /*padding-right: 0px !important;
+    padding-left: 0px !important;*/ 
+}
+.section{}
+.deg{
+
+    border: 1px solid #C4C4C4; 
+    border-radius:5px 5px 5px 5px;
+    padding-top: 20px;
+}
+
+.rm{
+
+    border: 1px solid #C4C4C4; 
+    border-radius:5px 5px 5px 5px;
+    padding-top: 20px;
+}
+.drm{
+
+    border: 1px solid #C4C4C4; 
+    border-radius:5px 5px 5px 5px;
+    padding-top: 20px;
+}
+.dpm{
+     border: 1px solid #C4C4C4; 
+    border-radius:5px 5px 5px 5px;
+    padding-top: 20px;
+
+}
+.btn-default{
+    background-color:green !important;
+     border-color:green !important; 
+     color:#fff !important;
+
+} 
+.btn-default:hover{
+    background-color:green !important;
+     border-color:green !important; 
+     color:#fff !important;
+
+} 
+
+.close {
+    font-size: 20px !important;
+    color: #ff0000 !important;
+    text-shadow: none !important;
+    opacity: 4.5 !important;
+    text-decoration: none !important;
+}

@@ -1,0 +1,333 @@
+﻿@{
+    ViewBag.Title = "ProjectLegalVerification";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/ProjectLegalVerification.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="projectlegalverification" enctype="multipart/form-data">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Project Legal Verification</b>
+        </h2>
+    </header>
+
+    <!--start APPLICATION DETAILS-->
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <label class="headingOcc">TO BE FILLED IN BY LEGAL</label>
+        </div>
+        <div class="panel-body">
+
+            <form class="form-horizontal" role="form">
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Type of Land :</label>
+                    </div>
+
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked: LandType">Freehold</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked: LandType">Leasehold</label>
+                    </div>
+                    @*<div class="col-sm-2">
+                            <label class="radio-inline"><input type="radio" value="3" data-bind="checked: LandType">Others</label>
+                        </div>*@
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label class="control-label" style="text-align: left;">Area of Land (Katha) :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <input type="number" min="0" class="form-control" data-bind="value:AreaOfLandTD" />
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Encumbered Status :</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="checkbox-inline"><input type="checkbox" data-bind="value:IsEncumbered">Encumbered</label>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Joint Venture Agreement :</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked:JointVenturedAgreement">Obtained</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked:JointVenturedAgreement">Not Obtained</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="=3" data-bind="checked:JointVenturedAgreement">Not Applicable</label>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">POA :</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked:POA">Obtained</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked:POA">Not Obtained</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="3" data-bind="checked:POA">Not Applicable</label>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Schedule of Property :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <textarea type="text" class="form-control" data-bind="value:ScheduleOfProperty"></textarea>
+                        @*<input type="text" class="form-control" data-bind="value:ScheduleOfProperty"/>*@
+                    </div>
+                </div>
+
+                <div class="form-group row row_design">
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <thead class="headcolor">
+                                <tr>
+                                    <th class="col-sm-4">Owner's Name</th>
+                                    <th class="col-sm-3">Title Deed No</th>
+                                    <th class="col-sm-3">Title Deed Date</th>
+                                    <th class="col-sm-2">
+                                        <a class="plus" href='#' data-bind='click: AddOwnersLine'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="button" href='#' data-bind='click: AddOwnersLine'><span>Add Owner</span></a>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind="foreach:Owners">
+
+                                <tr>
+                                    <td class="col-sm-4">
+                                        <input type="text" data-bind="value: Name" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-3">
+                                        <input type="text" data-bind="value: TitleDeedNo" class="form-control" />
+                                    </td>
+                                    <td class="col-sm-3">
+                                        <input type="date" data-bind="date:TitleDeedDate, valueUpdate:'keyup'" class="form-control lignHeightDate" />
+                                        @*<select data-bind="options:$parent.CIF_Org_OwnersRoleList, value: CIF_Org_OwnersRole, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>*@
+                                    </td>
+
+                                    <td class="col-sm-2">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddOwnersLine'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveOwnersLine'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                @*<div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="ContactAddress" class="control-label" style="text-align: left;">Wanting Papers :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" class="form-control" />
+                        </div>
+
+                    </div>*@
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Verification Report :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <textarea type="text" class="form-control" data-bind="value:VerificationReport"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Upload verification report :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="file" name="VerificationReportFile" id="VerificationReportFile" data-bind="value:VettingReportFile" />
+                        <a data-bind="attr:{href:  $root.getEditUrl($data) }, text: VerificationReportFileName"> </a>
+                        @*<input type="file" class="form-control" />VerificationReportFileVettingReportFile*@
+                    </div>
+
+                </div>
+
+                @*<div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="ContactAddress" class="control-label" style="text-align: left;">Verified by :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="text" class="form-control" />
+                        </div>
+
+                    </div>*@
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label class="control-label" style="text-align: left;">Vetting Report :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <textarea type="text" class="form-control" data-bind="value:VettingReport"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Upload Vetting report :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="file" name="VettingReportFile" id="VettingReportFile" data-bind="value:VettingReportFile" />
+                        <a data-bind="attr:{href:  $root.getEditUrlVet($data) }, text: VettingReportFileName"> </a>
+                        @*<input type="file" class="form-control" />VerificationReportFileVettingReportFile*@
+                    </div>
+                    @*<div class="col-sm-3">
+
+                            <input type="file" class="form-control" />
+                        </div>*@
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Vetted by :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <input type="text" class="form-control" data-bind="value:VettedBy" />
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Comment :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <textarea class="form-control" data-bind="value:LegalStageComment"></textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-3 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Approval Status :</label>
+                    </div>
+                    <div class="col-sm-3">
+
+                        <select id="BirthCountryId" data-bind="options:LegalApprovalStatusList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:LegalApprovalStatus" class="form-control"></select>
+                    </div>
+
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-6"></div>
+                    <div class="col-sm-2">
+                        <button type="button" class="btn btn-default" data-bind="click:Create">Save As</button>
+                        <button type="button" class="btn btn-success" data-bind="click:Edit">Save</button>
+                    </div>
+                </div>
+                @*<div class="form-group row row_design">
+
+                        <div class="col-sm-1 col-sm-offset-7">
+                            <button type="button" class="btn btn-success" data-bind="click:SaveProjectLegalVerification ">Save</button>
+                        </div>
+
+                    </div>*@
+                <div class="form-group">
+                    <div id="cibSuccessModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Response</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                    <p id="cibSuccessModalText"></p>
+
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+</section>
+
+
+
+
+
+
+

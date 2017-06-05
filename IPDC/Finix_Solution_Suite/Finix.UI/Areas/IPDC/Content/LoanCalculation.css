@@ -1,0 +1,56 @@
+﻿.input-group {
+    
+    margin-bottom: 2px;
+}
+
+    input[type="number"]{
+        text-align:right;
+    }
+
+    .pull-right {
+        padding-right: 20px;
+    }
+
+.row_design_loan {
+    background-color: #ECEBEB !important;
+    color: #1D5987 !important;
+    margin-bottom: 0px !important;
+}
+
+ .body {
+    font-size: 12px !important;
+    }
+
+.form-horizontal .form-group {
+    margin-right: -15px;
+    margin-left: -15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.container {
+    width: 912px;
+    padding-left:0px;
+    padding-right:0px;
+    
+}
+.bg-warning {
+    background-color:#ECEBEB;
+    
+}
+
+/**{margin:0;}
+#autoLoan{
+    height: 100%;
+    width: 100%;
+    
+    overflow: hidden;
+}*/
+
+  /*.row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+    .container-fluid {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+    }*/

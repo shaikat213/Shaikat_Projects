@@ -1,0 +1,39 @@
+﻿
+ .ui-datepicker-calendar {
+        display: none !important;
+    }
+
+/*.btn {
+        background-color: #777 !important;
+        border-color: #777 !important;
+    }*/
+
+/*.body {
+        color: #777;
+    }*/
+
+/*.label {
+        color: #777;
+    }*/
+
+    .btn {
+        padding: 0px 4px !important;
+    }
+
+    a {
+        color: #FF1493;
+    }
+.container-fluid {
+    padding-right: 0px !important;
+    padding-left: 0px !important;
+}
+.fo {
+    color: #777 !important;
+}
+.close {
+    font-size: 20px !important;
+    color: #ff0000 !important;
+    text-shadow: none !important;
+    opacity: 4.5 !important;
+    text-decoration: none !important;
+}

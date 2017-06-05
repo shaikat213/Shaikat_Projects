@@ -1,0 +1,219 @@
+﻿@model Finix.Auth.DTO.LogOnDto
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | CRM LOS</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/Content/customassets/css/Login.min.css" rel="stylesheet" />
+    <style>
+        .login-page {
+            background-color: white !important;
+        }
+    </style>
+    <!-- iCheck -->
+    <link href="~/Content/customassets/plugins/blue.css" rel="stylesheet" />
+    <style>
+    * {
+        box-sizing: borderbox;
+    }
+
+    div.loginBox {
+        width: 80%;
+        position: relative;
+        display: block;
+        margin: 0px auto;
+        /*border: 1px solid gray;*/
+    }
+
+        div.loginBox > .company,
+        div.loginBox > .application {
+            width: 46%;
+            position: relative;
+            display: block;
+            margin: 2px;
+            float: left;
+            text-align: center;
+        }
+
+            div.loginBox > .company > div > label,
+            div.loginBox > .application > div > label {
+                margin: 5px auto;
+                position: relative;
+                display: block;
+            }
+
+            div.loginBox > .company > div > input[type='radio'],
+            div.loginBox > .application > div > input[type='radio'] {
+                display: none;
+            }
+
+            div.loginBox > .company > div > input[type='radio']:checked + label,
+            div.loginBox > .application > div > input[type='radio']:checked + label,
+            .active {
+                border: 2px solid red;
+            }
+
+        div.loginBox > .company {
+            margin-right: 0px;
+            padding-right:3px;
+            border-right: 1px solid gray;
+        }
+        div.loginBox > div > .btn {
+            position: relative;
+            display: block;
+            width: 94.2%;
+        }
+
+        label.btn.btn-primary {
+            padding: 4px;
+        }
+        p{
+            padding-bottom: 0 !important;
+        }
+        h3 {
+            font-size: x-large;
+            margin-top: 5px !important;
+        }
+    </style>
+
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+
+            <a href="#">
+                <img src="/Content/customassets/Images/logo1.png" />
+            </a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Select company and application to proceed.</p>
+
+            @*<form action="" method="post">*@
+            
+            <div class="row">
+                <div class="loginBox">
+                    <div class="company">
+                        <h3>Office</h3>
+                        <div data-bind="foreach: AccessControlList">
+                            @*<input type="radio" name="Company" value="" id="">*@
+                            <label class="btn btn-primary compbtn" data-bind="text:CompanyProfileName, attr:{ 'id': 'comp_'+CompanyProfileId }, click:$root.BuildApplicationButtons"></label>
+                            @*<label class="btn btn-primary" data-bind="text:CompanyProfileName, click:$root.BuildApplicationButtons"></label>*@
+                        </div>
+                    </div>
+                    <div class="application">
+                        <h3>Applications</h3>
+                        <div data-bind="foreach: SelectedApplications">
+                            <label class="btn btn-primary" data-bind="text:Name, click:$root.setSelectedApplicationId"></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                
+            @if (Model != null)
+            {
+                if (Model.ErrMessage != null)
+                {
+                    <div class="row">
+                        <span>@Html.Display(Model.ErrMessage)</span>
+
+                    </div>
+                }
+            }
+
+            @RenderBody()
+            
+            @*</form>*@
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery 3.1.1 -->
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <script src="~/Scripts/knockout-3.4.0.js"></script>
+    <!-- Bootstrap -->
+    @*<script src="~/Scripts/tether/tether.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Content/customassets/plugins/icheck.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+    </script>
+    @{
+        var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+        var userInfoJson = jss.Serialize(ViewBag.UserInfo);
+    }
+    <script>
+        var userInfo = JSON.parse('@Html.Raw(userInfoJson)');
+        
+        $(document).ready(function () {
+
+            function LoginAccessVM() {
+                var self = this;
+
+                self.AccessControlList = ko.observableArray(userInfo.AccessPermissions);
+                self.SelectedCompany = ko.observable();
+                self.SelectedApplications = ko.observableArray([]);
+                self.SelectedApplicationsId = ko.observable();
+                console.log(ko.toJSON(self.AccessControlList()));
+
+                self.clicked = ko.pureComputed(function (row) {
+                    console.log("-->  " + self.SelectedCompany());
+                    console.log("---> " + row);
+                    if (self.SelectedCompany() === row)
+                        return true;
+                });
+
+                self.BuildApplicationButtons = function (row) {
+                    $(".compbtn").removeClass("active");
+                    $("#comp_" + row.CompanyProfileId).addClass("active");
+                    self.SelectedCompany(row.CompanyProfileId);
+                    self.SelectedApplications(row.Applications);
+                }
+
+                self.setSelectedApplicationId = function (line) {
+                    self.SelectedApplicationsId(line.Id);
+
+                    var loginData = {
+                        CompanyId: self.SelectedCompany(),
+                        ApplicationId: self.SelectedApplicationsId()
+                    };
+                    console.log("login-data => " + ko.toJSON(loginData));
+                    $.ajax({
+                        type: "POST",
+                        url: '/Auth/Login/ChooseApplication',
+                        data: ko.toJSON(loginData),
+                        contentType: "application/json",
+                        success: function (data) {
+                            window.location.href = "/Auth/Home/Index";
+                        },
+                        error: function (error) {
+                            alert(error.status + "<--and--> " + error.statusText);
+                        }
+                    });
+                }
+
+            }
+            var vm = new LoginAccessVM();
+            ko.applyBindings(vm, $(".loginBox")[0]);
+        });
+    </script>
+</body>
+</html>

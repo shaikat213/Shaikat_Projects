@@ -1,0 +1,16 @@
+﻿.ui-th-column-header
+{
+  text-align: center;
+}
+
+.grid-col {
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+
+.error-message{
+    border: 1px solid HoneyDew;
+	background: #fef1ec url("images/ui-bg_glass_95_fef1ec_1x400.png") 50% 50% repeat-x;
+	color: HoneyDew;
+    background-color:DodgerBlue ;
+}

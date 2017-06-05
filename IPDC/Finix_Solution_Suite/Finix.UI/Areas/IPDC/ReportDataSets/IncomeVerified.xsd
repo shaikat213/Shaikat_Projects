@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="IncomeVerified" targetNamespace="http://tempuri.org/IncomeVerified.xsd" xmlns:mstns="http://tempuri.org/IncomeVerified.xsd" xmlns="http://tempuri.org/IncomeVerified.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="IncomeVerified" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="IncomeVerified" msprop:Generator_UserDSName="IncomeVerified">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="IncomeVerificationDto" msprop:Generator_TableClassName="IncomeVerificationDtoDataTable" msprop:Generator_TableVarName="tableIncomeVerificationDto" msprop:Generator_TablePropName="IncomeVerificationDto" msprop:Generator_RowDeletingName="IncomeVerificationDtoRowDeleting" msprop:Generator_RowChangingName="IncomeVerificationDtoRowChanging" msprop:Generator_RowEvHandlerName="IncomeVerificationDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="IncomeVerificationDtoRowDeleted" msprop:Generator_UserTableName="IncomeVerificationDto" msprop:Generator_RowChangedName="IncomeVerificationDtoRowChanged" msprop:Generator_RowEvArgName="IncomeVerificationDtoRowChangeEvent" msprop:Generator_RowClassName="IncomeVerificationDtoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ISId" msprop:Generator_ColumnVarNameInTable="columnISId" msprop:Generator_ColumnPropNameInRow="ISId" msprop:Generator_ColumnPropNameInTable="ISIdColumn" msprop:Generator_UserColumnName="ISId" type="xs:string" minOccurs="0" />
+              <xs:element name="IncomeStatement" msprop:Generator_ColumnVarNameInTable="columnIncomeStatement" msprop:Generator_ColumnPropNameInRow="IncomeStatement" msprop:Generator_ColumnPropNameInTable="IncomeStatementColumn" msprop:Generator_UserColumnName="IncomeStatement" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" msprop:Generator_UserColumnName="ApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="CifId" msprop:Generator_ColumnVarNameInTable="columnCifId" msprop:Generator_ColumnPropNameInRow="CifId" msprop:Generator_ColumnPropNameInTable="CifIdColumn" msprop:Generator_UserColumnName="CifId" type="xs:string" minOccurs="0" />
+              <xs:element name="CifPersonal" msprop:Generator_ColumnVarNameInTable="columnCifPersonal" msprop:Generator_ColumnPropNameInRow="CifPersonal" msprop:Generator_ColumnPropNameInTable="CifPersonalColumn" msprop:Generator_UserColumnName="CifPersonal" type="xs:string" minOccurs="0" />
+              <xs:element name="MonthlyIncomeTotalAssessed" msprop:Generator_ColumnVarNameInTable="columnMonthlyIncomeTotalAssessed" msprop:Generator_ColumnPropNameInRow="MonthlyIncomeTotalAssessed" msprop:Generator_ColumnPropNameInTable="MonthlyIncomeTotalAssessedColumn" msprop:Generator_UserColumnName="MonthlyIncomeTotalAssessed" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="IncomeVerificationDtoKey1">
+      <xs:selector xpath=".//mstns:IncomeVerificationDto" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="IncomeVerificationDtoKey2">
+      <xs:selector xpath=".//mstns:IncomeVerificationDto" />
+      <xs:field xpath="mstns:CifId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

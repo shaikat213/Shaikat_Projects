@@ -1,0 +1,674 @@
+﻿
+
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<script src="~/Areas/IPDC/Scripts/Developer/DeveloperApproval.js"></script>
+@{
+    ViewBag.Title = "DeveloperEntry";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+</style>
+<div id="DeveloperEntry">
+    <section class="panel-bodycontent">
+        <header class="panel-heading bodytitle">
+            <h2 class="panel-title font"><b>Developer Entry</b></h2>
+        </header>
+        <br />
+        <div class="container-fluid ">
+            <div class="col-sm-12">
+                <form class="form-horizontal" role="form">
+                    <div class="col-sm-12">
+                        <div class="row">
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="drpdeveloperTypeList" class="control-label" style="text-align: left;">Developer Type</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="drpdeveloperTypeList" data-bind="options: DeveloperTypeList, value: DeveloperType, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label">Contact Person :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="tel" data-bind="value:ContactPerson" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label">Designation :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="tel" data-bind="value:ContactPersonDesignation" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Contact Person Phone :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:ContactPersonPhone" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Contact Person Email :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:ContactPersonEmail" class="form-control" />
+                                </div>
+                            </div>
+
+                            @*Company Info Multiple Data*@
+                            <br />
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading row_design_cifNetworth">
+                                    <label>Company/Individual/Group Information</label>
+                                </div>
+
+                                <div class="panel-body">
+                                    <div class="form-group row row_design">
+
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Group Name</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" data-bind="value:GroupName" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <br />
+
+                                    <div class="row">
+                                        <div class="panel panel-default">
+                                            <div class="panel-heading row_design_cifNetworth">
+                                                <label>Members</label>
+                                                <div class="pull-right">
+                                                    <a href='#' class="plus" data-bind='click: AddMembers'><span class="glyphicon glyphicon-plus"></span></a>
+                                                    <a href='#' class="minus" data-bind='click: RemoveMembers'><span class="glyphicon glyphicon-minus"></span></a>
+                                                </div>
+                                            </div>
+                                            <div class="panel-body" data-bind="foreach:Members">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-heading row_design_cifNetworth">
+                                                        <label>Member <span data-bind="text: $index() + 1"></span></label>
+                                                        <div class="pull-right">
+                                                            <a href='#' class="plus" data-bind='click: $parent.AddMembers'><span class="glyphicon glyphicon-plus"></span></a>
+                                                            <a href='#' class="minus" data-bind='click: $parent.RemoveMembers'><span class="glyphicon glyphicon-minus"></span></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Name</label>
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" data-bind="value:Name , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Address line 1</label>
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" data-bind="value:Address.AddressLine1 , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Address line 2</label>
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" data-bind="value:Address.AddressLine2, event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Address line 3</label>
+                                                                    </div>
+                                                                    <div class="col-sm-9">
+                                                                        <input type="text" data-bind="value:Address.AddressLine3, event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Country</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <select data-bind="options:$parent.CountryList, value: Address.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'  ,event : { change : Address.IsAddressChanged}" class="form-control"></select>@*event:{change : LoadFactoryDivisionByCountry}*@
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <label class="control-label">Phone</label>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="text" data-bind="value:Address.PhoneNo , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label duplicateAlignment">Division</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <select data-bind="options:Address.DivisionList, value: Address.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng',  event : { change : Address.IsAddressChanged}" class="form-control"></select>@*,event:{change : getFactoryDistrictByDivision}*@
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <label class="control-label">Cell Phone</label>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="text" data-bind="value:Address.CellPhoneNo , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label">District</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <select data-bind="options:Address.DistrictList, value: Address.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng' , event : { change : Address.IsAddressChanged}" class="form-control"></select>
+                                                                    </div>
+                                                                    <div class="col-sm-2">
+                                                                        <label class="control-label">E-mail</label>
+                                                                    </div>
+                                                                    <div class="col-sm-4">
+                                                                        <input type="email" data-bind="value:Address.Email , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label">Thana</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <select data-bind="options:Address.ThanaList, value: Address.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng' , event : { change : Address.IsAddressChanged}" class="form-control"></select>
+                                                                    </div>
+
+                                                                </div>
+
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label class="control-label">Postal Code</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <input type="text" data-bind="value:Address.PostalCode , event : { change : Address.IsAddressChanged}" class="form-control" />
+                                                                    </div>
+                                                                </div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+
+
+
+                                    <div class="form-group row row_design">
+
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Website</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" data-bind="value:Website" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design">
+
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Year of Establishment</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" data-bind="value:YearOfEstablishment" class="form-control" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design">
+
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Member of Rehab:</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="checkbox" data-bind="checked:MemberOfRehab" />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design" data-bind="visible:MemberOfRehab">
+
+                                        <div class="col-sm-5">
+                                            <label class="control-label">Rehab Membership No.</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <input type="text" data-bind="value:RehabMemberNo" class="form-control" />
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                            @*End Company Info*@
+
+                            @*Director Info*@
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading row_design_cifNetworth">
+                                    <label>Company Director Details</label>
+                                </div>
+
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="col-sm-4">Name</th>
+                                                <th class="col-sm-3">Designation</th>
+                                                <th class="col-sm-3">Academic Qualification</th>
+                                                <th class="col-sm-4">Share Holding Percentage</th>
+                                                <th class="col-sm-3">Business Experiance</th>
+                                                <th class="col-sm-3">Contact Number</th>
+                                                <th class="col-sm-2">
+                                                    <a class="plus" href="#" data-bind="click: AddDirectors"><span class="glyphicon glyphicon-plus"></span></a>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind='foreach: Directors'>
+                                            <tr>
+                                                <td class="col-sm-4">
+                                                    <input type="text" data-bind="value:Name" class="form-control" />
+                                                </td>
+                                                <td class="col-sm-3">
+                                                    <input type="text" data-bind="value:Designation" class="form-control" />
+                                                </td>
+
+                                                <td class="col-sm-3">
+                                                    <input type="text" data-bind="value:AcademicQualification" class="form-control" />
+                                                </td>
+                                                <td class="col-sm-4">
+                                                    <input type="text" data-bind="value:SharePercentage" class="form-control" />
+                                                </td>
+                                                <td class="col-sm-3">
+                                                    <input type="text" data-bind="value:BusinessExperience" class="form-control" />
+                                                </td>
+
+                                                <td class="col-sm-3">
+                                                    <input type="number" data-bind="value:ContactNumber" class="form-control" />
+                                                </td>
+                                                <td class="col-sm-2">
+                                                    <a class="plus" href="#" data-bind="click: $parent.AddDirectors"><span class="glyphicon glyphicon-plus"></span></a>
+                                                    <a class="minus" href="#" data-bind="click: $parent.RemoveDirectors"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+                            @*Ent Director Inof*@
+
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Number of Architect</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:ArchitectCount, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number of Engineer</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:EngineerCount, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number Marketing Emp.</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:MarketingEmpCount, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number of Other Emp.</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:OtherEmpCount, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Type of Account</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select data-bind="options: TypeOfAccounList, value: TypeOfAccount, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Bank Name</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:BankName" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Total Liability Amount</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:TotalLiabilityAmount, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number Of Completed Project</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:NumberOfCompleteProject, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number Of Ongoing Project</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:NumberOfOngoingProject, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Number Of Upcoming Project</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value:NumberOfUpcomingProject, valueUpdate: 'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+
+
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Developer MEM :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: DeveloperMEM">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: DeveloperMEM">Not Obtained</label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Developer ART</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: DevelopreART">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: DevelopreART">Not Obtained</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Trade Licence</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: TradeLicence">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: TradeLicence">Not Obtained</label>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Form XII :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: FormXII">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: FormXII">Not Obtained</label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Board Resolution for Signaturies :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: BoardResForSig">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: BoardResForSig">Not Obtained</label>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Con. Per. VCard :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: ContactPersonVCard">Obtained</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: ContactPersonVCard">Not Obtained</label>
+                                </div>
+                            </div>
+
+                            <br />
+                            <div class="panel panel-default">
+
+                                <div class="panel-heading row_design_cifNetworth">
+                                    <label>Other Documents</label>
+                                </div>
+
+                                <div class="panel-body">
+                                    <table class="table table-striped table-bordered">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="col-sm-4">Document Name</th>
+                                                <th class="col-sm-3">Document Status</th>
+
+                                                <th class="col-sm-2">
+                                                    <a class="plus" href="#" data-bind="click: AddOtherDocument"><span class="glyphicon glyphicon-plus"></span></a>
+                                                </th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind='foreach: OtherDocuments'>
+                                            <tr>
+                                                <td class="col-sm-4">
+                                                    <input type="text" data-bind="value:Name" class="form-control" />
+                                                </td>
+                                                <td class="col-sm-3">
+                                                    <select data-bind="options:$parent.DocumentStatusList, value: DocumentStatus, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                                </td>
+
+                                                <td class="col-sm-2">
+                                                    <a class="plus" href="#" data-bind="click: $parent.AddOtherDocument"><span class="glyphicon glyphicon-plus"></span></a>
+                                                    <a class="minus" href="#" data-bind="click: $parent.RemoveOtherDocuments"><span class="glyphicon glyphicon-minus"></span></a>
+
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Enlistment Status :</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select data-bind="options: EnlistmentStatuses, value: EnlistmentStatus, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label" style="text-align: left;">Approval Category</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select data-bind="options: ApprovalCategoryList, value: ApprovalCategory, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                </div>
+
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label for="" class="control-label">Remarks</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <textarea type="text" data-bind="value:ApprovalRemarks" class="form-control"></textarea>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12">
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-2 col-sm-offset-10" style="text-align:right">
+                                <button type="submit" data-togle="modal" data-target="#DeveloperSuccessModal" data-bind="click:Submit" class="btn btn-success">Save</button>
+
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </section>
+    <div id="DeveloperSuccessModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Response</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <p id="DeveloperSuccessModalText"></p>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

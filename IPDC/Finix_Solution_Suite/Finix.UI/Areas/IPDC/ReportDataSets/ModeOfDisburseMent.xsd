@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ModeOfDisburseMent" targetNamespace="http://tempuri.org/ModeOfDisburseMent.xsd" xmlns:mstns="http://tempuri.org/ModeOfDisburseMent.xsd" xmlns="http://tempuri.org/ModeOfDisburseMent.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ModeOfDisburseMent" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ModeOfDisburseMent" msprop:Generator_UserDSName="ModeOfDisburseMent">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ModeOfDisbursement" msprop:Generator_TableClassName="ModeOfDisbursementDataTable" msprop:Generator_TableVarName="tableModeOfDisbursement" msprop:Generator_TablePropName="ModeOfDisbursement" msprop:Generator_RowDeletingName="ModeOfDisbursementRowDeleting" msprop:Generator_RowChangingName="ModeOfDisbursementRowChanging" msprop:Generator_RowEvHandlerName="ModeOfDisbursementRowChangeEventHandler" msprop:Generator_RowDeletedName="ModeOfDisbursementRowDeleted" msprop:Generator_UserTableName="ModeOfDisbursement" msprop:Generator_RowChangedName="ModeOfDisbursementRowChanged" msprop:Generator_RowEvArgName="ModeOfDisbursementRowChangeEvent" msprop:Generator_RowClassName="ModeOfDisbursementRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="Text" msprop:Generator_ColumnVarNameInTable="columnText" msprop:Generator_ColumnPropNameInRow="Text" msprop:Generator_ColumnPropNameInTable="TextColumn" msprop:Generator_UserColumnName="Text" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ModeOfDisbursementKey1">
+      <xs:selector xpath=".//mstns:ModeOfDisbursement" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="ModeOfDisbursementKey2">
+      <xs:selector xpath=".//mstns:ModeOfDisbursement" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

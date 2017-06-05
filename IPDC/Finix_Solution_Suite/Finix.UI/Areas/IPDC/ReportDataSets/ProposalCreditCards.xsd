@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProposalCreditCards" targetNamespace="http://tempuri.org/ProposalCreditCards.xsd" xmlns:mstns="http://tempuri.org/ProposalCreditCards.xsd" xmlns="http://tempuri.org/ProposalCreditCards.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProposalCreditCards" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProposalCreditCards" msprop:Generator_UserDSName="ProposalCreditCards">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProposalCreditCards" msprop:Generator_TableClassName="ProposalCreditCardsDataTable" msprop:Generator_TableVarName="tableProposalCreditCards" msprop:Generator_TablePropName="_ProposalCreditCards" msprop:Generator_RowDeletingName="ProposalCreditCardsRowDeleting" msprop:Generator_RowChangingName="ProposalCreditCardsRowChanging" msprop:Generator_RowEvHandlerName="ProposalCreditCardsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProposalCreditCardsRowDeleted" msprop:Generator_UserTableName="ProposalCreditCards" msprop:Generator_RowChangedName="ProposalCreditCardsRowChanged" msprop:Generator_RowEvArgName="ProposalCreditCardsRowChangeEvent" msprop:Generator_RowClassName="ProposalCreditCardsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CreditCardNo" msprop:Generator_ColumnVarNameInTable="columnCreditCardNo" msprop:Generator_ColumnPropNameInRow="CreditCardNo" msprop:Generator_ColumnPropNameInTable="CreditCardNoColumn" msprop:Generator_UserColumnName="CreditCardNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditCardIssuersName" msprop:Generator_ColumnVarNameInTable="columnCreditCardIssuersName" msprop:Generator_ColumnPropNameInRow="CreditCardIssuersName" msprop:Generator_ColumnPropNameInTable="CreditCardIssuersNameColumn" msprop:Generator_UserColumnName="CreditCardIssuersName" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditCardIssueDate" msprop:Generator_ColumnVarNameInTable="columnCreditCardIssueDate" msprop:Generator_ColumnPropNameInRow="CreditCardIssueDate" msprop:Generator_ColumnPropNameInTable="CreditCardIssueDateColumn" msprop:Generator_UserColumnName="CreditCardIssueDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CreditCardLimit" msprop:Generator_ColumnVarNameInTable="columnCreditCardLimit" msprop:Generator_ColumnPropNameInRow="CreditCardLimit" msprop:Generator_ColumnPropNameInTable="CreditCardLimitColumn" msprop:Generator_UserColumnName="CreditCardLimit" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

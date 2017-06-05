@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewBag.Title = "CIB";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/CIBVerificationHistory.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="cibverificationhistory">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>CIB</b>
+        </h2>
+    </header>
+
+    <br />
+
+    <div class="container">
+        <div class="row">
+
+            <section class="rm">
+                <div class="panel-body">
+
+                    <div class="container-fluid ">
+
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-6">
+                                            <label for="ContactAddress" class="control-label" style="text-align: left;">CIF No :</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span type="text" data-bind="text:CifNo"></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-6">
+                                            <label for="ContactAddress" class="control-label" style="text-align: left;">Name :</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span type="text" data-bind="text:CIFName"></span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+
+                            @*<div class="row" data-bind="visible:OrganizationalVisible">
+                                <div class="col-sm-12">
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-6">
+                                            <label for="ContactAddress" class="control-label" style="text-align: left;">CIF Organization No :</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span type="text" data-bind="text:CifNo"></span>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-6">
+                                            <label for="ContactAddress" class="control-label" style="text-align: left;">Company Name :</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <span type="text" data-bind="text:CIFName"></span>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>*@
+                        </fieldset>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <br />
+
+    <!--start APPLICATION DETAILS-->
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <label class="headingOcc">CIB Verification History</label>
+        </div>
+        <div class="panel-body">
+
+            <form role="form" class="form-horizontal">
+                <table class="table table-striped table-bordered" data-bind="visible:PersonalVisible">
+                    <thead class="followup">
+                    <tr>
+                        <!--<th type="hidden" class="center"></th>-->
+                        <th class="center">Application No.</th>
+                        <th class="center">Applicant Role</th>
+                        <th class="center">Verification Date</th>
+                        <th class="center">Details</th>
+                        @*<th class="center"></th>
+                        <th class="center"></th>*@
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind="foreach:CIBPersonal" >
+
+                    <tr>
+                        <!--<td><input type="hidden" data-bind="value:Id"/></td>-->
+                        <td class="fo" data-bind="text: ApplicationNo"></td>
+                        <td class="fo" data-bind="text: VerificationPersonRoleName"></td>
+                        <td class="fo" data-bind="text: VerificationDateTxt"></td>
+                        <td>
+                            <a href='#' data-bind='click: $parent.Details'>Details</a>
+                        </td> 
+                        @*<td>
+                            <button type="button" data-bind="" class="btn-i btn-info" aria-label="justify">
+                                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                            </button>
+                        </td>
+                        <td>
+                            <button type="button" data-bind="" class="btn-i btn-info" aria-label="justify">
+                                <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                            </button>
+                        </td>*@
+                    </tr>
+                    </tbody>
+                </table>
+
+                <table class="table table-striped table-bordered" data-bind="visible:OrganizationalVisible">
+                    <thead class="followup">
+                        <tr>
+                            <!--<th type="hidden" class="center"></th>-->
+                            <th class="center">Application No.</th>
+                            <th class="center">Applicant Role</th>
+                            <th class="center">Verification Date</th>
+                            @*<th class="center"></th>
+                            <th class="center"></th>*@
+
+                        </tr>
+                    </thead>
+                    <tbody data-bind="foreach:CIBOrganizatioanl">
+
+                        <tr>
+                            <!--<td><input type="hidden" data-bind="value:Id" /></td>-->
+                            <td class="fo" data-bind="text: ApplicationNo"></td>
+                            <td class="fo" data-bind="text: VerificationPersonRoleName"></td>
+                            <td class="fo" data-bind="text: VerificationDateTxt"></td>
+                            @*
+                            <td>
+                                <button type="button" data-bind="" class="btn-i btn-info" aria-label="justify">
+                                    <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" data-bind="" class="btn-i btn-info" aria-label="justify">
+                                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                                </button>
+                            </td>*@
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+
+

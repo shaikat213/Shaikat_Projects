@@ -1,0 +1,592 @@
+﻿@{
+    ViewBag.Title = "Home Loan";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+
+<script src="~/Areas/IPDC/Scripts/Calculation/dbrIncomeRange.js"></script>
+<script src="~/Areas/IPDC/Scripts/Calculation/HomeLoan.js"></script>
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/LoanCalculation.css" rel="stylesheet" />
+
+<style>
+    .form-control {
+        width: 100% !important;
+        padding: 3px 3px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+    .row {
+        margin-right: 0px !important;
+        margin-left: 0px !important;
+    }
+    .container-fluid {
+        margin-left: -15px !important;
+        margin-right: -15px !important;
+    }
+</style>
+
+
+<section class="panel-bodycontent">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Home Loan</b>
+        </h2>
+    </header><br />
+
+    <div id="homeLoan">
+        
+            <div class="container-fluid ">
+                <div class="row">
+
+                    <form class="form-horizontal" role="form" id="employee-info">
+
+                        <div class="form-group row row_design">
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Income from Salary :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: IncomeFromSalary, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Income from business :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: IncomeFromBusiness, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Other Allowance :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: OtherAllowance, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Rental Income :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: RentalIncome, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Income from FDR :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: IncomeFromFDR, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Income from Spouse/ Family members :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: IncomeFromFamilyMember, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Total Monthly Income :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <label data-bind="text: TotalMonthlyIncome" class="captionStatement-bold pull-right control-label"></label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label"> Max. considerable income for Total EMI :</label>
+                                <div class="col-sm-2">
+                                    <label data-bind="text: MaxConsiderIncomePercentRounded" class="captionStatement-bold pull-right control-label"></label>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label data-bind="text: MaxConsiderIncomeforTotalEmi" class="captionStatement-bold pull-right control-label"></label>
+
+                                </div>
+                            </div>
+
+
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Existing EMI :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: ExistingEmi, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Credit Card Limit :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" type="number" data-bind="value: CreditCardLimit, valueUpdate: 'keyup'" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Max. considerable income for IPDC loan EMI :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <label data-bind="text: MaxconsiderablincomeIPDCloanEMI" class="captionStatement-bold pull-right control-label"></label>
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Tenor (in months) :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" data-bind="value:Tenor, valueUpdate:'keyup'" type="number" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Interest Rate :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" data-bind="value:InterestRate, valueUpdate:'keyup'" type="number" />
+
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label id="" class="col-sm-4 col-sm-offset-1 control-label">Property Value :</label>
+                                <div class="col-sm-2"></div>
+                                <div class="col-sm-2">
+                                    <input class="form-control" data-bind="value:QuotationPrice, valueUpdate:'keyup'" type="number" />
+
+                                </div>
+                            </div>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group row row_design">
+                                        <div class="form-group bg-warning">
+                                            <label id="" class="col-sm-4 col-sm-offset-1 control-label">Max Loan amount (in BDT) based on Income :</label>
+                                            <div class="col-sm-2">
+                                                <label data-bind="text: MaxLoanamountbasedonIncome" class="captionStatement-bold pull-right control-label"></label>
+                                            </div>
+
+                                            <div class="col-sm-2"></div>
+
+                                        </div>
+
+                                        <div class="form-group bg-warning">
+                                            <label id="" class="col-sm-4 col-sm-offset-1 control-label">Max Loan amount (in BDT) based on LTV :</label>
+                                            <div class="col-sm-2">
+                                                <div class="input-group">
+                                                    <input class="form-control" data-bind="value:LTVPercentage, valueUpdate:'keyup'" type="number" />
+                                                    <div class="input-group-addon">
+                                                        <span>%</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label data-bind="text: MaxLoanamountbasedonLTV" class="captionStatement-bold pull-right control-label"></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                    </div>
+                                    
+
+                                    <div class="form-group">
+                                        <label id="" class="col-sm-4 col-sm-offset-1 control-label">Recommended Loan :</label>
+                                        <div class="col-sm-2">
+                                            <input class="form-control" data-bind="value:RecomendedLoan, valueUpdate:'keyup'" type="number" />
+                                        </div>
+                                        <div class="col-sm-2"></div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label id="" class="col-sm-4 col-sm-offset-1 control-label">EMI for recommended loan :</label>
+                                        <div class="col-sm-2">
+                                            <label data-bind="text: PMTRecomendedLoan" class="captionStatement-bold pull-right control-label"></label>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label id="" class="col-sm-4 col-sm-offset-1 control-label">Existing EMI :</label>
+                                        <div class="col-sm-2">
+                                            <label data-bind="text: ExistingEmiBind" class="captionStatement-bold pull-right control-label"></label>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label id="" class="col-sm-4 col-sm-offset-1 control-label">Monthly Debt Commitment :</label>
+                                        <div class="col-sm-2">
+                                            <label data-bind="text: MonthlyDbtCommitment" class="captionStatement-bold pull-right control-label"></label>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label id="" class="col-sm-4 col-sm-offset-1 control-label">LTV :</label>
+                                        <div class="col-sm-2">
+                                            <label data-bind="text: PercenOfQuotation" class="captionStatement-bold pull-right control-label"></label>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                    </div>
+
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="form-group row row_design">
+                                        <div class="form-group bg-warning">
+                                            <label id="" class="col-sm-4 col-sm-offset-1 control-label">DBR :</label>
+                                            <div class="col-sm-2">
+                                                <label data-bind="text: DBR" class="captionStatement-bold pull-right control-label"></label>
+                                            </div>
+                                            <div class="col-sm-2"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                                </div>
+
+
+
+                                @*<table class="table-responsive table-bordered-this commonTable">
+            <tr>
+                <td>
+                    <label class="control-label">
+                        Income from Salary
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <input class="form-control" type="number" data-bind="value: IncomeFromSalary, valueUpdate: 'keyup'" />
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <label class="control-label">
+                        Income from business
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: IncomeFromBusiness, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label">
+                        Other Allowance
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: OtherAllowance, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+
+                    <label class="control-label">
+                        Rental Income
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: RentalIncome, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label">
+                        Income from FDR
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: IncomeFromFDR, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <label class="control-label">
+                        Income from Spouse/ Family members
+                    </label>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: IncomeFromFamilyMember, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="captionStatement-bold">
+                        Total Monthly Income
+                    </span>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><span data-bind="text: TotalMonthlyIncome" class="captionStatement-bold pull-right"></span></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+
+                    <span class="captionStatement-bold">
+                        Max. considerable income for Total EMI
+                    </span>
+                </td>
+
+                <td colspan="2">
+                    <span data-bind="text: MaxConsiderIncomePercentRounded" class="captionStatement-bold pull-right"></span>
+                </td>
+                <td>
+                    <span data-bind="text: MaxConsiderIncomeforTotalEmi" class="captionStatement-bold pull-right"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <span class="captionStatement-bold">
+                        Existing EMI
+                    </span>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: ExistingEmi, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr class="table-bordered-this trBottom">
+                <td>
+                    <span class="captionStatement-bold">
+                        Credit Card Limit
+                    </span>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td><input class="form-control" type="number" data-bind="value: CreditCardLimit, valueUpdate: 'keyup'" /></td>
+            </tr>
+            <tr>
+                <td>
+
+                    <span class="captionStatement-bold">
+                        Max. considerable income for IPDC loan EMI
+                    </span>
+                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>
+                    <span data-bind="text: MaxconsiderablincomeIPDCloanEMI" class="captionStatement-bold pull-right"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+
+                    <span class="captionStatement-bold">
+                        Tenor (in months)
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="form-control" data-bind="value:Tenor, valueUpdate:'keyup'" type="number" />
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+
+                    <span class="captionStatement-bold">
+                        Interest Rate
+                    </span>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                    <input class="form-control" data-bind="value:InterestRate, valueUpdate:'keyup'" type="number" />
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    <span class="captionStatement-bold-large">
+                        Property Value
+                    </span>
+                </td>
+                <td>
+                    <input class="form-control" data-bind="value:QuotationPrice, valueUpdate:'keyup'" type="number" />
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4" style="background-color: gray">
+                    <span class="captionStatement-bold-large-colored">
+                        Max Loan amount (in BDT) based on Income
+                    </span>
+                </td>
+                <td style="background-color: gray">
+                    <span data-bind="text: MaxLoanamountbasedonIncome" class="captionStatement-bold-large-colored pull-right"></span>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" style="background-color: gray">
+
+                    <span class="captionStatement-bold-large-colored">
+                        Max Loan amount (in BDT) based on LTV
+                    </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </td>
+                <td colspan="2" style="background-color: gray;">
+
+                    <div class="input-group">
+                        <input class="form-control" data-bind="value:LTVPercentage, valueUpdate:'keyup'" type="number" />
+                        <div class="input-group-addon">
+                            <span>%</span>
+                        </div>
+                    </div>
+                </td>
+                <td style="background-color: gray;">
+                    <span data-bind="text: MaxLoanamountbasedonLTV" class="captionStatement-bold-large-colored pull-right"></span>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+            @*<tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            EMI per BDT 100,000
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td><span data-bind="text: EmiPerBdtOnelakPMT, valueUpdate: 'keyup'" class="captionStatement-bold"></span></td>
+
+                </tr>*@
+                                @*<tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            Recommended Loan
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td>
+                        <input class="form-control" data-bind="value:RecomendedLoan, valueUpdate:'keyup'" type="number" />
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            EMI for recommended loan
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td><span data-bind="text: PMTRecomendedLoan" class="captionStatement-bold pull-right"></span></td>
+                </tr>
+                <tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            Existing EMI
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td><span data-bind="text: ExistingEmiBind" class="captionStatement-bold pull-right"></span></td>
+
+                </tr>
+                <tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            Monthly Debt Commitment
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td><span data-bind="text: MonthlyDbtCommitment" class="captionStatement-bold pull-right"></span></td>
+
+                </tr>
+                <tr>
+                    <td>
+
+                        <span class="captionStatement-bold">
+                            LTV
+                        </span>
+                    </td>
+                    <td>&nbsp;</td>
+                    <td><span data-bind="text: PercenOfQuotation" class="captionStatement-bold pull-right"></span></td>
+
+                </tr>
+                <tr>
+                    <td style="background-color: gray;">
+
+                        <span class="captionStatement-bold-dbr">
+                            DBR
+                        </span>
+                    </td>
+                    <td style="background-color: gray;">&nbsp;</td>
+                    <td style="background-color: gray;"><span data-bind="text: DBR" class="captionStatement-bold-dbr pull-right"></span></td>
+
+                </tr>
+            </table>*@
+
+</form>
+                </div>
+        </div>
+
+        <div class="form-group">
+            <div id="successModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="successModalText"></p>
+
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+ </section>
+
+

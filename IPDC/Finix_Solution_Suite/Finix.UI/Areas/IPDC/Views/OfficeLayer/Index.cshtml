@@ -1,0 +1,25 @@
+﻿<script src="~/Areas/IPDC/Scripts/OfficeLayer/officelayer.js"></script>
+<script src="~/Scripts/App/validate.js"></script>
+@{
+    ViewBag.Title = "OfficeLayer Information";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+@*<h2>@ViewBag.Title</h2>*@
+
+@*<div class="alert alert-warning fade in">
+    <button type="button" class="close" data-dismiss="alert">&times;</button>
+    <strong>Attention!</strong>//Officelayer definition to be added//
+    
+</div>*@
+<div>
+    <table id="jqGrid"></table>
+    <div id="jqControls"></div>
+</div>
+
+<br /><br />
+<div id="detailsPlaceholder">
+    <table id="jqGridDetails"></table>
+    <div id="jqGridDetailsPager"></div>
+</div>
+

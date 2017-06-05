@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OverallAssesments" targetNamespace="http://tempuri.org/OverallAssesments.xsd" xmlns:mstns="http://tempuri.org/OverallAssesments.xsd" xmlns="http://tempuri.org/OverallAssesments.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OverallAssesments" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OverallAssesments" msprop:Generator_UserDSName="OverallAssesments">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="OversallAssesments" msprop:Generator_TableClassName="OversallAssesmentsDataTable" msprop:Generator_TableVarName="tableOversallAssesments" msprop:Generator_TablePropName="OversallAssesments" msprop:Generator_RowDeletingName="OversallAssesmentsRowDeleting" msprop:Generator_RowChangingName="OversallAssesmentsRowChanging" msprop:Generator_RowEvHandlerName="OversallAssesmentsRowChangeEventHandler" msprop:Generator_RowDeletedName="OversallAssesmentsRowDeleted" msprop:Generator_UserTableName="OversallAssesments" msprop:Generator_RowChangedName="OversallAssesmentsRowChanged" msprop:Generator_RowEvArgName="OversallAssesmentsRowChangeEvent" msprop:Generator_RowClassName="OversallAssesmentsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="AssessmentParticulars" msprop:Generator_ColumnVarNameInTable="columnAssessmentParticulars" msprop:Generator_ColumnPropNameInRow="AssessmentParticulars" msprop:Generator_ColumnPropNameInTable="AssessmentParticularsColumn" msprop:Generator_UserColumnName="AssessmentParticulars" type="xs:string" minOccurs="0" />
+              <xs:element name="VerificationStatus" msprop:Generator_ColumnVarNameInTable="columnVerificationStatus" msprop:Generator_ColumnPropNameInRow="VerificationStatus" msprop:Generator_ColumnPropNameInTable="VerificationStatusColumn" msprop:Generator_UserColumnName="VerificationStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="VerificationStatusName" msprop:Generator_ColumnVarNameInTable="columnVerificationStatusName" msprop:Generator_ColumnPropNameInRow="VerificationStatusName" msprop:Generator_ColumnPropNameInTable="VerificationStatusNameColumn" msprop:Generator_UserColumnName="VerificationStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="DoneBy" msprop:Generator_ColumnVarNameInTable="columnDoneBy" msprop:Generator_ColumnPropNameInRow="DoneBy" msprop:Generator_ColumnPropNameInTable="DoneByColumn" msprop:Generator_UserColumnName="DoneBy" type="xs:string" minOccurs="0" />
+              <xs:element name="AssessmentDate" msprop:Generator_ColumnVarNameInTable="columnAssessmentDate" msprop:Generator_ColumnPropNameInRow="AssessmentDate" msprop:Generator_ColumnPropNameInTable="AssessmentDateColumn" msprop:Generator_UserColumnName="AssessmentDate" type="xs:string" minOccurs="0" />
+              <xs:element name="AssessmentDateTxt" msprop:Generator_ColumnVarNameInTable="columnAssessmentDateTxt" msprop:Generator_ColumnPropNameInRow="AssessmentDateTxt" msprop:Generator_ColumnPropNameInTable="AssessmentDateTxtColumn" msprop:Generator_UserColumnName="AssessmentDateTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="OversallAssesmentsKey1">
+      <xs:selector xpath=".//mstns:OversallAssesments" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="OversallAssesmentsKey2">
+      <xs:selector xpath=".//mstns:OversallAssesments" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

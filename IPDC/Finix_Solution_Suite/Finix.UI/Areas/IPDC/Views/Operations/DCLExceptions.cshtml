@@ -1,0 +1,147 @@
+﻿@*@model dynamic
+
+    @{
+        ViewBag.Title = "title";
+        Layout = "_Layout";
+    }
+
+    <h2>title</h2>*@
+@{
+    ViewBag.Title = "Document Check List";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<script src="~/Areas/IPDC/Scripts/Operations/DCLExceptions.js"></script>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="DocCheckListLoanVW">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Document Check List</b>
+        </h2>
+    </header>
+
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="panel-body">
+
+                <div class="panel-bodycontent">
+                    <div class="panel-heading row_design_cifNetworth">
+                        <label>Exceptions</label>
+                    </div>
+
+                    <div class="panel-body">
+                        <table class="table table-striped table-bordered">
+                            <thead class="headcolor">
+                                <tr>
+                                    <th class="col-sm-4">Description</th>
+                                    <th class="col-sm-2">Action</th>
+                                    <th class="col-sm-2">Collection Date</th>
+                                    <th class="col-sm-2">Obtained Date</th>
+                                    <th class="col-sm-4">Justification</th>
+                                </tr>
+                            </thead>
+                            <tbody data-bind='foreach:Exceptions'>
+                                <tr>
+                                    <td>
+                                        <textarea class="form-control" data-bind="value:Description"></textarea>
+                                    </td>
+                                    <td data-bind="validationElement: Action">
+                                        <select class="form-control" data-bind="options:$parent.ActionList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:Action, event:{change : CheckIfWaiver}"></select> @*, event:{change : CheckIfWaiver}*@
+                                    </td>
+                                    <td>
+                                        <div class="input-group input-group_cif date">
+                                            <input type="text" class="form-control" data-bind="datepicker:ObtainedDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup',enable:IfWaiver"> @*, diable:IfWaiver*@
+                                            <span class="help-block" style="display: none;"></span>
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <div class="input-group input-group_cif date">
+                                            <input type="text" class="form-control" data-bind="datepicker:CollectionDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup',enable:IfObtained"> @*, diable:IfWaiver*@
+                                            <span class="help-block" style="display: none;"></span>
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+
+                                    </td>
+                                    <td>
+                                        <textarea class="form-control" data-bind="value:Justification"></textarea>
+                                    </td>
+                                    @*<td>
+                                            <a class="plus" href='#' data-bind='click: $parent.AddExceptions'><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a class="minus" href='#' data-bind='click: $parent.RemoveExceptions'><span class="glyphicon glyphicon-minus"></span></a>
+                                        </td>*@
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="form-group row row_design">
+                    <div class="col-sm-3 col-sm-offset-8" style="text-align:left">
+                        <button type="button" class="btn btn-success" data-bind="click:SaveDocCheckList">Save</button>
+                        @*<button type="button" class="btn-q btn-default btnLarge" data-bind="click:SavePrint">Print & Save</button>*@
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div id="loanAppDCLResponseModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Response</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                    <p id="loanAppDCLResponseModalText"></p>
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+
+

@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Owners" targetNamespace="http://tempuri.org/Owners.xsd" xmlns:mstns="http://tempuri.org/Owners.xsd" xmlns="http://tempuri.org/Owners.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Owners" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Owners" msprop:Generator_UserDSName="Owners">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CIF_Org_OwnersDto" msprop:Generator_TableClassName="CIF_Org_OwnersDtoDataTable" msprop:Generator_TableVarName="tableCIF_Org_OwnersDto" msprop:Generator_TablePropName="CIF_Org_OwnersDto" msprop:Generator_RowDeletingName="CIF_Org_OwnersDtoRowDeleting" msprop:Generator_RowChangingName="CIF_Org_OwnersDtoRowChanging" msprop:Generator_RowEvHandlerName="CIF_Org_OwnersDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="CIF_Org_OwnersDtoRowDeleted" msprop:Generator_UserTableName="CIF_Org_OwnersDto" msprop:Generator_RowChangedName="CIF_Org_OwnersDtoRowChanged" msprop:Generator_RowEvArgName="CIF_Org_OwnersDtoRowChangeEvent" msprop:Generator_RowClassName="CIF_Org_OwnersDtoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" msprop:Generator_UserColumnName="ApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_OrganizationalId" msprop:Generator_ColumnVarNameInTable="columnCIF_OrganizationalId" msprop:Generator_ColumnPropNameInRow="CIF_OrganizationalId" msprop:Generator_ColumnPropNameInTable="CIF_OrganizationalIdColumn" msprop:Generator_UserColumnName="CIF_OrganizationalId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_PersonalId" msprop:Generator_ColumnVarNameInTable="columnCIF_PersonalId" msprop:Generator_ColumnPropNameInRow="CIF_PersonalId" msprop:Generator_ColumnPropNameInTable="CIF_PersonalIdColumn" msprop:Generator_UserColumnName="CIF_PersonalId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_Personal" msprop:Generator_ColumnVarNameInTable="columnCIF_Personal" msprop:Generator_ColumnPropNameInRow="CIF_Personal" msprop:Generator_ColumnPropNameInTable="CIF_PersonalColumn" msprop:Generator_UserColumnName="CIF_Personal" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_Org_OwnersRole" msprop:Generator_ColumnVarNameInTable="columnCIF_Org_OwnersRole" msprop:Generator_ColumnPropNameInRow="CIF_Org_OwnersRole" msprop:Generator_ColumnPropNameInTable="CIF_Org_OwnersRoleColumn" msprop:Generator_UserColumnName="CIF_Org_OwnersRole" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_Org_OwnersRoleName" msprop:Generator_ColumnVarNameInTable="columnCIF_Org_OwnersRoleName" msprop:Generator_ColumnPropNameInRow="CIF_Org_OwnersRoleName" msprop:Generator_ColumnPropNameInTable="CIF_Org_OwnersRoleNameColumn" msprop:Generator_UserColumnName="CIF_Org_OwnersRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:string" minOccurs="0" />
+              <xs:element name="ProfessionName" msprop:Generator_ColumnVarNameInTable="columnProfessionName" msprop:Generator_ColumnPropNameInRow="ProfessionName" msprop:Generator_ColumnPropNameInTable="ProfessionNameColumn" msprop:Generator_UserColumnName="ProfessionName" type="xs:string" minOccurs="0" />
+              <xs:element name="MonthlyIncome" msprop:Generator_ColumnVarNameInTable="columnMonthlyIncome" msprop:Generator_ColumnPropNameInRow="MonthlyIncome" msprop:Generator_ColumnPropNameInTable="MonthlyIncomeColumn" msprop:Generator_UserColumnName="MonthlyIncome" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="CIF_Org_OwnersDtoKey1">
+      <xs:selector xpath=".//mstns:CIF_Org_OwnersDto" />
+      <xs:field xpath="mstns:Id" />
+      <xs:field xpath="mstns:ApplicationId" />
+      <xs:field xpath="mstns:CIF_OrganizationalId" />
+      <xs:field xpath="mstns:CIF_PersonalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

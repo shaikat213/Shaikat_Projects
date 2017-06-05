@@ -1,0 +1,535 @@
+﻿@*<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Areas/IPDC/Scripts/CIF/cifReference.js"></script>
+    <link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+    <link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+    <link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+
+
+@{
+    ViewBag.Title = "CIF Reference";
+    //Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .sp_height {
+        height: 30px;
+    }
+
+    .form-control {
+        width: 100% !important;
+    }
+</style>
+<div scrolling="no" style="overflow:hidden;">
+
+
+    <section class="panel-bodycontent">
+        <header class="panel-heading bodytitle">
+
+            <h2 class="panel-title font"><b>CIF References</b></h2>
+
+        </header>
+        <section>
+            <div class="container-fluid">
+                <div class="col-sm-12">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-group row row_design_cifr">
+                                <div class="col-sm-10" style="text-align:center">
+                                    <label class="control-label">CIF Reference</label>
+                                    <div class="pull-right">
+                                        <a class="plus" href='#' data-bind='click: AddCIFReferenceLine'><span class="glyphicon glyphicon-plus"></span> <span>Add Refefence Line</span></a>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+
+
+
+                    <div class="row" data-bind="foreach:CIFReference">
+                        <div class="panel panel-default">
+                            <div class="panel-bodycontent">
+                                <div class="panel-heading row_design_cifNetworth">
+                                    <label>Reference <span data-bind="text: $index() + 1"></span></label>
+                                    <div class="pull-right">
+                                        <a href='#' class="plus" data-bind='click: $parent.AddCIFReferenceLine'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a href='#' class="minus" data-bind='click: $parent.RemoveCIFReferenceLine'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6 col-sm-6_sp">
+
+                                                <div class="form-group row row_design_cifr">
+                                                    <label class="heading">Basic Info</label>
+                                                </div>
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Name</label>
+                                                    </div>
+                                                    <div class="col-sm-5">
+
+                                                        <input type="text" data-bind="value:Name" class="form-control" />
+                                                    </div>
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Designation</label>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" data-bind="value:Designation" class="form-control" />
+                                                    </div>
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Department</label>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" data-bind="value:Department" class="form-control" />
+                                                    </div>
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label duplicateAlignment">Is Enlisted Organization?</label>
+                                                    </div>
+
+                                                    <div class="col-sm-5">
+                                                        <input type="checkbox" data-bind="checked:EnlistedOrganization" />
+                                                    </div>
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label">Office</label>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <div id="divTxtOffice" data-bind="visible:EnlistedOrganization">
+                                                            <select data-bind="options:$parent.OrganizationList, value: OrganizationId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                                                        </div>
+                                                        <div id="divTxtOffice1" data-bind="visible: !EnlistedOrganization()">
+                                                            <input type="text" data-bind="value: OrganizationName" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-1">
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-4">
+                                                        <label class="control-label duplicateAlignment">Relationship with applicant</label>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <input type="text" data-bind="value: RelationshipWithApplicant" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-sm-6_sp">
+
+                                                <div class="form-group row row_design_cifr">
+                                                    <label class="heading" style="padding-right: 0px;">Office Address</label>
+                                                </div>
+
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label duplicateAlignment">Address line 1</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:OfficeAddress.AddressLine1 , event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label duplicateAlignment">Address line 2</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:OfficeAddress.AddressLine2, event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label duplicateAlignment">Address line 3</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:OfficeAddress.AddressLine3, event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label duplicateAlignment">Country</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options:$parent.CountryList, value: OfficeAddress.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'  ,event : { change : OfficeAddress.IsAddressChanged}" class="form-control"></select>@*event:{change : LoadFactoryDivisionByCountry}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:OfficeAddress.PhoneNo">
+                                                        <input type="text" data-bind="value:OfficeAddress.PhoneNo , event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label duplicateAlignment">Division</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options:OfficeAddress.DivisionList, value: OfficeAddress.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng',  event : { change : OfficeAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : getFactoryDistrictByDivision}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" data-bind="validationElement:OfficeAddress.CellPhoneNo">Cell Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:OfficeAddress.CellPhoneNo">
+                                                        <input type="text" data-bind="value:OfficeAddress.CellPhoneNo , event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">District</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options:OfficeAddress.DistrictList, value: OfficeAddress.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng' , event : { change : OfficeAddress.IsAddressChanged}" class="form-control"></select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" data-bind="validationElement:OfficeAddress.Email">E-mail</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:OfficeAddress.Email">
+                                                        <input type="email" data-bind="value:OfficeAddress.Email , event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Thana</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options:OfficeAddress.ThanaList, value: OfficeAddress.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng' , event : { change : OfficeAddress.IsAddressChanged}" class="form-control"></select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Postal Code</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement:OfficeAddress.PostalCode">
+                                                        <input type="text" data-bind="value:OfficeAddress.PostalCode , event : { change : OfficeAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="col-sm-6 col-sm-6_sp">
+
+                                                <div class="">
+                                                    <div class="form-group row row_design_cifr sp_height">
+                                                        <label class="control-label"><b>Residence Address:</b></label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 1</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:ResidenceAddress.AddressLine1 , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 2</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:ResidenceAddress.AddressLine2 , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 3</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:ResidenceAddress.AddressLine3 , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Country</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: $parent.CountryList, value: ResidenceAddress.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name', event : { change : ResidenceAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : LoadResidenceDivisionByCountry}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:OfficeAddress.PhoneNo">
+                                                        <input type="text" data-bind="value:ResidenceAddress.PhoneNo , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Division</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: ResidenceAddress.DivisionList, value: ResidenceAddress.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng', event : { change : ResidenceAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : getResidenceDistrictByDivision}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Cell Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:ResidenceAddress.CellPhoneNo">
+                                                        <input type="text" data-bind="value:ResidenceAddress.CellPhoneNo , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">District</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: ResidenceAddress.DistrictList, value: ResidenceAddress.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng', event : { change : ResidenceAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : getResidenceUpzilaByDistrict}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">E-mail</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:ResidenceAddress.Email">
+                                                        <input type="email" data-bind="value:ResidenceAddress.Email , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Thana</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: ResidenceAddress.ThanaList, value: ResidenceAddress.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng', event : { change : ResidenceAddress.IsAddressChanged}" class="form-control"></select>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Postal Code</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement:ResidenceAddress.PostalCode">
+                                                        <input type="text" data-bind="value:ResidenceAddress.PostalCode , event : { change : ResidenceAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                            <div class="col-sm-6 col-sm-6_sp">
+
+                                                
+                                                <div class="form-group row row_design_cifr sp_height">
+                                                    <div class="">
+                                                        <div class="col-sm-5">
+
+                                                            <label class="control-label"><b>Permanent Address:</b></label>
+                                                        </div>
+                                                        <div class="col-sm-5">
+                                                            <button data-bind="click:UseResidenceAddress" class="btn-large btn-default">Use Residence Address</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 1</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:PermanentAddress.AddressLine1 , event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 2</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:PermanentAddress.AddressLine2 , event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Address line 3</label>
+                                                    </div>
+                                                    <div class="col-sm-9">
+                                                        <input type="text" data-bind="value:PermanentAddress.AddressLine3 , event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Country</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: $parent.CountryList, value: PermanentAddress.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name', event : { change : PermanentAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : LoadPermanentDivisionByCountry}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:PermanentAddress.PhoneNo">
+                                                        <input type="text" data-bind="value:PermanentAddress.PhoneNo, event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Division</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: PermanentAddress.DivisionList, value: PermanentAddress.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng', event : { change : PermanentAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : getPermanentDistrictByDivision}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Cell Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:PermanentAddress.CellPhoneNo">
+                                                        <input type="text" data-bind="value:PermanentAddress.CellPhoneNo, event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">District</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: PermanentAddress.DistrictList, value: PermanentAddress.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng', event : { change : PermanentAddress.IsAddressChanged}" class="form-control"></select>@*,event:{change : getPermanentUpzilaByDistrict}*@
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" data-bind="validationElement:OfficeAddress.Email">E-mail</label>
+                                                    </div>
+                                                    <div class="col-sm-4" data-bind="validationElement:PermanentAddress.Email">
+                                                        <input type="email" data-bind="value:PermanentAddress.Email, event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Thana</label>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <select data-bind="options: PermanentAddress.ThanaList, value: PermanentAddress.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng', event : { change : PermanentAddress.IsAddressChanged}" class="form-control"></select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label">Postal Code</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement:PermanentAddress.PostalCode">
+                                                        <input type="text" data-bind="value:PermanentAddress.PostalCode, event : { change : PermanentAddress.IsAddressChanged}" class="form-control" />
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12">
+                        <form class="form-horizontal" role="form">
+
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-1">
+
+                                </div>
+                                <div class="col-sm-4">
+
+                                </div>
+
+                                <div class="col-sm-6 col-sm-6_sp">
+                                    <button type="submit" data-bind="click:Submit" class="btn btn-success">Save</button>
+                                    <button type="submit" data-bind="click:Reset" class="btn btn-default">Reset</button>
+                                    @*<button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>*@
+                                </div>
+                                <div class="col-sm-1">
+
+                                </div>
+                            </div>
+
+
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <div>
+            <div id="successModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="successModalText"></p>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+

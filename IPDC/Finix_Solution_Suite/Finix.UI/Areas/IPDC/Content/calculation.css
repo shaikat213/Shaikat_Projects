@@ -1,0 +1,47 @@
+﻿.trBottom{
+    margin-bottom:2px;
+}
+.fieldsenOutside{
+    width:58%;
+}
+
+.commonTable{
+    margin:10px;
+}
+    .table-bordered-this {
+        border: 0 solid #ddd;
+    }
+
+    .captionStatement{
+        font-size:110%;
+        font-family:Arial;
+        text-align:left;
+    }
+
+    .captionStatement-bold{
+        font-size:110%;
+        font-family:Arial;
+        font-weight:bold;
+        text-align:left;
+    }
+
+    .captionStatement-bold-dbr{
+        font-size:110%;
+        font-family:Arial;
+        font-weight:bold;
+        text-align:left;
+        color:#fff;
+    }
+
+    .captionStatement-bold-large{
+        font-size:120%;
+        font-family:Arial;
+        font-weight:bold;
+    }
+
+    .captionStatement-bold-large-colored{
+        font-size:120%;
+        font-family:Arial;
+        font-weight:bold; 
+        color:#fff;
+    }

@@ -1,0 +1,440 @@
+﻿
+@{
+    ViewBag.Title = "CIB";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/CIB_Personal.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+<form id="cibpersonal" class="form-horizontal" enctype="multipart/form-data">
+    <section class="panel-bodycontent">
+        <header class="panel-heading bodytitle">
+            <h2 class="panel-title font">
+                <b>CIB</b>
+            </h2>
+        </header>
+
+        <br />
+
+        <div>
+            <div class="form-group row row_design_detail">
+
+                <div class="col-sm-2 col-sm-offset-2">
+                    <label class="control-label" style="text-align: left;">Person Verified :</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationPersonRole" disabled>Applicant</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationPersonRole" disabled>Co-Applicant</label>
+                </div>
+                <div class="col-sm-2">
+                    <label class="radio-inline"><input type="radio" value="3" data-bind="checked: VerificationPersonRole" disabled>Guarantor</label>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="row">
+
+                    <section class="rm">
+                        <div class="panel-body">
+
+                            <div class="container-fluid ">
+
+                                <fieldset>
+                                    <div class="row">
+                                        <div class="col-sm-12">
+
+
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label for="ContactAddress" class="control-label" style="text-align: left;">CIF No:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:CIFNo"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">CIF Name:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:CIFName"></span>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row row_design">
+
+                                                <div class="col-sm-3">
+                                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Father:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:CIFFathersName"></span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Mother:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:CIFMothersName"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Date of Birth:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:DateOfBirth"></span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Birth Registration No:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:BirthRegNo"></span>
+                                                </div>
+
+
+                                            </div>
+                                            <div class="form-group row row_design">
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Birth Place:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:BirthDistrictName"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Passport Issue Country:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:PassportIssueCountryName"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row row_design">
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Passport:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:PassportNo"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Passport Issue Date:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:PassportIssueDate"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label for="ContactAddress" class="control-label" style="text-align: left;">NID:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:NIDNo"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Smart NID:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:SmartNIDNo"></span>
+                                                </div>
+
+                                            </div>
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;">Drivers License:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:DLNo"></span>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label for="" class="control-label" style="text-align: left;">Applied Amount:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:AppliedAmount"></span>
+                                                </div>
+
+                                            </div>
+
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Permanent Address:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:PermanentAddress"></span>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-4 pull-right">
+                                                    <button type="submit" class="btn-q btn-default btnLarge" data-bind="click:CibHistory">Verification History</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </section>
+
+                    <br />
+                </div>
+            </div>
+            <br />
+
+            <!--start APPLICATION DETAILS-->
+
+            <div class="panel panel-default">
+
+                <div class="panel-heading">
+                    <label class="headingOcc col-sm-offset-1">New/Re-Entry</label>
+                </div>
+                <div class="panel-body">
+
+                    <form class="form-horizontal" role="form">
+                        @*<div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">No of Living Contracts as Borrower-Co Borrower :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="number" min="0" data-bind="value:NoOfLivingContactsAsBorrower, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Total Outstanding as Borrower- Co Borrower :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:TotalOutstandingAsBorrower, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Classified Amount as Borrower-Co Borrower :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:ClassifiedAmountAsBorrower, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Total EMI as Borrower-Co Borrower :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:TotalEMIAsBorrower, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>*@
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <label for="ContactAddress" class="control-label" style="text-align: left;">Classification Status as Borrower-Co Borrower :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <select data-bind="options:CIBClassificationStatusAsBorrowerList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CIBClassificationStatusAsBorrower" class="form-control"></select>
+                            </div>
+
+                        </div>
+
+                        @*<div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">No of Living Contracts as Guarantor :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:NoOfLivingContactsAsGuarantor, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Total Outstanding as Guarantor :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:TotalOutstandingAsGuarantor, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Classified Amount as Guarantor :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:ClassifiedAmountAsGuarantor, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Total EMI as Guarantor :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="number" min="0" data-bind="value:TotalEMIAsGuarantor, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>*@
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <label for="ContactAddress" class="control-label" style="text-align: left;">Classification Status as Guarantor :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <select data-bind="options:CIBClassificationStatusAsGuarantorList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CIBClassificationStatusAsGuarantor" class="form-control"></select>
+                            </div>
+
+                        </div>
+
+                        @*<div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Exposure in the Name of Business :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="text" min="0" data-bind="value:ExposureInBusiness, valueUpdate:'keyup'" class="form-control" />
+                                </div>
+
+                            </div>*@
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Classification Status of Business Loan :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <select data-bind="options:CIBClassificationStatusOfBusinessList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CIBClassificationStatusOfBusiness" class="form-control"></select>
+                            </div>
+
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <label for="" class="control-label">CIB Report:</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="file" name="CIBReportFile" id="CIBReportFile" data-bind="value:CIBReportFile"/>
+                                <a data-bind="attr:{href:  $root.getEditUrl($data) }, text: CIBReportFileName"> </a>
+                            </div>
+                        </div>
+                        <div class="form-group row row_design_detail">
+                            <div class="col-sm-4 col-sm-offset-2">
+                                <label class="control-label">Verification Date :</label>
+                            </div>
+                            <div class="col-sm-3 input-group input-group_cif date" style="padding-left: 15px; padding-right: 15px;">
+                                <input type="text" class="form-control" data-bind="datepicker:VerificationDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                <span class="help-block" style="display: none;"></span>
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+                        </div>
+                        @*<div class="form-group row row_design">
+
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <label for="ContactAddress" class="control-label" style="text-align: left;">Upload CIB Report :</label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input type="file" class="form-control" />
+                                </div>
+
+                            </div>*@
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-4 pull-right">
+                                <button type="button" class="btn-q btn-default" data-bind="click:SaveNewCIBPersonal ">Save</button>
+                                @*<button type="button" class="btn btn-success" data-bind="click:SaveCIBPersonal ">Save</button>*@ @*, enable :IsValid*@
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <div id="cibSuccessModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog modal-sm">
+                                    <!-- Modal content-->
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                            <h4 class="modal-title">Response</h4>
+                                        </div>
+                                        <div class="modal-body" align="center">
+                                            <p id="cibSuccessModalText"></p>
+
+                                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                        </div>
+                                        <div class="modal-footer">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+</form>
+
+
+
+
+
+

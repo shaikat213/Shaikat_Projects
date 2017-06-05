@@ -1,0 +1,17 @@
+﻿<script src="~/Areas/Auth/Scripts/Role/role.js"></script>
+<script src="~/Areas/Auth/Scripts/validate.js"></script>
+@{
+    ViewBag.Title = "Role Information";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+@*<div class="alert alert-warning fade in">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Attention!</strong>It determines user's role.
+        It tells an user which functionalities he has access.An user can have multiple roles
+    </div>*@
+<div>
+    <table id="jqGrid"></table>
+    <div id="jqControls"></div>
+</div>

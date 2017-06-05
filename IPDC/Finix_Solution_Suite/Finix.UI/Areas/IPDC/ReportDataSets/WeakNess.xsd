@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WeakNess" targetNamespace="http://tempuri.org/WeakNess.xsd" xmlns:mstns="http://tempuri.org/WeakNess.xsd" xmlns="http://tempuri.org/WeakNess.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WeakNess" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="WeakNess" msprop:Generator_UserDSName="WeakNess">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="WeakNess" msprop:Generator_TableClassName="WeakNessDataTable" msprop:Generator_TableVarName="tableWeakNess" msprop:Generator_TablePropName="_WeakNess" msprop:Generator_RowDeletingName="WeakNessRowDeleting" msprop:Generator_RowChangingName="WeakNessRowChanging" msprop:Generator_RowEvHandlerName="WeakNessRowChangeEventHandler" msprop:Generator_RowDeletedName="WeakNessRowDeleted" msprop:Generator_UserTableName="WeakNess" msprop:Generator_RowChangedName="WeakNessRowChanged" msprop:Generator_RowEvArgName="WeakNessRowChangeEvent" msprop:Generator_RowClassName="WeakNessRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="Text" msprop:Generator_ColumnVarNameInTable="columnText" msprop:Generator_ColumnPropNameInRow="Text" msprop:Generator_ColumnPropNameInTable="TextColumn" msprop:Generator_UserColumnName="Text" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="WeakNessKey1">
+      <xs:selector xpath=".//mstns:WeakNess" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="WeakNessKey2">
+      <xs:selector xpath=".//mstns:WeakNess" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="NetWorths" targetNamespace="http://tempuri.org/NetWorths.xsd" xmlns:mstns="http://tempuri.org/NetWorths.xsd" xmlns="http://tempuri.org/NetWorths.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="NetWorths" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="NetWorths" msprop:Generator_UserDSName="NetWorths">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="NetWorths" msprop:Generator_TableClassName="NetWorthsDataTable" msprop:Generator_TableVarName="tableNetWorths" msprop:Generator_TablePropName="_NetWorths" msprop:Generator_RowDeletingName="NetWorthsRowDeleting" msprop:Generator_RowChangingName="NetWorthsRowChanging" msprop:Generator_RowEvHandlerName="NetWorthsRowChangeEventHandler" msprop:Generator_RowDeletedName="NetWorthsRowDeleted" msprop:Generator_UserTableName="NetWorths" msprop:Generator_RowChangedName="NetWorthsRowChanged" msprop:Generator_RowEvArgName="NetWorthsRowChangeEvent" msprop:Generator_RowClassName="NetWorthsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CIFId" msprop:Generator_ColumnVarNameInTable="columnCIFId" msprop:Generator_ColumnPropNameInRow="CIFId" msprop:Generator_ColumnPropNameInTable="CIFIdColumn" msprop:Generator_UserColumnName="CIFId" type="xs:string" minOccurs="0" />
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientRole" msprop:Generator_ColumnVarNameInTable="columnClientRole" msprop:Generator_ColumnPropNameInRow="ClientRole" msprop:Generator_ColumnPropNameInTable="ClientRoleColumn" msprop:Generator_UserColumnName="ClientRole" type="xs:string" minOccurs="0" />
+              <xs:element name="ClientRoleName" msprop:Generator_ColumnVarNameInTable="columnClientRoleName" msprop:Generator_ColumnPropNameInRow="ClientRoleName" msprop:Generator_ColumnPropNameInTable="ClientRoleNameColumn" msprop:Generator_UserColumnName="ClientRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAssetOfApplicant" msprop:Generator_ColumnVarNameInTable="columnTotalAssetOfApplicant" msprop:Generator_ColumnPropNameInRow="TotalAssetOfApplicant" msprop:Generator_ColumnPropNameInTable="TotalAssetOfApplicantColumn" msprop:Generator_UserColumnName="TotalAssetOfApplicant" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalLiabilityOfApplicant" msprop:Generator_ColumnVarNameInTable="columnTotalLiabilityOfApplicant" msprop:Generator_ColumnPropNameInRow="TotalLiabilityOfApplicant" msprop:Generator_ColumnPropNameInTable="TotalLiabilityOfApplicantColumn" msprop:Generator_UserColumnName="TotalLiabilityOfApplicant" type="xs:string" minOccurs="0" />
+              <xs:element name="NetWorthOfApplicant" msprop:Generator_ColumnVarNameInTable="columnNetWorthOfApplicant" msprop:Generator_ColumnPropNameInRow="NetWorthOfApplicant" msprop:Generator_ColumnPropNameInTable="NetWorthOfApplicantColumn" msprop:Generator_UserColumnName="NetWorthOfApplicant" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="NetWorthsKey1">
+      <xs:selector xpath=".//mstns:NetWorths" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="NetWorthsKey2">
+      <xs:selector xpath=".//mstns:NetWorths" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

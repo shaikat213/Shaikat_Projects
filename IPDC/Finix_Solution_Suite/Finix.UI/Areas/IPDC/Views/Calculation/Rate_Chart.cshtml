@@ -1,0 +1,17 @@
+﻿@{
+    ViewBag.Title = "Rate Chart Document";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<script src="~/Areas/IPDC/Scripts/Calculation/Rate_Chart.js"></script>
+
+<section id="personalLoanPdf" class="panel-bodycontent">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Rate Chart PDF</b>
+        </h2>
+    </header><br />
+    <div class="documentviewerpdf">
+        <object data-bind="attr: { 'data': EmbedPDFLink, 'data-doctype': 'pdf', type: 'application/pdf'  }" width="100%" height="1000px"></object>
+    </div>
+
+</section>

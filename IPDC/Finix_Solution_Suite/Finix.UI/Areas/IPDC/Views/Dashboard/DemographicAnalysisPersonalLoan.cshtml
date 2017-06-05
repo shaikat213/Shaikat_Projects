@@ -1,0 +1,1071 @@
+﻿<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Areas/IPDC/Scripts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+</script>
+@*<script type="text/javascript" src="javascript/d3.v2.min.js"></script>*@
+
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+
+@{
+    ViewBag.Title = "DemographicAnalysis";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style type="text/css">
+    .chart {
+        background: #00ccff;
+        margin: 10px;
+        padding-top: 10px;
+    }
+
+        .chart .right {
+            stroke: white;
+            fill: indianred;
+        }
+
+        .chart .left {
+            stroke: white;
+            fill: steelblue;
+        }
+
+        .chart rect:hover {
+            fill: #64707d;
+        }
+
+        .chart text {
+            fill: white;
+        }
+
+            .chart text.name {
+                fill: black;
+            }
+
+    .control-label {
+        margin-top: 5px;
+    }
+
+    /*.form-control {
+        margin-top: 5px;
+    }*/
+    .input-group {
+        margin-top: 5px;
+    }
+
+    .btn {
+        width: auto;
+        height: auto;
+        font-size: 11px;
+        color: #555 !important;
+        border-color: lightgray !important;
+        background-color: white !important;
+        max-height: 20px;
+        max-width: 195px;
+        line-height: .8;
+    }
+
+    .glyphicon {
+        line-height: .5;
+    }
+
+    .btn-warning {
+        color: white !important;
+        background-color: #ff9800 !important;
+    }
+    .control-label {
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+</style>
+
+<section>
+    <div class="container-fluid ">
+        <form class="form-horizontal" role="form">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group row row_design_cifr">
+                        <div class="col-sm-3">
+                            <label class="heading" style="padding-right: 0px;">DEMOGRAPHIC ANALYSIS</label>
+                        </div>
+                        <div class="col-sm-6 col-sm-offset-3">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label class="control-label pull-right">From :</label>
+                                </div>
+                                <div class="col-sm-3" style="padding-left: 15px; padding-right: 15px;">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="fromDate" data-bind="datepicker: FromDate, datepickerOptions: { format: 'DD/MM/YYYY', maxDate:moment() }, valueUpdate: 'keyup'">
+                                        <span class="help-block" style="display: none;"></span>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-3">
+                                    <label class="control-label pull-right">To :</label>
+                                </div>
+                                <div class="col-sm-3" style="padding-left: 15px; padding-right: 15px;">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="toDate" data-bind="datepicker:ToDate, datepickerOptions: {format: 'DD/MM/YYYY', maxDate:moment()}, valueUpdate:'keyup'">
+                                        <span class="help-block" style="display: none;"></span>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-4">
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <strong>SELECTION CRITERIA</strong>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <!--<fieldset>-->
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Division:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select data-bind="options:DivisionList, value: DivisionId, optionsCaption:'-- All Division --', optionsValue:'Id', optionsText: 'DivisionNameEng'" class="form-control"></select>@*, event:{change: GetResidenceBreakdown}*@
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">District:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select data-bind="options:DistrictList, value: DistrictId, optionsCaption:'-- All District --', optionsValue:'Id', optionsText: 'DistrictNameEng'" class="form-control"></select>@*, event:{change: GetResidenceBreakdown}*@
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Thana:</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select data-bind="options:ThanaList, value: ThanaId, optionsCaption:'-- All Thana --', optionsValue:'Id', optionsText: 'ThanaNameEng'" class="form-control"></select>@*, event:{change: GetResidenceBreakdown}*@
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Stage :</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-bind="options:Satages, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedStage"></select> @*, event:{change: GetResidenceBreakdown}*@
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Select Criteria :</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select class="form-control" data-bind="options:Criteria,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedCriteria"></select> @*, event:{change: GetResidenceBreakdown}*@
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <strong>PRODUCT SELECTION</strong>
+                            </div>
+                        </div>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Select Product :</label>
+                                @*<button class="btn btn-warning  pull-right" data-bind="event:{ click:GetResidenceBreakdown }"><span class="glyphicon glyphicon-repeat"></span></button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                <select multiple="multiple" class="form-control" data-bind="options: ProductSelection, optionsText: 'Name', optionsValue: 'Id', selectedOptions: SelectedProducts, multiselect: { includeSelectAllOption: true }"></select>
+                                @*<select class="form-control" data-bind="options:ProductSelection, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedProduct, event:{change: GetResidenceBreakdown}"></select>*@
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <strong>BRANCH SELECTION</strong>
+
+                            </div>
+                        </div>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6">
+                                <label class="control-label">Select Branch :</label>
+                                @*<button class="btn btn-warning  pull-right" data-bind="event:{ click:GetResidenceBreakdown }"><span class="glyphicon glyphicon-repeat"></span></button>*@
+                            </div>
+                            <div class="col-sm-6">
+                                <select multiple="multiple" class="form-control" data-bind="options: BranchList, optionsText: 'Name', optionsValue: 'Id', selectedOptions: BranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                @*<select class="form-control" data-bind="options:BranchList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Brach', value:BranchId, event:{change: GetResidenceBreakdown}"></select>*@
+                            </div>
+                        </div>
+                        <br />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-offset-6 col-sm-6">
+                                <button class="btn btn-warning pull-right" data-bind="event:{ click:GetResidenceBreakdown }">Load Data</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+                        <strong>RESIDENCE WISE BREAKDOWN</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerf" style="margin: 0 auto;"></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+                        <strong>PROFESSION WISE BREAKDOWN</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="ProfessionWiseBreakdown" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <strong>INCOME RANGE - MARITAL STATUS WISE BREAKDOWN</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="IncomeRange" style="margin: 0 auto;"></div>
+                    </div>
+                    <div class="col-sm-6">
+                        <strong>AGE GROUP - GENDER WISE BREAKDOWN</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="AgeGorup" style="margin: 0 auto;"></div>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </form>
+    </div>
+</section>
+
+@*Residence Wise*@
+<script language="JavaScript">
+    //$(document).ready(function () {
+    //    var chart = {
+    //        type: 'bar'
+    //    };
+    //    var title = {
+    //        text: ''
+
+    //    };
+    //    var subtitle = {
+    //        text: ''
+    //    };
+    //    var xAxis = {
+    //        categories: ['Mymenshing', 'Khulna', 'Rangpur', 'Rajshahi', 'Barishal', 'Sylhet', 'Chittagong', 'Dhaka'],
+    //        title: {
+    //            text: null
+    //        }
+    //    };
+    //    var yAxis = {
+    //        min: 0,
+    //        title: {
+    //            text: '',
+    //            align: 'high'
+    //        },
+    //        labels: {
+    //            overflow: 'justify'
+    //        }
+    //    };
+    //    var tooltip = {
+    //        valueSuffix: '',
+    //        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+    //        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+    //            '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+    //        footerFormat: '</table>',
+    //        shared: true,
+    //        useHTML: true
+    //    };
+    //    var plotOptions = {
+    //        bar: {
+    //            dataLabels: {
+    //                enabled: true
+    //            }
+    //        }
+    //    };
+    //    //var legend = {
+    //    //   layout: 'vertical',
+    //    //   align: 'left',
+    //    //   verticalAlign: 'top',
+    //    //   x: 0,
+    //    //   y: -10,
+    //    //   floating: true,
+    //    //   borderWidth: 1,
+    //    //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+    //    //   shadow: true
+    //    //};
+    //    var credits = {
+    //        enabled: false
+    //    };
+
+    //    var series = [
+    //        {
+    //            name: 'ASSET',
+    //            data: [300, 130, 20, 300, 130, 20, 20,15]
+    //        }
+    //    ];
+
+    //    var colors = [
+    //        '#979797'
+    //    ];
+
+    //    var json = {};
+    //    json.chart = chart;
+    //    json.title = title;
+    //    json.subtitle = subtitle;
+    //    json.tooltip = tooltip;
+    //    json.xAxis = xAxis;
+    //    json.yAxis = yAxis;
+    //    json.series = series;
+    //    json.colors = colors;
+    //    json.plotOptions = plotOptions;
+    //    //json.responsive = responsive;
+    //    json.credits = credits;
+    //    $('#containerf').highcharts(json);
+
+    //});
+</script>
+@*Profession Wise*@
+<script language="JavaScript">
+    function drawChart() {
+        // Define the chart to be drawn.
+        var data = new google.visualization.DataTable();
+        data.addColumn('string');
+        data.addColumn('number', 'Percentage');
+        data.addRows([
+            ['Land Owner', 49],
+            ['Self Employed', 36],
+            ['Business', 59],
+            ['Private Service', 69],
+            ['Govt Service', 9],
+            ['Retired', 19],
+            ['Housewife', 9],
+            ['Others', 10]
+        ]);
+
+        // Set chart options
+        var options = {
+            'title': '',
+            pieHole: 0.4,
+            'colors': ['#979797', '#EC017F', '#007ACC', '#FF0000', '#6CE26C', '#68217A', '#008000', '#CA5100'],
+            responsive: {
+                rules: [
+                    {
+                        condition: {
+                            maxWidth: 800
+                        },
+                        chartOptions: {
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                layout: 'horizontal'
+                            },
+                            yAxis: {
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -5
+                                },
+                                title: {
+                                    text: null
+                                }
+                            },
+                            subtitle: {
+                                text: null
+                            },
+                            credits: {
+                                enabled: false
+                            }
+                        }
+                    }
+                ]
+            }
+        };
+
+
+        // Instantiate and draw the chart.
+        var chart = new google.visualization.PieChart(document.getElementById('ProfessionWiseBreakdown'));
+        chart.draw(data, options);
+    }
+
+    //google.charts.setOnLoadCallback(drawChart);
+</script>
+@*Income Range-Merital Status Wise*@
+<script language="JavaScript">
+
+    //$(document).ready(function () {
+    var incomechart = {
+        type: 'bar'
+    };
+
+
+    var incometitle = {
+        text: ''
+    };
+    var incomexAxis = {
+        categories: ['Not Specified', '20k - 50k', '50k - 75k', '75k - 100k', '100k - 150k', '150k - 200k', 'Above 200k'],
+        title: {
+            text: 'Income Range'
+        }
+    };
+
+    var incomecredits = {
+        enabled: false
+    };
+    var incomeseries = [
+        {
+            name: '<(130)Unmarried/Others',
+            data: [40, 10, 10, 30, 10, 20]
+
+        }, {
+            name: 'Married(130)>',
+            data: [10, 10, 20, 30, 20, 40]
+        }
+    ];
+
+    var incomecolors = [
+        '#979797', '#EC017F'
+    ];
+
+    var incomeplotOptions = {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    };
+
+
+    var income = {};
+    income.chart = incomechart;
+    income.title = incometitle;
+    income.xAxis = incomexAxis;
+    income.credits = incomecredits;
+    income.series = incomeseries;
+    income.colors = incomecolors;
+    income.plotOptions = incomeplotOptions;
+    //$('#IncomeRange').highcharts(income);
+
+    //});
+
+
+</script>
+@*Age Group - Gender Wise*@
+<script language="JavaScript">
+
+    //$(document).ready(function() {
+    var chart = {
+        type: 'bar'
+    };
+
+
+    var title = {
+        text: ''
+    };
+    var xAxis = {
+        categories: ['Over 65', '56 - 65', '46 - 55', '31 - 45', '18 - 30', 'Below 18', 'Not Specified'],
+        title: {
+            text: 'Age Group'
+        }
+    };
+
+    var credits = {
+        enabled: false
+    };
+    var series = [
+        {
+            name: '<(130)Male',
+            data: [30, 10, 20, 30, 20, 20]
+
+        }, {
+            name: 'Female(130)>',
+            data: [10, 30, 20, 30, 20, 10]
+        }
+    ];
+
+    var colors = [
+        '#979797', '#EC017F'
+    ];
+    var plotOptions = {
+        bar: {
+            dataLabels: {
+                enabled: true
+            }
+        }
+    };
+
+
+    var json = {};
+    json.chart = chart;
+    json.title = title;
+    json.xAxis = xAxis;
+    json.credits = credits;
+    json.series = series;
+    json.colors = colors;
+    json.plotOptions = plotOptions;
+    //$('#AgeGorup').highcharts(json);
+
+    // });
+</script>
+
+
+@*ViewModel Script*@
+<script>
+    var dashboard;
+    function numberFormatter(value) {
+        if (value > 999999)
+            return (value / 1000000).toFixed(1) + ' mln';
+        else if (value > 999)
+            return (value / 1000).toFixed(1) + ' k';
+        else
+            return value;
+
+    }
+
+    function drawPieChart(data, elementId) {
+        // Define the chart to be drawn.
+
+        var pieData = new google.visualization.DataTable();
+        pieData.addColumn('string');
+        pieData.addColumn('number', 'Percentage');
+
+        pieData.addRows(data);
+        // Set chart options
+        var options = {
+            'title': '',
+            pieHole: 0.4,
+            //'colors': ['#EC017F', '#979797'],
+            responsive: {
+                rules: [
+                    {
+                        condition: {
+                            maxWidth: 800
+                        },
+                        chartOptions: {
+                            legend: {
+                                align: 'center',
+                                verticalAlign: 'bottom',
+                                layout: 'horizontal'
+                            },
+                            yAxis: {
+                                labels: {
+                                    align: 'left',
+                                    x: 0,
+                                    y: -5
+                                },
+                                title: {
+                                    text: null
+                                }
+                            },
+                            subtitle: {
+                                text: null
+                            },
+                            credits: {
+                                enabled: false
+                            }
+                        }
+                    }
+                ]
+            }
+        };
+
+        // Instantiate and draw the chart.
+        var pieChart = new google.visualization.PieChart(document.getElementById(elementId));
+        pieChart.draw(pieData, options);
+    }
+    $(document).ready(function () {
+        //pieData = new google.visualization.DataTable();
+        function nsmDashboardVM() {
+            var self = this;
+
+            var brLiability = {};
+            var brAsset = {};
+
+            var divCall = {};
+            var divLead = {};
+
+            self.FromDate = ko.observable(moment());
+            self.FromDateText = ko.observable('');
+
+            self.ToDate = ko.observable(moment());
+            self.ToDateText = ko.observable();
+
+
+            self.ThanaId = ko.observable();
+            self.ThanaName = ko.observable('');
+            self.DistrictId = ko.observable();
+            self.DistrictName = ko.observable('');
+            self.DivisionId = ko.observable();
+            self.DivisionName = ko.observable('');
+
+            self.DivisionList = ko.observableArray([]);
+            self.DistrictList = ko.observableArray([]);
+            self.ThanaList = ko.observableArray([]);
+
+            self.ProductId = ko.observable();
+            self.Products = ko.observableArray([]);
+
+            self.ResidenceBreakdownCall = ko.observableArray([]);
+            self.ResidenceBreakdownProfession = ko.observableArray([]);
+            self.ResidenceBreakdownLead = ko.observableArray([]);
+
+            self.BranchId = ko.observable();
+            self.BranchIds = ko.observableArray([]);
+            self.BranchIds.subscribe(function () {
+                console.log("Branches - " + ko.toJSON(self.BranchIds()));
+            });
+            self.BranchName = ko.observable();
+            self.BranchList = ko.observableArray([]);
+
+            self.Criteria = ko.observableArray([
+                { "Name": "Number", "Id": 1 },
+                { "Name": "Amount", "Id": 2 }
+            ]);
+
+            self.Satages = ko.observableArray([
+                { "Name": "Call", "Id": 1 },
+                { "Name": "Lead", "Id": 2 },
+                { "Name": "Files Submitted", "Id": 3 },
+                { "Name": "Files Approved", "Id": 4 },
+                { "Name": "Files Disbursed", "Id": 5 }
+            ]);
+
+            self.ProductSelection = ko.observableArray([
+                { "Name": "Personal Loan", "Id": 3 }
+            ]);
+
+            self.DivisionList = ko.observableArray([]);
+            self.DistrictList = ko.observableArray([]);
+            self.ThanaList = ko.observableArray([]);
+
+            self.GetBranches = function () {
+                //self.ToEmpList([]);
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Office/GetOfficeByLayer?officelayerid=2',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.BranchList(data);
+                        //self.BranchListRight(data);
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+            self.SelectedCriteria = ko.observable(1);
+            self.SelectedStage = ko.observable(1);
+            self.SelectedProduct = ko.observable(1);
+            self.SelectedProducts = ko.observableArray([3]);
+
+
+            self.DivisionId.subscribe(function () {
+                self.DistrictList([]);
+                self.ThanaList([]);
+
+                if (self.DivisionId() > 0) {
+                    self.LoadDistrictByDivision();
+                }
+
+            });
+
+            self.DistrictId.subscribe(function () {
+                self.ThanaList([]);
+                if (self.DistrictId() > 0) {
+                    self.LoadThanaByDistrict();
+                }
+            });
+
+            self.LoadAllDivision = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/OfficeDesignationArea/GetAllDivisions',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.DivisionList(data);
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+
+            }
+
+            self.LoadDistrictByDivision = function () {
+                if (self.DivisionId() > 0) {
+                    return $.ajax({
+                        type: "GET",
+                        url: '/IPDC/Address/GetDistrictsByDivision?divisionId=' + self.DivisionId(),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            self.DistrictList(data);
+                        },
+                        error: function (error) {
+                            alert(error.status + "<--and--> " + error.statusText);
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            }
+
+            self.LoadThanaByDistrict = function () {
+                if (self.DistrictId() > 0) {
+                    return $.ajax({
+                        type: "GET",
+                        url: '/IPDC/Address/GetThanasByDistrict?districtId=' + self.DistrictId(),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+                            self.ThanaList(data);
+                        },
+                        error: function (error) {
+                            alert(error.status + "<--and--> " + error.statusText);
+                        }
+                    });
+                } else {
+                    return false;
+                }
+            }
+
+            self.GetProducts = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Application/GetAllProducts',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.Products(data); //Put the response in ObservableArray
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+            self.GetResidenceBreakdown = function () {
+                self.FromDateText(moment(self.FromDate()).format('DD/MM/YYYY'));
+                self.ToDateText(moment(self.ToDate()).format('DD/MM/YYYY'));
+                var submitData = {
+                    fromdate: self.FromDateText(),
+                    todate: self.ToDateText(),
+                    divisionId: self.DivisionId(),
+                    districtId: self.DistrictId(),
+                    thanaId: self.ThanaId(),
+                    stage: self.SelectedStage(),
+                    criteria: self.SelectedCriteria(),
+                    products: self.SelectedProducts(),
+                    branchIds: self.BranchIds()
+                };
+
+                return $.ajax({
+                    type: "POST",
+                    url: '/IPDC/Dashboard/GetDemographicResidence',
+                    contentType: "application/json;",
+                    data: ko.toJSON(submitData),
+                    dataType: "json",
+                    success: function (data) {
+
+                        self.ResidenceBreakdownCall(data.ResidenceBreakdownCall);
+                        //self.ResidenceBreakdownLead(data.ResidenceBreakdownLead);
+
+                        var callDivisionNames = [];
+                        var profCount = [];
+                        var callaxisValues = [];
+                        var callCount = [];
+
+                        if (self.DivisionId() > 0) {
+                            if (self.DistrictId() > 0) {
+                                if (self.ThanaId() > 0) {
+                                    $.each(data.ResidenceBreakdownCall, function (index, value) {
+                                        callDivisionNames.push(value.ThanaName);
+                                        callaxisValues.push(value.Amount);
+                                        callCount.push(value.Count);
+                                    });
+
+                                    divCall.xAxis = {
+                                        categories: callDivisionNames,
+                                        title: {
+                                            text: null
+                                        }
+                                    };
+
+                                    if (self.SelectedCriteria() === 1) {
+                                        divCall.series = [
+                                            {
+                                                //name: 'RESIDENCE WISE BREAKDOWN',
+                                                data: callCount
+                                            }
+                                        ];
+
+                                    }
+                                    else if (self.SelectedCriteria() === 2) {
+                                        divCall.series = [
+                                            {
+                                                //name: 'RESIDENCE WISE BREAKDOWN',
+                                                data: callaxisValues
+                                            }
+                                        ];
+                                    }
+                                    $('#containerf').highcharts(divCall);
+                                }
+                                else {
+                                    $.each(data.ResidenceBreakdownCall, function (index, value) {
+                                        callDivisionNames.push(value.DistrictName);
+                                        callaxisValues.push(value.Amount);
+                                        callCount.push(value.Count);
+                                    });
+
+                                    divCall.xAxis = {
+                                        categories: callDivisionNames,
+                                        title: {
+                                            text: null
+                                        }
+                                    };
+                                    if (self.SelectedCriteria() === 1) {
+                                        divCall.series = [
+                                            {
+                                                //name: 'RESIDENCE WISE BREAKDOWN',
+                                                data: callCount
+                                            }
+                                        ];
+
+                                    } else if (self.SelectedCriteria() === 2) {
+                                        divCall.series = [
+                                            {
+                                                //name: 'RESIDENCE WISE BREAKDOWN',
+                                                data: callaxisValues
+                                            }
+                                        ];
+                                    }
+                                    $('#containerf').highcharts(divCall);
+                                }
+
+                            }
+                            else {
+                                $.each(data.ResidenceBreakdownCall, function (index, value) {
+                                    callDivisionNames.push(value.DivisionName);
+                                    callaxisValues.push(value.Amount);
+                                    callCount.push(value.Count);
+                                });
+
+                                divCall.xAxis = {
+                                    categories: callDivisionNames,
+                                    title: {
+                                        text: null
+                                    }
+                                };
+                                if (self.SelectedCriteria() === 1) {
+                                    divCall.series = [
+                                        {
+                                            //name: 'RESIDENCE WISE BREAKDOWN',
+                                            data: callCount
+                                        }
+                                    ];
+
+                                } else if (self.SelectedCriteria() === 2) {
+                                    divCall.series = [
+                                        {
+                                            //name: 'RESIDENCE WISE BREAKDOWN',
+                                            data: callaxisValues
+                                        }
+                                    ];
+                                }
+                                $('#containerf').highcharts(divCall);
+                            }
+                        }
+                        else {
+                            $.each(data.ResidenceBreakdownCall, function (index, value) {
+                                callDivisionNames.push(value.DivisionName);
+                                callaxisValues.push(value.Amount);
+                                callCount.push(value.Count);
+                            });
+
+                            divCall.xAxis = {
+                                categories: callDivisionNames,
+                                title: {
+                                    text: null
+                                }
+                            };
+                            if (self.SelectedCriteria() === 1) {
+                                divCall.series = [
+                                    {
+                                        //name: 'RESIDENCE WISE BREAKDOWN',
+                                        data: callCount
+                                    }
+                                ];
+
+                            } else if (self.SelectedCriteria() === 2) {
+                                divCall.series = [
+                                    {
+                                        //name: 'RESIDENCE WISE BREAKDOWN',
+                                        data: callaxisValues
+                                    }
+                                ];
+                            }
+                            $('#containerf').highcharts(divCall);
+                        }
+
+
+                        var professionDataArray = [];
+
+                        $.each(data.ResidenceBreakdownProfession, function (index, value) {
+                            professionDataArray.push([value.ProfessionName, value.Count]);
+                        });
+
+                        if (professionDataArray.length > 0) {
+                            google.charts.setOnLoadCallback(drawPieChart(professionDataArray, 'ProfessionWiseBreakdown'));
+                        }
+                        var genderAgeDataArray1 = [];
+                        var genderAgeDataArray2 = [];
+
+                        $.each(data.ResidenceBreakdownGender, function (index, value) {
+                            if (value.Gender == 1)
+                                genderAgeDataArray1.push(self.SelectedCriteria() === 1 ? value.Count : value.Amount);
+                            else
+                                genderAgeDataArray2.push(self.SelectedCriteria() === 1 ? value.Count : value.Amount);
+                        });
+                        //var series
+                        json.series = [
+                            {
+                                name: '< Male',
+                                data: genderAgeDataArray1
+
+                            }, {
+                                name: 'Female >',
+                                data: genderAgeDataArray2
+                            }
+                        ];
+                        $('#AgeGorup').highcharts(json);
+
+                        var incomeDataArray1 = [];
+                        var incomeDataArray2 = [];
+                        $.each(data.ResidenceBreakdownIncome, function (index, value) {
+                            if (value.MaritalStatus == 2)
+                                incomeDataArray1.push(self.SelectedCriteria() === 1 ? value.Count : value.Amount);
+                            else
+                                incomeDataArray2.push(self.SelectedCriteria() === 1 ? value.Count : value.Amount);
+                        });
+
+                        income.series = [
+                            {
+                                name: '< Unmarried/Others',
+                                data: incomeDataArray1
+
+                            }, {
+                                name: 'Married >',
+                                data: incomeDataArray2
+                            }
+                        ];
+                        $('#IncomeRange').highcharts(income);
+
+
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+
+                });
+            }
+
+            var chart = {
+                type: 'bar'
+            };
+            var title = {
+                text: ''
+
+            };
+            var subtitle = {
+                text: ''
+            };
+            var yAxis = {
+                min: 0,
+                title: {
+                    text: '',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            };
+            var tooltip = {
+                valueSuffix: '',
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            };
+            var plotOptions = {
+                bar: {
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            };
+            var credits = {
+                enabled: false
+            };
+
+            var divCallcolors = [
+                '#EC017F'
+            ];
+
+            var divLeadcolors = [
+                '#979797'
+            ];
+
+            divCall.chart = chart;
+            divCall.title = title;
+            divCall.subtitle = subtitle;
+            divCall.tooltip = tooltip;
+            divCall.yAxis = yAxis;
+            divCall.colors = divCallcolors;
+            divCall.plotOptions = plotOptions;
+            divCall.credits = credits;
+
+            divLead.chart = chart;
+            divLead.title = title;
+            divLead.subtitle = subtitle;
+            divLead.tooltip = tooltip;
+            divLead.yAxis = yAxis;
+            divLead.colors = divLeadcolors;
+            divLead.plotOptions = plotOptions;
+            divLead.credits = credits;
+        }
+
+        dashboard = new nsmDashboardVM();
+        dashboard.GetBranches();
+        dashboard.LoadAllDivision();
+        dashboard.LoadDistrictByDivision();
+        dashboard.LoadThanaByDistrict();
+
+        ko.applyBindings(dashboard, document.getElementById('nsmDashboard'));
+
+    });
+
+</script>

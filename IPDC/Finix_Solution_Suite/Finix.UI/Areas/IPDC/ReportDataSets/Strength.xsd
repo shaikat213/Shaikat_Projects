@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Strength" targetNamespace="http://tempuri.org/Strength.xsd" xmlns:mstns="http://tempuri.org/Strength.xsd" xmlns="http://tempuri.org/Strength.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Strength" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Strength" msprop:Generator_UserDSName="Strength">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Strength" msprop:Generator_TableClassName="StrengthDataTable" msprop:Generator_TableVarName="tableStrength" msprop:Generator_TablePropName="_Strength" msprop:Generator_RowDeletingName="StrengthRowDeleting" msprop:Generator_RowChangingName="StrengthRowChanging" msprop:Generator_RowEvHandlerName="StrengthRowChangeEventHandler" msprop:Generator_RowDeletedName="StrengthRowDeleted" msprop:Generator_UserTableName="Strength" msprop:Generator_RowChangedName="StrengthRowChanged" msprop:Generator_RowEvArgName="StrengthRowChangeEvent" msprop:Generator_RowClassName="StrengthRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="Text" msprop:Generator_ColumnVarNameInTable="columnText" msprop:Generator_ColumnPropNameInRow="Text" msprop:Generator_ColumnPropNameInTable="TextColumn" msprop:Generator_UserColumnName="Text" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="StrengthKey1">
+      <xs:selector xpath=".//mstns:Strength" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="StrengthKey2">
+      <xs:selector xpath=".//mstns:Strength" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

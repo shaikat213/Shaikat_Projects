@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AppSummery" targetNamespace="http://tempuri.org/AppSummery.xsd" xmlns:mstns="http://tempuri.org/AppSummery.xsd" xmlns="http://tempuri.org/AppSummery.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AppSummery" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AppSummery" msprop:Generator_UserDSName="AppSummery">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ApplicationCIFsDto" msprop:Generator_TableClassName="ApplicationCIFsDtoDataTable" msprop:Generator_TableVarName="tableApplicationCIFsDto" msprop:Generator_RowChangedName="ApplicationCIFsDtoRowChanged" msprop:Generator_TablePropName="ApplicationCIFsDto" msprop:Generator_RowDeletingName="ApplicationCIFsDtoRowDeleting" msprop:Generator_RowChangingName="ApplicationCIFsDtoRowChanging" msprop:Generator_RowEvHandlerName="ApplicationCIFsDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="ApplicationCIFsDtoRowDeleted" msprop:Generator_RowClassName="ApplicationCIFsDtoRow" msprop:Generator_UserTableName="ApplicationCIFsDto" msprop:Generator_RowEvArgName="ApplicationCIFsDtoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" msprop:Generator_UserColumnName="ApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_PersonalId" msprop:Generator_ColumnVarNameInTable="columnCIF_PersonalId" msprop:Generator_ColumnPropNameInRow="CIF_PersonalId" msprop:Generator_ColumnPropNameInTable="CIF_PersonalIdColumn" msprop:Generator_UserColumnName="CIF_PersonalId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFName" msprop:Generator_ColumnVarNameInTable="columnCIFName" msprop:Generator_ColumnPropNameInRow="CIFName" msprop:Generator_ColumnPropNameInTable="CIFNameColumn" msprop:Generator_UserColumnName="CIFName" type="xs:string" minOccurs="0" />
+              <xs:element name="CBSCIFNo" msprop:Generator_ColumnVarNameInTable="columnCBSCIFNo" msprop:Generator_ColumnPropNameInRow="CBSCIFNo" msprop:Generator_ColumnPropNameInTable="CBSCIFNoColumn" msprop:Generator_UserColumnName="CBSCIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRole" msprop:Generator_ColumnVarNameInTable="columnApplicantRole" msprop:Generator_ColumnPropNameInRow="ApplicantRole" msprop:Generator_ColumnPropNameInTable="ApplicantRoleColumn" msprop:Generator_UserColumnName="ApplicantRole" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRoleName" msprop:Generator_ColumnVarNameInTable="columnApplicantRoleName" msprop:Generator_ColumnPropNameInRow="ApplicantRoleName" msprop:Generator_ColumnPropNameInTable="ApplicantRoleNameColumn" msprop:Generator_UserColumnName="ApplicantRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantName" msprop:Generator_ColumnVarNameInTable="columnApplicantName" msprop:Generator_ColumnPropNameInRow="ApplicantName" msprop:Generator_ColumnPropNameInTable="ApplicantNameColumn" msprop:Generator_UserColumnName="ApplicantName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="ApplicationCIFsDtoKey1">
+      <xs:selector xpath=".//mstns:ApplicationCIFsDto" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="ApplicationCIFsDtoKey2">
+      <xs:selector xpath=".//mstns:ApplicationCIFsDto" />
+      <xs:field xpath="mstns:ApplicationId" />
+    </xs:unique>
+    <xs:unique name="ApplicationCIFsDtoKey3">
+      <xs:selector xpath=".//mstns:ApplicationCIFsDto" />
+      <xs:field xpath="mstns:CIF_PersonalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

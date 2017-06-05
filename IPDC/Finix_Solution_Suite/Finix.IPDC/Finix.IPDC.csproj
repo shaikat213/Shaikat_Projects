@@ -1,0 +1,411 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{22E862B3-B33A-493B-9F28-3B469511B85E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Finix.IPDC</RootNamespace>
+    <AssemblyName>Finix.IPDC</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="DTO\ActivitySummaryBMDto.cs" />
+    <Compile Include="DTO\AddressDto.cs" />
+    <Compile Include="DTO\AppDocChecklistDto.cs" />
+    <Compile Include="DTO\ApplicantCIFVerifications.cs" />
+    <Compile Include="DTO\ApplicationCIFsDto.cs" />
+    <Compile Include="DTO\ApplicationDetailDto.cs" />
+    <Compile Include="DTO\ApplicationDto.cs" />
+    <Compile Include="DTO\ApprovalAuthorityGroupDto.cs" />
+    <Compile Include="DTO\ApprovalRatioDto.cs" />
+    <Compile Include="DTO\ApprovalRatioTimelineWiseDto.cs" />
+    <Compile Include="DTO\CBSInfoDto.cs" />
+    <Compile Include="DTO\DashBoardHighlightsDto.cs" />
+    <Compile Include="DTO\DashboardRMDto.cs" />
+    <Compile Include="DTO\DateRangeDto.cs" />
+    <Compile Include="DTO\DCL_SignatoryDto.cs" />
+    <Compile Include="DTO\DepositApplicationTrackingDto.cs" />
+    <Compile Include="DTO\DisbursementMemoDto.cs" />
+    <Compile Include="DTO\Disbursment_SignatoryDto.cs" />
+    <Compile Include="DTO\DMDetailDto.cs" />
+    <Compile Include="DTO\DMTextDto.cs" />
+    <Compile Include="DTO\DocumentDto.cs" />
+    <Compile Include="DTO\DocumentSecuritiesDto.cs" />
+    <Compile Include="DTO\DPSMaturityScheduleDto.cs" />
+    <Compile Include="DTO\FundConfirmationDetailsDto.cs" />
+    <Compile Include="DTO\FundConfirmationDto.cs" />
+    <Compile Include="DTO\DocumentCheckListDetailDto.cs" />
+    <Compile Include="DTO\DocumentCheckListDto.cs" />
+    <Compile Include="DTO\DocumentCheckListExceptionDto.cs" />
+    <Compile Include="DTO\GPSLogDto.cs" />
+    <Compile Include="DTO\IncomeVerificationAdditionalIncomeAssessedDto.cs" />
+    <Compile Include="DTO\IPDCMessagingDto.cs" />
+    <Compile Include="DTO\CIF_AdditionalIncomeDeclaredDto.cs" />
+    <Compile Include="DTO\IPDCMessageListDto.cs" />
+    <Compile Include="DTO\LeaderBoardDto.cs" />
+    <Compile Include="DTO\LegalDocPropTypeDto.cs" />
+    <Compile Include="DTO\LegalDocumentDto.cs" />
+    <Compile Include="DTO\LegalDocumentStatusDto.cs" />
+    <Compile Include="DTO\LegalDocumentVerificationDto.cs" />
+    <Compile Include="DTO\LoanOtherSecuritiesDto.cs" />
+    <Compile Include="DTO\NetWorthVerificationHistoryDto.cs" />
+    <Compile Include="DTO\CIB_OrganizationalDto.cs" />
+    <Compile Include="DTO\CIBVerificationHistoryDto.cs" />
+    <Compile Include="DTO\NotificationDto.cs" />
+    <Compile Include="DTO\NSMAgingDto.cs" />
+    <Compile Include="DTO\NSMAgingTimelineDto.cs" />
+    <Compile Include="DTO\NSMFileApprovalRatioDto.cs" />
+    <Compile Include="DTO\NSMFileSubmissionDto.cs" />
+    <Compile Include="DTO\NWF_LiabilityDto.cs" />
+    <Compile Include="DTO\NWV_BusinessSharesDto.cs" />
+    <Compile Include="DTO\NWV_InvestmentDto.cs" />
+    <Compile Include="DTO\NWV_PropertyDto.cs" />
+    <Compile Include="DTO\NWV_SavingsInBankDto.cs" />
+    <Compile Include="DTO\OfferLetterApprovalDto.cs" />
+    <Compile Include="DTO\OfferLetterDto.cs" />
+    <Compile Include="DTO\OfferLetterTextDto.cs" />
+    <Compile Include="DTO\PerformerDto.cs" />
+    <Compile Include="DTO\PersonDto.cs" />
+    <Compile Include="DTO\PoApprovalDto.cs" />
+    <Compile Include="DTO\PODocumentDto.cs" />
+    <Compile Include="DTO\ProductRatesDto.cs" />
+    <Compile Include="DTO\ProductSecurityDto.cs" />
+    <Compile Include="DTO\ProductSpecialRateDto.cs" />
+    <Compile Include="DTO\ProjectLegalVerificationDto.cs" />
+    <Compile Include="DTO\NetWorthVerificationDto.cs" />
+    <Compile Include="DTO\CIB_PersonalDto.cs" />
+    <Compile Include="DTO\CallDto.cs" />
+    <Compile Include="DTO\ContactPointVerificationDto.cs" />
+    <Compile Include="DTO\ConsumerGoodsPrimarySecurityValuationDto.cs" />
+    <Compile Include="DTO\DepositApplicationDto.cs" />
+    <Compile Include="DTO\CIF_NetWorthDto.cs" />
+    <Compile Include="DTO\CIF_OrganizationalDto.cs" />
+    <Compile Include="DTO\CIF_ReferenceDto.cs" />
+    <Compile Include="DTO\CIF_IncomeStatementDto.cs" />
+    <Compile Include="DTO\CIF_PersonalDto.cs" />
+    <Compile Include="DTO\ConsumerGoodsPrimarySecurityDto.cs" />
+    <Compile Include="DTO\CountryDto.cs" />
+    <Compile Include="DTO\CurrentResidenceYearsDto.cs" />
+    <Compile Include="DTO\DesignationDto.cs" />
+    <Compile Include="DTO\DesignationProductMappingDto.cs" />
+    <Compile Include="DTO\DesignationRoleMappingDto.cs" />
+    <Compile Include="DTO\DeveloperDto.cs" />
+    <Compile Include="DTO\DistrictDto.cs" />
+    <Compile Include="DTO\DivisionDto.cs" />
+    <Compile Include="DTO\DocumentSetupDto.cs" />
+    <Compile Include="DTO\EmpBasicInfoDto.cs" />
+    <Compile Include="DTO\EmployeeDesignationMappingDto.cs" />
+    <Compile Include="DTO\EmployeeDto.cs" />
+    <Compile Include="DTO\EnumDto.cs" />
+    <Compile Include="DTO\FDRPrimarySecurityDto.cs" />
+    <Compile Include="DTO\FDRPSDetailDto.cs" />
+    <Compile Include="DTO\FollowupTrackDto.cs" />
+    <Compile Include="DTO\IncomeVerificationDto.cs" />
+    <Compile Include="DTO\IPDCBankAccountsDto.cs" />
+    <Compile Include="DTO\GuarantorDto.cs" />
+    <Compile Include="DTO\LandOwnerPropertyDto.cs" />
+    <Compile Include="DTO\LoanAppColSecurityDto.cs" />
+    <Compile Include="DTO\LoanApplicationDto.cs" />
+    <Compile Include="DTO\LoanAppWaiverReqDto.cs" />
+    <Compile Include="DTO\LPPrimarySecurityDto.cs" />
+    <Compile Include="DTO\LPPrimarySecurityValuationDto.cs" />
+    <Compile Include="DTO\NationalityDto.cs" />
+    <Compile Include="DTO\NIDVerificationDto.cs" />
+    <Compile Include="DTO\OccupationDto.cs" />
+    <Compile Include="DTO\OfficeDesignationAreaDto.cs" />
+    <Compile Include="DTO\OfficeDto.cs" />
+    <Compile Include="DTO\OfficeLayerDto.cs" />
+    <Compile Include="DTO\OfficePositionDto.cs" />
+    <Compile Include="DTO\OfficeUnitDto.cs" />
+    <Compile Include="DTO\OfficeDesignationSettingDto.cs" />
+    <Compile Include="DTO\LeadStatusDto.cs" />
+    <Compile Include="DTO\LeadTypeDto.cs" />
+    <Compile Include="DTO\OrganizationDto.cs" />
+    <Compile Include="DTO\OrganogramDto.cs" />
+    <Compile Include="DTO\ProductDto.cs" />
+    <Compile Include="DTO\ProfessionDto.cs" />
+    <Compile Include="DTO\ProjectDto.cs" />
+    <Compile Include="DTO\ProjectTechnicalVerificationDto.cs" />
+    <Compile Include="DTO\ProposalCreditCardDto.cs" />
+    <Compile Include="DTO\ProposalDto.cs" />
+    <Compile Include="DTO\Proposal_CIBDto.cs" />
+    <Compile Include="DTO\Proposal_ClientProfileDto.cs" />
+    <Compile Include="DTO\Proposal_FDRDto.cs" />
+    <Compile Include="DTO\Proposal_GuarantorDto.cs" />
+    <Compile Include="DTO\Proposal_IncomeDto.cs" />
+    <Compile Include="DTO\Proposal_LiabilitiesDto.cs" />
+    <Compile Include="DTO\Proposal_NetWorthDto.cs" />
+    <Compile Include="DTO\Proposal_OtherCostsDto.cs" />
+    <Compile Include="DTO\Proposal_OverallAssessmentDto.cs" />
+    <Compile Include="DTO\Proposal_SecurityDetailDto.cs" />
+    <Compile Include="DTO\Proposal_StressRateDto.cs" />
+    <Compile Include="DTO\Proposal_TextDto.cs" />
+    <Compile Include="DTO\Proposal_Valuation_OtherCostDto.cs" />
+    <Compile Include="DTO\PurchaseOrderDto.cs" />
+    <Compile Include="DTO\QuestionAnswerDto.cs" />
+    <Compile Include="DTO\ResponceDto.cs" />
+    <Compile Include="DTO\SalesLeadAssignmentDto.cs" />
+    <Compile Include="DTO\SalesLeadDto.cs" />
+    <Compile Include="DTO\SignatoriesDto.cs" />
+    <Compile Include="DTO\ThanaDto.cs" />
+    <Compile Include="DTO\UOMDto.cs" />
+    <Compile Include="DTO\UpzilaDto.cs" />
+    <Compile Include="DTO\VehiclePrimarySecurityDto.cs" />
+    <Compile Include="DTO\VehiclePrimarySecurityValuationDto.cs" />
+    <Compile Include="DTO\VendorDto.cs" />
+    <Compile Include="DTO\VendorShowroomsDto.cs" />
+    <Compile Include="DTO\VisitReportDto.cs" />
+    <Compile Include="Facade\AddressFacade.cs" />
+    <Compile Include="Facade\DashboardFacade.cs" />
+    <Compile Include="Facade\DeveloperFacade.cs" />
+    <Compile Include="Facade\GPSFacade.cs" />
+    <Compile Include="Facade\NotificationFacade.cs" />
+    <Compile Include="Facade\OperationsFacade.cs" />
+    <Compile Include="Facade\CRMFacade.cs" />
+    <Compile Include="Facade\MessagingFacade.cs" />
+    <Compile Include="Facade\ApplicationFacade.cs" />
+    <Compile Include="Facade\AutoMaps\IPDCMappingProfile.cs" />
+    <Compile Include="Facade\BaseFacade.cs" />
+    <Compile Include="Facade\CallFacade.cs" />
+    <Compile Include="Facade\CIFFacade.cs" />
+    <Compile Include="Facade\DesignationFacade.cs" />
+    <Compile Include="Facade\EmployeeFacade.cs" />
+    <Compile Include="Facade\EnumFacade.cs" />
+    <Compile Include="Facade\FacadeUtil\JqGridModel.cs" />
+    <Compile Include="Facade\NationalityFacade.cs" />
+    <Compile Include="Facade\OfficeDesignationAreaFacade.cs" />
+    <Compile Include="Facade\OfficeDesignationSettingFacade.cs" />
+    <Compile Include="Facade\OfficeFacade.cs" />
+    <Compile Include="Facade\OrganizationFacade.cs" />
+    <Compile Include="Facade\ProductFacade.cs" />
+    <Compile Include="Facade\ProfessionFacade.cs" />
+    <Compile Include="Facade\SalesLeadFacade.cs" />
+    <Compile Include="Facade\SequencerFacade.cs" />
+    <Compile Include="Facade\VendorFacade.cs" />
+    <Compile Include="Facade\VerificationFacade.cs" />
+    <Compile Include="Infrastructure\BaseEfUnitOfWork.cs" />
+    <Compile Include="Infrastructure\BizConstants.cs" />
+    <Compile Include="Infrastructure\BizzEnums.cs" />
+    <Compile Include="Infrastructure\Entity.cs" />
+    <Compile Include="Infrastructure\FinixIPDCContext.cs" />
+    <Compile Include="Infrastructure\FluentConfigurator.cs" />
+    <Compile Include="Infrastructure\IUnitOfWork.cs" />
+    <Compile Include="Infrastructure\Models\Address.cs" />
+    <Compile Include="Infrastructure\Models\ApplicationLog.cs" />
+    <Compile Include="Infrastructure\Models\BankAccountCpv.cs" />
+    <Compile Include="Infrastructure\Models\Call.cs" />
+    <Compile Include="Infrastructure\Models\CIB_Organizational.cs" />
+    <Compile Include="Infrastructure\Models\CIB_Personal.cs" />
+    <Compile Include="Infrastructure\Models\ConstructionType.cs" />
+    <Compile Include="Infrastructure\Models\ContactPointVerification.cs" />
+    <Compile Include="Infrastructure\Models\DCL_Signatory.cs" />
+    <Compile Include="Infrastructure\Models\DepositApplication.cs" />
+    <Compile Include="Infrastructure\Models\BankAccount.cs" />
+    <Compile Include="Infrastructure\Models\CIF_IncomeStatement.cs" />
+    <Compile Include="Infrastructure\Models\CIF_NetWorth.cs" />
+    <Compile Include="Infrastructure\Models\CIF_Organizational.cs" />
+    <Compile Include="Infrastructure\Models\CIF_Personal.cs" />
+    <Compile Include="Infrastructure\Models\CIF_Reference.cs" />
+    <Compile Include="Infrastructure\Models\Country.cs" />
+    <Compile Include="Infrastructure\Models\CreditCard.cs" />
+    <Compile Include="Infrastructure\Models\DepositApplicationTracking.cs" />
+    <Compile Include="Infrastructure\Models\Designation.cs" />
+    <Compile Include="Infrastructure\Models\DesignationProductMapping.cs" />
+    <Compile Include="Infrastructure\Models\DesignationRoleMapping.cs" />
+    <Compile Include="Infrastructure\Models\Developer.cs" />
+    <Compile Include="Infrastructure\Models\DisbursementMemo.cs" />
+    <Compile Include="Infrastructure\Models\Disbursment_Signatory.cs" />
+    <Compile Include="Infrastructure\Models\Division.cs" />
+    <Compile Include="Infrastructure\Models\District.cs" />
+    <Compile Include="Infrastructure\Models\Document.cs" />
+    <Compile Include="Infrastructure\Models\DocumentCheckList.cs" />
+    <Compile Include="Infrastructure\Models\DocumentCheckListDetail.cs" />
+    <Compile Include="Infrastructure\Models\DocumentCheckListException.cs" />
+    <Compile Include="Infrastructure\Models\DocumentSecurities.cs" />
+    <Compile Include="Infrastructure\Models\Employee.cs" />
+    <Compile Include="Infrastructure\Models\EmployeeDesignationMapping.cs" />
+    <Compile Include="Infrastructure\Models\FollowupTrack.cs" />
+    <Compile Include="Infrastructure\Models\FundConfirmation.cs" />
+    <Compile Include="Infrastructure\Models\GPSLog.cs" />
+    <Compile Include="Infrastructure\Models\IncomeVerification.cs" />
+    <Compile Include="Infrastructure\Models\IndexSequencer.cs" />
+    <Compile Include="Infrastructure\Models\IPDCBankAccounts.cs" />
+    <Compile Include="Infrastructure\Models\IPDCMessaging.cs" />
+    <Compile Include="Infrastructure\Models\LandOwnerProperty.cs" />
+    <Compile Include="Infrastructure\Models\Application.cs" />
+    <Compile Include="Infrastructure\Models\LegalDocPropType.cs" />
+    <Compile Include="Infrastructure\Models\LegalDocument.cs" />
+    <Compile Include="Infrastructure\Models\LegalDocumentStatus.cs" />
+    <Compile Include="Infrastructure\Models\LegalDocumentVerification.cs" />
+    <Compile Include="Infrastructure\Models\LoanApplication.cs" />
+    <Compile Include="Infrastructure\Models\LoanAppPrimarySecurities.cs" />
+    <Compile Include="Infrastructure\Models\LoanAppPrimarySecurityValuations.cs" />
+    <Compile Include="Infrastructure\Models\Nationality.cs" />
+    <Compile Include="Infrastructure\Models\NetWorthVerification.cs" />
+    <Compile Include="Infrastructure\Models\NIDVerification.cs" />
+    <Compile Include="Infrastructure\Models\Notification.cs" />
+    <Compile Include="Infrastructure\Models\NotificationSettings.cs" />
+    <Compile Include="Infrastructure\Models\Occupation.cs" />
+    <Compile Include="Infrastructure\Models\OfferLetter.cs" />
+    <Compile Include="Infrastructure\Models\OfferLetterAmendment.cs" />
+    <Compile Include="Infrastructure\Models\OfferLetterText.cs" />
+    <Compile Include="Infrastructure\Models\Office.cs" />
+    <Compile Include="Infrastructure\Models\OfficeDesignationArea.cs" />
+    <Compile Include="Infrastructure\Models\OfficeDesignationSetting.cs" />
+    <Compile Include="Infrastructure\Models\OfficeLayer.cs" />
+    <Compile Include="Infrastructure\Models\Organization.cs" />
+    <Compile Include="Infrastructure\Models\Person.cs" />
+    <Compile Include="Infrastructure\Models\Product.cs" />
+    <Compile Include="Infrastructure\Models\Profession.cs" />
+    <Compile Include="Infrastructure\Models\ProjectTechnicalVerification.cs" />
+    <Compile Include="Infrastructure\Models\ProjectLegalVerification.cs" />
+    <Compile Include="Infrastructure\Models\Project.cs" />
+    <Compile Include="Infrastructure\Models\Proposal.cs" />
+    <Compile Include="Infrastructure\Models\ProposalAmendment.cs" />
+    <Compile Include="Infrastructure\Models\ProposalCreditCard.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_CIB.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_ClientProfile.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_FDR.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Guarantor.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Income.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Liabilities.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_NetWorth.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_OtherCosts.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_OverallAssessment.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_SecurityDetails.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Signatory.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_StressRate.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Text.cs" />
+    <Compile Include="Infrastructure\Models\Proposal_Valuation_OtherCost.cs" />
+    <Compile Include="Infrastructure\Models\PurchaseOrder.cs" />
+    <Compile Include="Infrastructure\Models\Question.cs" />
+    <Compile Include="Infrastructure\Models\QuestionAnswer.cs" />
+    <Compile Include="Infrastructure\Models\QuestionAssignment.cs" />
+    <Compile Include="Infrastructure\Models\ReferenceCpv.cs" />
+    <Compile Include="Infrastructure\Models\SalesLead.cs" />
+    <Compile Include="Infrastructure\Models\SalesLeadAssignment.cs" />
+    <Compile Include="Infrastructure\Models\Signatories.cs" />
+    <Compile Include="Infrastructure\Models\Thana.cs" />
+    <Compile Include="Infrastructure\Models\UOM.cs" />
+    <Compile Include="Infrastructure\Models\Upazila.cs" />
+    <Compile Include="Infrastructure\Models\Vendor.cs" />
+    <Compile Include="Infrastructure\Models\ViewModelDemo.cs" />
+    <Compile Include="Infrastructure\Models\VisitReport.cs" />
+    <Compile Include="Infrastructure\UnitOfWorkException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\FinixIPDCService.cs" />
+    <Compile Include="Service\ServiceBootStrapper.cs" />
+    <Compile Include="Util\IPDCSystem.cs" />
+    <Compile Include="Util\ConfigReader.cs" />
+    <Compile Include="Util\UiUtil.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Data\seed_data\0\seed_data.sql">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PagedList.css" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Finix.Auth\Finix.Auth.csproj">
+      <Project>{BFC4F46D-F9E1-4169-B011-D1E10B91578D}</Project>
+      <Name>Finix.Auth</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="'$(SQLDBExtensionsRefPath)' == ''" />
+  <PropertyGroup>
+    <SsdtUnitTestVersion>2.0</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

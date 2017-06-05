@@ -1,0 +1,148 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    ViewBag.Title = "User Entry";
+    var CompanyId = ViewBag.CompanyId;
+}
+
+<link href="~/Content/customStyle.css" rel="stylesheet" />
+<script>
+    var userCompanyId = parseInt(@CompanyId);
+</script>
+<script src="~/Areas/Auth/Scripts/user-info.js"></script>
+
+<section>
+    <div class="container-fluid">
+        <div class="row">
+
+            <!---vvvvvvv----Body Main Starts here---vvvvvv----->
+            <div class="col-sm-12">
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <section class="panel bodycontent">
+                            <div id="userEntry" class="col-sm-12">
+
+                                <div class="container">
+                                    <form class="form-horizontal">
+                                        @if (CompanyId == null)
+                                        {
+                                            <div class="form-group">
+                                                <label class="col-sm-2 control-label ">Company</label>
+                                                <div class="col-sm-2">
+                                                    <select data-bind="options: CompanyList, value: CompanyProfileId,
+                                                    optionsValue:'Id',
+                                                    optionsText: 'Name',
+                                                    optionsCaption: 'Choose one...',
+                                                    //event:{ change: getAccGroupCode},
+                                                    valueUpdate: 'keyup'"
+                                                            class="form-control"></select>
+                                                </div>
+                                            </div>
+                                        }
+                                        <div class="form-group">
+                                            <label for="UserName" class="col-sm-3 control-label">Username</label>
+                                            <div class="col-sm-8" data-bind="validationElement:UserName">
+                                                <input class="form-control" type="text" data-bind="value:UserName" id="UserName" name="UserName" placeholder="Username" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="password">Password</label>
+                                            <div class="col-sm-8" data-bind="validationElement:Password">
+                                                <input class="form-control" type="password" data-bind="value:Password" id="password" name="Password" placeholder="Password" />
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label" for="ConfirmPassword">Confirm Password</label>
+                                            <div class="col-sm-8" data-bind="validationElement:ConfirmPassword">
+                                                <input class="form-control" type="password" data-bind="value:ConfirmPassword" id="ConfirmPassword" name="ConfirmPassword" placeholder="Password" />
+                                            </div>
+                                        </div>
+                                        @*<div class="form-group">
+                                            <label class="control-label col-sm-2">Account Group</label>
+                                            <div class="col-sm-2">
+                                                <select data-bind="options: AccountGroups, value: AccGroupId,
+                                                optionsValue:'Id',
+                                                optionsText: 'name',
+                                                optionsCaption: 'Choose one...',
+                                                event:{ change: getAccGroupCode}, valueUpdate: 'keyup'"
+                                                        class="form-control"></select>
+                                            </div>
+                                            <label class="control-label col-sm-3">Account Sub Group</label>
+                                            <div class="col-sm-2">
+                                                <select data-bind="options: AccountSubGroups, value: AccSubGroupId,
+                                                optionsValue:'Id',
+                                                optionsText: 'name',
+                                                optionsCaption: 'Choose one...',
+                                                event:{ change: getAccSubGroupCode}, valueUpdate: 'keyup'"
+                                                        class="form-control"></select>
+                                            </div>
+                                        </div>*@
+
+                                        <div class="form-group">
+                                            <div class=" col-sm-7">
+                                                
+                                            </div>
+                                            <div class=" col-sm-3">
+                                                @*<a href="#" data-bind="enable:IsAccHeadValid"><span class="glyphicon glyphicon-plus" title="Add Account Head" data-toggle="modal" data-target="#myModal"></span></a>*@
+                                                <button type="button" class="btn-chpass btn-success" data-toggle="modal" data-target="#myModal">Save</button>
+                                                <button type="reset" class="btn-chpass btn-default">Reset</button>
+                                                <button type="button" data-dismiss="modal" class="btn-chpass btn-danger">Close</button>
+                                            </div>
+                                            <div class=" col-sm-2">
+
+                                            </div>
+                                        </div>
+
+                                        <!-- Find All Modals Here -->
+                                        <!-- Add Account Head Modal -->
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Confirmation</h4>
+                                                    </div>
+                                                    <div class="modal-body" align="center">
+                                                        <p>Do you want to add this item?</p>
+                                                        <button data-bind="click: SaveUser" class=" btn-chpass btn-success" data-dismiss="modal">Yes</button>
+                                                        <button type="button" class="btn-chpass btn-success" data-dismiss="modal">No</button>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                        @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- loading Modal -->
+                                        <div id="loadingModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content loading-modal-content">
+
+                                                    <div class="modal-body loading-modal-body" align="center">
+                                                        <img src="~/Images/loadingTwo.gif" style="max-width:100%;" />
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                        <!-- loading modal ends-->
+                                    </form>
+                                </div>
+
+                            </div>
+                        </section>
+                    </div>
+                </div>
+
+            </div>
+            <!---^^^^^^^----Body Main Ends here----^^^^^^^---->
+        </div>
+    </div>
+</section>

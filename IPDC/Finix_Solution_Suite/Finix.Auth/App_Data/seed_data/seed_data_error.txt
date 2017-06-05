@@ -1,0 +1,5 @@
+Error Occured while inserting seed data
+processing for: E:\SHAIKAT_DOC\Finix\Development\IPDC\Finix_Solution_Suite\Finix.UI\App_Data\..\..\Finix.Auth\App_Data\seed_data\0
+processing for: E:\SHAIKAT_DOC\Finix\Development\IPDC\Finix_Solution_Suite\Finix.UI\App_Data\..\..\Finix.Auth\App_Data\seed_data\0\seed_data.sql
+Failed!....
+Execution Timeout Expired.  The timeout period elapsed prior to completion of the operation or the server is not responding.

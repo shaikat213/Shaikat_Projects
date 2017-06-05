@@ -1,0 +1,35 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <script src="~/Scripts/easyui/jquery.easyui.js"></script>
+    <script src="~/Scripts/easyui/jquery.edatagrid.js"></script>
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <link href="~/Content/customassets/css/custom.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="~/Content/easyui/easyui.css" rel="stylesheet" />
+    <link href="~/Content/easyui/icon.css" rel="stylesheet" />
+    <link href="~/Content/easyui/demo.css" rel="stylesheet" />
+
+</head>
+<body>
+    <div class="work-area">
+        @RenderBody()
+    </div>
+    <div id="dvFooter" class="container-fluid footer_bg ">
+
+        <div class=" design_foot ">
+            <div class="row model2 ">
+                <div class="col-md-6 text_style text-left "> <strong>Copyright © @DateTime.Now.Year <a href="#">Cardiac Care</a> | All Rights Reserved </strong></div>
+                <div class="col-md-6 text_style text-right "><strong> Designed & Developed By <a href="http://www.finixinfosys.com/">Finix Infosys Limited</a> </strong></div>
+            </div>
+        </div>
+
+    </div>
+   
+</body>
+</html>

@@ -1,0 +1,72 @@
+﻿body {
+}
+
+.options {
+    background: #fff;
+}
+
+.slider {
+    width: 200px;
+    height: 20px;
+    margin: 10px;
+}
+
+.ui-slider {
+    border-color: #E8E8E8;
+    background: #999 none repeat scroll 0% 0%;
+}
+
+.ui-slider-horizontal .ui-slider-handle {
+    width: 0.9em;
+    height: 1.2em;
+    top: -0.3em;
+    margin-left: -0.4em;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    border: 1px solid #CACACA;
+    background-color: #B7B7B7;
+    color: #000;
+}
+
+.ui-widget-content {
+    border: 1px solid #808080;
+}
+
+/*grid system css*/
+/* grid system via getbootstrap.com/examples/grid/grid.css */
+
+.container {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+h4 {
+  margin-top: 25px;
+}
+.row {
+  margin-bottom: 20px;
+}
+.row .row {
+  margin-top: 10px;
+  margin-bottom: 0;
+}
+/*[class*="col-"] {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid rgba(86,61,124,.2);
+}*/
+
+hr {
+  margin-top: 40px;
+  margin-bottom: 40px;
+}
+
+
+
+
+/*grid system css*/
+

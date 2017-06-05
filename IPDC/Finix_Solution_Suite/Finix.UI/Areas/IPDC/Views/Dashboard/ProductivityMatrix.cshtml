@@ -1,0 +1,786 @@
+﻿<script src="~/Areas/IPDC/Scripts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+</script>
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<style>
+    .control-label {
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+</style>
+@{
+    ViewBag.Title = "ProductivityMatrix";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<section id="pmDashboard">
+    <div class="container-fluid ">
+        <div class="form-group row row_design">
+                <label class="heading" style="padding-right: 0px;">PRODUCTIVITY MATRIX</label>
+            
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-sm-4">
+                <!--<fieldset>-->
+
+                <strong>DATE RANGE</strong>
+                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+
+                <div class="form-group row row_design">
+                    <div class="col-sm-3">
+                        <label class="control-label">From :</label>
+                    </div>
+                    <div class="col-sm-4" style="padding-left:15px; padding-right:15px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="fromDate" data-bind="datepicker: FromDate, datepickerOptions: { format: 'MMM/YYYY' }, valueUpdate: 'keyup'">
+                            <span class="help-block" style="display: none;"></span>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-3">
+                        <label class="control-label">To :</label>
+                    </div>
+                    <div class="col-sm-4" style="padding-left:15px; padding-right:15px;">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="toDate" data-bind="datepicker:ToDate, datepickerOptions: {format: 'MMM/YYYY'}, valueUpdate:'keyup'">
+                            <span class="help-block" style="display: none;"></span>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="form-group row row_design">
+                    <div class="col-sm-8">
+                        <strong>ASSESSMENT CRITERIA</strong>
+                    </div>
+                </div>
+                <div class="form-group row row_design">
+                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-4">
+                        <label class="control-label">Stage :</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" data-bind="options:Satages, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedStage, event:{change: GetHighlights}"></select> @*, event:{change: GetHighlights}*@
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" data-bind="options:Criteria,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedCriteria, event:{change: GetHighlights}"></select> @*, event:{change: GetHighlights}*@
+                    </div>
+
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-4">
+                        <label class="control-label">Cost Center :</label>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" data-bind="options:CostCenterList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Cost Center', value:CostCenterId, event:{change: GetHighlights}"></select> @*, event:{change: GetHighlights}*@
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row row_design">
+                    <div class="col-sm-8">
+                        <strong>PRODUCT SELECTION</strong>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" data-bind="options:ProductSelection, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedProduct, event:{change: GetHighlights}"></select> @*, event:{change: GetHighlights}*@
+                    </div>
+
+                </div>
+                <div class="form-group row row_design">
+                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                </div>
+                <br />
+                <div class="form-group row row_design">
+                    <div class="col-sm-8">
+                        <strong>BRANCH SELECTION</strong>
+                    </div>
+                    <div class="col-sm-4">
+                        <select class="form-control" data-bind="options:BranchList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Branch', value:BranchId, event:{change: GetHighlights}"></select>
+                    </div>
+                </div>
+                <div class="form-group row row_design">
+                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                </div>
+
+            </div>
+            <div class="col-sm-7">
+                <div id="ProductivityMatrix" style="margin: 0 auto;"></div>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
+<script>
+    var dashboard;
+    function numberFormatter(value) {
+        if (value > 999999)
+            return (value / 1000000).toFixed(1) + ' mln';
+        else if (value > 999)
+            return (value / 1000).toFixed(1) + ' k';
+        else
+            return value;
+
+    }
+
+    $(document).ready(function () {
+
+        function pmDashboardVM() {
+            var self = this;
+
+            // Call
+
+            self.FromDate = ko.observable(moment());
+            self.FromDateText = ko.observable('');
+
+            self.ToDate = ko.observable(moment());
+            self.ToDateText = ko.observable();
+
+            self.Call_HomeLoan = ko.observable();
+            self.Call_HomeLoanToDay = ko.observable();
+
+            self.TodayHomeLoanAmount = ko.observable();
+
+            self.Call_PersonalLoan = ko.observable();
+            self.Call_PersonalLoanToDay = ko.observable();
+
+            self.TodayPersonalLoanAmount = ko.observable();
+
+            self.Call_AutoLoan = ko.observable();
+            self.Call_AutoLoanToDay = ko.observable();
+
+            self.TodayAutoLoanAmount = ko.observable();
+
+            self.Call_FixedDeposit = ko.observable();
+            self.Call_FixedDepositToDay = ko.observable();
+
+            self.TodayFixedDepositAmount = ko.observable();
+
+            self.Call_RecurrentDeposit = ko.observable();
+            self.Call_RecurrentDepositToDay = ko.observable();
+
+            self.TodayRecurrentDepositAmount = ko.observable();
+
+            self.Call_Undefined = ko.observable();
+            self.Call_UndefinedToDay = ko.observable();
+
+            self.TodayUndefinedAmount = ko.observable();
+
+            self.Call_Liability = ko.observable();
+
+            // Call
+
+            //Lead
+
+            self.Lead_HomeLoan = ko.observable();
+            self.Lead_HomeLoanToDay = ko.observable();
+
+
+            self.TodayLeadHomeLoanAmount = ko.observable();
+
+            self.Lead_PersonalLoan = ko.observable();
+            self.Lead_PersonalLoanToDay = ko.observable();
+
+            self.TodayLeadPersonalLoanAmount = ko.observable();
+
+            self.Lead_AutoLoan = ko.observable();
+            self.Lead_AutoLoanToDay = ko.observable();
+
+            self.TodayLeadAutoLoanAmount = ko.observable();
+
+            self.Lead_FixedDeposit = ko.observable();
+            self.Lead_FixedDepositToDay = ko.observable();
+
+            self.TodayLeadFixedDepositAmount = ko.observable();
+
+            self.Lead_RecurrentDeposit = ko.observable();
+            self.Lead_RecurrentDepositToDay = ko.observable();
+
+            self.TodayLeadRecurrentDepositAmount = ko.observable();
+
+            self.Lead_Liability = ko.observable();
+
+            // Lead
+
+            // File Submited Apps
+            self.Application_HomeLoan = ko.observable();
+            self.Application_HomeLoanToDay = ko.observable();
+
+            self.TodayApplicationHomeLoanAmount = ko.observable();
+
+            self.Application_PersonalLoan = ko.observable();
+            self.Application_PersonalLoanToDay = ko.observable();
+
+            self.TodayApplicationPersonalLoanAmount = ko.observable();
+
+            self.Application_AutoLoan = ko.observable();
+            self.Application_AutoLoanToDay = ko.observable();
+
+            self.TodayApplicationAutoLoanAmount = ko.observable();
+
+            self.Application_FixedDeposit = ko.observable();
+            self.Application_FixedDepositToDay = ko.observable();
+
+            self.TodayApplicationFixedDepositAmount = ko.observable();
+
+            self.Application_RecurrentDeposit = ko.observable();
+            self.Application_RecurrentDepositToDay = ko.observable();
+
+            self.TodayApplicationRecurrentDepositAmount = ko.observable();
+
+            self.Application_Liability = ko.observable();
+
+            // File Submited Apps
+
+            // File Approved Apps
+
+            self.Approved_HomeLoan = ko.observable();
+            self.Approved_HomeLoanToDay = ko.observable();
+
+            self.Approved_HomeLoanAmount = ko.observable();
+            self.TodayApprovedApplicationHomeLoanAmount = ko.observable();
+
+            self.Approved_AutoLoan = ko.observable();
+            self.Approved_AutoLoanToDay = ko.observable();
+
+            self.Approved_AutoLoanAmount = ko.observable();
+            self.TodayApprovedApplicationAutoLoanAmount = ko.observable();
+
+            self.Approved_PersonalLoan = ko.observable();
+            self.Approved_PersonalLoanToDay = ko.observable();
+
+            self.Approved_PersonalLoanAmount = ko.observable();
+            self.TodayApprovedApplicationPersonalLoanAmount = ko.observable();
+
+            // File Approved Apps
+
+            // File DisApproved Apps
+
+            self.Disapproved_HomeLoan = ko.observable();
+            self.DisApproved_HomeLoanToDay = ko.observable();
+
+            self.Disapproved_HomeLoanAmount = ko.observable();
+            self.TodayDisApprovedApplicationHomeLoanAmount = ko.observable();
+
+            self.Disapproved_AutoLoan = ko.observable();
+            self.DisApproved_AutoLoanToDay = ko.observable();
+
+            self.Disapproved_AutoLoanAmount = ko.observable();
+            self.TodayDisApprovedApplicationAutoLoanAmount = ko.observable();
+
+            self.Disapproved_PersonalLoan = ko.observable();
+            self.DisApproved_PersonalLoanToDay = ko.observable();
+
+            self.Disapproved_PersonalLoanAmount = ko.observable();
+            self.TodayDisApprovedApplicationPersonalLoanAmount = ko.observable();
+
+            // File DisApproved Apps
+
+            // Disbursed/Received Apps
+            self.Disbursed_HomeLoanToDay = ko.observable();
+
+            self.Disbursed_AutoLoanToDay = ko.observable();
+
+            self.Disbursed_PersonalLoanToDay = ko.observable();
+
+            self.Received_FixedToDay = ko.observable();
+
+            self.Received_RecurrentToDay = ko.observable();
+
+            self.Disbursed_HomeLoanAmount = ko.observable();
+
+            self.Disbursed_HomeLoanAmountToday = ko.observable();
+
+            self.Disbursed_AutoLoanAmount = ko.observable();
+
+            self.Disbursed_AutoLoanAmountToday = ko.observable();
+
+            self.Disbursed_PersonalLoanAmount = ko.observable();
+
+            self.Disbursed_PersonalLoanAmountToday = ko.observable();
+
+            self.FundReceived_FixedAmountToday = ko.observable();
+
+            self.FundReceived_RecurrentAmountToday = ko.observable();
+
+            self.ReceivedDepositAmount = ko.observable();
+            // Disbursed/Received Apps
+
+            ///
+            self.RMHomeLoan1 = ko.observable();
+            self.RMHomeLoan1Amount = ko.observable();
+            self.RMHomeLoan1Count = ko.observable();
+            self.RMHomeLoan2 = ko.observable();
+            self.RMHomeLoan2Amount = ko.observable();
+            self.RMHomeLoan2Count = ko.observable();
+            self.RMPersonalLoan = ko.observable();
+            self.RMPersonalLoanAmount = ko.observable();
+            self.RMPersonalLoanCount = ko.observable();
+            self.RMAutoLoan = ko.observable();
+            self.RMAutoLoanAmount = ko.observable();
+            self.RMAutoLoanCount = ko.observable();
+            self.RMLiability1 = ko.observable();
+            self.RMLiability1Amount = ko.observable();
+            self.RMLiability1Count = ko.observable();
+            self.RMLiability2 = ko.observable();
+            self.RMLiability2Amount = ko.observable();
+            self.RMLiability2Count = ko.observable();
+
+            self.AssetCount = ko.observable();
+            self.LiabilityCount = ko.observable();
+            ///
+
+            self.BusinessConAsset = ko.observableArray([]);
+            self.BusinessConLiability = ko.observableArray([]);
+
+            self.BranchId = ko.observable();
+            self.RightBranchId = ko.observable();
+            self.BranchName = ko.observable();
+
+            self.BranchList = ko.observableArray([]);
+
+            self.BranchListRight = ko.observableArray([]);
+
+            self.CostCenterId = ko.observable();
+            self.CostCenterList = ko.observableArray([]);
+
+
+            self.Criteria = ko.observableArray([
+                { "Name": "Number", "Id": 1 },
+                { "Name": "Amount", "Id": 2 }
+            ]);
+
+            self.Satages = ko.observableArray([
+                { "Name": "Call", "Id": 1 },
+                { "Name": "Lead", "Id": 2 },
+                { "Name": "Files Submitted", "Id": 3 },
+                { "Name": "Files Approved", "Id": 4 },
+                { "Name": "Files Disbursed", "Id": 5 }
+            ]);
+
+            self.ProductSelection = ko.observableArray([
+                { "Name": "Home Loan", "Id": 1 },
+                { "Name": "Auto Loan", "Id": 2 },
+                { "Name": "Personal Loan", "Id": 3 },
+                { "Name": "Fixed Deposit", "Id": 4 },
+                { "Name": "Recurrent Deposit", "Id": 5 }
+            ]);
+
+
+            self.GetBranches = function () {
+                //self.ToEmpList([]);
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Office/GetOfficeByLayer?officelayerid=2',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.BranchList(data);
+                        self.BranchListRight(data);
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+            self.GetCostCenters = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Application/GetCostCenters',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.CostCenterList(data); //Put the response in ObservableArray
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+
+            self.SelectedTimeLineRight = ko.observable(1);
+            self.SelectedCriteria = ko.observable(1);
+            self.SelectedStage = ko.observable(1);
+            self.SelectedProduct = ko.observable(1);
+            self.ChartData = ko.observableArray([]);
+
+            self.GetHighlights = function () {
+                self.FromDateText(moment(self.FromDate()).format('MMM/YYYY'));
+                self.ToDateText(moment(self.ToDate()).format('MMM/YYYY'));
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Dashboard/GetPMDashboard?fromdate=' + self.FromDateText() + '&todate=' + self.ToDateText() + '&stage=' + self.SelectedStage() + '&criteria=' + self.SelectedCriteria() + '&costCenterId=' + self.CostCenterId() + '&product=' + self.SelectedProduct() + '&branchId=' + self.BranchId(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        //console.log(ko.toJSON(data));
+                        // Call
+
+                        //self.FromDate(moment(data.FromDate));
+                        //self.ToDate(moment(data.ToDate));
+
+                        self.Call_HomeLoan(data.Call_HomeLoan);
+                        self.Call_HomeLoanToDay(data.Call_HomeLoanToDay);
+
+                        self.ChartData(data.ChartData);
+
+                        self.TodayHomeLoanAmount(data.TodayHomeLoanAmount);
+
+
+                        self.Call_PersonalLoan(data.Call_PersonalLoan);
+                        self.Call_PersonalLoanToDay(data.Call_PersonalLoanToDay);
+
+
+                        self.TodayPersonalLoanAmount(data.TodayPersonalLoanAmount);
+
+
+                        self.Call_AutoLoan(data.Call_AutoLoan);
+                        self.Call_AutoLoanToDay(data.Call_AutoLoanToDay);
+
+
+                        self.TodayAutoLoanAmount(data.TodayAutoLoanAmount);
+
+
+                        self.Call_FixedDeposit(data.Call_FixedDeposit);
+                        self.Call_FixedDepositToDay(data.Call_FixedDepositToDay);
+
+
+                        self.TodayFixedDepositAmount(data.TodayFixedDepositAmount);
+
+
+                        self.Call_RecurrentDeposit(data.Call_RecurrentDeposit);
+                        self.Call_RecurrentDepositToDay(data.Call_RecurrentDepositToDay);
+
+
+                        self.TodayRecurrentDepositAmount(data.TodayRecurrentDepositAmount);
+
+
+                        self.Call_Undefined(data.Call_Undefined);
+                        self.Call_UndefinedToDay(data.Call_UndefinedToDay);
+
+
+                        self.TodayUndefinedAmount(data.TodayUndefinedAmount);
+
+
+                        self.Call_Liability(data.Call_Liability);
+
+                        // Call
+                        // Lead
+                        self.Lead_HomeLoan(data.Leadl_HomeLoan);
+                        self.Lead_HomeLoanToDay(data.Lead_HomeLoanToDay);
+
+
+                        self.TodayLeadHomeLoanAmount(data.TodayLeadHomeLoanAmount);
+
+
+                        self.Lead_PersonalLoan(data.Lead_PersonalLoan);
+                        self.Lead_PersonalLoanToDay(data.Lead_PersonalLoanToDay);
+
+
+                        self.TodayLeadPersonalLoanAmount(data.TodayLeadPersonalLoanAmount);
+
+
+                        self.Lead_AutoLoan(data.Lead_AutoLoan);
+                        self.Lead_AutoLoanToDay(data.Lead_AutoLoanToDay);
+
+
+                        self.TodayLeadAutoLoanAmount(data.TodayLeadAutoLoanAmount);
+
+
+                        self.Lead_FixedDeposit(data.Lead_FixedDeposit);
+                        self.Lead_FixedDepositToDay(data.Lead_FixedDepositToDay);
+
+
+                        self.TodayLeadFixedDepositAmount(data.TodayLeadFixedDepositAmount);
+
+
+                        self.Lead_RecurrentDeposit(data.Lead_RecurrentDeposit);
+                        self.Lead_RecurrentDepositToDay(data.Lead_RecurrentDepositToDay);
+
+
+                        self.TodayLeadRecurrentDepositAmount(data.TodayLeadRecurrentDepositAmount);
+
+
+                        self.Lead_Liability(data.Lead_Liability);
+                        // Lead
+
+                        // File Submited Apps
+                        self.Application_HomeLoan(data.Application_HomeLoan);
+                        self.Application_HomeLoanToDay(data.Application_HomeLoanToDay);
+
+
+                        self.TodayApplicationHomeLoanAmount(data.TodayApplicationHomeLoanAmount);
+
+
+                        self.Application_PersonalLoan(data.Application_PersonalLoan);
+                        self.Application_PersonalLoanToDay(data.Application_PersonalLoanToDay);
+
+
+                        self.TodayApplicationPersonalLoanAmount(data.TodayApplicationPersonalLoanAmount);
+
+
+                        self.Application_AutoLoan(data.Application_AutoLoan);
+                        self.Application_AutoLoanToDay(data.Application_AutoLoanToDay);
+
+
+                        self.TodayApplicationAutoLoanAmount(data.TodayApplicationAutoLoanAmount);
+
+
+                        self.Application_FixedDeposit(data.Application_FixedDeposit);
+                        self.Application_FixedDepositToDay(data.Application_FixedDepositToDay);
+
+
+                        self.TodayApplicationFixedDepositAmount(data.TodayApplicationFixedDepositAmount);
+
+
+                        self.Application_RecurrentDeposit(data.Application_RecurrentDeposit);
+                        self.Application_RecurrentDepositToDay(data.Application_RecurrentDepositToDay);
+
+
+                        self.TodayApplicationRecurrentDepositAmount(data.TodayApplicationRecurrentDepositAmount);
+
+
+                        self.Application_Liability(data.Application_Liability);
+
+                        // File Submited Apps
+
+                        // File Approved Apps
+                        self.Approved_HomeLoan(data.Approved_HomeLoan);
+                        self.Approved_HomeLoanToDay(data.Approved_HomeLoanToDay);
+
+
+                        self.Approved_HomeLoanAmount(numberFormatter(data.Approved_HomeLoanAmount));
+                        self.TodayApprovedApplicationHomeLoanAmount(data.TodayApprovedApplicationHomeLoanAmount);
+
+
+                        self.Approved_AutoLoan(data.Approved_AutoLoan);
+                        self.Approved_AutoLoanToDay(data.Approved_AutoLoanToDay);
+
+
+                        self.Approved_AutoLoanAmount(numberFormatter(data.Approved_AutoLoanAmount));
+                        self.TodayApprovedApplicationAutoLoanAmount(data.TodayApprovedApplicationAutoLoanAmount);
+
+
+                        self.Approved_PersonalLoan(data.Approved_PersonalLoan);
+                        self.Approved_PersonalLoanToDay(data.Approved_PersonalLoanToDay);
+
+
+                        self.Approved_PersonalLoanAmount(numberFormatter(data.Approved_PersonalLoanAmount));
+                        self.TodayApprovedApplicationPersonalLoanAmount(data.TodayApprovedApplicationPersonalLoanAmount);
+
+                        // File Approved Apps
+
+                        // File DisApproved Apps
+                        self.Disapproved_HomeLoan(data.Disapproved_HomeLoan);
+                        self.DisApproved_HomeLoanToDay(data.DisApproved_HomeLoanToDay);
+
+
+                        self.Disapproved_HomeLoanAmount(numberFormatter(data.Disapproved_HomeLoanAmount));
+                        self.TodayDisApprovedApplicationHomeLoanAmount(data.TodayDisApprovedApplicationHomeLoanAmount);
+
+
+                        self.Disapproved_AutoLoan(data.Disapproved_AutoLoan);
+                        self.DisApproved_AutoLoanToDay(data.DisApproved_AutoLoanToDay);
+
+
+                        self.Disapproved_AutoLoanAmount(numberFormatter(data.Disapproved_AutoLoanAmount));
+                        self.TodayDisApprovedApplicationAutoLoanAmount(data.TodayDisApprovedApplicationAutoLoanAmount);
+
+
+                        self.Disapproved_PersonalLoan(data.Disapproved_PersonalLoan);
+                        self.DisApproved_PersonalLoanToDay(data.DisApproved_PersonalLoanToDay);
+
+
+                        self.Disapproved_PersonalLoanAmount(numberFormatter(data.Disapproved_PersonalLoanAmount));
+                        self.TodayDisApprovedApplicationPersonalLoanAmount(data.TodayDisApprovedApplicationPersonalLoanAmount);
+
+                        // File DisApproved Apps
+
+                        // Disbursed/Received Apps
+
+                        self.Disbursed_HomeLoanToDay(data.Disbursed_HomeLoanToDay);
+
+
+                        self.Disbursed_AutoLoanToDay(data.Disbursed_AutoLoanToDay);
+
+
+                        self.Disbursed_PersonalLoanToDay(data.Disbursed_PersonalLoanToDay);
+
+
+                        self.Received_FixedToDay(data.Received_FixedToDay);
+
+
+                        self.Received_RecurrentToDay(data.Received_RecurrentToDay);
+
+
+                        self.Disbursed_HomeLoanAmount(data.Disbursed_HomeLoanAmount);
+                        self.Disbursed_HomeLoanAmountToday(data.Disbursed_HomeLoanAmountToday);
+
+
+                        self.Disbursed_AutoLoanAmount(data.Disbursed_AutoLoanAmount);
+                        self.Disbursed_AutoLoanAmountToday(data.Disbursed_AutoLoanAmountToday);
+
+
+                        self.Disbursed_PersonalLoanAmount(data.Disbursed_PersonalLoanAmount);
+                        self.Disbursed_PersonalLoanAmountToday(data.Disbursed_PersonalLoanAmountToday);
+
+
+                        self.ReceivedDepositAmount(data.ReceivedDepositAmount);
+
+                        self.FundReceived_FixedAmountToday(data.FundReceived_FixedAmountToday);
+
+
+                        self.FundReceived_RecurrentAmountToday(data.FundReceived_RecurrentAmountToday);
+
+
+                        // Disbursed/Received Apps
+
+                        //
+                        //console.log('count call - ' + ko.toJSON(self.totalYesterdayCall));
+                        self.totalYesterdayCall = self.Call_HomeLoanToDay() + self.Call_AutoLoanToDay() + self.Call_PersonalLoanToDay() + self.Call_FixedDepositToDay() + self.Call_RecurrentDepositToDay() + self.Call_UndefinedToDay();
+                        //console.log('count lead -' + ko.toJSON(self.totalYesterdayLead));
+                        self.totalYesterdayLead = self.Lead_HomeLoanToDay() + self.Lead_AutoLoanToDay() + self.Lead_PersonalLoanToDay() + self.Lead_FixedDepositToDay() + self.Lead_RecurrentDepositToDay();
+
+                        self.totalYesterdaySubmit = self.Application_HomeLoanToDay() + self.Application_AutoLoanToDay() + self.Application_PersonalLoanToDay() + self.Application_FixedDepositToDay() + self.Application_RecurrentDepositToDay();
+
+                        self.totalYesterdayApproved = self.Approved_HomeLoanToDay() + self.Approved_AutoLoanToDay() + self.Approved_PersonalLoanToDay();
+
+                        self.totalYesterdaydisApproved = self.DisApproved_HomeLoanToDay() + self.DisApproved_AutoLoanToDay() + self.DisApproved_PersonalLoanToDay();
+
+                        self.totalYesterdaydisbursedApproved = self.Disbursed_HomeLoanToDay() + self.Disbursed_AutoLoanToDay() + self.Disbursed_PersonalLoanToDay() + self.Received_FixedToDay() + self.Received_RecurrentToDay();
+
+                        google.charts.setOnLoadCallback(drawChart);
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+            //self.worker = ko.computed(function () {
+            //    if (self.FromDate())
+            //        self.GetHighlights();
+            //    if (self.ToDate())
+            //        self.GetHighlights();
+            //}, this);
+        }
+
+        dashboard = new pmDashboardVM();
+        dashboard.GetHighlights();
+
+        dashboard.GetBranches();
+        dashboard.GetCostCenters();
+        ko.applyBindings(dashboard, document.getElementById('pmDashboard'));
+
+        dashboard.FromDate.subscribe(function () {
+            dashboard.GetHighlights();
+        });
+        dashboard.ToDate.subscribe(function () {
+            dashboard.GetHighlights();
+        });
+
+        function drawChart() {
+
+            var data;
+
+            if (dashboard.SelectedStage === 1) { }
+
+            var arrayToData = [];
+
+            if (typeof (dashboard) != 'undefined') {
+                arrayToData.push(['Month', 'No Call', 'Success %', 'Cumulative Success %']);
+                var divisor = 0;
+                var cumulativeTotal = 0;
+
+                $.each(dashboard.ChartData(), function (index, value) {
+                    divisor++;
+                    cumulativeTotal += parseFloat(value.CompareValue);
+                    arrayToData.push([value.Month + " - " + value.Year, value.Value, value.CompareValue, (cumulativeTotal / divisor)]);
+                })
+
+                data = google.visualization.arrayToDataTable(arrayToData);
+            }
+
+            // Set chart options
+            var options = {
+                title: '',
+                vAxis: { title: 'No Call' },
+                hAxis: { title: 'Month' },
+                seriesType: 'bars',
+                series: {
+                    1: {
+                        type: 'line',
+                        lineWidth: 2,
+                        lineDashStyle: [3]
+                    },
+                    2: {
+                        type: 'line'
+                    }
+                },
+                colors: ['#7C7C7C', '#EC017F', '#005098'],
+                responsive: {
+                    rules: [
+                        {
+                            condition: {
+                                maxWidth: 800
+                            },
+                            chartOptions: {
+                                legend: {
+                                    align: 'center',
+                                    verticalAlign: 'bottom',
+                                    layout: 'horizontal'
+                                },
+                                yAxis: {
+                                    labels: {
+                                        align: 'left',
+                                        x: 0,
+                                        y: -5
+                                    },
+                                    title: {
+                                        text: null
+                                    }
+                                },
+                                subtitle: {
+                                    text: null
+                                },
+                                credits: {
+                                    enabled: false
+                                }
+                            }
+                        }
+                    ]
+                }
+
+            };
+
+            // Instantiate and draw the chart.
+            var chart = new google.visualization.ComboChart(document.getElementById('ProductivityMatrix'));
+            if (typeof (data) != 'undefined') {
+                chart.draw(data, options);
+            }
+        }
+
+    });
+</script>

@@ -1,0 +1,378 @@
+﻿<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Areas/IPDC/Scripts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+</script>
+
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/MDDashboard.js"></script>
+@{
+    ViewBag.Title = "MdDashboard";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+
+}
+
+<style>
+    .btn {
+        width: auto;
+        height: auto;
+        font-size: 11px;
+        color: #555 !important;
+        border-color: lightgray !important;
+        background-color: white !important;
+        max-height: 20px;
+        max-width: 195px;
+        line-height: .8;
+    }
+
+    .glyphicon {
+        line-height: .5;
+    }
+
+    .btn-warning {
+        color: white !important;
+        background-color: #ff9800 !important;
+    }
+
+    .control-label {
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+</style>
+
+<section id="mdDashboard">
+
+    <div class="container-fluid">
+        <div class="row">
+
+
+            <div class="col-sm-7">
+
+                <div class="form-group row row_design_cifr">
+                    <label class="heading md">HIGHLIGHTS</label>
+                </div>
+                <br />
+                <div class="row">
+                    <form class="form-horizontal" role="form">
+                        <div class="col-sm-12">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-1">
+                                    <label class="control-label">Timeline</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine"></select>@*, event:{change: GetHighlights}*@
+                                </div>
+                                <div class="col-sm-1">
+                                    <label class="control-label">Criteria</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select class="form-control" data-bind="options:Criteria,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedCriteria"></select>@*, event:{change: GetHighlights}*@
+                                </div>
+                                <div class="col-sm-1">
+                                    <label class="control-label">Branch</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <select multiple="multiple" id="branchSelection1" class="form-control" data-bind="options: BranchList, optionsText: 'Name', optionsValue: 'Id', selectedOptions: BranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-offset-9 col-sm-3">
+                                    <button class="btn btn-success" data-bind="event:{click:GetHighlights}"><span class="glyphicon glyphicon-repeat"></span></button>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-8">
+                                    <strong>CALLS</strong>
+                                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                    <div id="containera" style="margin: 0 auto;"></div>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-8">
+                                    <strong>LEAD</strong>
+                                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                    <div id="containerb" style="margin: 0 auto;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-8">
+                                    <strong>FILES SUBMITTED</strong>
+                                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                    <div id="containerc" style="margin: 0 auto;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-8">
+                                    <strong>FILES APPROVED</strong>
+                                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                    <div id="containerd" style="margin: 0 auto;"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-8">
+                                    <strong>AMOUNT DISB./REC.</strong>
+                                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                    <div id="containere" style="margin: 0 auto;"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+            <div class="col-sm-5">
+                <div class="form-group row row_design_cifr">
+                    <div class="col-sm-3">
+                        <label class="heading" style="padding-right: 0px;">HIGHLIGHTS</label>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group row row_design_cifr">
+                    <div class="col-sm-2">
+                        <label class="control-label pull-right">Timeline</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <select class="form-control" data-bind="options:TimeLinesRight,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLineRight, event:{change: CustomFunction}"></select>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="control-label">Branch</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <select multiple="multiple" id="branchSelection2" class="form-control" data-bind="options: BranchListRight, optionsText: 'Name', optionsValue: 'Id', selectedOptions: RightBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                    </div>
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-offset-7 col-sm-3">
+                        <button class="btn btn-success" data-bind="event:{click:GetHighlightsRight}"><span class="glyphicon glyphicon-repeat"></span></button>
+                    </div>
+                </div>
+                <div class="form-group row row_design">
+                    <div class="col-sm-10">
+                        <strong>ASSET VS LIABILITY</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerp" style="margin: 0 auto"></div>
+                    </div>
+                </div>
+
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-10">
+                        <strong>BUSINESS CONTRIBUTION-ASSET</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerf" style="margin: 0 auto;"></div>
+
+
+                    </div>
+
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-10">
+                        <strong>BUSINESS CONTRIBUTION-LIABILITY</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerG" style="margin: 0 auto;"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+</section>
+@*Asset Vs Liability*@
+<script language="JavaScript">
+
+
+</script>
+@*Business Contribution Asset*@
+<script language="JavaScript">
+    $(document).ready(function () {
+        var chart = {
+            type: 'bar'
+        };
+        var title = {
+            text: ''
+
+        };
+        var subtitle = {
+            text: ''
+        };
+        var xAxis = {
+            categories: ['Gulshan Br', 'Motijheel Br', 'Dhanmondi Br', 'Uttara Br', 'Chittagong Br', 'Sylhet Br', 'Gazipur Br'],
+            title: {
+                text: null
+            }
+        };
+        var yAxis = {
+            min: 0,
+            title: {
+                text: '',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        };
+        var tooltip = {
+            valueSuffix: '',
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        };
+        var plotOptions = {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        };
+        //var legend = {
+        //   layout: 'vertical',
+        //   align: 'left',
+        //   verticalAlign: 'top',
+        //   x: 0,
+        //   y: -10,
+        //   floating: true,
+        //   borderWidth: 1,
+        //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        //   shadow: true
+        //};
+        var credits = {
+            enabled: false
+        };
+
+        var series = [
+            {
+                name: 'ASSET',
+                data: [300, 130, 20, 300, 130, 20, 20]
+            }
+        ];
+
+        var colors = [
+            '#979797'
+        ];
+
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.subtitle = subtitle;
+        json.tooltip = tooltip;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.series = series;
+        json.colors = colors;
+        json.plotOptions = plotOptions;
+        // json.legend = legend;
+        json.credits = credits;
+        //$('#containerf').highcharts(json);
+
+    });
+</script>
+@*Business Contribution-Liability*@
+<script language="JavaScript">
+    $(document).ready(function () {
+        var chart = {
+            type: 'bar'
+        };
+        var title = {
+            text: ''
+
+        };
+        var subtitle = {
+            text: ''
+        };
+        var xAxis = {
+            categories: ['Gulshan Br', 'Motijheel Br', 'Dhanmondi Br', 'Uttara Br', 'Chittagong Br', 'Sylhet Br', 'Gazipur Br'],
+            title: {
+                text: null
+            }
+        };
+        var yAxis = {
+            min: 0,
+            title: {
+                text: '',
+                align: 'high'
+            },
+            labels: {
+                overflow: 'justify'
+            }
+        };
+        //var tooltip = {
+        //    valueSuffix: '',
+        //    headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+        //    pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+        //       '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+        //    footerFormat: '</table>',
+        //    shared: true,
+        //    useHTML: true
+        //};
+        var plotOptions = {
+            bar: {
+                dataLabels: {
+                    enabled: true
+                }
+            }
+        };
+        //var legend = {
+        //   layout: 'vertical',
+        //   align: 'left',
+        //   verticalAlign: 'top',
+        //   x: 0,
+        //   y: -10,
+        //   floating: true,
+        //   borderWidth: 1,
+        //   backgroundColor: ((Highcharts.theme && Highcharts.theme.legendBackgroundColor) || '#FFFFFF'),
+        //   shadow: true
+        //};
+        var credits = {
+            enabled: false
+        };
+
+        var series = [
+            {
+                name: 'LIABILITY',
+                data: [300, 130, 20, 300, 130, 20, 20]
+            }
+        ];
+
+        var colors = [
+            '#EC017F'
+        ];
+
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.subtitle = subtitle;
+        //json.tooltip = tooltip;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.series = series;
+        json.colors = colors;
+        json.plotOptions = plotOptions;
+        // json.legend = legend;
+        json.credits = credits;
+        //$('#containerG').highcharts(json);
+
+    });
+</script>
+@*Number Formating*@

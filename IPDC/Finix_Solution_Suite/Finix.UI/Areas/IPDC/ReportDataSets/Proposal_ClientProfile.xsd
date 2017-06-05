@@ -1,0 +1,70 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Proposal_ClientProfile" targetNamespace="http://tempuri.org/Proposal_ClientProfile.xsd" xmlns:mstns="http://tempuri.org/Proposal_ClientProfile.xsd" xmlns="http://tempuri.org/Proposal_ClientProfile.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Proposal_ClientProfile" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Proposal_ClientProfile" msprop:Generator_UserDSName="Proposal_ClientProfile">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Proposal_ClientProfileDto" msprop:Generator_TableClassName="Proposal_ClientProfileDtoDataTable" msprop:Generator_TableVarName="tableProposal_ClientProfileDto" msprop:Generator_TablePropName="Proposal_ClientProfileDto" msprop:Generator_RowDeletingName="Proposal_ClientProfileDtoRowDeleting" msprop:Generator_RowChangingName="Proposal_ClientProfileDtoRowChanging" msprop:Generator_RowEvHandlerName="Proposal_ClientProfileDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="Proposal_ClientProfileDtoRowDeleted" msprop:Generator_UserTableName="Proposal_ClientProfileDto" msprop:Generator_RowChangedName="Proposal_ClientProfileDtoRowChanged" msprop:Generator_RowEvArgName="Proposal_ClientProfileDtoRowChangeEvent" msprop:Generator_RowClassName="Proposal_ClientProfileDtoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRole" msprop:Generator_ColumnVarNameInTable="columnApplicantRole" msprop:Generator_ColumnPropNameInRow="ApplicantRole" msprop:Generator_ColumnPropNameInTable="ApplicantRoleColumn" msprop:Generator_UserColumnName="ApplicantRole" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRoleName" msprop:Generator_ColumnVarNameInTable="columnApplicantRoleName" msprop:Generator_ColumnPropNameInRow="ApplicantRoleName" msprop:Generator_ColumnPropNameInTable="ApplicantRoleNameColumn" msprop:Generator_UserColumnName="ApplicantRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="NID" msprop:Generator_ColumnVarNameInTable="columnNID" msprop:Generator_ColumnPropNameInRow="NID" msprop:Generator_ColumnPropNameInTable="NIDColumn" msprop:Generator_UserColumnName="NID" type="xs:string" minOccurs="0" />
+              <xs:element name="SmartNIDNo" msprop:Generator_ColumnVarNameInTable="columnSmartNIDNo" msprop:Generator_ColumnPropNameInRow="SmartNIDNo" msprop:Generator_ColumnPropNameInTable="SmartNIDNoColumn" msprop:Generator_UserColumnName="SmartNIDNo" type="xs:string" minOccurs="0" />
+              <xs:element name="PassportNo" msprop:Generator_ColumnVarNameInTable="columnPassportNo" msprop:Generator_ColumnPropNameInRow="PassportNo" msprop:Generator_ColumnPropNameInTable="PassportNoColumn" msprop:Generator_UserColumnName="PassportNo" type="xs:string" minOccurs="0" />
+              <xs:element name="DLNo" msprop:Generator_ColumnVarNameInTable="columnDLNo" msprop:Generator_ColumnPropNameInRow="DLNo" msprop:Generator_ColumnPropNameInTable="DLNoColumn" msprop:Generator_UserColumnName="DLNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicant" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicant" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicant" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantColumn" msprop:Generator_UserColumnName="RelationshipWithApplicant" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicantName" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicantName" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicantName" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantNameColumn" msprop:Generator_UserColumnName="RelationshipWithApplicantName" type="xs:string" minOccurs="0" />
+              <xs:element name="DateOfBirth" msprop:Generator_ColumnVarNameInTable="columnDateOfBirth" msprop:Generator_ColumnPropNameInRow="DateOfBirth" msprop:Generator_ColumnPropNameInTable="DateOfBirthColumn" msprop:Generator_UserColumnName="DateOfBirth" type="xs:string" minOccurs="0" />
+              <xs:element name="AcademicQualification" msprop:Generator_ColumnVarNameInTable="columnAcademicQualification" msprop:Generator_ColumnPropNameInRow="AcademicQualification" msprop:Generator_ColumnPropNameInTable="AcademicQualificationColumn" msprop:Generator_UserColumnName="AcademicQualification" type="xs:string" minOccurs="0" />
+              <xs:element name="ProfessionName" msprop:Generator_ColumnVarNameInTable="columnProfessionName" msprop:Generator_ColumnPropNameInRow="ProfessionName" msprop:Generator_ColumnPropNameInTable="ProfessionNameColumn" msprop:Generator_UserColumnName="ProfessionName" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="OrganizationName" msprop:Generator_ColumnVarNameInTable="columnOrganizationName" msprop:Generator_ColumnPropNameInRow="OrganizationName" msprop:Generator_ColumnPropNameInTable="OrganizationNameColumn" msprop:Generator_UserColumnName="OrganizationName" type="xs:string" minOccurs="0" />
+              <xs:element name="ExperienceDetails" msprop:Generator_ColumnVarNameInTable="columnExperienceDetails" msprop:Generator_ColumnPropNameInRow="ExperienceDetails" msprop:Generator_ColumnPropNameInTable="ExperienceDetailsColumn" msprop:Generator_UserColumnName="ExperienceDetails" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficeAddressId" msprop:Generator_ColumnVarNameInTable="columnOfficeAddressId" msprop:Generator_ColumnPropNameInRow="OfficeAddressId" msprop:Generator_ColumnPropNameInTable="OfficeAddressIdColumn" msprop:Generator_UserColumnName="OfficeAddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="PresentAddressId" msprop:Generator_ColumnVarNameInTable="columnPresentAddressId" msprop:Generator_ColumnPropNameInRow="PresentAddressId" msprop:Generator_ColumnPropNameInTable="PresentAddressIdColumn" msprop:Generator_UserColumnName="PresentAddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="PermanentAddressId" msprop:Generator_ColumnVarNameInTable="columnPermanentAddressId" msprop:Generator_ColumnPropNameInRow="PermanentAddressId" msprop:Generator_ColumnPropNameInTable="PermanentAddressIdColumn" msprop:Generator_UserColumnName="PermanentAddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="ResidenceStatusName" msprop:Generator_ColumnVarNameInTable="columnResidenceStatusName" msprop:Generator_ColumnPropNameInRow="ResidenceStatusName" msprop:Generator_ColumnPropNameInTable="ResidenceStatusNameColumn" msprop:Generator_UserColumnName="ResidenceStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficeAddressString" msprop:Generator_ColumnVarNameInTable="columnOfficeAddressString" msprop:Generator_ColumnPropNameInRow="OfficeAddressString" msprop:Generator_ColumnPropNameInTable="OfficeAddressStringColumn" msprop:Generator_UserColumnName="OfficeAddressString" type="xs:string" minOccurs="0" />
+              <xs:element name="PresentAddressString" msprop:Generator_ColumnVarNameInTable="columnPresentAddressString" msprop:Generator_ColumnPropNameInRow="PresentAddressString" msprop:Generator_ColumnPropNameInTable="PresentAddressStringColumn" msprop:Generator_UserColumnName="PresentAddressString" type="xs:string" minOccurs="0" />
+              <xs:element name="PermanentAddressString" msprop:Generator_ColumnVarNameInTable="columnPermanentAddressString" msprop:Generator_ColumnPropNameInRow="PermanentAddressString" msprop:Generator_ColumnPropNameInTable="PermanentAddressStringColumn" msprop:Generator_UserColumnName="PermanentAddressString" type="xs:string" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Proposal_ClientProfilePK" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Proposal_ClientProfileDto" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Proposal_ClientProfileFK">
+      <xs:selector xpath=".//mstns:Proposal_ClientProfileDto" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:Proposal_ClientProfileDto" />
+      <xs:field xpath="mstns:OfficeAddressId" />
+    </xs:unique>
+    <xs:unique name="Constraint2">
+      <xs:selector xpath=".//mstns:Proposal_ClientProfileDto" />
+      <xs:field xpath="mstns:PresentAddressId" />
+    </xs:unique>
+    <xs:unique name="Constraint3">
+      <xs:selector xpath=".//mstns:Proposal_ClientProfileDto" />
+      <xs:field xpath="mstns:PermanentAddressId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

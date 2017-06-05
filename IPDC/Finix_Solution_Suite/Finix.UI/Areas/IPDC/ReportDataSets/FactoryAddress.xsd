@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="FactoryAddress" targetNamespace="http://tempuri.org/FactoryAddress.xsd" xmlns:mstns="http://tempuri.org/FactoryAddress.xsd" xmlns="http://tempuri.org/FactoryAddress.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="FactoryAddress" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="FactoryAddress" msprop:Generator_UserDSName="FactoryAddress">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="FactoryAddressDto" msprop:Generator_TableClassName="FactoryAddressDtoDataTable" msprop:Generator_TableVarName="tableFactoryAddressDto" msprop:Generator_TablePropName="FactoryAddressDto" msprop:Generator_RowDeletingName="FactoryAddressDtoRowDeleting" msprop:Generator_RowChangingName="FactoryAddressDtoRowChanging" msprop:Generator_RowEvHandlerName="FactoryAddressDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="FactoryAddressDtoRowDeleted" msprop:Generator_UserTableName="FactoryAddressDto" msprop:Generator_RowChangedName="FactoryAddressDtoRowChanged" msprop:Generator_RowEvArgName="FactoryAddressDtoRowChangeEvent" msprop:Generator_RowClassName="FactoryAddressDtoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="CIF_OrganizationalId" msprop:Generator_ColumnVarNameInTable="columnCIF_OrganizationalId" msprop:Generator_ColumnPropNameInRow="CIF_OrganizationalId" msprop:Generator_ColumnPropNameInTable="CIF_OrganizationalIdColumn" msprop:Generator_UserColumnName="CIF_OrganizationalId" type="xs:string" minOccurs="0" />
+              <xs:element name="AddressId" msprop:Generator_ColumnVarNameInTable="columnAddressId" msprop:Generator_ColumnPropNameInRow="AddressId" msprop:Generator_ColumnPropNameInTable="AddressIdColumn" msprop:Generator_UserColumnName="AddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="AddressTxt" msprop:Generator_ColumnVarNameInTable="columnAddressTxt" msprop:Generator_ColumnPropNameInRow="AddressTxt" msprop:Generator_ColumnPropNameInTable="AddressTxtColumn" msprop:Generator_UserColumnName="AddressTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="Address" msprop:Generator_ColumnVarNameInTable="columnAddress" msprop:Generator_ColumnPropNameInRow="Address" msprop:Generator_ColumnPropNameInTable="AddressColumn" msprop:Generator_UserColumnName="Address" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="FactoryAddressDtoKey1">
+      <xs:selector xpath=".//mstns:FactoryAddressDto" />
+      <xs:field xpath="mstns:Id" />
+      <xs:field xpath="mstns:CIF_OrganizationalId" />
+      <xs:field xpath="mstns:AddressId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

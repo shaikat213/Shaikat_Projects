@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "New Message";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Messaging/NewMessage.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Content/tinymce/js/tinymce/jquery.tinymce.min.js"></script>
+<script src="~/Content/tinymce/js/tinymce/tinymce.min.js"></script>
+<script src="~/Scripts/wysiwyg.js"></script>
+<script>
+    //tinymce.init({
+    //    height: 200,
+    //    //width: 600,
+    //    selector: "#textarea",
+    //    theme: "modern",
+    //    menubar: false,
+    //    plugins: [
+    //        "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+    //        "searchreplace wordcount visualblocks visualchars code fullscreen",
+    //        "insertdatetime media nonbreaking save table contextmenu directionality",
+    //        "emoticons template paste textcolor colorpicker textpattern"
+    //    ],
+    //    //toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image | forecolor backcolor emoticons | fontselect | fontsizeselect",
+    //    toolbar1: "undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+    //    //toolbar2: "print preview media | forecolor backcolor emoticons",
+    //    image_advtab: true,
+    //    templates: [
+    //        { title: 'Test template 1', content: 'Test 1' },
+    //        { title: 'Test template 2', content: 'Test 2' }
+    //    ]
+    //});
+
+    //ko.applyBindings();
+
+    //tinymce.init({
+    //    selector: '#textarea',
+    //    height: 500,
+    //    menubar: false,
+    //    plugins: [
+    //      'advlist autolink lists link image charmap print preview anchor',
+    //      'searchreplace visualblocks code fullscreen',
+    //      'insertdatetime media table contextmenu paste code'
+    //    ],
+    //    toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+    //    content_css: '//www.tinymce.com/css/codepen.min.css'
+    //});
+</script>
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .infoTextAlign {
+        text-align: center;
+    }
+</style>
+
+<section class="panel-bodycontent" id="newmessage">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>New Message</b>
+        </h2>
+    </header>
+
+    <br />
+    <div class="container-fluid">
+        <div class="row">
+            <section class="rm">
+                <div class="panel-body">
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-3 infoTextAlign">
+                                        <label class="control-label">Application No :</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select id="LegalStatus" data-bind="options:ApplicationList, value: SelectedApplicationId, optionsText:'ApplicationNo',optionsCaption:'--Select--'" class="form-control"></select>
+                                    </div>
+                                    <div class="col-sm-3 infoTextAlign">
+                                        <label class="control-label">Application Title :</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <input type="text" class="form-control" data-bind="value:AccountTitle" readonly="readonly" />
+                                    </div>
+                                </div>
+
+                                <br />
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6 col-sm-offset-4">
+                                        <div class="col-sm-4">
+                                            <label class="radio-inline"><input type="radio" value="1" data-bind="checked:MessageType">Inter Office</label>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <label class="radio-inline"><input type="radio" value="2" data-bind="checked:MessageType">Intra Office</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="form-grop row row_design">
+                                    @*<span data-bind="value:FromOfficeDesignationSettingId"></span>*@
+                                    <div class="col-sm-9 col-sm-offset-4">
+                                        <div class="col-sm-2">
+                                            <label class="control-label" style="text-align: left;">To :</label>
+                                        </div>
+                                        <div class="col-sm-3">
+                                            <select data-bind="options:ToEmpList, value: ToEmpId, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    <br />
+
+    <!--start APPLICATION DETAILS-->
+
+    <div class="panel panel-default">
+
+        <div class="panel-heading">
+            <label class="headingOcc col-sm-offset-1">Write New Message</label>
+        </div>
+        <div class="panel-body">
+            <div class="col-sm-12">
+                <form class="form-horizontal" role="form">
+                    <div class="col-sm-12">
+                        <div class="form-group row row_design">
+                            <textarea type="text" data-bind="wysiwyg: Message"></textarea>
+                        </div>
+                    </div>
+                    <br />
+
+                    <div class="form-group">
+                        <div id="cibSuccessModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Response</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <p id="cibSuccessModalText"></p>
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <br />
+                    <div class="form-group row row_design">
+                        <div class="col-sm-6 col-sm-offset-8">
+                            <div class="col-sm-3">
+                                <button type="button" class="btnLarge btn-q btn-default" data-bind="click:SubmitAsDraft">Save as Draft</button> @*, enable :IsValid*@
+                            </div>
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <button type="button" class="btn btn-success" data-bind="click:SendMessage">Sent</button> @*, enable :IsValid*@
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+

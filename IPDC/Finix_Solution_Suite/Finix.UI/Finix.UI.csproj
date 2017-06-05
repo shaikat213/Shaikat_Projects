@@ -1,0 +1,2071 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{788F15F0-E34F-4618-960B-437494125293}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Finix.UI</RootNamespace>
+    <AssemblyName>Finix.UI</AssemblyName>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.5.2.0\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="DelegateDecompiler, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.0.18.1\lib\net40-Client\DelegateDecompiler.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="DelegateDecompiler.EntityFramework, Version=1.0.0.0, Culture=neutral, PublicKeyToken=93b26a10a04705bd, processorArchitecture=MSIL">
+      <HintPath>..\packages\DelegateDecompiler.EntityFramework.0.18.1\lib\net45\DelegateDecompiler.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="log4net, Version=1.2.15.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.5\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.1\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.1\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.1\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Owin, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.2.1.0\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.2.1.0\lib\net45\Microsoft.Owin.Security.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.2.1.0\lib\net45\Microsoft.Owin.Security.Cookies.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth, Version=2.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.2.1.0\lib\net45\Microsoft.Owin.Security.OAuth.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.3.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.Mvc.4.0.1\lib\net45\Microsoft.Practices.Unity.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.RegistrationByConvention, Version=4.0.0.0, Culture=neutral, PublicKeyToken=6d32ff45e0ccc69f, processorArchitecture=MSIL">
+      <HintPath>..\packages\Unity.4.0.1\lib\net45\Microsoft.Practices.Unity.RegistrationByConvention.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.ProcessingObjectModel.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WebForms, Version=11.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Report.Viewer.11.0.0.0\lib\net\Microsoft.ReportViewer.WebForms.DLL</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=13.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.SqlServer.Types.13.0.4001.0\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Mono.Reflection, Version=1.0.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756, processorArchitecture=MSIL">
+      <HintPath>..\packages\Mono.Reflection.1.0.0.0\lib\Mono.Reflection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.6.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="StructureMap, Version=4.4.1.451, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\StructureMap.4.4.1\lib\net45\StructureMap.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.3\lib\net45\System.Web.Mvc.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.3\lib\net45\System.Web.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.1\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebActivatorEx, Version=2.0.0.0, Culture=neutral, PublicKeyToken=7b26dc2a43f6a0d4, processorArchitecture=MSIL">
+      <HintPath>..\packages\WebActivatorEx.2.0\lib\net40\WebActivatorEx.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.2.0.0\lib\net45\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Facebook">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.2.0.0\lib\net45\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.2.0.0\lib\net45\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.2.0.0\lib\net45\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.2.0.0\lib\net45\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\AutoMapperBootstrapper.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\SessionHelper.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\UnityConfig.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="App_Start\UnityMvcActivator.cs" />
+    <Compile Include="Areas\Auth\AuthAreaRegistration.cs" />
+    <Compile Include="Areas\Auth\Controllers\ApplicationController.cs" />
+    <Compile Include="Areas\Auth\Controllers\AssignmentsController.cs" />
+    <Compile Include="Areas\Auth\Controllers\CompanyProfileController.cs" />
+    <Compile Include="Areas\Auth\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Auth\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Auth\Controllers\MenuController.cs" />
+    <Compile Include="Areas\Auth\Controllers\ModuleController.cs" />
+    <Compile Include="Areas\Auth\Controllers\RoleController.cs" />
+    <Compile Include="Areas\Auth\Controllers\SubModuleController.cs" />
+    <Compile Include="Areas\Auth\Controllers\TaskController.cs" />
+    <Compile Include="Areas\Auth\Controllers\UserController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\AddressController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\ApplicationController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\BaseController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\CallController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\CalculationController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\CIFController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\CRMController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\DashboardAPIController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\DesignationController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\DeveloperController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\EmployeeController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\NationalityController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OfficeController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OfficeDesignationAreaController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OfficeDesignationSettingController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OfficeLayerController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OperationsController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\OrganizationController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\ProductController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\ProfessionController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\SalesLeadController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\VendorController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\MessagingController.cs" />
+    <Compile Include="Areas\IPDC\Controllers\VerificationController.cs" />
+    <Compile Include="Areas\IPDC\IPDCAreaRegistration.cs" />
+    <Compile Include="Areas\IPDC\ReportDataSets\Application.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Application.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\AppSumGurantors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppSumGurantors.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\AppSummery.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AppSummery.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\AssetBackup.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssetBackup.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CashDepositList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CashDepositList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\ChequeDepositList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ChequeDepositList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CIBs.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CIBs.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CifOrganization.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CifOrganization.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CifSummery.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CifSummery.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CreditMemo.cs">
+      <DependentUpon>CreditMemo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\CreditMemo.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreditMemo.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\DepositApplication.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepositApplication.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\disbursmentMemoList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>disbursmentMemoList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\DmText.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DmText.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\DocumentCheckList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentCheckList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\DocumentExceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentExceptions.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Documents.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Documents.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\DocumentSecurities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DocumentSecurities.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\dsProposalSignatory.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>dsProposalSignatory.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Exceptions.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Exceptions.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\FactoryAddress.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FactoryAddress.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\FinalDisburseMent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FinalDisburseMent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Guarantors.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Guarantors.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Guardians.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Guardians.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Incomes.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Incomes.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\IncomesNotConsiderd.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IncomesNotConsiderd.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\IncomeVerified.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>IncomeVerified.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Liabilities.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Liabilities.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\ModeOfDisburseMent.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ModeOfDisburseMent.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\NetWorths.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NetWorths.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\NidVerified.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NidVerified.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Nominees.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Nominees.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Occupation.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Occupation.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\OfferLetter.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OfferLetter.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\OverallAssesments.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverallAssesments.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Owners.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Owners.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\PODocument.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PODocument.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\ProposalCreditCards.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalCreditCards.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\ProposalOtherCost.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalOtherCost.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\ProposalValuationOtherCosts.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProposalValuationOtherCosts.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Proposal_ClientProfile.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Proposal_ClientProfile.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Proposal_FDR.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Proposal_FDR.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\PurchaseOrder.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PurchaseOrder.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\SecurityDetails.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SecurityDetails.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\Strength.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Strength.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\StressTesting.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>StressTesting.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\TransferDepositList.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TransferDepositList.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\IPDC\ReportDataSets\WeakNess.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WeakNess.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Controllers\jsTree3Controller.cs" />
+    <Compile Include="Controllers\Shared\BaseController.cs" />
+    <Compile Include="Controllers\Shared\HomeController.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Areas\Auth\Models\AccountViewModels.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Areas\Auth\Models\MenuModel.cs" />
+    <Compile Include="Models\jsTree3Node.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\Auth\Scripts\applicationCreate.js" />
+    <Content Include="Areas\Auth\Scripts\companyCreate.js" />
+    <Content Include="Areas\Auth\Scripts\many2many.js" />
+    <Content Include="Areas\Auth\Scripts\menu.js" />
+    <Content Include="Areas\Auth\Scripts\module.js" />
+    <Content Include="Areas\Auth\Scripts\Role\role.js" />
+    <Content Include="Areas\Auth\Scripts\Role\proxy-role.js" />
+    <Content Include="Areas\Auth\Scripts\Role\role-permission.js" />
+    <Content Include="Areas\Auth\Scripts\submodule.js" />
+    <Content Include="Areas\Auth\Scripts\Task.js" />
+    <Content Include="Areas\Auth\Scripts\user-info.js" />
+    <Content Include="Areas\Auth\Scripts\validate.js" />
+    <Content Include="Areas\IPDC\Content\calculation.css" />
+    <Content Include="Areas\IPDC\Content\CIB.css" />
+    <Content Include="Areas\IPDC\Content\cif.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\font-awesome.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\font-awesome.min.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\metisMenu.min.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\morris.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\sb-admin-2.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\accordion.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\all.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\autocomplete.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\base.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\button.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\core.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\datepicker.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\dialog.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\draggable.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_444444_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_555555_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_777620_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_777777_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_cc0000_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\images\ui-icons_ffffff_256x240.png" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\jquery-ui.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\jquery-ui.min.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\menu.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\progressbar.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\resizable.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\selectable.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\selectmenu.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\slider.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\sortable.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\spinner.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\tabs.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\theme.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\themes\base\tooltip.css" />
+    <Content Include="Areas\IPDC\Content\Dashboard\tlbm.css" />
+    <Content Include="Areas\IPDC\Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Areas\IPDC\Content\LoanCalculation.css" />
+    <Content Include="Areas\IPDC\Content\PagedList.css" />
+    <Content Include="Areas\IPDC\Scripts\addressJsViewModel.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicantCIFs.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicationUneditable.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicationApprovalBM.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicationApprovalTL.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicationDetailsSod.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\applicationDetails.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\creditAnalystAppsSod.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\creditAnalystApps.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\crmSodApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\depositApplicationUneditable.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\depositApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\crmApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\CancelApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\loanApplicationUneditable.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\rejectedApplicationsRM.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\rejectedApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\rejectedApplicationsUserWise.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\searchApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\searchApplicationByUser.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\EMICalculator.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\AutoLoan.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\dbrIncomeRange.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\HomeLoan.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\AutoLoan_Pdf.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\HomeLoan_Pdf.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\Deposit_Schemes.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\Rate_Chart.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\PersonalLoan_Pdf.js" />
+    <Content Include="Areas\IPDC\Scripts\Calculation\PersonalLoan.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\application.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\callEntryCC.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\callEntry.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\ownCallList.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\RMSuccessfulCalls.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\RMUnsuccessfulCalls.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\searchCallBM.js" />
+    <Content Include="Areas\IPDC\Scripts\Call\searchCall.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\cifCards.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\cifIncomeStatement.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\cifNetWorth.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\cifOrganizational.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\cifReference.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\CIF_Edit.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\CIF_Edit_2.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\CIF_Occupation.js" />
+    <Content Include="Areas\IPDC\Scripts\Application\loanApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\searchCif.js" />
+    <Content Include="Areas\IPDC\Scripts\CIF\searchCltOrg.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\crmCreditMemos.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\crmIndex.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\offerLetter.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\offerLetterApprovalCRM.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\offerLetterApprovalOPR.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\proposal.js" />
+    <Content Include="Areas\IPDC\Scripts\CRM\proposalList.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\bootbox.min.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\jquery.flot.axislabels.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\jquery.flot.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\jquery.flot.symbol.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\jquery.flot.time.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\LeaderBoard.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\management-app-chart.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\management-lead-chart.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\management.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\Demographic.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\NSMDashboard.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\MDDashboard.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\metisMenu.min.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\morris-data.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\morris.min.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\raphael.min.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\rm.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\sb-admin-2.js" />
+    <Content Include="Areas\IPDC\Scripts\Dashboard\tlbm.js" />
+    <Content Include="Areas\IPDC\Scripts\Designation\designation.js" />
+    <Content Include="Areas\IPDC\Scripts\Designation\designationProductMapping.js" />
+    <Content Include="Areas\IPDC\Scripts\Designation\designationRoleMapping.js" />
+    <Content Include="Areas\IPDC\Scripts\Designation\employee-designation-mapping.js" />
+    <Content Include="Areas\IPDC\Scripts\Developer\DeveloperApproval.js" />
+    <Content Include="Areas\IPDC\Scripts\Developer\ProjectList.js" />
+    <Content Include="Areas\IPDC\Scripts\Developer\ProjectEntry.js" />
+    <Content Include="Areas\IPDC\Scripts\Developer\DeveloperEntry.js" />
+    <Content Include="Areas\IPDC\Scripts\Developer\DeveloperList.js" />
+    <Content Include="Areas\IPDC\Scripts\Employee\employee.js" />
+    <Content Include="Areas\IPDC\Scripts\Employee\personalViewModel.js" />
+    <Content Include="Areas\IPDC\Scripts\loader.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\Draft.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\LoadDraftMessage.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\ReplyFowardMessage.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\Outbox.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\Inbox.js" />
+    <Content Include="Areas\IPDC\Scripts\Messaging\NewMessage.js" />
+    <Content Include="Areas\IPDC\Scripts\OfficeDesignationArea\officeDesignationArea.js" />
+    <Content Include="Areas\IPDC\Scripts\OfficeDesignationSetting\office-designation-setting.js" />
+    <Content Include="Areas\IPDC\Scripts\OfficeLayer\officelayer.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\approvedDisbursmentList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\DCLExceptions.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\disbursedLoanApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\dmDetails.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\OperationApproval.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CifListAppSummery.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CaAccountOpening.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CaLoanApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\DepositAppTracking.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CaFundReceived.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\DisbursementMemo.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\loanApplicationDCL.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\DocumentExceptionList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CbsInfo.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\FundConfirmation.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\AccountOpening.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\FundReceived.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\DocumentCheckList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\CaDepositApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\OpDepositApplication.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\ApplicationCIFList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\OpenedDepositApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\OpLoanApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\partiallyDisbursedList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\preparedDisbursmentList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\preparedDisbursmentMemo.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\preparePoApproval.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\purchaseOrder.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\ReadyDisMemoList.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\approvedRLSApplications.js" />
+    <Content Include="Areas\IPDC\Scripts\Operations\ReadyMemoList.js" />
+    <Content Include="Areas\IPDC\Scripts\Organization\organization.js" />
+    <Content Include="Areas\IPDC\Scripts\Product\GetProducts.js" />
+    <Content Include="Areas\IPDC\Scripts\Product\ProductEntry.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\FollowUpScheduleSR.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\UnsuccessfulLeads.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\salesLead.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\salesLeadAssignment.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\salesLeadFollowup.js" />
+    <Content Include="Areas\IPDC\Scripts\SalesLead\SalesLeadFollowupRM.js" />
+    <Content Include="Areas\IPDC\Scripts\Vendor\VendorEntry.js" />
+    <Content Include="Areas\IPDC\Scripts\Vendor\VendorList.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\IncomeVerificationHistory.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\legalDocumentVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\NetWorthVerificationHistory.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\CIBVerificationHistory.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\visitReportHistory.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\NIDVerificationHistory.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\ProjectLegalVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\CIB_Organizational.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\NetWorhVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\CPV.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\CIB_Personal.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\consumerPrimarySecurityValuation.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\incomeVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\lppPrimarySecurity.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\nidVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\projectTechnicalVerification.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\vehiclePrimarySecurity.js" />
+    <Content Include="Areas\IPDC\Scripts\Verification\vsitReport.js" />
+    <Content Include="Areas\IPDC\Views\Application\Application.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\DepositApplication.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\LoanApplication.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\AutoLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\HomeLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\PersonalLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\SearchCallBMInformation.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIFIncomeStatement.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIFNetWorth.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIFReferences.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIF_Edit.cshtml" />
+    <Content Include="Areas\IPDC\Views\Designation\DesignationProductMapping.cshtml" />
+    <Content Include="Areas\IPDC\Views\Designation\EmployeeDesignationMapping.cshtml" />
+    <Content Include="Areas\IPDC\Views\Designation\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\Employee\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\OfficeDesignationSetting\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\OfficeLayer\Index.cshtml" />
+    <Content Include="Areas\IPDC\Scripts\Operations\GetOperationException.js" />
+    <Content Include="Areas\IPDC\Views\Organization\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\FollowUpScheduleSR.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\LeadAssignment.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\OccupationIncomeDetails.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\SalesLeadEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\SalesLeadFollowUp.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\SalesLeadFollowupRm.cshtml" />
+    <Content Include="Areas\IPDC\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\IPDC\Scripts\Verification\CPVVerificationHistory.js" />
+    <Content Include="Areas\IPDC\Views\web.config" />
+    <Content Include="Areas\IPDC\Views\_ViewStart.cshtml" />
+    <Content Include="Content\bootstrap-datetimepicker.css" />
+    <Content Include="Content\bootstrap-multiselect.css" />
+    <Content Include="Content\customassets\css\application.css" />
+    <Content Include="Content\customassets\css\cifIncomeStatement.css" />
+    <Content Include="Content\customassets\css\CPV.css" />
+    <Content Include="Content\customassets\css\dashboardLayout.css" />
+    <Content Include="Content\customassets\css\MtoMAssignment.css" />
+    <Content Include="Content\customassets\css\searchCIFinformation.css" />
+    <Content Include="Content\customassets\css\custom.css" />
+    <Content Include="Content\customassets\css\employee.css" />
+    <Content Include="Content\customassets\css\FollowUpScheduleSR.css" />
+    <Content Include="Content\customassets\css\officeDesignationArea.css" />
+    <Content Include="Content\customassets\css\salesLead.css" />
+    <Content Include="Content\image\IPDClogo_small.jpg" />
+    <Content Include="Content\jsTree\docs.css" />
+    <Content Include="Content\jsTree\themes\default-dark\32px.png" />
+    <Content Include="Content\jsTree\themes\default-dark\40px.png" />
+    <Content Include="Content\jsTree\themes\default-dark\style.css" />
+    <Content Include="Content\jsTree\themes\default-dark\style.min.css" />
+    <Content Include="Content\jsTree\themes\default-dark\throbber.gif" />
+    <Content Include="Content\jsTree\themes\default\32px.png" />
+    <Content Include="Content\jsTree\themes\default\40px.png" />
+    <Content Include="Content\jsTree\themes\default\style.css" />
+    <Content Include="Content\jsTree\themes\default\style.min.css" />
+    <Content Include="Content\jsTree\themes\default\throbber.gif" />
+    <Content Include="Content\layout-modifications.css" />
+    <Content Include="Content\PagedList.css" />
+    <Content Include="Content\tinymce\changelog.txt" />
+    <Content Include="Content\tinymce\js\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\license.txt" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\codesample\css\prism.css" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\codesample\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\colorpicker\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\example\dialog.html" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\imagetools\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\importcss\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\textpattern\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\toc\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.svg" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.svg" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Content\tinymce\js\tinymce\themes\inlite\theme.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Content\tinymce\js\tinymce\tinymce.min.js" />
+    <Content Include="Content\tinymce\LICENSE.TXT" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Scripts\AppScripts\validate.js" />
+    <Content Include="Scripts\App\validate.js" />
+    <Content Include="Areas\Auth\Views\Role\RolePermissions.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\ProxyRolePermissions.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\fontawesome-webfont.woff2" />
+    <Content Include="fonts\FontAwesome.otf" />
+    <Content Include="Content\DataTables\css\common.scss" />
+    <Content Include="Content\DataTables\css\mixins.scss" />
+    <Content Include="Areas\IPDC\Views\CIF\Client_Occupation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Designation\DesignationRoleMapping.cshtml" />
+    <Content Include="Areas\IPDC\Views\OfficeDesignationArea\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIFOraganizational.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIF_Personal.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\IPDC\Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\IPDC\Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Areas\IPDC\Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Areas\IPDC\Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Areas\IPDC\Content\fonts\FontAwesome.otf" />
+    <Content Include="Areas\IPDC\Views\Dashboard\TLBM.cshtml" />
+    <Content Include="Areas\IPDC\Views\Shared\_LayoutSbAdmin.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\SearchApplication.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\CallEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\SearchCIFInformation.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\SearchClientOrg.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\SearchCallInformation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\CallEntryCC.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\CallDetailsBM.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\Index.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\LppPrimarySecurityValuation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\VehiclePrimarySecurityValuation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\ConsumerPrimarySecurityValuation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\CRMApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationDetails.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\CIB.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\CPV.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\IncomeVerification.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\NetWorthVerification.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\NIDVerification.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\VisitReport.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\CIBOrganizational.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\ProjectLegalVerification.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\ProjectTechnicalVerification.cshtml" />
+    <Content Include="Areas\IPDC\Views\CIF\CIFCards.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationCifs.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationApprovalTL.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationApprovalBM.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\CibVerificationHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\CPVVerificationHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\NIDVerificationHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\NetWorthVerificationHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Messaging\Inbox.cshtml" />
+    <Content Include="Areas\IPDC\Views\Messaging\Outbox.cshtml" />
+    <Content Include="Areas\IPDC\Views\Messaging\NewMessage.cshtml" />
+    <Content Include="Content\tinymce\js\tinymce\langs\readme.md" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.eot" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.ttf" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce-small.woff" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.eot" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.ttf" />
+    <Content Include="Content\tinymce\js\tinymce\skins\lightgray\fonts\tinymce.woff" />
+    <Content Include="Areas\IPDC\Views\Messaging\ReplyForwardMessage.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\Proposal.cshtml" />
+    <Content Include="Areas\IPDC\Views\Messaging\Draft.cshtml" />
+    <Content Include="Areas\IPDC\Views\Messaging\LoadDraftMessage.cshtml" />
+    <Content Include="Areas\IPDC\ReportDataSets\CreditMemo.xsc">
+      <DependentUpon>CreditMemo.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\AssetBackup.xsc">
+      <DependentUpon>AssetBackup.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\AppSummery.xsc">
+      <DependentUpon>AppSummery.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Application.xsc">
+      <DependentUpon>Application.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\Content\PDFDocuments\AutoLoan.pdf" />
+    <Content Include="Areas\IPDC\Content\PDFDocuments\DepositSchemes.pdf" />
+    <Content Include="Areas\IPDC\Content\PDFDocuments\HomeLoan.pdf" />
+    <Content Include="Areas\IPDC\Content\PDFDocuments\Personal-Loan.pdf" />
+    <Content Include="Areas\IPDC\Content\PDFDocuments\Rate_Chart.pdf" />
+    <None Include="Areas\IPDC\ReportDataSets\Application.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Application.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Application.xss">
+      <DependentUpon>Application.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\AppSumGurantors.xsc">
+      <DependentUpon>AppSumGurantors.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\AppSumGurantors.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AppSumGurantors.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\AppSumGurantors.xss">
+      <DependentUpon>AppSumGurantors.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\AppSummery.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AppSummery.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\AppSummery.xss">
+      <DependentUpon>AppSummery.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\AssetBackup.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AssetBackup.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\AssetBackup.xss">
+      <DependentUpon>AssetBackup.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\CIBs.xsc">
+      <DependentUpon>CIBs.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\ChequeDepositList.xsc">
+      <DependentUpon>ChequeDepositList.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\CashDepositList.xsc">
+      <DependentUpon>CashDepositList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\CashDepositList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CashDepositList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\CashDepositList.xss">
+      <DependentUpon>CashDepositList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\ChequeDepositList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ChequeDepositList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\ChequeDepositList.xss">
+      <DependentUpon>ChequeDepositList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\CIBs.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CIBs.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\CIBs.xss">
+      <DependentUpon>CIBs.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\CifSummery.xsc">
+      <DependentUpon>CifSummery.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\CifOrganization.xsc">
+      <DependentUpon>CifOrganization.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\CifOrganization.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CifOrganization.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\CifOrganization.xss">
+      <DependentUpon>CifOrganization.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\CifSummery.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CifSummery.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\CifSummery.xss">
+      <DependentUpon>CifSummery.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\CreditMemo.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CreditMemo.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\CreditMemo.xss">
+      <DependentUpon>CreditMemo.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Proposal_ClientProfile.xsc">
+      <DependentUpon>Proposal_ClientProfile.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Guarantors.xsc">
+      <DependentUpon>Guarantors.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Exceptions.xsc">
+      <DependentUpon>Exceptions.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentCheckList.xsc">
+      <DependentUpon>DocumentCheckList.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\DepositApplication.xsc">
+      <DependentUpon>DepositApplication.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\DepositApplication.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepositApplication.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\DepositApplication.xss">
+      <DependentUpon>DepositApplication.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\disbursmentMemoList.xsc">
+      <DependentUpon>disbursmentMemoList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\disbursmentMemoList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>disbursmentMemoList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\disbursmentMemoList.xss">
+      <DependentUpon>disbursmentMemoList.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\DmText.xsc">
+      <DependentUpon>DmText.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\DmText.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DmText.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\DmText.xss">
+      <DependentUpon>DmText.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\DocumentCheckList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DocumentCheckList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentCheckList.xss">
+      <DependentUpon>DocumentCheckList.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentExceptions.xsc">
+      <DependentUpon>DocumentExceptions.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\DocumentExceptions.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DocumentExceptions.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentExceptions.xss">
+      <DependentUpon>DocumentExceptions.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Documents.xsc">
+      <DependentUpon>Documents.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Documents.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Documents.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Documents.xss">
+      <DependentUpon>Documents.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentSecurities.xsc">
+      <DependentUpon>DocumentSecurities.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\DocumentSecurities.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DocumentSecurities.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\DocumentSecurities.xss">
+      <DependentUpon>DocumentSecurities.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\dsProposalSignatory.xsc">
+      <DependentUpon>dsProposalSignatory.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\dsProposalSignatory.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>dsProposalSignatory.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\dsProposalSignatory.xss">
+      <DependentUpon>dsProposalSignatory.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Exceptions.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Exceptions.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Exceptions.xss">
+      <DependentUpon>Exceptions.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\FinalDisburseMent.xsc">
+      <DependentUpon>FinalDisburseMent.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\FactoryAddress.xsc">
+      <DependentUpon>FactoryAddress.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\FactoryAddress.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FactoryAddress.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\FactoryAddress.xss">
+      <DependentUpon>FactoryAddress.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\FinalDisburseMent.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>FinalDisburseMent.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\FinalDisburseMent.xss">
+      <DependentUpon>FinalDisburseMent.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Guarantors.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Guarantors.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Guarantors.xss">
+      <DependentUpon>Guarantors.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Liabilities.xsc">
+      <DependentUpon>Liabilities.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Incomes.xsc">
+      <DependentUpon>Incomes.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Guardians.xsc">
+      <DependentUpon>Guardians.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Guardians.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Guardians.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Guardians.xss">
+      <DependentUpon>Guardians.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Incomes.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Incomes.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Incomes.xss">
+      <DependentUpon>Incomes.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\IncomesNotConsiderd.xsc">
+      <DependentUpon>IncomesNotConsiderd.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\IncomesNotConsiderd.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IncomesNotConsiderd.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\IncomesNotConsiderd.xss">
+      <DependentUpon>IncomesNotConsiderd.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\IncomeVerified.xsc">
+      <DependentUpon>IncomeVerified.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\IncomeVerified.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>IncomeVerified.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\IncomeVerified.xss">
+      <DependentUpon>IncomeVerified.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Liabilities.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Liabilities.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Liabilities.xss">
+      <DependentUpon>Liabilities.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\NetWorths.xsc">
+      <DependentUpon>NetWorths.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\ModeOfDisburseMent.xsc">
+      <DependentUpon>ModeOfDisburseMent.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\ModeOfDisburseMent.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ModeOfDisburseMent.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\ModeOfDisburseMent.xss">
+      <DependentUpon>ModeOfDisburseMent.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\NetWorths.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NetWorths.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\NetWorths.xss">
+      <DependentUpon>NetWorths.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\OfferLetter.xsc">
+      <DependentUpon>OfferLetter.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Occupation.xsc">
+      <DependentUpon>Occupation.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Nominees.xsc">
+      <DependentUpon>Nominees.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\NidVerified.xsc">
+      <DependentUpon>NidVerified.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\NidVerified.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NidVerified.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\NidVerified.xss">
+      <DependentUpon>NidVerified.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Nominees.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Nominees.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Nominees.xss">
+      <DependentUpon>Nominees.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Occupation.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Occupation.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Occupation.xss">
+      <DependentUpon>Occupation.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\OfferLetter.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OfferLetter.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\OfferLetter.xss">
+      <DependentUpon>OfferLetter.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\OverallAssesments.xsc">
+      <DependentUpon>OverallAssesments.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\OverallAssesments.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OverallAssesments.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\OverallAssesments.xss">
+      <DependentUpon>OverallAssesments.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\PODocument.xsc">
+      <DependentUpon>PODocument.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Owners.xsc">
+      <DependentUpon>Owners.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Owners.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Owners.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Owners.xss">
+      <DependentUpon>Owners.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\PODocument.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PODocument.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\PODocument.xss">
+      <DependentUpon>PODocument.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalOtherCost.xsc">
+      <DependentUpon>ProposalOtherCost.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalCreditCards.xsc">
+      <DependentUpon>ProposalCreditCards.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\ProposalCreditCards.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProposalCreditCards.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalCreditCards.xss">
+      <DependentUpon>ProposalCreditCards.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\ProposalOtherCost.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProposalOtherCost.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalOtherCost.xss">
+      <DependentUpon>ProposalOtherCost.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalValuationOtherCosts.xsc">
+      <DependentUpon>ProposalValuationOtherCosts.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\ProposalValuationOtherCosts.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProposalValuationOtherCosts.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\ProposalValuationOtherCosts.xss">
+      <DependentUpon>ProposalValuationOtherCosts.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Proposal_ClientProfile.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Proposal_ClientProfile.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Proposal_ClientProfile.xss">
+      <DependentUpon>Proposal_ClientProfile.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Strength.xsc">
+      <DependentUpon>Strength.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\SecurityDetails.xsc">
+      <DependentUpon>SecurityDetails.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\Proposal_FDR.xsc">
+      <DependentUpon>Proposal_FDR.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Proposal_FDR.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Proposal_FDR.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Proposal_FDR.xss">
+      <DependentUpon>Proposal_FDR.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\PurchaseOrder.xsc">
+      <DependentUpon>PurchaseOrder.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\PurchaseOrder.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PurchaseOrder.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\PurchaseOrder.xss">
+      <DependentUpon>PurchaseOrder.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\SecurityDetails.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SecurityDetails.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\SecurityDetails.xss">
+      <DependentUpon>SecurityDetails.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\Strength.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>Strength.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\Strength.xss">
+      <DependentUpon>Strength.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\WeakNess.xsc">
+      <DependentUpon>WeakNess.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\StressTesting.xsc">
+      <DependentUpon>StressTesting.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\StressTesting.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>StressTesting.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\StressTesting.xss">
+      <DependentUpon>StressTesting.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\ReportDataSets\TransferDepositList.xsc">
+      <DependentUpon>TransferDepositList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\TransferDepositList.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TransferDepositList.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\TransferDepositList.xss">
+      <DependentUpon>TransferDepositList.xsd</DependentUpon>
+    </Content>
+    <None Include="Areas\IPDC\ReportDataSets\WeakNess.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WeakNess.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Areas\IPDC\ReportDataSets\WeakNess.xss">
+      <DependentUpon>WeakNess.xsd</DependentUpon>
+    </Content>
+    <Content Include="Areas\IPDC\Views\CRM\CRMCreditMemos.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\CreditAnalystApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\RMUnsuccessfulCalls.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\RMSuccessfulCalls.cshtml" />
+    <Content Include="Areas\IPDC\Views\Call\OwnCallList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\CancelApplication.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\OfferLetter.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\OfferLetterApprovalListCRM.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\OfferLetterApprovalListOPS.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DepositApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DocumentCheckList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\FundConfirmation.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\FundReceivedList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\AccountOpeningList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CaAccountOpeningList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CifListAppSummery.cshtml" />
+    <Content Include="Areas\IPDC\Views\CRM\ProposalList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Developer\DeveloperEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\Developer\ProjectEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ApplicationCifList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CBSInfo.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\LoanApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\LoanApplicationDCL.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DepositApplicationTracking.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\OpenedDepositAccountsList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DocumentExceptionList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CADepositApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CaFundReceivedList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ApplicationsTrackList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\CaLoanApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\OperationApproval.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DisbursementMemo.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\PreparePOandApproval.cshtml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Areas\IPDC\Views\Operations\PurchaseOrder.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ReadyForDisbursmentMemo.cshtml" />
+    <Content Include="Areas\IPDC\Views\SalesLead\UnsuccessfulLeads.cshtml" />
+    <Content Include="Areas\IPDC\Views\Product\ProductEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\SubmitToDisbursmentMemo.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\PreparedDisbursmentMemo.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\PartiallyDisbursedList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DisbursedLoanApplication.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\PreparedDisbursedList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ApprovedDisbursedList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\DisbursementMemoDetails.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\LeaderBoard.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\ProductivityMatrix.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\MdDashboard.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\NSMDashboard.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DemographicAnalysis.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\TLDashboard.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\BMDashboard.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DashboardRM.cshtml" />
+    <Content Include="Areas\IPDC\Views\Vendor\VendorEntry.cshtml" />
+    <Content Include="Areas\IPDC\Views\Vendor\VendorList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Developer\DeveloperList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Developer\ProjectList.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\CRMSODApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationDetailsSOD.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\CreditAnalystApplicationsSOD.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ApprovedRLSApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\RejectedApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\EMICalculator.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DashboardRM.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\ApplicationUneditable.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\LoanApplicationUneditable.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\DepositApplicationUneditable.cshtml" />
+    <Content Include="Areas\IPDC\Views\Developer\DeveloperApproval.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\RejectedApplicationsRM.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\ApplicationsTrackListUserWise.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DashboardBM.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DashboardTL.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DashboardMD.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\Leaderboard.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DashboardNSM.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\DemographicAnalysis.cshtml" />
+    <Content Include="Areas\IPDC\Views\DashboardAPI\ProductivityMatrix.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\SearchApplicationByUser.cshtml" />
+    <Content Include="Areas\IPDC\Views\Application\RejectedApplicationsByUserId.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DemographicAnalysisAutoLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DemographicAnalysisHomeLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DemographicAnalysisPersonalLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DemographicAnalysisLiability.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\LeaderBoardAutoLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\LeaderBoardPersonalLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\LeaderBoardHomeLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\LeaderBoardLiability.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DashboardHomeLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DashboardAutoLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DashboardPersonalLoan.cshtml" />
+    <Content Include="Areas\IPDC\Views\Dashboard\DashboardLiability.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\PersonalLoan_PDF.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\HomeLoan_PDF.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\AutoLoan_PDF.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\Deposit_Schemes.cshtml" />
+    <Content Include="Areas\IPDC\Views\Calculation\Rate_Chart.cshtml" />
+    <None Include="Areas\IPDC\Views\Operations\DCLExceptions.cshtml" />
+    <Content Include="Areas\IPDC\Views\Operations\GetExceptioApplications.cshtml" />
+    <Content Include="Areas\IPDC\Views\Product\GetProducts.cshtml" />
+    <None Include="Areas\IPDC\Views\Verification\IncomeVerificationHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\VisitReportHistory.cshtml" />
+    <Content Include="Areas\IPDC\Views\Verification\LegalDocumentVerification.cshtml" />
+    <None Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="Properties\PublishProfiles\IPDC.pubxml" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\bootstrap-datetimepicker.js" />
+    <Content Include="Scripts\CryptoJS\aes.js" />
+    <Content Include="Scripts\CryptoJS\cipher-core.js" />
+    <Content Include="Scripts\CryptoJS\core.js" />
+    <Content Include="Scripts\CryptoJS\enc-base64.js" />
+    <Content Include="Scripts\CryptoJS\evpkdf.js" />
+    <Content Include="Scripts\CryptoJS\md5.js" />
+    <Content Include="Scripts\CryptoJS\sha256.js" />
+    <Content Include="Scripts\highcharts.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <None Include="Scripts\jquery-1.9.1.intellisense.js" />
+    <Content Include="Scripts\bootstrap-multiselect.js" />
+    <Content Include="Scripts\jquery-1.9.1.js" />
+    <Content Include="Scripts\jquery-1.9.1.min.js" />
+    <Content Include="Scripts\jquery-ui-timepicker-addon.js" />
+    <Content Include="Scripts\jsTree3\jstree.js" />
+    <Content Include="Scripts\jsTree3\jstree.min.js" />
+    <Content Include="Scripts\knockout-jqAutocomplete.js" />
+    <Content Include="Scripts\knockout-jqAutocomplete.min.js" />
+    <Content Include="Scripts\KoCustomDateTimePicker.js" />
+    <Content Include="Scripts\numeral.min.js" />
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\customassets\css\customStyle.css" />
+    <Content Include="Content\customassets\css\dashboard.css" />
+    <Content Include="Content\customassets\css\infragistics.css" />
+    <Content Include="Content\customassets\css\infragistics.theme.css" />
+    <Content Include="Content\customassets\css\infragistics.ui.chart.css" />
+    <Content Include="Content\customassets\css\Login.min.css" />
+    <Content Include="Content\customassets\css\slider.css" />
+    <Content Include="Content\customassets\css\style.css" />
+    <Content Include="Content\customassets\css_old\customStyle.css" />
+    <Content Include="Content\customassets\Images\loading.gif" />
+    <Content Include="Content\customassets\Images\logo.png" />
+    <Content Include="Content\customassets\Images\logo1.png" />
+    <Content Include="Content\customassets\Images\search.jpg" />
+    <Content Include="Content\customassets\js\custom.js" />
+    <Content Include="Content\customassets\js\infragistics.core.js" />
+    <Content Include="Content\customassets\js\infragistics.dv.js" />
+    <Content Include="Content\customassets\js\infragistics.lob.js" />
+    <Content Include="Content\customassets\js\infragistics.ui.combo.knockout-extensions.js" />
+    <Content Include="Content\customassets\js\infragistics.ui.datachart.knockout-extensions.js" />
+    <Content Include="Content\customassets\js\infragistics.ui.editors.knockout-extensions.js" />
+    <Content Include="Content\customassets\js\jquery.animate-colors-min.js" />
+    <Content Include="Content\customassets\js\jssor.slider.min.js" />
+    <Content Include="Content\customassets\js\jssor.slider.mini.js" />
+    <Content Include="Content\customassets\plugins\blue%402x.png" />
+    <Content Include="Content\customassets\plugins\blue.css" />
+    <Content Include="Content\customassets\plugins\blue.png" />
+    <Content Include="Content\customassets\plugins\icheck.js" />
+    <Content Include="Content\customStyle.css" />
+    <Content Include="Content\highchecktree\css\checktree_icon.png" />
+    <Content Include="Content\highchecktree\css\highCheckTree.css" />
+    <Content Include="Content\highchecktree\index.html" />
+    <Content Include="Content\highchecktree\js\highchecktree.js" />
+    <Content Include="Content\image\logo.png" />
+    <Content Include="Content\image\refresh-icon.png" />
+    <Content Include="Content\image\reload.jpg" />
+    <Content Include="Content\image\reload.png" />
+    <Content Include="Content\image\user.jpg" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_75_d0e5f5_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_85_dfeffc_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_gloss-wave_55_5c9ccc_500x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_inset-hard_100_f5f8f9_1x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-bg_inset-hard_100_fcfdfd_1x100.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_217bc0_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_469bdd_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_6da8d5_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_d8e7f3_256x240.png" />
+    <Content Include="Content\themes\redmond\images\ui-icons_f9bd01_256x240.png" />
+    <Content Include="Content\themes\redmond\jqgridcol.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.js" />
+    <Content Include="Content\themes\redmond\jquery-ui.min.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.min.js" />
+    <Content Include="Content\themes\redmond\jquery-ui.structure.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.structure.min.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.theme.css" />
+    <Content Include="Content\themes\redmond\jquery-ui.theme.min.css" />
+    <Content Include="Content\themes\redmond\ui.jqgrid.css" />
+    <Content Include="Content\themes\redmond\ui.multiselect.css" />
+    <Content Include="Content\toastr.css" />
+    <Content Include="Content\toastr.min.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Areas\Auth\Views\web.config" />
+    <Content Include="Areas\Auth\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Auth\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Auth\Views\Home\Menu.cshtml" />
+    <Content Include="Images\loadingTwo.gif" />
+    <Content Include="Scripts\App\util.js" />
+    <Content Include="Scripts\bootstrap-table.js" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bootstrapValidator.min.js" />
+    <Content Include="Scripts\jqgrid\grid.locale-en.js" />
+    <Content Include="Scripts\jqgrid\jquery.contextmenu.js" />
+    <Content Include="Scripts\jqgrid\jquery.jqGrid.js" />
+    <Content Include="Scripts\jqgrid\jquery.tablednd.js" />
+    <Content Include="Scripts\jqgrid\ui.multiselect.js" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\toastr.less" />
+    <Content Include="Content\toastr.scss" />
+    <Content Include="Areas\Auth\Views\User\UserEntry.cshtml" />
+    <Content Include="Areas\Auth\Views\Role\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Menu\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Module\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\SubModule\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\Assignments\ManyToManyAssignment.cshtml" />
+    <Content Include="Areas\Auth\Views\Application\Index.cshtml" />
+    <Content Include="Areas\Auth\Views\CompanyProfile\Index.cshtml" />
+    <Content Include="Scripts\jquery-1.9.1.min.map" />
+    <None Include="Scripts\jquery-2.2.3.intellisense.js" />
+    <Content Include="Scripts\jquery-2.2.3.js" />
+    <Content Include="Scripts\jquery-2.2.3.min.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.js" />
+    <Content Include="Scripts\jquery-ui-1.11.4.min.js" />
+    <Content Include="Scripts\jquery-ui-i18n.js" />
+    <Content Include="Scripts\jquery-ui-i18n.min.js" />
+    <Content Include="Scripts\jquery.layout.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\knockout-3.4.0.debug.js" />
+    <Content Include="Scripts\knockout-3.4.0.js" />
+    <Content Include="Scripts\knockout-date-bindings.js" />
+    <Content Include="Scripts\knockout.mapping-latest.debug.js" />
+    <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\knockout.validation.js" />
+    <Content Include="Scripts\knockout.validation.min.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\moment-with-locales.js" />
+    <Content Include="Scripts\moment-with-locales.min.js" />
+    <Content Include="Scripts\moment.js" />
+    <Content Include="Scripts\moment.min.js" />
+    <Content Include="Scripts\respond.js" />
+    <Content Include="Scripts\respond.min.js" />
+    <Content Include="Scripts\tether\tether.js" />
+    <Content Include="Scripts\tether\tether.min.js" />
+    <Content Include="Scripts\tinymce\jquery.tinymce.min.js" />
+    <Content Include="Scripts\tinymce\license.txt" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\advlist\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\anchor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autolink\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autoresize\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\autosave\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\bbcode\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\charmap\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\code\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\editable_selects.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\form_utils.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\mctabs.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\tiny_mce_popup.js" />
+    <Content Include="Scripts\tinymce\plugins\compat3x\validate.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\contextmenu\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\directionality\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cool.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-cry.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-embarassed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-foot-in-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-frown.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-innocent.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-kiss.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-laughing.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-money-mouth.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-sealed.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-smile.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-surprised.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-tongue-out.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-undecided.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-wink.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\img\smiley-yell.gif" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\emoticons\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\example_dependency\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullpage\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\fullscreen\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\hr\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\image\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\insertdatetime\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\layer\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\legacyoutput\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\link\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\lists\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\media\moxieplayer.swf" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\media\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\nonbreaking\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\noneditable\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\pagebreak\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Clipboard.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\Quirks.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\classes\WordFilter.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\paste\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\preview\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\print\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\save\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\searchreplace\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\classes\DomTextMatcher.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\spellchecker\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\tabfocus\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\CellSelection.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\Plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\Quirks.js" />
+    <Content Include="Scripts\tinymce\plugins\table\classes\TableGrid.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.dev.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\table\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\template\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\textcolor\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\css\visualblocks.css" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\address.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\article.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\aside.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\blockquote.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\div.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\figure.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h1.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h2.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h3.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h4.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h5.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\h6.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\hgroup.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\p.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\pre.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\img\section.gif" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualblocks\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\visualchars\plugin.min.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.js" />
+    <Content Include="Scripts\tinymce\plugins\wordcount\plugin.min.js" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.inline.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\content.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.svg" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\anchor.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\loader.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\object.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\trans.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\img\wline.gif" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.ie7.min.css" />
+    <Content Include="Scripts\tinymce\skins\lightgray\skin.min.css" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.js" />
+    <Content Include="Scripts\tinymce\themes\modern\theme.min.js" />
+    <Content Include="Scripts\tinymce\tinymce.js" />
+    <Content Include="Scripts\tinymce\tinymce.min.js" />
+    <Content Include="Scripts\toastr.js" />
+    <Content Include="Scripts\toastr.min.js" />
+    <Content Include="Scripts\wysiwyg.js" />
+    <Content Include="Scripts\wysiwyg.min.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial130.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial130.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveAccountPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Areas\Auth\Views\Login\ChooseApplication.cshtml" />
+    <Content Include="Areas\Auth\Views\Login\Login.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\_LayoutChooseApplication.cshtml" />
+    <Content Include="Views\Shared\_LayoutjEasyUI.cshtml" />
+    <Content Include="Views\Shared\_LayoutjqGrid.cshtml" />
+    <Content Include="Views\Shared\_LayoutLogin.cshtml" />
+    <Content Include="Views\Shared\_LayoutModuleSubModule.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Areas\Auth\Views\Home\Index.cshtml" />
+    <Content Include="Scripts\knockout.validation.min.js.map" />
+    <Content Include="Views\Shared\_jsTreeDemo.cshtml" />
+    <Content Include="Views\jsTree3\Demo.cshtml" />
+    <Content Include="Views\jsTree3\AJAXDemo.cshtml" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\readme.md" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon.eot" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.woff" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.ttf" />
+    <Content Include="Scripts\tinymce\skins\lightgray\fonts\icomoon-small.eot" />
+    <Content Include="Scripts\tinymce\langs\readme.md" />
+    <Content Include="Scripts\wysiwyg.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\IPDC\Views\Address\" />
+    <Folder Include="Areas\IPDC\Views\Base\" />
+    <Folder Include="Views\Accounts\" />
+    <Folder Include="Views\Home\" />
+    <Folder Include="Views\Login\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <None Include="Project_Readme.html" />
+    <Content Include="Scripts\jquery-2.2.3.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Finix.Auth\Finix.Auth.csproj">
+      <Project>{bfc4f46d-f9e1-4169-b011-d1e10b91578d}</Project>
+      <Name>Finix.Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Finix.IPDC\Finix.IPDC.csproj">
+      <Project>{22e862b3-b33a-493b-9f28-3b469511b85e}</Project>
+      <Name>Finix.IPDC</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\IPDC\Reports\AppSummeryLoan.rdlc" />
+    <Content Include="Areas\IPDC\Reports\Cif_Summary.rdlc" />
+    <Content Include="Areas\IPDC\Reports\CreditMemoAutoLoan.rdlc" />
+    <Content Include="Areas\IPDC\Reports\CreditMemoPersonalLoan.rdlc" />
+    <Content Include="Areas\IPDC\Reports\DSLLoanReport.rdlc" />
+    <Content Include="Areas\IPDC\Reports\DSLReport.rdlc" />
+    <Content Include="Areas\IPDC\Reports\POReport.rdlc" />
+    <Content Include="Areas\IPDC\Reports\RLSOfferLetter.rdlc" />
+    <Content Include="Areas\IPDC\Reports\RLSReport.rdlc" />
+    <Content Include="Areas\IPDC\Reports\CreditMemoSelfConstruction.rdlc" />
+    <Content Include="Areas\IPDC\Reports\HomeOfferLetter.rdlc" />
+    <Content Include="Areas\IPDC\Reports\PersonalOfferLetter.rdlc" />
+    <Content Include="Areas\IPDC\Reports\AutoOfferLetter.rdlc" />
+    <Content Include="Areas\IPDC\Reports\CreditMemo.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\IPDC\Reports\DisbursmentMemo.rdlc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Areas\IPDC\Reports\AppSummeryDeposit.rdlc" />
+    <Content Include="Areas\IPDC\Reports\OrgCifSummery.rdlc" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>15797</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:15798/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

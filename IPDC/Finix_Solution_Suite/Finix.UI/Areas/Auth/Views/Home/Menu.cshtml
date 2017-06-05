@@ -1,0 +1,245 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Finix - Solutions";
+}<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <style type="text/css">
+        #west-grid td {
+            cursor: pointer;
+        }
+
+        #tabs ul > li > a, img, span {
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            /*min-height: 800px;*/
+        }
+
+        .ui-jqgrid .ui-jqgrid-bdiv {
+            position: relative;
+            margin: 0em;
+            padding: 0;
+            /*overflow: auto;*/
+            overflow-x: hidden;
+            overflow-y: auto;
+            text-align: left;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/themes/redmond/jquery-ui.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/themes/redmond/ui.jqgrid.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/themes/redmond/ui.multiselect.css" />
+
+
+    <link href="~/Content/customassets/css/custom.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    <script src="~/Scripts/bootstrap.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/jquery-ui-1.12.1.js"></script>*@
+    <script src="~/Content/themes/redmond/jquery-ui.js" type="text/javascript"></script>
+    @*<script src="~/Scripts/jquery-migrate-3.0.0.min.js"></script>*@
+    @*<script src="~/Scripts/jquery.layout-1.4.3.js"></script>*@
+    <script src="~/Scripts/jquery.layout.js"></script>
+    @*<script src="~/Scripts/jquery.layout.js" type="text/javascript"></script>*@
+    <script src="~/Scripts/jqgrid/grid.locale-en.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $.jgrid.no_legacy_api = true;
+        $.jgrid.useJSON = true;
+
+        var smId = '@(ViewBag.smId)';
+        var maintab;
+        function reloadFrame(frameId, index) {
+            maintab.tabs({ active: index + 1 });
+            $("#" + frameId).attr('src', function (i, val) { return val; });
+            return false;
+        };
+        function removeTab(liId, tabId) {
+            $('#' + liId).remove();
+            $('#' + tabId).remove();
+            return false;
+        };
+    </script>
+    <script src="~/Scripts/jqgrid/ui.multiselect.js" type="text/javascript"></script>
+    <script src="~/Scripts/jqgrid/jquery.jqGrid.js" type="text/javascript"></script>
+    <script src="~/Scripts/jqgrid/jquery.tablednd.js" type="text/javascript"></script>
+    <script src="~/Scripts/jqgrid/jquery.contextmenu.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function iFrameResize() {
+            $('#tabs > ul.ui-tabs-nav').css('padding-top').replace('px', '');
+            //var tabs_height = $('#tabs').height();//RightPane
+            var tabs_height = $('#RightPane').height();//
+            var ul_height = $('#tabs > ul.ui-tabs-nav').height();
+            var ul_padding_top = parseFloat($('#tabs > ul.ui-tabs-nav').css('padding-top').replace('px', ''));
+            var ul_padding_bottom = parseFloat($('#tabs > ul.ui-tabs-nav').css('padding-bottom').replace('px', ''));
+            var ul_margin_top = parseFloat($('#tabs > ul.ui-tabs-nav').css('margin-top').replace('px', ''));
+            var ul_margin_bottom = parseFloat($('#tabs > ul.ui-tabs-nav').css('margin-bottom').replace('px', ''));
+            var tab_padding_top = 0;
+            var tab_padding_bottom = 0;
+            if (typeof ($('#tabs div[role="tabpanel"]').css('padding-top')) != 'undefined')
+                tab_padding_top = parseFloat($('#tabs div[role="tabpanel"]').css('padding-top').replace('px', ''));
+            if (typeof ($('#tabs div[role="tabpanel"]').css('padding-bottom')) != 'undefined')
+                tab_padding_bottom = parseFloat($('#tabs div[role="tabpanel"]').css('padding-bottom').replace('px', ''));
+            var tab_height = tabs_height - ul_height - ul_padding_top - ul_padding_bottom - ul_margin_top - ul_margin_bottom - tab_padding_top - tab_padding_bottom;
+
+
+            $('#tabs div[role="tabpanel"]').css('height', tab_height + 'px');
+            $('#tabs div[role="tabpanel"] > iframe').css('height', tab_height + 'px');
+            //$('#tabs div[role="tabpanel"] > iframe > html > body').css('width', '98%');
+
+        };
+
+        function uniqueId() {
+            var d = new Date();
+            return d.getTime();
+        };
+        jQuery(document).ready(function () {
+            $('body').layout({
+                resizerClass: 'ui-state-default',
+                west__onresize: function (pane, $Pane) {
+                    jQuery("#west-grid").jqGrid('setGridWidth', $Pane.innerWidth() - 2);
+                }
+            });
+            $.jgrid.defaults = $.extend($.jgrid.defaults, { loadui: "enable" });
+            maintab = jQuery('#tabs', '#RightPane').tabs({ active: 1 });
+            var menuData = [];
+            var url = "/Auth/Home/GetMenus/?smId=0" + smId;
+            $.getJSON(url, function (res) {
+                menuData = res;
+
+                $("#west-grid").jqGrid({
+                    datatype: "local",
+                    height: 550,
+                    colModel: [
+                    { name: 'Id', index: 'Id', width: 60, sorttype: "int", hidden: true },
+                    { name: 'Menu', index: 'Menu', width: 220, align: 'left', sortable: false },
+                    { name: 'Url', index: 'Url', width: 30, hidden: true }
+                    ]
+                });
+
+                var names = ["Id", "Menu", "Url"];
+                var menus = [];
+                for (var i = 0; i < menuData.length; i++) {
+                    menus[i] = {};
+                    for (var j = 0; j < menuData[i].length; j++) {
+                        menus[i][names[j]] = menuData[i][j];
+                    }
+                }
+                for (var i = 0; i <= menus.length; i++) {
+
+                    $("#west-grid").jqGrid('addRowData', i + 1, menus[i]);
+                }
+                $("#west-grid").jqGrid('setGridParam',
+                {
+                    onSelectRow: function (rowid) {
+
+                        var menuInfo = $("#west-grid").jqGrid('getRowData', rowid);
+                        var tabId = 'tab_' + menuInfo.Id;
+                        var liId = 'li_' + menuInfo.Id;
+                        var frameId = 'frame_' + menuInfo.Id;
+                        var found = false;
+                        var index = -1;
+                        $("#tabs ul> li").each(function () {
+                            if (found == false)
+                                index++;
+                            var id = $(this).attr('id');
+                            if (id == liId)
+                                found = true;
+                        });
+                        if (found == false) {
+                            $("#tabs ul").append('<li id="' + liId + '"><img style="float:left;margin:3px" onclick="reloadFrame(\'' + frameId + '\',' + index + ')" src="/Content/image/refresh-icon.png"/><a href="#' + tabId + '">' + menuInfo.Menu + '</a><span style="margin-left:2px; float:right;margin:5px" onclick="removeTab(\'' + liId + '\',\'' + tabId + '\')">X</span></li>');
+                            $("#tabs").append('<div id="' + tabId + '"></div>');
+                            maintab.tabs("refresh");
+                            
+                            var frame = '<iframe id="' + frameId + '" src="' + (menuInfo.Url);
+                            
+                            if (menuInfo.Url.indexOf("?") >= 0)
+                                frame += "&uid=" + uniqueId();
+                            else
+                                frame += "?uid=" + uniqueId();
+                                frame += '" frameborder="0" scrolling="yes"></iframe>';
+                            $("#" + tabId).html(frame);
+                            maintab.tabs({ active: $("#tabs ul> li").length - 1 });
+                        } else {
+                            maintab.tabs({ active: index });
+                        }
+                        iFrameResize();
+                    }
+                });
+
+                //trigger notification menu if any
+
+                var hField = $("#notification_menu_id", parent.document);
+                var notificationInfo = hField.val().split('#');
+                if (notificationInfo.length>0) {
+                    hField.val('');
+
+                    var menuInfo = {
+                        Id: notificationInfo[0],
+                        Menu: notificationInfo[1],
+                        Url: notificationInfo[2]
+                    }
+                    AddTabFromExternal(menuInfo);
+                }
+
+            });
+
+            iFrameResize();
+
+            $(window).resize(iFrameResize());
+        });
+        function AddTabFromExternal(menuInfo) {
+
+            var tabId = 'tab_' + menuInfo.Id;
+            var liId = 'li_' + menuInfo.Id;
+            var frameId = 'frame_' + menuInfo.Id;
+
+
+            var found = false;
+            var index = -1;
+            if (found == false) {
+                $("#tabs ul").append('<li id="' + liId + '"><img style="float:left;margin:3px" onclick="reloadFrame(\'' + frameId + '\',' + index + ')" src="/Content/image/refresh-icon.png"/><a href="#' + tabId + '">' + menuInfo.Menu + '</a><span style="margin-left:2px; float:right; margin:5px" onclick="removeTab(\'' + liId + '\',\'' + tabId + '\')">X</span></li>');
+                $("#tabs").append('<div id="' + tabId + '"></div>');
+                maintab.tabs("refresh");
+                var frame = '<iframe id="' + frameId + '" src="' + (menuInfo.Url);
+                
+                if (menuInfo.Url.indexOf("?") >= 0 )
+                    frame += "&uid=" + uniqueId();
+                else
+                    frame += "?uid=" + uniqueId();
+                if (typeof (menuInfo.Parameters) != 'undefined' && menuInfo.Parameters.length > 0) {
+                    $.each(menuInfo.Parameters, function (index, value) {
+                        frame += "&" + value.Name + "=" + value.Value;
+                    })
+                }
+                frame += '" frameborder="0" scrolling="yes"></iframe>';
+                $("#" + tabId).html(frame);
+                maintab.tabs({ active: $("#tabs ul> li").length - 1 });
+            } else {
+                maintab.tabs({ active: index });
+            }
+            iFrameResize();
+        }
+    </script>
+</head>
+<body>
+    <!-- #LeftPane -->
+    <div id="LeftPane" class="ui-layout-west ui-widget ui-widget-content">
+        <table id="west-grid"></table>
+    </div>
+    <!-- #RightPane -->
+    <div id="RightPane" class="ui-layout-center ui-helper-reset ui-widget-content">
+        <!-- Tabs pane -->
+        <div id="tabs" class="jqgtabs">
+            <ul></ul>
+
+        </div>
+    </div>
+</body>
+
+</html>

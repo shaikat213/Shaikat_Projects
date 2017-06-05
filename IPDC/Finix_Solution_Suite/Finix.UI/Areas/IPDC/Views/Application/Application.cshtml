@@ -1,0 +1,434 @@
+﻿@{
+    ViewBag.Title = "Application Entry";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<script src="~/Areas/IPDC/Scripts/Application/application.js"></script>
+<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<script src="~/Scripts/knockout-jqAutocomplete.min.js"></script>
+<!---vvvvvvv----Body Main Starts here---vvvvvv----->
+<div class="panel-body">
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#application" role="tab" data-toggle="tab">Application</a></li>
+            <li role="presentation" id="depAppTab" style="display: none;"><a href="#depositApplication" role="tab" data-toggle="tab">Deposit Application</a></li>
+            <li role="presentation" id="lonAppTab" style="display: none;"><a href="#loanApplication" role="tab" data-toggle="tab">Loan Application</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="application">
+                <section class="panel-bodycontent" id="ApplicationVw">
+                    <header class="panel-heading bodytitle">
+                        <h2 class="panel-title font">
+                            <b>Application</b>
+                        </h2>
+                    </header>
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tab-content">
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-collapse collapse in">
+                                                <div class="panel-body">
+                                                    @*<div class="row">
+                                                            <div class="col-sm-2">
+                                                                <label class="control-label">CIF Test<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <input data-bind="jqAuto: { value: CifIdTest, source: GetCIFListTest, inputProp: 'value', labelProp: 'value', valueProp: 'key' }" />
+                                                            </div>
+                                                        </div>*@
+                                                    <form class="form-horizontal" role="form">
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label class="control-label">Application No.</label>
+                                                            </div>
+                                                            <div class="col-sm-3" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: ApplicationNo">    
+                                                                <input type="text" class="form-control" data-bind="value:ApplicationNo" readonly="">
+                                                            </div>
+                                                            
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ApplicationDateText" class="control-label">Application Date<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: ApplicationDate">
+                                                                <div class="input-group">
+                                                                    <input type="text" class="form-control" id="applicationDate" data-bind="datepicker:ApplicationDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                    <span class="help-block" style="display: none;"></span>
+                                                                    <div class="input-group-addon">
+                                                                        <span class="glyphicon glyphicon-calendar"></span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <label for="CustomerType" class="control-label">Customer Type<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: CustomerType">
+                                                                <select class="form-control app" id="CustomerType" data-bind="options:ApplicationCustomerTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CustomerType , event :{change : addDetailOfClient}"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design" data-bind="visible: IsIndividual">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ApplicationType" class="control-label">Application Type<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ApplicationType">
+                                                                <select class="form-control app" id="ApplicationType" data-bind="options:ApplicationTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ApplicationType,event : {change : jointCheck}"></select>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="form-group row row_design" data-bind="visible : IsIndividual">
+                                                            <div class="col-sm-offset-1 col-sm-10">
+                                                                <span data-bind="visible:!(CifListValidity().validator), text:CifListValidity().message" style="color: #a94442"></span>
+                                                                <table class="table table-responsive table-bordered table-striped">
+                                                                    <thead class="headcolor">
+                                                                        <tr>
+                                                                            <th>Name</th>
+                                                                            <th>Application Role</th>
+                                                                            <th><a class="plus" href='#' data-bind='click: addDetailOfClientRow'><span class="glyphicon glyphicon-plus"></span></a></th>
+                                                                            <th class="text-center">
+                                                                                @*<button class="btn btn-q btn-success" data-bind='click: addCIF'>Add CIF</button>*@
+                                                                                <a class="plus" href='#' data-bind="click: addCIF">New CIF</a>
+                                                                            </th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody data-bind="foreach:CIFList">
+                                                                        <tr>
+                                                                            <td>
+                                                                                <input data-bind="jqAuto: { value: CIF_Personal, source: $parent.GetCIFListTest, inputProp: 'value', labelProp: 'value' }" class="form-control" />
+                                                                            </td>
+                                                                            <td data-bind="validationElement: ApplicantRole">
+                                                                                <select data-bind="options:$parent.ApplicantRoles, value: ApplicantRole, optionsValue:'Id', optionsText: 'Name', optionsCaption: '...Choose Role...'" class="form-control"></select> @*,event : {change: checkCoApp}*@
+                                                                            </td>
+                                                                            <td colspan="2">
+                                                                                <a class="plus" href='#' data-bind="click: $parent.addDetailOfClientRow"><span class="glyphicon glyphicon-plus"></span></a>
+                                                                                <a class="minus" href="#" data-bind="click: $parent.removeDetialOfClient"><span class="glyphicon glyphicon-minus"></span></a> @*,visible:IsAddOption*@
+                                                                                <a class="plus" href="#" data-bind="click: $parent.CIFPDetails, visible: CIF_PersonalId() > 0" title="CIF Detail"><span class="glyphicon glyphicon-align-justify"></span></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design" data-bind="visible : IsOrganizational">
+
+                                                            <div class="col-sm-offset-1 col-sm-10">
+                                                                <table class="table table-responsive table-bordered table-striped">
+                                                                    <thead class="headcolor">
+                                                                        <tr>
+                                                                            <th>Organization</th>
+                                                                            <th>
+                                                                                <a class="plus" href='#' data-bind="click: addCIFOrg"><span class="glyphicon glyphicon-plus"></span> CIF</a>
+                                                                            </th>
+                                                                            <th></th>
+                                                                        </tr>
+                                                                    </thead>
+                                                                    <tbody data-bind="foreach:CIFList">
+                                                                        <tr>
+                                                                            <td colspan="2">
+                                                                                <select data-bind="options:$parent.Organizations, value: CIF_OrganizationalId, optionsValue:'Id', optionsText: 'Name', optionsCaption: '......Choose......'" class="form-control"></select>
+                                                                            </td>
+                                                                            <td data-bind="visible: CIF_OrganizationalId() > 0">
+                                                                                <a class="plus" href="#" data-bind="click: $parent.CIFODetails" title="CIF Detail"><span class="glyphicon glyphicon-align-justify"></span></a>
+                                                                            </td>
+                                                                        </tr>
+                                                                    </tbody>
+                                                                </table>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design" data-bind="visible:IsIndividual">
+                                                            @*data-bind="visible:IsJoint"*@
+
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ContactPersonId" class="control-label">Contact Person<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ContactPersonId">
+                                                                <select class="form-control app" id="ContactPersonId" data-bind="options:CIFList,optionsValue: 'CIF_PersonalId',optionsText:'CIFName',optionsCaption:'--Select--', value:ContactPersonId"></select>
+
+                                                            </div>
+                                                            <div class="col-sm-2">
+                                                                <label for="ContactPersonId" class="control-label">Contact Person's Address<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ContactPersonAddressType">
+                                                                <select class="form-control app" id="ContactPersonAddressType" data-bind="options:AddressTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ContactPersonAddressType"></select>
+
+                                                            </div>
+                                                            @*<div class="col-sm-3" data-bind="validationElement: UseConAddAsGrpAdd">
+                                                                    <input type="checkbox" data-bind="checked:UseConAddAsGrpAdd" name="UseConAddAsGrpAdd" id="UseConAddAsGrpAdd"><b> Use Contact Address As Group</b><br>
+                                                                </div>*@
+                                                        </div>
+
+                                                        <br />
+
+                                                        <div data-bind="visible: ContactPersonAddressType()===4">
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label class="control-label"><u><b>Other Address :</b></u></label>
+                                                                </div>
+
+                                                            </div>
+                                                            <br />
+
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.AddressLine1" class="control-label">Address Line 1</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.AddressLine1">
+                                                                    <input type="text" data-bind="value:GroupAddress.AddressLine1,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.AddressLine1" placeholder="Line 1">
+
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <label for="GroupAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.CountryId">
+                                                                    <select class="form-control app" id="GroupAddress.CountryId" data-bind="options:GroupCountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:GroupAddress.CountryId ,event: {change: LoadGroupDivisionByCountry,IsGrpAddressChng}"></select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.AddressLine2" class="control-label">Address Line 2</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.AddressLine2">
+                                                                    <input type="text" data-bind="value:GroupAddress.AddressLine2 ,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.AddressLine2" placeholder="Line 2">
+
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <label for="GroupAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.DivisionId">
+                                                                    <select class="form-control app" id="GroupAddress.DivisionId" data-bind="options:GroupDivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:GroupAddress.DivisionId ,event: {change: getGroupDistrictByDivision,IsGrpAddressChng}"></select>
+                                                                </div>
+
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.AddressLine3" class="control-label">Address Line 3</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.AddressLine3">
+                                                                    <input type="text" data-bind="value:GroupAddress.AddressLine3,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.AddressLine3" placeholder="Line 3">
+
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label for="GroupAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.DistrictId">
+                                                                    <select class="form-control app" id="GroupAddress.DistrictId" data-bind="options:GroupDistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:GroupAddress.DistrictId ,event: {change: getGroupUpzilaByDistrict,IsGrpAddressChng}"></select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.PostalCode" class="control-label">ZIP/Postal Code</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.PostalCode">
+                                                                    <input type="text" data-bind="value:GroupAddress.PostalCode,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                                </div>
+                                                                <div class="col-sm-2">
+                                                                    <label for="GroupAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.ThanaId">
+                                                                    <select class="form-control app" id="GroupAddress.ThanaId" data-bind="options:GroupThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:GroupAddress.ThanaId ,event: {change: IsGrpAddressChng}"></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.CellPhoneNo" class="control-label">Mobile</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.CellPhoneNo">
+                                                                    <input type="tel" data-bind="value:GroupAddress.CellPhoneNo,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                                </div>
+
+                                                                <div class="col-sm-2">
+                                                                    <label for="GroupAddress.PhoneNo" class="control-label">Phone</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement:GroupAddress.PhoneNo">
+                                                                    <input type="tel" data-bind="value:GroupAddress.PhoneNo,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-2">
+                                                                    <label for="GroupAddress.Email" class="control-label">E-mail</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: GroupAddress.Email">
+                                                                    <input type="email" data-bind="value:GroupAddress.Email,event: {change: IsGrpAddressChng}" class="form-control" id="GroupAddress.Email" placeholder="Enter E-mail">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design">
+
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="AccountTitle" class="control-label">Account Title</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: AccountTitle">
+                                                                <input type="text" data-bind="value:AccountTitle" class="form-control" id="AccountTitle" placeholder="Account Title">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ProductType" class="control-label">Product Type<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ProductType">
+                                                                <select class="form-control app" id="ProductType" data-bind="options:ProductTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductType ,event:{change:GetProductByType}"></select>
+                                                            </div>
+
+                                                            <div class="col-sm-2">
+                                                                <label for="ProductId" class="control-label">Product<span class="required"></span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ProductId">
+                                                                <select class="form-control app" id="ProductId" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductId, event:{change: addDocCheckListDetail}"></select>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ProductType" class="control-label">Cost Center</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: CostCenterId">
+                                                                <select class="form-control app" id="ProductType" data-bind="options:CostCenterList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:CostCenterId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <br />
+                                                        <div class="form-signin-heading actions-hover">
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-offset-1 col-sm-3">
+                                                                    <label class="control-label"><u><b>Document Check List :</b></u><span class="required"></span></label>
+                                                                </div>
+
+                                                            </div>
+                                                            <br />
+                                                            <div class="form-group row row_design">
+                                                                @*<div class="col-sm-1">
+
+                                                                    </div>*@
+                                                                <div class="col-sm-offset-1 col-sm-10">
+
+                                                                    <table class="table table-striped table-bordered">
+                                                                        <thead class="headcolor">
+                                                                            <tr>
+                                                                                <th>Select</th>
+                                                                                <th>Document Name</th>
+                                                                                <th>Document Status</th>
+                                                                                <th>Submission Date</th>
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody data-bind="foreach:DocChecklist">
+                                                                            <tr>
+                                                                                <td class="center">
+                                                                                    <input type="checkbox" id='regular' name="optradio" data-bind="checked:IsChecked, valueUpdate: 'keyup'">
+                                                                                </td>
+                                                                                <td data-bind="text: DocName" class="leftAlignment"></td>
+                                                                                <td>
+                                                                                    <select data-bind="options:$parent.DocumentStatusList,value: DocumentStatus, optionsValue:'Id', optionsText: 'Name', optionsCaption: '......Choose......',event:{change : CheckIfDererred}" class="form-control"></select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: SubmissionDeadline">
+                                                                                        <input type="text" class="centerAlignment form-control lignHeightDate" id="datepicker" data-bind="datepicker:SubmissionDeadline, datepickerOptions: {format: 'DD/MM/YYYY', minDate: moment()}, valueUpdate:'keyup', enable:IfDererred">
+                                                                                        <span class="help-block" style="display: none;"></span>
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </div>
+                                                                                    </div>
+
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design" data-bind="visible: TLComment">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ApplicationType" class="control-label">TL Comment<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+
+                                                                <textarea data-bind="value:TLComment" class="form-control" readonly></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design" data-bind="visible: BMComment">
+                                                            <div class="col-sm-offset-1 col-sm-2">
+                                                                <label for="ApplicationType" class="control-label">BM Comment<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-9">
+                                                                <textarea data-bind="value:BMComment" class="form-control" readonly></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+
+                                                            <div class="col-sm-offset-10 col-sm-1">
+                                                                <button type="button" class="btn btn-success" data-bind="click:SaveApplication">Save</button>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group">
+
+                                                            <div id="appSuccessModal" class="modal fade" role="dialog">
+                                                                <div class="modal-dialog modal-sm">
+                                                                    <!-- Modal content-->
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                            <h4 class="modal-title">Response</h4>
+                                                                        </div>
+                                                                        <div class="modal-body" align="center">
+                                                                            <p id="appSuccessModalText"></p>
+
+                                                                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </form>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            <div class="tab-pane fade" id="depositApplication">
+                @Html.Partial("~/Areas/IPDC/Views/Application/DepositApplication.cshtml")
+            </div>
+            <div class="tab-pane fade" id="loanApplication">
+                @Html.Partial("~/Areas/IPDC/Views/Application/LoanApplication.cshtml")
+            </div>
+        </div>
+    </div>
+</div>

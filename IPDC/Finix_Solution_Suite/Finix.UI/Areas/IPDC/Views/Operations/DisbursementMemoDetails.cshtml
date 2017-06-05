@@ -1,0 +1,283 @@
+﻿
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<script src="~/Areas/IPDC/Scripts/Operations/dmDetails.js"></script>
+
+@{
+    ViewBag.Title = "Disbursment Memo Details";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<header class="panel-heading bodytitle">
+    <h2 class="panel-title font">
+        <b>Disbursment Memo Details</b>
+    </h2>
+</header>
+
+
+
+<section>
+    <div class="container-fluid" id="DisbursmentMemoDetailVW">
+        <div class="panel-body">
+
+            <div class="container-fluid ">
+
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-12">
+
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2">
+                                    <label for="" class="control-label" style="text-align: left;">Application No. :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong><span data-bind="text:ApplicationNo"></span></strong>
+                                </div>
+
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="text-align: left;">Application Title :</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <strong><span data-bind="text:AccountTitle"></span></strong>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="text-align: left;">Product :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong><span data-bind="text:ProductName"></span></strong>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="text-align: left;">Loan Amount :</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong><span data-bind="text:TotalLoanAmount"></span></strong>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2">
+                                    <label class="control-label" style="text-align: left;">Current Disbursement:</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong><span data-bind="text:CurrentDisbursementAmount"></span></strong>
+                                </div>
+                                <div class="col-sm-2">
+                                    <label class="control-label">Total Disbursed:</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <strong><span data-bind="text:TotalDisbursedAmount"></span></strong>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-2">
+                                    <label for="ChequeNo" class="control-label">Disbursed Date</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" class="form-control" data-bind="datepicker:DisbursedDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                </div>
+                            </div>
+                            <br />
+
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+        <div class="col-sm-12">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-12" style="text-align: center">
+                        <label class="control-label">Disbursment Memo Details</label>
+                        <div class="pull-right">
+                            <a class="plus" href='#' data-bind='click: AddDMDetails'><span class="glyphicon glyphicon-plus"></span> <span>Add Memo Details</span></a>
+                        </div>
+                    </div>
+                    <div class="row" data-bind="foreach:DmDetailList">
+                        <div class="panel-bodycontent">
+
+                            <label>Disbursement Mode <span data-bind="text: $index() + 1"></span></label>
+                            <div class="pull-right">
+                                <a href='#' class="plus" data-bind='click: $parent.AddDMDetails'><span class="glyphicon glyphicon-plus"></span></a>
+                                <a href='#' class="minus" data-bind='click: $parent.RemoveDMDetails'><span class="glyphicon glyphicon-minus"></span></a>
+
+                            </div>
+                        </div>
+
+
+                        @*data-bind="visible:(ValuationType() === 1)"*@
+
+                        <div class="form-group row row_design">
+                            <div class="col-sm-3">
+                                <label for="" class="control-label">Disbursement Mode</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control loan" id="DisbursementMode" data-bind="options:$parent.DisbursementModes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:DisbursementMode, update:'keyup'"></select>
+
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="" class="control-label">Cheque Delivery<span class="required">*</span></label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control loan" id="ChequeDeliveryOption" data-bind="options:$parent.ChequeDeliveryOptions,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ChequeDeliveryOption, update:'keyup'"></select>
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-3">
+                                <label for="" class="control-label">IPDC Bank Accounts</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control loan" id="IPDCBankAccounts" data-bind="options:$parent.IPDCBankAccounts,optionsValue: 'Id',optionsText:'BankName',optionsCaption:'--Select--', value:IPDCBankAccountId, update:'keyup'"></select>
+
+                            </div>
+                        </div>
+                        <div class="form-group row row_design">
+                            <div class="col-sm-3">
+                                <label for="AccountNo" class="control-label">Account No</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" data-bind="value:AccountNo" class="form-control" id="AccountNo" placeholder="Account No">
+
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="DisbursementAmount" class="control-label">Disbursement Amount</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <input type="text" data-bind="value:DisbursementAmount" class="form-control" id="DisbursementAmount" placeholder="Disbursement Amount">
+                            </div>
+                        </div>
+                        <div>
+                            <div class=" form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label for="BankName" class="control-label">Bank Name</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:BankName" class="form-control" id="BankName" placeholder="Bank Name">
+
+                                </div>
+                                <div class="col-sm-3" data-bind="visible : DisbursementMode()===2">
+                                    <label for="BranchName" class="control-label">Branch Name</label>
+                                </div>
+                                <div class="col-sm-3"  data-bind="visible : DisbursementMode()===2">
+                                    <input type="text" data-bind="value:BranchName" class="form-control" id="BranchName" placeholder="Branch Name">
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label for="BankName" class="control-label">Routing No</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:RoutingNo" class="form-control" id="RoutingNo" placeholder="Routing No">
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="AccountName" class="control-label">Account Name</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:AccountName" class="form-control" id="AccountName" placeholder="Account Name">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div data-bind="visible : DisbursementMode()===1">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label for="ChequeNo" class="control-label">Cheque No</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:ChequeNo" class="form-control" id="ChequeNo" placeholder="Cheque No">
+                                </div>
+                                <div class="col-sm-3">
+                                    <label for="ChequeIssuedTo" class="control-label">Cheque Issued To</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:ChequeIssuedTo" class="form-control" id="ChequeIssuedTo" placeholder="Cheque Issued To">
+
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label for="ChequeNo" class="control-label">Cheque Date</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    @*<input type="text" data-bind="value:ChequeNo" class="form-control" id="ChequeNo" placeholder="Cheque No">*@
+
+                                    <input type="text" class="form-control" data-bind="datepicker:ChequeDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                </div>
+
+                            </div>
+                        </div>
+                        <div data-bind="visible : ChequeDeliveryOption()===5">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3">
+                                    <label for="ClientAccountNo" class="control-label">Client Account No</label>
+                                </div>
+                                <div class="col-sm-3">
+                                    <input type="text" data-bind="value:ClientAccountNo" class="form-control" id="ClientAccountNo" placeholder="Client Account No">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <br />
+            <div class="col-sm-12">
+
+                <button type="submit" data-bind="click: Submit, enable:AmountCheck" class="btn btn-success">Save</button>
+                @*<button type="submit" data-bind="click: Reset" class="btn btn-default">Reset</button>*@
+                <button type="button" data-dismiss="modal" class="btn btn-danger">Close</button>
+            </div>
+
+        </div>
+        <div class="form-group">
+            <div id="successModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="successModalText"></p>
+
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+</section>
+
+
+
+
+
+
+

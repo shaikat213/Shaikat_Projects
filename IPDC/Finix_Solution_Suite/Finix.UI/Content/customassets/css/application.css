@@ -1,0 +1,52 @@
+﻿.app {
+
+        width: 230px;
+        height: 22px;
+        border-radius: 4px;
+        
+        border: 1px solid #ccc;
+
+   }
+.btn {
+    margin-right: 3px !important;
+    margin-left: 3px !important;
+    float:left;
+}
+.appcl{
+    text-align: center !important;
+}
+.minus {
+    color:red !important;
+}
+.plus {
+    color:green !important;
+}
+.dfon {
+    font-weight:normal !important;
+}
+.centerfont {
+    text-align:center !important;
+    
+}
+.input-group_dapp {
+    width:20px !important;
+}
+.loan {
+        width: 226px;
+        height: 22px;
+        border-radius: 4px;
+        
+        border: 1px solid #ccc;
+
+}
+.form-control {
+    width: 100% !important;
+}
+
+.close {
+    font-size: 20px !important;
+    color: #ff0000 !important;
+    text-shadow: none !important;
+    opacity: 4.5 !important;
+    text-decoration: none !important;
+}

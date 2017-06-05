@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="StressTesting" targetNamespace="http://tempuri.org/StressTesting.xsd" xmlns:mstns="http://tempuri.org/StressTesting.xsd" xmlns="http://tempuri.org/StressTesting.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="StressTesting" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="StressTesting" msprop:Generator_UserDSName="StressTesting">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="StressTesting" msprop:Generator_TableClassName="StressTestingDataTable" msprop:Generator_TableVarName="tableStressTesting" msprop:Generator_TablePropName="_StressTesting" msprop:Generator_RowDeletingName="StressTestingRowDeleting" msprop:Generator_RowChangingName="StressTestingRowChanging" msprop:Generator_RowEvHandlerName="StressTestingRowChangeEventHandler" msprop:Generator_RowDeletedName="StressTestingRowDeleted" msprop:Generator_UserTableName="StressTesting" msprop:Generator_RowChangedName="StressTestingRowChanged" msprop:Generator_RowEvArgName="StressTestingRowChangeEvent" msprop:Generator_RowClassName="StressTestingRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="InterestRate" msprop:Generator_ColumnVarNameInTable="columnInterestRate" msprop:Generator_ColumnPropNameInRow="InterestRate" msprop:Generator_ColumnPropNameInTable="InterestRateColumn" msprop:Generator_UserColumnName="InterestRate" type="xs:string" minOccurs="0" />
+              <xs:element name="EMI" msprop:Generator_ColumnVarNameInTable="columnEMI" msprop:Generator_ColumnPropNameInRow="EMI" msprop:Generator_ColumnPropNameInTable="EMIColumn" msprop:Generator_UserColumnName="EMI" type="xs:string" minOccurs="0" />
+              <xs:element name="Increase" msprop:Generator_ColumnVarNameInTable="columnIncrease" msprop:Generator_ColumnPropNameInRow="Increase" msprop:Generator_ColumnPropNameInTable="IncreaseColumn" msprop:Generator_UserColumnName="Increase" type="xs:string" minOccurs="0" />
+              <xs:element name="DBR" msprop:Generator_ColumnVarNameInTable="columnDBR" msprop:Generator_ColumnPropNameInRow="DBR" msprop:Generator_ColumnPropNameInTable="DBRColumn" msprop:Generator_UserColumnName="DBR" type="xs:string" minOccurs="0" />
+              <xs:element name="DBRFlatPurchase" msprop:Generator_ColumnVarNameInTable="columnDBRFlatPurchase" msprop:Generator_ColumnPropNameInRow="DBRFlatPurchase" msprop:Generator_ColumnPropNameInTable="DBRFlatPurchaseColumn" msprop:Generator_UserColumnName="DBRFlatPurchase" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="StressTestingKey1">
+      <xs:selector xpath=".//mstns:StressTesting" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="StressTestingKey2">
+      <xs:selector xpath=".//mstns:StressTesting" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,417 @@
+﻿<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<script src="~/Areas/IPDC/Scripts/Call/callEntry.js"></script>
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+@{
+    ViewBag.Title = "Call Entry";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .btn-q {
+        margin-right: 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+</style>
+<div id="callEntry">
+    <section class="panel-bodycontent">
+        <header class="panel-heading bodytitle">
+            <h2 class="panel-title font"><b>Call Entry</b></h2>
+        </header>
+        <section>
+            <div class="container-fluid ">
+                <div class="col-sm-12">
+                    <form class="form-horizontal" role="form">
+                        <br />
+                        <div class="form-group row row_design">
+                            <div class="col-sm-2">
+                                <label class="control-label duplicateAlignment">Contact Type</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="radio" data-bind="checked: IsOrganization" value=false readonly/> <label class="control-label duplicateAlignment">Individual</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <input type="radio" data-bind="checked: IsOrganization" value=true readonly/><label class="control-label duplicateAlignment">Organization</label>
+                            </div>
+                            <div class="col-sm-1">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4"></div>
+                                            <div class="form-group row row_design_cifr">
+                                                <div class="col-sm-4">
+                                                    <label class="heading" style="padding-right: 0px;">Basic Info</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                        <!--<fieldset>-->
+
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Customer Name</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerName" ></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Organization Name</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerName"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Nature of Business</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: NatureOfBusiness"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Contact Person</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: ContactPerson"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:IsOrganization() === 'true'">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Contact Person Designation</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: ContactPersonDesignation"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Organization</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerOrganization"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible:!(IsOrganization() === 'true')">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Designation</label>
+                                            </div>
+                                            <div id="divTxtOffice1" class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerDesignation"></label>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+
+                                            <div class="col-sm-4" data-bind="visible: !(IsOrganization() === 'true')">
+                                                <label class="control-label">Customer Phone No.</label>
+                                            </div>
+                                            <div class="col-sm-4" data-bind="visible: IsOrganization() === 'true'">
+                                                <label class="control-label">Contact Person Phone </label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerPhone"></label>
+                                            </div>
+                                        </div>
+                                        @*New Field*@
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Gender</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" id="gender" data-bind="options:GenderList, optionsValue: 'Key', optionsText:'Value', optionsCaption:'--Select--',value:Gender" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Age</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:AgeRanges, optionsValue: 'Id', optionsText:'Name', optionsCaption:'--Select--',value:AgeRange" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Marital Status</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:MaritalStatuses, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:MaritalStatus " disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Profession</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" id="ProfessionId" data-bind="options:ProfessionList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:ProfessionId " disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: (!(IsOrganization() === 'true') && ProfessionId() === 7)">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Other Profession</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" data-bind="text: OtherProfession"></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design" data-bind="visible: !(IsOrganization() === 'true')">
+
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Income (BDT)</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select class="form-control" data-bind="options:IncomeRanges, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:IncomeRange " disabled></select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Contact Priority</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CustomerPriorities, value: CustomerPriority, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4"></div>
+                                            <div class="form-group row row_design_cifr">
+                                                <div class="col-sm-4">
+                                                    <label class="heading" style="padding-right: 0px;">Call Info</label>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-4"></div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Category</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CallSourceList, value: CallCategory, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Mode</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select id="LegalStatus" data-bind="options:CallModes, value: CallMode, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Source</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CallSourceText"></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Product</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:ProductList, value: ProductId, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Amount</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" data-bind="text: Amount"></label>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Remarks</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <p class="control-label" data-bind="text: Remarks"></p>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-4"></div>
+                                    <div class="form-group row row_design_cifr">
+                                        <div class="col-sm-4">
+                                            <label class="heading" style="padding-right: 0px;">Address</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4"></div>
+                                </div>
+
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 1</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="control-label" data-bind="text: CustomerAddress.AddressLine1"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 2</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="control-label" data-bind="text: CustomerAddress.AddressLine2"></label>
+                                    </div>
+
+                                </div>
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2">
+                                        <label class="control-label duplicateAlignment">Address line 3</label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="control-label" data-bind="text: CustomerAddress.AddressLine3"></label>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Country</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerCountryList, value:CustomerAddress.CountryId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'Name'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label duplicateAlignment">Division</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.DivisionList, value: CustomerAddress.DivisionId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'DivisionNameEng'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">District</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.DistrictList, value: CustomerAddress.DistrictId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'DistrictNameEng'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Thana</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select data-bind="options:CustomerAddress.ThanaList, value: CustomerAddress.ThanaId, optionsCaption:'--Select--', optionsValue:'Id', optionsText: 'ThanaNameEng'" class="form-control" disabled></select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        @*<div class="row">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Cell Phone</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <input type="text" data-bind="value:CustomerAddress.CellPhoneNo" class="form-control" />
+                                                </div>
+                                            </div>*@
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">E-mail</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <label class="control-label" data-bind="text: CustomerAddress.Email"></label>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Assign To</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select data-bind="options:CallTypeList, value: CallType, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                    </div>
+                                    <div class="col-sm-2" data-bind="if: CallType() === 2">
+                                        <label class="control-label">Referred To</label>
+                                    </div>
+                                    <div class="col-sm-3" data-bind="if: CallType() === 2">
+                                        <select data-bind="options:ReferredToDegList, value: ReferredTo, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control" disabled></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <div class="row">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Call Originator</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <input type="email" data-bind="value:CallOriginator" class="form-control" readonly />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </section>
+</div>
+

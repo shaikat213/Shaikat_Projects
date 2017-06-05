@@ -1,0 +1,201 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Finix.IPDC.DTO.OfferLetterDto>
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<link href="~/Content/customassets/css/salesLead.css" rel="stylesheet" />
+
+<script src="~/Areas/IPDC/Scripts/CRM/proposalList.js"></script>
+<link href="~/Content/customassets/css/searchCIFinformation.css" rel="stylesheet" />
+<link href="~/Content/layout-modifications.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/PagedList.css" rel="stylesheet" />
+
+@*<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@{
+    ViewBag.Title = "Offer Letter Approval";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var userInfoJson = jss.Serialize(Model);
+}
+<script>
+    var userInfo = JSON.parse('@Html.Raw(userInfoJson)');
+</script>
+
+<div id="proposalVW">
+    <section class="rm">
+        <div class="container-fluid ">
+            @using (Ajax.BeginForm("ProposalList", "CRM", null))
+            {
+                @*<form class="form-horizontal" role="form" id="employee-info">*@
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-offset-1 col-sm-1">
+                                    <label for="test" class="control-label">Search</label>
+                                </div>
+                                <div class="col-sm-3" data-bind="validationElement:test">
+                                    <input type="text" name="test" class="form-control" id="test" placeholder="-----">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-default">Search</button> @*data-bind="click:Search"*@
+                                </div>
+                            </div>
+                            <hr class="horizontal">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <table class="table table-striped table-bordered" frame="box">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="center">Application No</th>
+                                                <th class="center">Account Title</th>
+                                                <th class="center">Proposal No</th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:LoadData">
+                                            <tr>
+                                                <td style="display:none"><input type="hidden" data-bind="value:Id" /></td>
+                                                <td class="center" data-bind="text: ApplicationNo"></td>
+                                                <td class="center" data-bind="text: AccountTitle"></td>
+                                                <td class="center" data-bind="text: ProposalNo"></td>
+                                                <td>
+                                                    <div data-bind="">
+                                                        <button type="button" data-toggle="modal" data-bind="click:$parent.setOfferLetter" title="Confirm Fund">
+                                                            Offer Letter Entry
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div data-bind="">
+                                                        <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setCrm" title="Confirm Fund">
+                                                            CRM Approval
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setOpperation" title="Receive Hard Copy">
+                                                        Operation Approved
+                                                    </button>
+                                                </td>
+                                                <td>
+                                                    <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setCustomer" title="Send Message">
+                                                        Customer Approved
+                                                    </button>
+                                                </td>
+                                                @*<td>
+                                                    <div data-bind="">
+                                                        <button type="button" data-toggle="modal" data-bind="click:$parent.SelfAssaignment" title="Confirm Fund">
+                                                            Self Assaignment
+                                                        </button>
+                                                    </div>
+                                                </td>*@
+                                                @*<td>
+                                                        <div data-bind="">
+                                                            <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setCrm" title="Confirm Fund">
+                                                               CRM Approval
+                                                            </button>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setOpperation" title="Receive Hard Copy">
+                                                            Operation Approved
+                                                        </button>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" data-toggle="modal" data-target="#poModal" data-bind="click:$parent.setCustomer" title="Send Message">
+                                                            Customer Approved
+                                                        </button>
+                                                    </td>*@
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination-centered">
+                                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                        @Html.PagedListPager(Model, page => Url.Action("ProposalList",
+                                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+                @*</form>*@
+            }
+        </div>
+    </section>
+    <div id="poModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content" style="margin-left: 0px;">
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <h4 class="modal-title">Preview</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <div class="ui-jqdialog-content ui-widget-content" id="leadDetailData">
+                        <div>
+                            <div class="panel-bodycontent">
+                                <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#excpt">
+                                    <h2 class="panel-title font">
+                                        <b>Offer Letter Approval</b>
+                                    </h2>
+                                </header>
+                                <div class="panel-body collapse in" id="excpt">
+                                    <div class="col-sm-2 col-sm-offset-2">
+                                        <label class="control-label">Approval Date:</label>
+                                    </div>
+                                    <div class="col-sm-2 input-group input-group_cif date" style="padding-left: 15px; padding-right: 15px;">
+
+                                        <input type="date" data-bind="date: QuotationDate" class="form-control lignHeightDate" />
+
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-10"></div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-success" data-bind="click:SaveOfferLetterApproval">Save</button>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="modal-footer"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="successModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Response</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <p id="successModalText"></p>
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

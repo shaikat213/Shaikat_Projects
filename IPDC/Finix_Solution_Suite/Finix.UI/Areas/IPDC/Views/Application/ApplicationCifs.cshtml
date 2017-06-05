@@ -1,0 +1,78 @@
+﻿<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Application/applicantCIFs.js"></script>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<style>
+    .button{
+        width:auto;
+        min-width:94px;
+    }
+</style>
+<div id="appcifs">
+
+    <div class="">
+        <section class="panel-bodycontent">
+            <header class="panel-heading bodytitle">
+                <h2 class="panel-title font">
+                    <b>Application CIF</b>
+                </h2>
+            </header>
+            <div class="">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="panel panel-default">
+
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered" width='100%'>
+                                    <thead class="headcolor">
+                                        <tr>
+                                            <th>Verification Type</th>
+                                            <th>Application No.</th>
+                                            <th>Verification Date</th>
+                                            <th>Status</th>
+                                            <th>Verifier</th>
+                                            <th>Last Appl. No</th>
+                                            <th>Last Verification Date</th>
+                                            <th>Latest Status</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:VerificationList">
+                                        <tr>
+                                            <td data-bind="text:VerificationType"></td>
+                                            <td data-bind="text:ApplicationNo"></td>
+                                            <td data-bind="text:VerificationDateText"></td>
+                                            <td data-bind="text:VerificationStatusForThisApplicationName"></td>
+                                            <td data-bind="text:VerifierName"></td>
+                                            <td data-bind="text:LatestApplicationNo"></td>
+                                            <td data-bind="text:LatestVerificationDateText"></td>
+                                            <td data-bind="text:VerificationStatusName"></td>
+                                            <td>
+                                                <button type="button" aria-label="justify" class="button" data-bind="click:Details"><span>Add Record</span></button>
+                                                <button type="button" aria-label="justify" class="button" data-bind="click:LatestDetails"><span>View Last Record</span></button>
+                                            </td>
+                                        </tr>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel-group">
+
+            </div>
+        </section>
+    </div>
+</div>
+
+

@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Proxy Role Permissions";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    var CompanyId = ViewBag.CompanyId;
+}
+<link href="~/Content/jsTree/themes/default/style.min.css" rel="stylesheet" />
+<script src="~/Scripts/jsTree3/jstree.min.js"></script>
+<script>
+    var userCompanyId = parseInt(@CompanyId);
+</script>
+<script src="~/Areas/Auth/Scripts/Role/proxy-role.js"></script>
+<section>
+    <div id="proxyRolePermissionAssignment">
+        <div class="row">
+            <label class="col-sm-1">Proxy User</label>
+            <div class="col-sm-2">
+                <select data-bind="options: ProxyUsers, value: ProxyUserId, optionsValue:'Id', optionsText: 'Name', optionsCaption: 'Choose one...'" class=" form-control"></select>
+            </div>
+            <label class="col-sm-1">Role</label>
+            <div class="col-sm-2">
+                <select data-bind="options: RoleList, value: RoleId, optionsValue:'Id', optionsText: 'Name', optionsCaption: 'Choose one...'" class=" form-control"></select>
+            </div>
+            <label class="col-sm-1">From</label>
+            <div class="col-sm-2">
+                <input type="date" class="form-control" data-bind="value: FromDate"/>
+            </div>
+            <label class="col-sm-1">To</label>
+            <div class="col-sm-2">
+                <input type="date" class="form-control" data-bind="value: ToDate" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <div id="MenuHierarchy" class="demo" style="margin-top:2em;"></div>
+                <div>
+                    <button class="btn-chpass btn-success" data-bind="click:Save"> Save </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

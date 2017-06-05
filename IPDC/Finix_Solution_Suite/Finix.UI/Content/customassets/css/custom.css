@@ -1,0 +1,160 @@
+﻿.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited {
+    color:#b10a6b;
+    
+}
+
+.ui-widget-header {
+    border: 1px solid #808080;
+    background:#CCCEDB;
+    color: #000;
+    font-weight: bold;
+}
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+    
+    font-weight: bold;
+    color: #ff0000;
+}
+
+    .ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+        border: 1px solid #808080;
+        background: #EEEEF2;
+        font-weight: bold;
+    }
+
+/*.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight {
+    border: 1px solid #808080;
+    background: #DADADA;
+    
+}*/
+
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight{
+
+     border: 1px solid #808080;
+    background: #DADADA;
+    
+    color: #ED1682;
+}
+
+.ui-widget-content {
+     border:1px solid #C4C4C4;
+     margin-bottom: 5px;
+     margin-top: 5px;
+}
+
+
+
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover {
+    background: #ecebeb;
+}
+
+.ui-state-default .ui-icon ui-icon-plus {
+    background-image: url(images/ui-icons_4b8e0b_256x240.png);
+}
+
+.ui-icon, .ui-widget-content .ui-icon ui-icon-plus {
+    background-image: url(images/ui-icons_4b8e0b_256x240.png);
+}
+.modal-footer {
+    padding: 5px;
+}
+
+.btn-success {
+   
+    margin-bottom: 12px;
+    /*margin-left: 50px;*/
+}
+
+.modal-dialog {
+   
+    margin: 60px auto;
+    margin-left: 200px;
+}
+.container-fluid {
+    /* padding-right: 3px; */
+    /* padding-left: 15px; */
+    /* margin-right: auto; */
+    /* margin-left: auto; */
+}
+
+tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+    
+}
+
+.modal-dialog-questionnaire {
+   
+    margin: 60px auto;
+    width:800px;
+   
+}
+
+.btn {
+    font-size: 12px;
+    margin-bottom: 6px;
+    
+   
+}
+
+.modal-dialog-followUp {
+   
+    margin: 60px auto;
+    width:600px;
+   
+}
+
+.modal-dialog-edit {
+    margin: 60px auto;
+    width:900px;
+}
+
+.modal-dialog-details {
+    margin: 60px auto;
+    width:800px;
+}
+
+.modal-dialog-assign {
+    margin: 60px auto;
+    margin-left:8px;
+}
+
+.nav-tabs.nav-justified > li > a {
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+}
+.modal-header {
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    text-align: center;
+    color: #FF1493;
+    text-decoration: none;
+    background-color: #ddd;
+}
+
+/*.modal-header:hover {
+    
+    background-color: #EEEEEE;
+}
+.modal-title:hover {
+    color:#235298;
+}*/
+
+.modal-title {
+    font-size:14px;
+    font-weight:bold;
+   /* margin: 20px;*/
+}
+.ui-tabs .ui-tabs-panel {
+    padding: 1em 1em !important;
+}
+
+.close {
+    font-size: 20px !important;
+    color: #ff0000 !important;
+    text-shadow: none !important;
+    opacity: 4.5 !important;
+    text-decoration: none !important;
+}

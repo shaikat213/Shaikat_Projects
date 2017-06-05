@@ -1,0 +1,146 @@
+﻿@model Finix.Auth.DTO.LogOnDto
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Login | CRM LOS</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <!-- Bootstrap 3.3.5 -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link href="~/Content/customassets/css/Login.min.css" rel="stylesheet" />
+    <style>
+        .login-page {
+            background-color: white !important;
+        }
+    </style>
+    <!-- iCheck -->
+    <link href="~/Content/customassets/plugins/blue.css" rel="stylesheet" />
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+
+            <a href="#">
+                <img src="/Content/customassets/Images/logo1.png" />
+            </a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="login-box-body">
+            <p class="login-box-msg">Sign in to start your session</p>
+
+            @*<form action="" method="post">*@
+            @using (Html.BeginForm("Login", "Login", FormMethod.Post, new { @id = "_loginform_" }))
+            {
+                <div class="form-group has-feedback">
+                    @*<input type="email" class="form-control" placeholder="Email">*@
+                    @Html.TextBoxFor(m => m.UserName, new { id = "UserName", @placeholder = "User Name", @class = "form-control" })
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
+                <div class="form-group has-feedback">
+                    @*<input type="password" class="form-control" placeholder="Password">*@
+                    @Html.PasswordFor(m => m.Password, new { @id = "Password", @placeholder = "Password", @class = "form-control" })
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+                @Html.HiddenFor(m => m.Key, new { @id = "_key_" })
+                @Html.HiddenFor(m => m.PasswordHex, new { @id = "_hex_" })
+                <div class="row">
+                    @*<div class="col-xs-8">
+                            <div class="checkbox icheck">
+                                <label>
+                                    @Html.CheckBoxFor(m => m.RememberMe, new { id = "RememberMe" })
+                                    Remember Me
+                                </label>
+                            </div>
+                        </div>*@
+                    <!-- /.col -->
+                    <div class="col-xs-4 col-xs-offset-8">
+                        <button type="button" onclick="return submitLoginForm();" class="btn btn-default btn-block btn-flat">Sign In</button>
+                    </div>
+                    <!-- /.col -->
+                </div>
+                if (Model != null)
+                {
+                    if (Model.ErrMessage != null)
+                    {
+                        <div class="row">
+                            <span>@Html.Display(Model.ErrMessage)</span>
+
+                        </div>
+                    }
+                }
+
+                @RenderBody()
+            }
+            @*</form>*@
+
+
+            @*<a href="#">I forgot my password</a><br>*@
+
+        </div>
+        <!-- /.login-box-body -->
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery 2.1.4 -->
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+
+    <!-- crypto js -->
+    <script src="~/Scripts/CryptoJS/core.js"></script>
+    <script src="~/Scripts/CryptoJS/enc-base64.js"></script>
+    <script src="~/Scripts/CryptoJS/md5.js"></script>
+    <script src="~/Scripts/CryptoJS/evpkdf.js"></script>
+    <script src="~/Scripts/CryptoJS/cipher-core.js"></script>
+    <script src="~/Scripts/CryptoJS/aes.js"></script>
+
+    <!-- Bootstrap -->
+    @*<script src="~/Scripts/tether/tether.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <!-- iCheck -->
+    <script src="~/Content/customassets/plugins/icheck.js"></script>
+    <script>
+        $(function () {
+            $('input').iCheck({
+                checkboxClass: 'icheckbox_square-blue',
+                radioClass: 'iradio_square-blue',
+                increaseArea: '20%' // optional
+            });
+        });
+        function submitLoginForm() {
+            $.getJSON('/Login/GetKey', function (data) {
+                $('#_key_').val(data.Key);
+            }).done(function () {
+                // do encryption
+                var pass = $('#Password').val();
+                var key = $('#_key_').val();
+                doEncryption_by_crypto_js(key, pass);
+                $('#Password').val('***************');
+                //submit form
+                setTimeout(function () { _loginform_.submit(); }, 1000);
+            });
+        }
+        function doEncryption_by_crypto_js(secret, msg) {
+            var key = CryptoJS.enc.Utf8.parse('AMINHAKEYTEM32NYTES1234567891234');
+            var iv = CryptoJS.enc.Utf8.parse('7061737323313233');
+            var encrypted = CryptoJS.AES.encrypt(
+                CryptoJS.enc.Utf8.parse(msg),
+                secret,
+                key,
+                {
+                    keySize: 128,
+                    iv: iv,
+                    mode: CryptoJS.mode.CBC,
+                    padding: CryptoJS.pad.Pkcs7
+                }
+            );
+            $('#_hex_').val(encrypted);
+            console.log(encrypted);
+        }
+    </script>
+</body>
+</html>

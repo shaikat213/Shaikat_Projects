@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PurchaseOrder" targetNamespace="http://tempuri.org/PurchaseOrder.xsd" xmlns:mstns="http://tempuri.org/PurchaseOrder.xsd" xmlns="http://tempuri.org/PurchaseOrder.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PurchaseOrder" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="PurchaseOrder" msprop:Generator_UserDSName="PurchaseOrder">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PurchaseOrder" msprop:Generator_TableClassName="PurchaseOrderDataTable" msprop:Generator_TableVarName="tablePurchaseOrder" msprop:Generator_RowChangedName="PurchaseOrderRowChanged" msprop:Generator_TablePropName="_PurchaseOrder" msprop:Generator_RowDeletingName="PurchaseOrderRowDeleting" msprop:Generator_RowChangingName="PurchaseOrderRowChanging" msprop:Generator_RowEvHandlerName="PurchaseOrderRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseOrderRowDeleted" msprop:Generator_RowClassName="PurchaseOrderRow" msprop:Generator_UserTableName="PurchaseOrder" msprop:Generator_RowEvArgName="PurchaseOrderRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" msprop:Generator_UserColumnName="ApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="IsVendor" msprop:Generator_ColumnVarNameInTable="columnIsVendor" msprop:Generator_ColumnPropNameInRow="IsVendor" msprop:Generator_ColumnPropNameInTable="IsVendorColumn" msprop:Generator_UserColumnName="IsVendor" type="xs:string" minOccurs="0" />
+              <xs:element name="SellersName" msprop:Generator_ColumnVarNameInTable="columnSellersName" msprop:Generator_ColumnPropNameInRow="SellersName" msprop:Generator_ColumnPropNameInTable="SellersNameColumn" msprop:Generator_UserColumnName="SellersName" type="xs:string" minOccurs="0" />
+              <xs:element name="SellersAddressString" msprop:Generator_ColumnVarNameInTable="columnSellersAddressString" msprop:Generator_ColumnPropNameInRow="SellersAddressString" msprop:Generator_ColumnPropNameInTable="SellersAddressStringColumn" msprop:Generator_UserColumnName="SellersAddressString" type="xs:string" minOccurs="0" />
+              <xs:element name="RecomendedLoanAmountFromIPDC" msprop:Generator_ColumnVarNameInTable="columnRecomendedLoanAmountFromIPDC" msprop:Generator_ColumnPropNameInRow="RecomendedLoanAmountFromIPDC" msprop:Generator_ColumnPropNameInTable="RecomendedLoanAmountFromIPDCColumn" msprop:Generator_UserColumnName="RecomendedLoanAmountFromIPDC" type="xs:string" minOccurs="0" />
+              <xs:element name="QuotationDate" msprop:Generator_ColumnVarNameInTable="columnQuotationDate" msprop:Generator_ColumnPropNameInRow="QuotationDate" msprop:Generator_ColumnPropNameInTable="QuotationDateColumn" msprop:Generator_UserColumnName="QuotationDate" type="xs:string" minOccurs="0" />
+              <xs:element name="QuotationDateTxt" msprop:Generator_ColumnVarNameInTable="columnQuotationDateTxt" msprop:Generator_ColumnPropNameInRow="QuotationDateTxt" msprop:Generator_ColumnPropNameInTable="QuotationDateTxtColumn" msprop:Generator_UserColumnName="QuotationDateTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="QuotationPrice" msprop:Generator_ColumnVarNameInTable="columnQuotationPrice" msprop:Generator_ColumnPropNameInRow="QuotationPrice" msprop:Generator_ColumnPropNameInTable="QuotationPriceColumn" msprop:Generator_UserColumnName="QuotationPrice" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationTitle" msprop:Generator_ColumnVarNameInTable="columnApplicationTitle" msprop:Generator_ColumnPropNameInRow="ApplicationTitle" msprop:Generator_ColumnPropNameInTable="ApplicationTitleColumn" msprop:Generator_UserColumnName="ApplicationTitle" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerName" msprop:Generator_ColumnVarNameInTable="columnCustomerName" msprop:Generator_ColumnPropNameInRow="CustomerName" msprop:Generator_ColumnPropNameInTable="CustomerNameColumn" msprop:Generator_UserColumnName="CustomerName" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerAddressString" msprop:Generator_ColumnVarNameInTable="columnCustomerAddressString" msprop:Generator_ColumnPropNameInRow="CustomerAddressString" msprop:Generator_ColumnPropNameInTable="CustomerAddressStringColumn" msprop:Generator_UserColumnName="CustomerAddressString" type="xs:string" minOccurs="0" />
+              <xs:element name="VehicleBrand" msprop:Generator_ColumnVarNameInTable="columnVehicleBrand" msprop:Generator_ColumnPropNameInRow="VehicleBrand" msprop:Generator_ColumnPropNameInTable="VehicleBrandColumn" msprop:Generator_UserColumnName="VehicleBrand" type="xs:string" minOccurs="0" />
+              <xs:element name="ChassisNo" msprop:Generator_ColumnVarNameInTable="columnChassisNo" msprop:Generator_ColumnPropNameInRow="ChassisNo" msprop:Generator_ColumnPropNameInTable="ChassisNoColumn" msprop:Generator_UserColumnName="ChassisNo" type="xs:string" minOccurs="0" />
+              <xs:element name="EngineNo" msprop:Generator_ColumnVarNameInTable="columnEngineNo" msprop:Generator_ColumnPropNameInRow="EngineNo" msprop:Generator_ColumnPropNameInTable="EngineNoColumn" msprop:Generator_UserColumnName="EngineNo" type="xs:string" minOccurs="0" />
+              <xs:element name="ManufacturingYear" msprop:Generator_ColumnVarNameInTable="columnManufacturingYear" msprop:Generator_ColumnPropNameInRow="ManufacturingYear" msprop:Generator_ColumnPropNameInTable="ManufacturingYearColumn" msprop:Generator_UserColumnName="ManufacturingYear" type="xs:string" minOccurs="0" />
+              <xs:element name="Colour" msprop:Generator_ColumnVarNameInTable="columnColour" msprop:Generator_ColumnPropNameInRow="Colour" msprop:Generator_ColumnPropNameInTable="ColourColumn" msprop:Generator_UserColumnName="Colour" type="xs:string" minOccurs="0" />
+              <xs:element name="CC" msprop:Generator_ColumnVarNameInTable="columnCC" msprop:Generator_ColumnPropNameInRow="CC" msprop:Generator_ColumnPropNameInTable="CCColumn" msprop:Generator_UserColumnName="CC" type="xs:string" minOccurs="0" />
+              <xs:element name="Valitity" msprop:Generator_ColumnVarNameInTable="columnValitity" msprop:Generator_ColumnPropNameInRow="Valitity" msprop:Generator_ColumnPropNameInTable="ValitityColumn" msprop:Generator_UserColumnName="Valitity" type="xs:string" minOccurs="0" />
+              <xs:element name="VendorApproved" msprop:Generator_ColumnVarNameInTable="columnVendorApproved" msprop:Generator_ColumnPropNameInRow="VendorApproved" msprop:Generator_ColumnPropNameInTable="VendorApprovedColumn" msprop:Generator_UserColumnName="VendorApproved" type="xs:string" minOccurs="0" />
+              <xs:element name="VendorApprovalDate" msprop:Generator_ColumnVarNameInTable="columnVendorApprovalDate" msprop:Generator_ColumnPropNameInRow="VendorApprovalDate" msprop:Generator_ColumnPropNameInTable="VendorApprovalDateColumn" msprop:Generator_UserColumnName="VendorApprovalDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerApproved" msprop:Generator_ColumnVarNameInTable="columnCustomerApproved" msprop:Generator_ColumnPropNameInRow="CustomerApproved" msprop:Generator_ColumnPropNameInTable="CustomerApprovedColumn" msprop:Generator_UserColumnName="CustomerApproved" type="xs:string" minOccurs="0" />
+              <xs:element name="CustomerApprovalDate" msprop:Generator_ColumnVarNameInTable="columnCustomerApprovalDate" msprop:Generator_ColumnPropNameInRow="CustomerApprovalDate" msprop:Generator_ColumnPropNameInTable="CustomerApprovalDateColumn" msprop:Generator_UserColumnName="CustomerApprovalDate" type="xs:string" minOccurs="0" />
+              <xs:element name="POApproval" msprop:Generator_ColumnVarNameInTable="columnPOApproval" msprop:Generator_ColumnPropNameInRow="POApproval" msprop:Generator_ColumnPropNameInTable="POApprovalColumn" msprop:Generator_UserColumnName="POApproval" type="xs:string" minOccurs="0" />
+              <xs:element name="POApprovalDate" msprop:Generator_ColumnVarNameInTable="columnPOApprovalDate" msprop:Generator_ColumnPropNameInRow="POApprovalDate" msprop:Generator_ColumnPropNameInTable="POApprovalDateColumn" msprop:Generator_UserColumnName="POApprovalDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CreateDate" msprop:Generator_ColumnVarNameInTable="columnCreateDate" msprop:Generator_ColumnPropNameInRow="CreateDate" msprop:Generator_ColumnPropNameInTable="CreateDateColumn" msprop:Generator_UserColumnName="CreateDate" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

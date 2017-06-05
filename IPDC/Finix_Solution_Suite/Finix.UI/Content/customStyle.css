@@ -1,0 +1,616 @@
+﻿.work-area {
+    min-height: 558px;
+}
+.cus-nav-background {
+    background-color: #004E87;
+}
+
+.thead {
+    background-color: #91BBEA;
+    text-align: center;
+    text-size: 12px;
+    color: black;
+}
+.th-center {
+    text-align: center !important;
+}
+
+.topnavber {
+    /*background-color: #008080;*/
+   
+    background: #0071BC; /* For Safari 5.1 to 6.0 */
+    /*background: -o-linear-gradient(LightSeaGreen ,LightSeaGreen, DarkCyan ); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(LightSeaGreen ,DarkCyan, DarkCyan); /* For Firefox 3.6 to 15* /*/
+    /*background: linear-gradient(Teal ,LightSeaGreen, DarkCyan); /* Standard syntax (must be last) */*/
+    
+}
+
+.logo {
+    margin-left: 185px;
+    height: 65px;
+}
+
+.fixedposition {
+    position: fixed;
+    margin-left: 220px;
+}
+
+.topsubnav {
+    color: black;
+}
+
+
+.navtextcolor {
+    text-decoration-color: white;
+}
+
+.pazefix {
+    height:;
+}
+
+.row1 {
+    margin-top: -10px;
+    background-color: #EFF4F4;
+    min-height: 570px;
+}
+
+
+.panal2 {
+    margin-right: -15px;
+    background-color: #0cf6f6;
+    color: black;
+}
+/*change*/  
+.bodycontent {
+    /*background: #e5f2ff;*/
+    background-color: white;
+  
+    margin-right: -15px;
+}
+
+.form-control{
+    padding: 0 3px;
+    height: 22px;
+    line-height:1px;
+    font-size:1em;
+    text-indent: 3px;
+}
+
+
+.left_nav {
+    background-color: ;
+    color: white;
+}
+
+.left_nav1 {
+    background-color:#004E87;
+    border-bottom: 1px solid white;
+    color: black;
+}
+
+.nav_left2 {
+    background-color: #E5F2FF;
+    height: 710px;
+}
+
+.nav_left1 {
+    background-color: #004E87;
+}
+
+.bodytitle {
+    background-color: #0175BE;
+  
+    height: 35px;
+    padding: 7px;
+    color: #ffffff;
+}
+
+.font {
+    font-size: 15px;
+    padding-left: 15px;
+}
+
+.body-main-padding {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+/*.formstyle {
+    background-color: #91bbea;
+
+}*/
+.addbutton {
+    background-color: #0071BC;
+    margin-top: -20px;
+    padding-top: inherit;
+    padding-bottom: inherit;
+    color: white;
+}
+
+.select {
+    color: black;
+}
+
+.form {
+    margin-left: -25px;
+}
+
+.dropdown1 {
+    background-color: white ;
+}
+
+.dropdown2 {
+    background-color: white;
+}
+
+.dropdown3 {
+    background-color: white;
+}
+
+.dropdown4 {
+    background-color: ;
+}
+
+.buttonsize {
+    width: 225px;
+}
+
+.ul.li.a:hover {
+    color: #fff;
+}
+
+ul.nav-main > li > a:hover, ul.nav-main > li > a:focus {
+    background-color:#0175BE ;
+}
+
+div.progresber {
+    background-color: #05699B;
+    margin-left: -15px;
+    margin-right: -15px;
+    position: relative;
+    height: 3px;
+}
+
+/*footer section*/
+.bdr {
+    border-top: 4px solid #1b6d85;
+    margin-top: 5px;
+}
+.headerFixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.footerFixed {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+.footer_bg {
+    background: #004E87;
+   
+}
+/*.footer_bg{
+background:#194B7D;
+}*/
+.design_foot {
+    padding: 8px 0px;
+    color: #fff;
+}
+
+.footer_header_bg {
+    background: #004E87;
+    color: #fff;
+}
+
+.model2 {
+    padding: 0px 10px;
+}
+
+.footer_header_bg {
+    background: #004E87;
+    color: #fff;
+}
+
+
+
+.model {
+    padding: 20px 0px;
+}
+
+.con_bg {
+    background: #2d6ca2;
+}
+
+.list li {
+    list-style: none;
+    color: #fff;
+}
+
+    .list li a {
+        color: #fff;
+    }
+
+.list-styled li {
+    background: #666680;
+}
+
+    .list-styled li a {
+        text-decoration: none;
+        color: #fff;
+    }
+
+    .list-styled li :hover {
+        background: #E3E3EC;
+        color: #000;
+    }
+
+.navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
+    background-color:#004e87 ;
+    color: #555;
+}
+/*.navbar-default .navbar-nav > .open > a:hover {
+     background-color: black;
+ }*/
+/*.navbar-default .navbar-nav> a:hover {
+    background-color:  #91bbea;
+}*/
+
+.megamenu > li ul > li > a:hover {
+    background-color:whitesmoke;
+}
+
+.megamenu > li ul > li > a:focus {
+    background-color: white;
+    color: #262626;
+    text-decoration: none;
+}
+
+.left_nav img {
+    height: 50px;
+}
+
+h5 {
+    color: #008080;
+    margin-bottom: 10px;
+    
+}
+h3 {
+    color:#008080 ;
+    text-align: center;
+}
+
+
+.panel-default > .panel-heading {
+    background-color: #008080;
+    border-color: #ddd;
+    color: #333;
+}
+
+.panel-title {
+    color: #fff;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-left: 8px;
+    text-transform: none;
+}
+
+
+.panel-heading {
+    /*background: #333 none repeat scroll 0 0;*/
+    border-bottom: 1px solid #dadada;
+    border-radius: 5px 5px 0 0;
+    /*padding: 10px;*/
+    position: relative;
+    font-size: 8px;
+}
+
+.pragrap {
+    padding: 10px;
+
+}
+
+
+label {
+    display: inline-block;
+    font-weight: 500;
+    font-size:1.2em;
+    margin-bottom: 5px;
+    max-width: 100%;
+    color: black;
+}
+
+/*.bodycontent1 {
+  
+    border: 1px solid #b0c4de;
+    background-color: white;
+}*/
+.row2 {
+    margin-top: -20px;
+    background-color: #EFF4F4;
+    /*min-height: 570px;*/
+     min-height: 60px;
+}
+
+.left_nav1 {
+
+    border-bottom: 1px solid white;
+    background: whitesmoke ; 
+        
+        /*-webkit-linear-gradient(Teal , LightSeaGreen,DarkCyan ); /* For Safari 5.1 to 6.0 **//
+    /*background: -o-linear-gradient(Teal ,LightSeaGreen, DarkCyan ); /* For Opera 11.1 to 12.0 */
+    /*background: -moz-linear-gradient(Teal ,LightSeaGreen, DarkCyan); /* For Firefox 3.6 to 15* /*/
+    /*/*background: /*linear-gradien*/t(Teal ,LightSeaGreen, DarkCyan); /* Standard syntax (must be last)*/ */*/*/*/
+    
+}
+
+
+ul.nav-main > li > a {
+    padding: 7px 25px;
+    color: #000000 ;
+}
+
+
+
+ul.nav-main {
+    margin-left: 5px;
+}
+
+#HospitalDiv {
+    
+    padding-right:50px;
+
+
+ 
+
+}
+
+#DoctorDiv {
+    
+    padding-right:50px;
+
+
+
+}
+
+#CPurchaseDiv {
+    
+    padding-right:50px;
+
+
+
+}
+#CPurchaseTrackingDiv {
+    
+  padding-right:50px;
+
+
+
+}
+#CPurchaseReturnDiv {
+  padding-right:50px;
+
+
+
+}
+
+#CStockDiv {
+    
+   padding-right:50px;
+
+}
+
+ul.nav-main {
+    margin-left: 5px;
+}
+
+.tree {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #fbfbfb;
+    border: 1px solid #999;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+
+    .tree li {
+        list-style-type: none;
+        margin: 0;
+        padding: 10px 5px 0 5px;
+        position: relative;
+    }
+
+    .tree li::before, .tree li::after {
+        content: '';
+        left: -20px;
+        position: absolute;
+        right: auto;
+    }
+
+    .tree li::before {
+        border-left: 1px solid #999;
+        bottom: 50px;
+        height: 100%;
+        top: 0;
+        width: 1px;
+    }
+
+    .tree li::after {
+        border-top: 1px solid #999;
+        height: 20px;
+        top: 25px;
+        width: 25px;
+    }
+
+    .tree li span {
+        -moz-border-radius: 5px;
+        -webkit-border-radius: 5px;
+        border: 1px solid #999;
+        border-radius: 5px;
+        display: inline-block;
+        padding: 3px 8px;
+        text-decoration: none;
+    }
+
+    .tree li.parent_li > span {
+        cursor: pointer;
+    }
+        
+    .tree li.parent_li > ul > li > a {
+        cursor: pointer;
+    }
+
+    .tree > ul > li::before, .tree > ul > li::after {
+        border: 0;
+    }
+
+    .tree li:last-child::before {
+        height: 30px;
+    }
+
+    .tree li.parent_li > span:hover, .tree li.parent_li > span:hover + ul li span {
+        background: #eee;
+        border: 1px solid #94a0b4;
+        color: #000;
+    }
+
+.right-corder-container {
+    position: fixed;
+    right: 20px;
+    bottom: 50px;
+    z-index: 1000;
+}
+
+
+    .right-corder-container .right-corder-container-button {
+        height: 62px;
+        width: 62px;
+        border: none;
+        background-color: #6FB583;
+        border-radius: 62px; /*Transform the square into rectangle, sync that value with the width/height*/
+        transition: all 300ms; /*Animation to close the button (circle)*/
+        box-shadow: 2px 2px 5px rgb(25, 73, 15);
+        cursor: pointer;
+    }
+
+
+        .right-corder-container .right-corder-container-button span {
+            font-size: 72px;
+            color: white;
+            position: absolute;
+            left: 10px;
+            top: 16px;
+            line-height: 28px;
+        }
+
+
+        .right-corder-container .right-corder-container-button:hover {
+            transition: all 400ms cubic-bezier(.62,.1,.5,1);
+            width: 200px;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        /*
+    Long text appears slowly with an animation. That code prepare the animation by hidding the text.
+    The use of display is not there because it does not work well with CSS3 animation.
+*/
+        .right-corder-container .right-corder-container-button .long-text {
+            transition: opacity 1000ms; /*Only the text fadein/fadeout is animated*/
+            opacity: 0; /*By default we do not display the text, we want the text to fade in*/
+            color: white !important;
+            white-space: nowrap;
+            font-size: 0; /*Set to 0 to not have overflow on the right of the browser*/
+            width: 0; /*Set to 0 to not have overflow on the right of the browser*/
+            margin: 0; /*Set to 0 to not have overflow on the right of the browser*/
+        }
+
+            /*
+    Animation to have a text that appear progressively. We need to play with a delay
+    on the width and the font-size to not have the browser have the text appears on the right
+    side of the browser view port. This has the side-effect of having an horizontal bar.
+*/
+            .right-corder-container .right-corder-container-button .long-text.show-long-text {
+                transition: opacity 700ms, width 1ms linear 270ms, /*two thirds of the animation on the container width*/
+                font-size 1ms linear 270ms; /*two thirds of the animation on the container width*/
+                opacity: 1;
+                margin-top: 2px; /*Center the position vertically*/
+                margin-left: 65px; /*Center between the + and the right end side*/
+                font-size: 20px; /*Text size, cannot be defined initially without moving the scrollbar*/
+                width: auto; /*Required to be set with a delay (see animation) to not have scrollbar. Delay is to wait container to size up*/
+            }
+ /*for fieldset legend*/
+fieldset.scheduler-border {
+    border: 1px groove #ddd !important;
+    padding: 0 1.4em 1.4em 1.4em !important;
+    margin: 0 0 1.5em 0 !important;
+    -webkit-box-shadow:  0px 0px 0px 0px #000;
+            box-shadow:  0px 0px 0px 0px #000;
+}
+
+legend.scheduler-border {
+    font-size: 1.2em !important;
+    font-weight: bold !important;
+    text-align: left !important;
+
+    border:none;
+width:100px;
+}
+select {
+       height: auto !important;
+    margin: 0 !important;
+    padding: 2px !important;
+}
+
+.btn-small{
+    padding: 4px 4px 0px 3px;
+    margin: -2px 0 3px 9px;
+}
+.btn-success-small {
+    background-color: green;
+    color: white;
+}
+.btn-warning-small {
+    background-color: #ffeb3b;
+    color: white;
+}
+.td-action{
+    max-width:70px;
+}
+.table-inside{
+    max-width:98.5%;
+}
+.form-control{
+    padding: 0 3px;
+    height: 22px;
+    line-height:1px;
+    font-size:.9em;
+}
+textarea{
+    min-height:22px;
+}
+
+.ui-autocomplete {
+    background-color:#ffffff;
+    list-style-type:none;
+    border-radius:0 0 5px 5px;
+    border:1px solid #808080;
+    border-top:0;
+    max-width:38.8%;
+}
+
+.loading-modal-content{
+    max-width: 80px; 
+}
+
+.loading-modal-body{
+    display: block; 
+    margin-left: auto; 
+    margin-right: auto;
+}

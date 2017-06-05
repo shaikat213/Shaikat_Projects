@@ -1,0 +1,1128 @@
+﻿<script src="~/Scripts/highcharts.js"></script>
+<script src="~/Areas/IPDC/Scripts/loader.js"></script>
+<script type="text/javascript">
+    google.charts.load('current', { packages: ['corechart'] });
+</script>
+
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<link href="~/Content/bootstrap-multiselect.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-multiselect.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/NSMDashboard.js"></script>
+
+@{
+    ViewBag.Title = "NSMDashboard";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .CALL {
+        max-width: 310px;
+    }
+
+    .LEAD {
+        max-width: 310px;
+    }
+
+    .STATUS {
+        max-width: 310px;
+    }
+
+    .SUBMITTED {
+        max-width: 310px;
+    }
+
+    .DISB {
+        max-width: 310px;
+    }
+
+    .RMS {
+        max-width: 310px;
+    }
+
+    .table > tbody > tr > td {
+        text-align: left;
+    }
+
+    .control-label {
+        margin-top: 7px;
+    }
+
+    .form-control {
+        margin-top: 4px;
+    }
+
+    .auto-style1 {
+        width: 100%;
+    }
+
+    .customAlign {
+        text-align: center;
+    }
+
+    .customBorder {
+        border: 1px solid black;
+    }
+
+    .customFontFormat {
+        font-weight: bold;
+    }
+
+    .btn {
+        width: auto;
+        height: auto;
+        font-size: 11px;
+        color: #555 !important;
+        border-color: lightgray !important;
+        background-color: white !important;
+        max-height: 20px;
+        max-width: 195px;
+        line-height: .8;
+        margin-top: 4px;
+    }
+
+    .glyphicon {
+        line-height: .5;
+    }
+
+    .btn-warning {
+        color: white !important;
+        background-color: #ff9800 !important;
+    }
+    .control-label {
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+</style>
+
+<section id="nsmDashboard">
+    <div class="container-fluid ">
+
+        <form class="form-horizontal" role="form">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group row row_design_cifr">
+                        <div class="col-sm-2">
+                            <label class="heading" style="padding-right: 0px;">HIGHLIGHTS</label>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-1">
+                            <label class="control-label pull-right">Branch</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <select multiple="multiple" id="branchSelection1" class="form-control" data-bind="options: BranchList, optionsText: 'Name', optionsValue: 'Id', selectedOptions: BranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label pull-right">Timeline</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine"></select>@*, event:{change: GetHighlightsNSMTL}*@
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-success" data-bind="event:{click:GetHighlightsNSMTL}"><span class="glyphicon glyphicon-repeat"></span></button>
+                        </div>
+                        @*<div class="col-sm-4">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Branch</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select multiple="multiple" id="branchSelection1" class="form-control" data-bind="options: BranchList, optionsText: 'Name', optionsValue: 'Id', selectedOptions: BranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">Timeline</label>
+                                    </div>
+                                    <div class="col-sm-7">
+                                        <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine"></select>
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-offset-4 col-sm-1">
+                                        <button class="btn btn-success" data-bind="event:{click:GetHighlightsNSMTL}"><span class="glyphicon glyphicon-repeat"></span></button>
+                                    </div>
+                                </div>
+                            </div>*@
+                    </div>
+                    <br />
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <strong>CALL</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped CALL">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_Liability"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Undefined</td>
+                                                <td><strong class="pull-right" data-bind="text:Call_Undefined"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>LEAD</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped LEAD">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Lead_Liability"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>NO. OF FILES SUBMITTED</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped SUBMITTED">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_HomeLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_PersonalLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_AutoLoan"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:Application_Liability"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div><br />
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-3 col-sm-offset-1">
+                                <strong>FILE APPROVAL STATUS</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+                                <div class="table-responsive">
+                                    <table class="table table-striped STATUS">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_HomeLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_HomeLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoanAmount"></strong>)</td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoanAmount"></strong>)</td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_AutoLoan"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoan"></strong>)</td>
+                                                <td style="text-align:right"><strong data-bind="text:Approved_AutoLoanAmount"></strong></td>
+                                                <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoanAmount"></strong>)</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-3">
+                                <strong>AMOUNT DISB./REC.</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped DISB">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_HomeLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_PersonalLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td><strong class="pull-right" data-bind="text:Disbursed_AutoLoanAmount"></strong></td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td><strong class="pull-right" data-bind="text:ReceivedDepositAmount"></strong></td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <strong>TOP RMS</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="table-responsive">
+                                    <table class="table table-striped RMS">
+                                        <tbody>
+                                            <tr class="well well-sm">
+                                                <td>Home Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMHomeLoan1"></strong><br />
+                                                    <strong data-bind="text:RMHomeLoan2"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMHomeLoan1Amount"></strong><br />
+                                                    <strong data-bind="text:RMHomeLoan2Amount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMHomeLoan1Count"></strong>)<br />
+                                                    (<strong data-bind="text:RMHomeLoan2Count"></strong>)
+                                                </td>
+
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Personal Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMPersonalLoan"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMPersonalLoanAmount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMPersonalLoanCount"></strong>)
+                                                </td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Auto Loan</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMAutoLoan"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMAutoLoanAmount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMAutoLoanCount"></strong>)
+                                                </td>
+                                            </tr>
+                                            <tr class="well well-sm">
+                                                <td>Liability</td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMLiability1"></strong><br />
+                                                    <strong data-bind="text:RMLiability2"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    <strong data-bind="text:RMLiability1Amount"></strong><br />
+                                                    <strong data-bind="text:RMLiability2Amount"></strong>
+                                                </td>
+                                                <td style="text-align:right">
+                                                    (<strong data-bind="text:RMLiability1Count"></strong>)<br />
+                                                    (<strong data-bind="text:RMLiability2Count"></strong>)
+                                                </td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group row row_design_cifr">
+                        <div class="col-sm-2">
+                            <label class="heading" style="padding-right: 0px;">BUSINESS OVERVIEW</label>
+                        </div>
+                        <div class="col-sm-offset-3 col-sm-1">
+                            <label class="control-label pull-right">Select Criteria</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <select class="form-control" data-bind="options:TimeLinesRight,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLineRight"></select>@*, event:{change: CustomFunction}*@
+                        </div>
+                        <div class="col-sm-1">
+                            <label class="control-label pull-right">Branch</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <select multiple="multiple" id="branchSelection2" class="form-control" data-bind="options: BranchListRight, optionsText: 'Name', optionsValue: 'Id', selectedOptions: RightBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                        </div>
+                        <div class="col-sm-1">
+                            <button class="btn btn-success" data-bind="event:{click:CustomFunction}"><span class="glyphicon glyphicon-repeat"></span></button>
+                        </div>
+                        @*<div class="col-sm-6 col-sm-offset-3">
+                            <div class="form-group row row_design">
+                                <div class="col-sm-3 col-sm-offset-5">
+                                    <label class="control-label">Select Criteria</label>
+                                </div>
+                                <div class="col-sm-4">
+                                    <select class="form-control" data-bind="options:TimeLinesRight,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLineRight, event:{change: CustomFunction}"></select> 
+                                </div>
+                            </div>
+                        </div>*@
+
+                    </div><br />
+
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+
+                        @*<div class="form-group row row_design">
+                            <div class="col-sm-4">
+                                <label class="control-label">Branch</label>
+                            </div>
+                            <div class="col-sm-6">
+                                <select multiple="multiple" id="branchSelection2" class="form-control" data-bind="options: BranchListRight, optionsText: 'Name', optionsValue: 'Id', selectedOptions: RightBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                            </div>
+                        </div>*@
+                        <div id="containerp" style="margin: 0 auto"></div>
+                    </div>
+
+
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+                        <strong>BUSINESS CONTRIBUTION-ASSET</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerf" style="margin: 0 auto;"></div>
+                    </div>
+                    <div class="col-sm-4">
+                        <!--<fieldset>-->
+                        <strong>BUSINESS CONTRIBUTION-LIABILITY</strong>
+                        <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        <div id="containerG" style="margin: 0 auto;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group row row_design_cifr">
+                        <div class="col-sm-3">
+                            <label class="heading" style="padding-right: 0px;">PRODUCTIVITY MATRIX</label>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="col-sm-4">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-5">
+                                        <label class="control-label">Criteria</label>
+                                    </div>
+                                    <div class="col-sm-4">
+                                        <select class="form-control" data-bind="options:Criteria,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedCriteria"></select> @*, event:{change: GetHighlights}*@
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-4">
+                                        <label class="control-label">From</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left: 15px; padding-right: 15px;">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="fromDate" data-bind="datepicker: FromDate, datepickerOptions: { format: 'MMM/YYYY' }, valueUpdate: 'keyup'">
+                                            <span class="help-block" style="display: none;"></span>
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-3">
+                                        <label class="control-label">To</label>
+                                    </div>
+                                    <div class="col-sm-8" style="padding-left: 15px; padding-right: 15px;">
+                                        <div class="input-group">
+                                            <input type="text" class="form-control" id="toDate" data-bind="datepicker:ToDate, datepickerOptions: {format: 'MMM/YYYY'}, valueUpdate:'keyup'">
+                                            <span class="help-block" style="display: none;"></span>
+                                            <div class="input-group-addon">
+                                                <span class="glyphicon glyphicon-calendar"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                        </div>
+
+
+                    </div><br />
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="col-sm-4">
+                                <strong>ASSESMENT CRITERIA</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <!--<fieldset>-->
+
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Stage</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" data-bind="options:Satages, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedStage"></select> @*, event:{change: GetHighlights}*@
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <label class="control-label">Cost Center</label>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <select class="form-control" data-bind="options:CostCenterList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Cost Center', value:CostCenterId"></select> @*, event:{change: GetHighlights}*@
+                                    </div>
+
+
+                                </div>
+
+                                <strong>PRODUCT SELECTION</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <select multiple="multiple" id="productSelection1" class="form-control" data-bind="options: ProductSelection, optionsText: 'Name', optionsValue: 'Id', selectedOptions: SelectedProduct, multiselect: { includeSelectAllOption: true }"></select>
+                                        @*<select class="form-control" data-bind="options:ProductSelection, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedProduct"></select>*@ @*, event:{change: GetHighlights}*@
+                                    </div>
+                                </div>
+
+                                <strong>BRANCH SELECTION</strong>
+                                <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-6">
+                                        <select multiple="multiple" id="branchSelection2" class="form-control" data-bind="options: BranchList, optionsText: 'Name', optionsValue: 'Id', selectedOptions: HighlightBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                        @*<select class="form-control" data-bind="options:BranchList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Brach', value:BranchId, event:{change: GetHighlights}"></select>*@
+                                    </div>
+                                </div>
+                                <div class="form-group row row_design">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success pull-right" data-bind="event:{click:GetHighlights}" title="Reload"><span class="glyphicon glyphicon-repeat"></span></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-7">
+                                <div id="ProductivityMatrix" style="margin: 0 auto"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+                                <tr>
+                                    <td colspan="10" class="headcolor customAlign">
+                                        <div class="col-sm-6">
+                                            <label><strong>LOAN PRODUCTS (DISBURSEMENT)</strong></label>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-3">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Branch :</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select multiple="multiple" id="branchSelection3" class="form-control" data-bind="options: BranchListRight, optionsText: 'Name', optionsValue: 'Id', selectedOptions: DisbBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                                @*<select class="form-control" data-bind="options:BranchListRight, optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Brach', value:RightBranchId, event:{change: GetProdDisbByBranch}"></select>*@
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <button class="btn btn-success" data-bind="event:{click:GetProdDisbByBranch}"><span class="glyphicon glyphicon-repeat"></span></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2"><strong>Product</strong></td>
+                                    <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[2].Name"></td>
+                                    <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[3].Name"></td>
+                                    <td colspan="3" class="customAlign customFontFormat">GROWTH</td>
+                                </tr>
+                                <tr>
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Home Loan</td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_HomeLoanMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_HomeLoanAmountMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:HomeLoanWarMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:Disbursed_HomeLoanLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_HomeLoanAmountLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:HomeLoanWarLMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:GrowthHomeLoanFile"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthHomeLoanAmount"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthHomeLoanWar"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Auto Loan</td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_AutoLoanMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_AutoLoanAmountMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:AutoLoanWarMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:Disbursed_AutoLoanLMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_AutoLoanAmountLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:AutoLoanWarLMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:GrowthAutoLoanFile"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthAutoLoanAmount"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthAutoLoanWar"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Personal Loan</td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_PersonalLoanMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_PersonalLoanAmountMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:PersonalLoanWarMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:Disbursed_PersonalLoanLMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:Disbursed_PersonalLoanAmountLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:PersonalLoanWarLMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:GrowthPersonalLoanFile"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthPersonalLoanAmount"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthPersonalLoanWar"></span></td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Overall</strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanCountMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanAmountMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanWarMTd"></strong></td>
+
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanCountLMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanAmountLMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallLoanWarLMTd"></strong></td>
+
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthLoanFiles"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthLoanAmount"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthLoanWar"></strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+                                <tr>
+                                    <td colspan="10" class="headcolor customAlign">
+                                        <div class="col-sm-6">
+                                            <label><strong>Deposit(Account Opened)</strong></label>
+                                        </div>
+                                        <div class="col-sm-3 col-sm-offset-3">
+                                            <div class="col-sm-4">
+                                                <label class="control-label">Branch</label>
+                                            </div>
+                                            <div class="col-sm-6">
+                                                <select multiple="multiple" id="branchSelection4" class="form-control" data-bind="options: BranchListRight, optionsText: 'Name', optionsValue: 'Id', selectedOptions: DepoBranchIds, multiselect: { includeSelectAllOption: true }"></select>
+                                                @*<select class="form-control" data-bind="options:BranchListRight, optionsValue: 'Id',optionsText:'Name',optionsCaption:'All Brach', value:RightBranchId, event:{change: GetProdReceivedByBranch}"></select>*@
+                                            </div>
+                                            <div class="col-sm-1">
+                                                <button class="btn btn-success" data-bind="event:{click:GetProdReceivedByBranch}"><span class="glyphicon glyphicon-repeat"></span></button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td rowspan="2"><strong>Product</strong></td>
+                                    <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[2].Name"></td>
+                                    <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[3].Name"></td>
+                                    <td colspan="3" class="customAlign customFontFormat">GROWTH</td>
+                                </tr>
+                                <tr>
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+
+                                    <td class="customAlign"><strong>No. of Files</strong></td>
+                                    <td class="customAlign"><strong>Amount</strong></td>
+                                    <td class="customAlign"><strong>WAR</strong></td>
+                                </tr>
+                                <tr>
+                                    <td>Fixed Deposit</td>
+                                    <td><span class="pull-right" data-bind="text:Received_FixedMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:FundReceived_FixedAmountMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:FixedDepositWarMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:Received_FixedLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:FundReceived_FixedAmountLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:FixedDepositWarLMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:GrowthFixedDepositFile"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthFixedDepositAmount"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthFixedDepositWar"></span></td>
+                                </tr>
+                                <tr>
+                                    <td>Recurring Deposit</td>
+                                    <td><span class="pull-right" data-bind="text:Received_RecurrentMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:FundReceived_RecurrentAmountMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:ReccurentDepositWarMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:Received_RecurrentLMTD">&nbsp;</span></td>
+                                    <td><span class="pull-right" data-bind="text:FundReceived_RecurrentAmountLMTD"></span></td>
+                                    <td><span class="pull-right" data-bind="text:ReccurentDepositWarLMTD() +' %'"></span></td>
+
+                                    <td><span class="pull-right" data-bind="text:GrowthRecurringFile"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthRecurringAmount"></span></td>
+                                    <td><span class="pull-right" data-bind="text:GrowthRecurringDepositWar"></span></td>
+                                </tr>
+
+                                <tr>
+                                    <td><strong>Overall</strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositCountMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositAmountMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositWarMTd() + ' %'"></strong></td>
+
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositCountLMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositAmountLMTD"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallDepositWarLMTd() +' %'"></strong></td>
+
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthDepositFiles"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthDepositAmount"></strong></td>
+                                    <td><strong class="pull-right" data-bind="text:OverallGrowthDepositWar() +' %'"></strong></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+
+                                <thead class="headcolor">
+                                    <tr>
+                                        <td colspan="10" class="headcolor customAlign">
+                                            <div class="col-sm-6">
+                                                <label><strong>File Submission</strong></label>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-3">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Product :</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductId, event:{change: GetFileSubmissionDataByProduct}"></select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><strong>Branch</strong></td>
+                                        @*<td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[2].Name"></td>
+                                            <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[3].Name"></td>*@
+                                        <td colspan="3" class="customAlign customFontFormat">MTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">LMTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">GROWTH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>WAR</strong></td>
+
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>WAR</strong></td>
+
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>WAR</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:FileSubmission">
+                                    <tr>
+                                        @*<td><strong class="center" data-bind="text:$index()+1"></strong></td>*@
+
+                                        <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstAmount"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstWAR"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondAmount"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondWAR"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthAmount ? GrowthAmount.toFixed(2) : ''"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthWAR"></strong></td>
+                                    </tr>
+                                </tbody>
+                                @*<tr>
+                                        <td>Fixed Deposit</td>
+                                        <td data-bind="text:Received_FixedMTD"></td>
+                                        <td data-bind="text:FundReceived_FixedAmountMTD"></td>
+                                        <td data-bind="text:FixedDepositWarMTD() +' %'"></td>
+
+                                        <td data-bind="text:Received_FixedLMTD"></td>
+                                        <td data-bind="text:FundReceived_FixedAmountLMTD"></td>
+                                        <td data-bind="text:FixedDepositWarLMTD() +' %'"></td>
+
+                                        <td data-bind="text:GrowthFixedDepositFile"></td>
+                                        <td data-bind="text:GrowthFixedDepositAmount"></td>
+                                        <td data-bind="text:GrowthFixedDepositWar"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Recurring Deposit</td>
+                                        <td data-bind="text:Received_RecurrentMTD">&nbsp;</td>
+                                        <td data-bind="text:FundReceived_RecurrentAmountMTD"></td>
+                                        <td data-bind="text:ReccurentDepositWarMTD() +' %'"></td>
+
+                                        <td data-bind="text:Received_RecurrentLMTD">&nbsp;</td>
+                                        <td data-bind="text:FundReceived_RecurrentAmountLMTD"></td>
+                                        <td data-bind="text:ReccurentDepositWarLMTD() +' %'"></td>
+
+                                        <td data-bind="text:GrowthRecurringFile"></td>
+                                        <td data-bind="text:GrowthRecurringAmount"></td>
+                                        <td data-bind="text:GrowthRecurringDepositWar"></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><strong>Overall</strong></td>
+                                        <td><strong data-bind="text:OverallDepositCountMTD"></strong></td>
+                                        <td><strong data-bind="text:OverallDepositAmountMTD"></strong></td>
+                                        <td><strong data-bind="text:OverallDepositWarMTd"></strong></td>
+
+                                        <td><strong data-bind="text:OverallDepositCountLMTD"></strong></td>
+                                        <td><strong data-bind="text:OverallDepositAmountLMTD"></strong></td>
+                                        <td><strong data-bind="text:OverallDepositWarLMTd"></strong></td>
+
+                                        <td><strong data-bind="text:OverallGrowthDepositFiles"></strong></td>
+                                        <td><strong data-bind="text:OverallGrowthDepositAmount"></strong></td>
+                                        <td><strong data-bind="text:OverallGrowthDepositWar"></strong></td>
+                                    </tr>*@
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+
+                                <thead class="headcolor">
+                                    <tr>
+                                        <td colspan="10" class="headcolor customAlign">
+                                            <div class="col-sm-6">
+                                                <label><strong>BUSINESS CONTRIBUTION</strong></label>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-3">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Product :</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:BusinessProductId, event:{change: GetBusContDataByProduct}"></select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><strong>Branch</strong></td>
+                                        @*<td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[2].Name"></td>
+                                            <td colspan="3" class="customAlign customFontFormat" data-bind="text:TimeLines()[3].Name"></td>*@
+                                        <td colspan="3" class="customAlign customFontFormat">MTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">LMTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">GROWTH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>% Cont.</strong></td>
+
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>% Cont.</strong></td>
+
+                                        <td class="customAlign"><strong>No. of Files</strong></td>
+                                        <td class="customAlign"><strong>Amount</strong></td>
+                                        <td class="customAlign"><strong>% Cont.</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:BusinessContribution">
+                                    <tr>
+
+                                        <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstAmount"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstContribution ? FirstContribution.toFixed(2) : ''"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondAmount"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:SecondContribution"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthNoOfFiles"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthAmount ? GrowthAmount.toFixed(2) : ''"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthContribution"></strong></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+
+                                <thead class="headcolor">
+                                    <tr>
+                                        <td colspan="10" class="headcolor customAlign">
+                                            <div class="col-sm-6">
+                                                <label><strong>CALL-LEAD-APPLICATION-APPROVALRATIO</strong></label>
+                                            </div>
+                                            <div class="col-sm-3 col-sm-offset-3">
+                                                <div class="col-sm-4">
+                                                    <label class="control-label">Product :</label>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <select class="form-control" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:AprvlProductId, event:{change: GetAprvlDataByProduct}"></select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><strong>Branch</strong></td>
+                                        <td colspan="3" class="customAlign customFontFormat">MTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">LMTD</td>
+                                        <td colspan="3" class="customAlign customFontFormat">GROWTH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="customAlign"><strong>Call Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Lead Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Application Approval Rate</strong></td>
+
+                                        <td class="customAlign"><strong>Call Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Call Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Application Approval Rate</strong></td>
+
+                                        <td class="customAlign"><strong>Call Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Call Conversation Rate</strong></td>
+                                        <td class="customAlign"><strong>Application Approval Rate</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:ApprovalRatioData">
+                                    <tr>
+
+                                        <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstCallConverSionRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstLeadConverSionRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstApplicationApprovalRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdCallConverSionRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdLeadConverSionRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdApplicationApprovalRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthCallConversationRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthLeadConversationRate"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrowthAppApprovalConversationRate"></strong></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-12">
+
+                    <div class="table-responsive">
+                        <div class="table table-striped">
+
+                            <table class="table-bordered" width="100%">
+
+                                <thead class="headcolor">
+                                    <tr>
+                                        <td colspan="20" class="headcolor customAlign">
+                                            <div class="col-sm-3">
+                                                <label><strong>AGING (AVERAGE NO. OF DAYS)</strong></label>
+                                            </div>
+                                            <div class="col-sm-6 col-sm-offset-3">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label">Product Type:</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" data-bind="options:ProductTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductType, event:{change: GetProductsByProductType}"></select>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <label class="control-label">Product :</label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <select class="form-control" data-bind="options:ProductsByType,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:AgingProductId, event:{change: GetAgingByProduct}"></select>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td rowspan="2"><strong>Branch</strong></td>
+                                        <td colspan="6" class="customAlign customFontFormat">MTD</td>
+                                        <td colspan="6" class="customAlign customFontFormat">LMTD</td>
+                                        <td colspan="6" class="customAlign customFontFormat">GROWTH</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="customAlign"><strong>Call</strong></td>
+                                        <td class="customAlign"><strong>Lead</strong></td>
+                                        <td class="customAlign"><strong>D.Coll.</strong></td>
+                                        <td class="customAlign"><strong>Sanc.</strong></td>
+                                        <td class="customAlign"><strong>Disb.</strong></td>
+                                        <td class="customAlign"><strong>Total</strong></td>
+
+                                        <td class="customAlign"><strong>Call</strong></td>
+                                        <td class="customAlign"><strong>Lead</strong></td>
+                                        <td class="customAlign"><strong>D.Coll.</strong></td>
+                                        <td class="customAlign"><strong>Sanc.</strong></td>
+                                        <td class="customAlign"><strong>Disb.</strong></td>
+                                        <td class="customAlign"><strong>Total</strong></td>
+
+                                        <td class="customAlign"><strong>Call</strong></td>
+                                        <td class="customAlign"><strong>Lead</strong></td>
+                                        <td class="customAlign"><strong>D.Coll.</strong></td>
+                                        <td class="customAlign"><strong>Sanc.</strong></td>
+                                        <td class="customAlign"><strong>Disb.</strong></td>
+                                        <td class="customAlign"><strong>Total</strong></td>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:AgingData">
+                                    <tr>
+                                        <td><strong class="center" data-bind="text:BranchName"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstCall"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstLead"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstDataCollection"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstSanction"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstDisbursment"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:FirstTotal"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdCall"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdLead"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdDataCollection"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdSanction"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdDisbursment"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:ScdTotal"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthCall"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthLead"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthDataCollection"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthSanction"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthDisbursment"></strong></td>
+                                        <td><strong class="pull-right" data-bind="text:GrthTotal"></strong></td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+
+
+
+
+
+

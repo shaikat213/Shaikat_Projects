@@ -1,0 +1,625 @@
+﻿
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />*@
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "TLDashboard";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<style>
+    .CALL {
+        max-width: 310px;
+    }
+
+    .LEAD {
+        max-width: 310px;
+    }
+
+    .STATUS {
+        max-width: 310px;
+    }
+
+    .SUBMITTED {
+        max-width: 310px;
+    }
+
+    .DISB {
+        max-width: 310px;
+    }
+
+    .RMS {
+        max-width: 310px;
+    }
+
+    .table > tbody > tr > td {
+        text-align: left;
+    }
+
+    .control-label {
+        margin-top: 5px;
+        font-size: 12px !important;
+        font-weight: normal !important;
+    }
+
+    .form-control {
+        margin-top: 2px;
+    }
+</style>
+
+<section id="tlDashboard">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="form-group row row_design_cifr">
+                    <div class="col-sm-3">
+                        <label class="heading" style="padding-right: 0px;">HIGHLIGHTS</label>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-5">
+                        <div class="form-group row row_design">
+                            <div class="col-sm-4">
+                                <label class="control-label">Timeline :</label>
+                            </div>
+                            <div class="col-sm-7">
+                                <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLine, event:{change: GetHighlights}"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br />
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <strong>CALL</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+
+                            <div class="table-responsive">
+                                <table class="table table-striped CALL">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Call_HomeLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Call_PersonalLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Auto Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Call_AutoLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Liability</td>
+                                            <td><strong class="pull-right" data-bind="text:Call_Liability"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Undefined</td>
+                                            <td><strong class="pull-right" data-bind="text:Call_Undefined"></strong></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @*<div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Call_HomeLoan"></strong></div>
+                                    <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Call_PersonalLoan"></strong></div>
+                                    <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Call_AutoLoan"></strong></div>
+                                    <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:Call_Liability"></strong></div>
+                                    <div class="well well-sm">Undefined <strong class="pull-right" data-bind="text:Call_Undefined"></strong></div>*@
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <strong>LEAD</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+
+                            <div class="table-responsive">
+                                <table class="table table-striped LEAD">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Lead_HomeLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Lead_PersonalLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Auto Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Lead_AutoLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Liability</td>
+                                            <td><strong class="pull-right" data-bind="text:Lead_Liability"></strong></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <strong>NO. OF FILES SUBMITTED</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+
+                            <div class="table-responsive">
+                                <table class="table table-striped SUBMITTED">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Application_HomeLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Application_PersonalLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Auto Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Application_AutoLoan"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Liability</td>
+                                            <td><strong class="pull-right" data-bind="text:Application_Liability"></strong></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @*<div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Application_HomeLoan"></strong></div>
+                                    <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Application_PersonalLoan"></strong></div>
+                                    <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Application_AutoLoan"></strong></div>
+                                    <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:Application_Liability"></strong></div>*@
+                            </div>
+                        </div>
+                    </div>
+                </div><br />
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="col-sm-3 col-sm-offset-1">
+                            <strong>FILE APPROVAL STATUS</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+                            <div class="table-responsive">
+                                <table class="table table-striped STATUS">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_HomeLoan"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoan"></strong>)</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_HomeLoanAmount"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_HomeLoanAmount"></strong>)</td>
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoan"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoan"></strong>)</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_PersonalLoanAmount"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_PersonalLoanAmount"></strong>)</td>
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_AutoLoan"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoan"></strong>)</td>
+                                            <td style="text-align:right"><strong data-bind="text:Approved_AutoLoanAmount"></strong></td>
+                                            <td style="text-align:right">(<strong data-bind="text:Disapproved_AutoLoanAmount"></strong>)</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+
+                        </div>
+
+                        <div class="col-sm-3">
+                            <strong>AMOUNT DISB./REC.</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+
+                            <div class="table-responsive">
+                                <table class="table table-striped DISB">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Disbursed_HomeLoanAmount"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Disbursed_PersonalLoanAmount"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Auto Loan</td>
+                                            <td><strong class="pull-right" data-bind="text:Disbursed_AutoLoanAmount"></strong></td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Liability</td>
+                                            <td><strong class="pull-right" data-bind="text:ReceivedDepositAmount"></strong></td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                @*<div class="well well-sm">Home Loan <strong class="pull-right" data-bind="text:Disbursed_HomeLoanAmount"></strong></div>
+                                    <div class="well well-sm">Personal Loan <strong class="pull-right" data-bind="text:Disbursed_PersonalLoanAmount"></strong></div>
+                                    <div class="well well-sm">Auto Loan <strong class="pull-right" data-bind="text:Disbursed_AutoLoanAmount"></strong></div>
+                                    <div class="well well-sm">Liability <strong class="pull-right" data-bind="text:ReceivedDepositAmount"></strong></div>*@
+                            </div>
+                        </div>
+                        <div class="col-sm-3">
+                            <strong>TOP RMS</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                            <!--<fieldset>-->
+
+                            <div class="table-responsive">
+                                <table class="table table-striped RMS">
+                                    <tbody>
+                                        <tr class="well well-sm">
+                                            <td>Home Loan</td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMHomeLoan1"></strong><br />
+                                                <strong data-bind="text:RMHomeLoan2"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMHomeLoan1Amount"></strong><br />
+                                                <strong data-bind="text:RMHomeLoan2Amount"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                (<strong data-bind="text:RMHomeLoan1Count"></strong>)<br />
+                                                (<strong data-bind="text:RMHomeLoan2Count"></strong>)
+                                            </td>
+
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Personal Loan</td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMPersonalLoan"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMPersonalLoanAmount"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                (<strong data-bind="text:RMPersonalLoanCount"></strong>)
+                                            </td>
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Auto Loan</td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMAutoLoan"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMAutoLoanAmount"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                (<strong data-bind="text:RMAutoLoanCount"></strong>)
+                                            </td>
+                                        </tr>
+                                        <tr class="well well-sm">
+                                            <td>Liability</td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMLiability1"></strong><br />
+                                                <strong data-bind="text:RMLiability2"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                <strong data-bind="text:RMLiability1Amount"></strong><br />
+                                                <strong data-bind="text:RMLiability2Amount"></strong>
+                                            </td>
+                                            <td style="text-align:right">
+                                                (<strong data-bind="text:RMLiability1Count"></strong>)<br />
+                                                (<strong data-bind="text:RMLiability2Count"></strong>)
+                                            </td>
+
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col-sm-12">
+
+
+                <div class="form-group row row_design_cifr">
+                    <div class="col-sm-3">
+                        <label class="heading" style="padding-right: 0px;">ACTIVITY SUMMARY</label>
+
+                    </div>
+                    <div class="col-sm-6 col-sm-offset-3">
+                        <div class="form-group row row_design">
+                            <div class="col-sm-2">
+                                <label class="control-label">Product :</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-bind="options:Products,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProductId, event:{change: GetActivitySummaryOfTl}"></select>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="control-label">Timeline :</label>
+                            </div>
+                            <div class="col-sm-4">
+                                <select class="form-control" data-bind="options:TimeLines,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SelectedTimeLineForSummary, event:{change: GetActivitySummaryOfTl}"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <div class="form-group row row_design">
+                            <div class="col-sm-2">
+                                <label class="control-label">Product :</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class="control-label">Timeline :</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select class="form-control" id="" data-bind="optionsText:'Value', optionsCaption:'--Select--'"></select>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <div class="row" style="padding:25px;">
+            <div class="col-sm-12">
+                <div class="table-responsive" style="overflow-x:auto;">
+                    <table class="table table-striped table-bordered" frame="box">
+                        <thead class="headcolor">
+                            <tr>
+                                <th class="center">NAME</th>
+                                @*<th class="center">ROLE</th>*@
+                                <th class="center">CALLS (QTY)</th>
+                                <th class="center">LEAD</th>
+                                <th class="center">FILES SUBMITTED</th>
+                                <th class="center">FILES DISBURSED</th>
+                                <th class="center">FILES REJECTED</th>
+
+
+                            </tr>
+                        </thead>
+                        <tbody data-bind="foreach:LoadData">
+                            <tr>
+
+                                <td>
+                                    <strong data-bind="text:Name"></strong>
+                                </td>
+                                <td>
+                                    <strong data-bind="text:CallQty"></strong>
+                                </td>
+
+                                <td>
+                                    <strong data-bind="text:LeadSubmittedQty"></strong>
+                                    (<strong data-bind="text:numberFormatter(LeadSubmittedAmt)"></strong>)
+                                </td>
+                                <td>
+                                    <strong data-bind="text:FileSubmittedQty"></strong>
+                                    (<strong data-bind="text:numberFormatter(FileSubmittedAmt)"></strong>)
+                                </td>
+                                <td>
+                                    <strong data-bind="text:FileDisbursedQty"></strong>
+                                    (<strong data-bind="text:numberFormatter(FileDisbursedAmt)"></strong>)
+                                </td>
+                                <td>
+                                    <strong data-bind="text:FileRejectedQty"></strong>
+                                    (<strong data-bind="text:numberFormatter(FileRejectedAmt)"></strong>)
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+<script>
+    function numberFormatter(value) {
+        if (value > 999999)
+            return (value / 1000000).toFixed(1) + ' mln';
+        else if (value > 999)
+            return (value / 1000).toFixed(1) + ' k';
+        else
+            return value;
+
+    }
+    $(document).ready(function () {
+        function tlDashboardVM() {
+            var self = this;
+            self.ProductId = ko.observable();
+            self.Products = ko.observableArray([]);
+            self.Call_HomeLoan = ko.observable();
+            self.Call_PersonalLoan = ko.observable();
+            self.Call_AutoLoan = ko.observable();
+            self.Call_Liability = ko.observable();
+            self.Call_Undefined = ko.observable();
+
+            self.Lead_HomeLoan = ko.observable();
+            self.Lead_PersonalLoan = ko.observable();
+            self.Lead_AutoLoan = ko.observable();
+            self.Lead_Liability = ko.observable();
+
+            self.Application_HomeLoan = ko.observable();
+            self.Application_PersonalLoan = ko.observable();
+            self.Application_AutoLoan = ko.observable();
+            self.Application_Liability = ko.observable();
+
+            self.Approved_HomeLoan = ko.observable();
+            self.Approved_PersonalLoan = ko.observable();
+            self.Approved_AutoLoan = ko.observable();
+            self.Approved_HomeLoanAmount = ko.observable();
+            self.Approved_PersonalLoanAmount = ko.observable();
+            self.Approved_AutoLoanAmount = ko.observable();
+            self.Disapproved_HomeLoan = ko.observable();
+            self.Disapproved_PersonalLoan = ko.observable();
+            self.Disapproved_AutoLoan = ko.observable();
+            self.Disapproved_HomeLoanAmount = ko.observable();
+            self.Disapproved_PersonalLoanAmount = ko.observable();
+            self.Disapproved_AutoLoanAmount = ko.observable();
+
+            self.Disbursed_HomeLoanAmount = ko.observable();
+            self.Disbursed_PersonalLoanAmount = ko.observable();
+            self.Disbursed_AutoLoanAmount = ko.observable();
+            self.ReceivedDepositAmount = ko.observable();
+            ///
+            self.RMHomeLoan1 = ko.observable();
+            self.RMHomeLoan1Amount = ko.observable();
+            self.RMHomeLoan1Count = ko.observable();
+            self.RMHomeLoan2 = ko.observable();
+            self.RMHomeLoan2Amount = ko.observable();
+            self.RMHomeLoan2Count = ko.observable();
+            self.RMPersonalLoan = ko.observable();
+            self.RMPersonalLoanAmount = ko.observable();
+            self.RMPersonalLoanCount = ko.observable();
+            self.RMAutoLoan = ko.observable();
+            self.RMAutoLoanAmount = ko.observable();
+            self.RMAutoLoanCount = ko.observable();
+            self.RMLiability1 = ko.observable();
+            self.RMLiability1Amount = ko.observable();
+            self.RMLiability1Count = ko.observable();
+            self.RMLiability2 = ko.observable();
+            self.RMLiability2Amount = ko.observable();
+            self.RMLiability2Count = ko.observable();
+            ///
+            self.TimeLines = ko.observableArray([
+                { "Name": "Today", "Id": 1 },
+                { "Name": "Yesterday", "Id": 2 },
+                { "Name": "MTD", "Id": 3 },
+                { "Name": "LMTD", "Id": 4 },
+                { "Name": "YTD", "Id": 5 },
+                { "Name": "LYTD", "Id": 6 }
+            ]);
+            self.SelectedTimeLine = ko.observable(1);
+            self.SelectedTimeLineForSummary = ko.observable(1);
+            self.GetHighlights = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Dashboard/GetTLDashboardHighlights?timeLine=' + self.SelectedTimeLine(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.Call_HomeLoan(data.Call_HomeLoan);
+                        self.Call_PersonalLoan(data.Call_PersonalLoan);
+                        self.Call_AutoLoan(data.Call_AutoLoan);
+                        self.Call_Liability(data.Call_Liability);
+                        self.Call_Undefined(data.Call_Undefined);
+
+                        self.Lead_HomeLoan(data.Lead_HomeLoan);
+                        self.Lead_PersonalLoan(data.Lead_PersonalLoan);
+                        self.Lead_AutoLoan(data.Lead_AutoLoan);
+                        self.Lead_Liability(data.Lead_Liability);
+
+                        self.Application_HomeLoan(data.Application_HomeLoan);
+                        self.Application_PersonalLoan(data.Application_PersonalLoan);
+                        self.Application_AutoLoan(data.Application_AutoLoan);
+                        self.Application_Liability(data.Application_Liability);
+
+                        self.Approved_HomeLoan(data.Approved_HomeLoan);
+                        self.Approved_PersonalLoan(data.Approved_PersonalLoan);
+                        self.Approved_AutoLoan(data.Approved_AutoLoan);
+                        self.Approved_HomeLoanAmount(numberFormatter(data.Approved_HomeLoanAmount));
+                        self.Approved_PersonalLoanAmount(numberFormatter(data.Approved_PersonalLoanAmount));
+                        self.Approved_AutoLoanAmount(numberFormatter(data.Approved_AutoLoanAmount));
+                        self.Disapproved_HomeLoan(data.Disapproved_HomeLoan);
+                        self.Disapproved_PersonalLoan(data.Disapproved_PersonalLoan);
+                        self.Disapproved_AutoLoan(data.Disapproved_AutoLoan);
+                        self.Disapproved_HomeLoanAmount(numberFormatter(data.Disapproved_HomeLoanAmount));
+                        self.Disapproved_PersonalLoanAmount(numberFormatter(data.Disapproved_PersonalLoanAmount));
+                        self.Disapproved_AutoLoanAmount(numberFormatter(data.Disapproved_AutoLoanAmount));
+
+                        self.Disbursed_HomeLoanAmount(numberFormatter(data.Disbursed_HomeLoanAmount));
+                        self.Disbursed_PersonalLoanAmount(numberFormatter(data.Disbursed_PersonalLoanAmount));
+                        self.Disbursed_AutoLoanAmount(numberFormatter(data.Disbursed_AutoLoanAmount));
+                        self.ReceivedDepositAmount(numberFormatter(data.ReceivedDepositAmount));
+
+                        self.RMHomeLoan1(data.RMHomeLoan1);
+                        self.RMHomeLoan1Amount(numberFormatter(data.RMHomeLoan1Amount));
+                        self.RMHomeLoan1Count(numberFormatter(data.RMHomeLoan1Count));
+                        self.RMHomeLoan2(data.RMHomeLoan2);
+                        self.RMHomeLoan2Amount(numberFormatter(data.RMHomeLoan2Amount));
+                        self.RMHomeLoan2Count(numberFormatter(data.RMHomeLoan2Count));
+                        self.RMPersonalLoan(data.RMPersonalLoan);
+                        self.RMPersonalLoanAmount(numberFormatter(data.RMPersonalLoanAmount));
+                        self.RMPersonalLoanCount(numberFormatter(data.RMPersonalLoanCount));
+                        self.RMAutoLoan(data.RMAutoLoan);
+                        self.RMAutoLoanAmount(numberFormatter(data.RMAutoLoanAmount));
+                        self.RMAutoLoanCount(numberFormatter(data.RMAutoLoanCount));
+                        self.RMLiability1(data.RMLiability1);
+                        self.RMLiability1Amount(numberFormatter(data.RMLiability1Amount));
+                        self.RMLiability1Count(numberFormatter(data.RMLiability1Count));
+                        self.RMLiability2(data.RMLiability2);
+                        self.RMLiability2Amount(numberFormatter(data.RMLiability2Amount));
+                        self.RMLiability2Count(numberFormatter(data.RMLiability2Count));
+                        //self.GetActivitySummaryOfTl();
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+            self.LoadData = ko.observableArray([]);
+            self.GetActivitySummaryOfTl = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Dashboard/GetActivitySummaryOfTl?productId='+self.ProductId() +'&timeLine=' + self.SelectedTimeLineForSummary(),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.LoadData(data);
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+            self.GetProducts = function () {
+                return $.ajax({
+                    type: "GET",
+                    url: '/IPDC/Application/GetAllProducts',
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        self.Products(data); //Put the response in ObservableArray
+                    },
+                    error: function (error) {
+                        alert(error.status + "<--and--> " + error.statusText);
+                    }
+                });
+            }
+
+        }
+
+        var dashboard = new tlDashboardVM();
+        dashboard.GetHighlights();
+        dashboard.GetProducts();
+        //dashboard.GetActivitySummaryOfTl();
+        ko.applyBindings(dashboard, document.getElementById('tlDashboard'));
+    });
+</script>

@@ -1,0 +1,464 @@
+﻿
+<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<script src="~/Scripts/knockout.mapping-latest.js"></script>
+<script src="~/Areas/IPDC/Scripts/Operations/OperationApproval.js"></script>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<div id="crmIndexVw">
+    <div class="panel-body" style="padding:0;">
+        <div class="container-fluid">
+            <section>
+                <header class="panel-heading bodytitle">
+                    <h2 class="panel-title font">
+                        <b>Operation Approval</b>
+                    </h2>
+                </header>
+                <div class="container-fluid">
+                    <div class="row" style="margin-right:0">
+                        <div class="col-sm-12">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form class="form-horizontal" role="form">
+                                        <div class="form-group row row_design">
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Application No.:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:ApplicationNo"></span></label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Application Date:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:ApplicationDateText"></span></label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Product:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:ProductName"></span></label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Account Title:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:AccountTitle"></span></label>
+                                            </div>
+
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Application Type:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:ApplicationTypeName"></span></label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Approved Loan Amount:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:LoanAmountApplied"></span> BDT</label>
+                                            </div>
+
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Approved Loan term:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:Term"></span> Months</label>
+                                            </div>
+
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Approved Interest Rate:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:Rate"></span> %</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Processing fee:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:ServiceChargeAmount"></span> BDT</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Branch:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:BranchName"></span></label>
+                                            </div>
+
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">RM Name:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text:RMName"></span></label>
+                                            </div>
+                                           
+                                            <div class=" col-sm-2">
+                                                <label class="control-label">Priority:</label>
+                                            </div>
+                                            <div class=" col-sm-2">
+                                                <label class="control-label"><span data-bind="text: LeadPriorityName"></span></label>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="panel-group">
+                    <!--start APPLICATION DETAILS-->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <label>APPLICATION CIFs</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>CIF No.</th>
+                                        <th>Applicant’s Name</th>
+                                        <th>Age</th>
+                                        <th>Profession</th>
+                                        <th>Monthly Income</th>
+                                        <th>Verification Details</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:CIFList">
+                                    <tr>
+                                        <td><span data-bind="text:ApplicantRoleName"></span></td>
+                                        <td><span data-bind="text:CIFNo"></span></td>
+                                        <td><span data-bind="text:ApplicantName"></span></td>
+                                        <td><span data-bind="text:Age"></span></td>
+                                        <td><span data-bind="text:OccupationTypeName"></span></td>
+                                        <td><span data-bind="text:MonthlyIncome"></span></td>
+
+                                        <td>
+                                            <button type="button" aria-label="justify" class="button" data-bind="click:Details"><span>Detail</span></button>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <!--end APPLICATION DETAILS-->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <label>Owner CIFs</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Role</th>
+                                        <th>CIF No.</th>
+                                        <th>Name</th>
+                                        <th>Age</th>
+                                        <th>Profession</th>
+
+                                        <th>Verification Details</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:OwnerList">
+                                    <tr>
+                                        <td><span data-bind="text:CIF_Org_OwnersRoleName"></span></td>
+                                        <td><span data-bind="text:CIFNo"></span></td>
+                                        <td><span data-bind="text:Name"></span></td>
+                                        <td><span data-bind="text:Age"></span></td>
+                                        <td><span data-bind="text:ProfessionName"></span></td>
+                                        <td>
+                                            <button type="button" aria-label="justify" class="button" data-bind="click:Details"><span>Detail</span></button>
+                                        </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                    </div>
+                    <!--start GUARANTOR DETAILS-->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <label>GUARANTOR DETAILS</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>CIF No.</th>
+                                        <th>Guarantor’s Name</th>
+                                        <th>Age</th>
+                                        <th>Relation with Applicant</th>
+                                        <th>Guarantee Amount</th>
+                                        <th>View Details</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:Guarantors">
+                                    <tr>
+                                        <td><span data-bind="text:CIFNo"></span> </td>
+                                        <td><span data-bind="text:GuarantorName"></span></td>
+                                        <td><span data-bind="text:Age"></span></td>
+                                        <td><span data-bind="text:RelationshipWithApplicantName"></span></td>
+                                        <td><span data-bind="text:GuaranteeAmount"></span></td>
+                                        <td>
+                                            <button type="button" aria-label="justify" class="button" data-bind="click:GuarantorDetails"><span>Detail</span></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--end GUARANTOR DETAILS-->
+                    <!--start REFERENCE DETAILS-->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <label>REFERENCE DETAILS</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>CIF No.</th>
+                                        <th>Name of Reference</th>
+                                        <th>Organization</th>
+                                        <th>Relationship With Applicant</th>
+                                        @*<th>View Details</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:CIFReference">
+                                    <tr>
+                                        <td><span data-bind="text:CIFNo"></span></td>
+                                        <td><span data-bind="text:Name"></span></td>
+                                        <td><span data-bind="text:OrganizationName"></span></td>
+                                        <td>
+                                            <span data-bind="text:RelationshipWithApplicant"></span>
+                                        </td>
+                                        @*<td>
+                                            <button type="button" aria-label="justify" class="button"><span>Detail</span></button>
+                                        </td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--end REFERENCE DETAILS-->
+                    <!--start APPLICATION STATUS-->
+                    <!--end APPLICATION STATUS-->
+                    <!--start SECURITY DETAILS-->
+                    <div class="panel panel-default">
+
+                        <div class="panel-heading">
+                            <label>SECURITY DETAILS</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Product Name</th>
+                                        <th>Security Details</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:LoanAppColSecurities">
+                                    <tr>
+                                        <td data-bind="text : $index() +1"></td>
+                                        <td><span data-bind="text:ProductName"></span></td>
+                                        <td><span data-bind="text:SecurityDescription"></span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            @*<div class="col-sm-offset-10 col-sm-2">
+                                <button type="button" class="btn-q btn-primary"><span>Add More</span></button>
+                            </div>*@
+                        </div>
+                    </div>
+                    <!--end SECURITY DETAILS-->
+                    <!--start PROPERTY DETAILS (FOR HOME LOAN ONLY)-->
+                    <div class="panel panel-default" data-bind="visible:FacilityType() == 1">
+
+                        <div class="panel-heading">
+                            <label>PROPERTY DETAILS (FOR HOME LOAN ONLY)</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Property Type</th>
+                                        <th>Loan Purpose</th>
+                                        <th>As Per RAJUK</th>
+                                        <th>As Per Client</th>
+                                        <th>Flat Size</th>
+                                        <th>View Details</th>
+                                        <th>Project Legal</th>
+                                        <th>Project Technical</th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:Valuations">
+                                    <tr>
+                                        <td><span data-bind="text:PropertyTypeName"></span></td>
+                                        <td><span data-bind="text:Remarks"></span> </td>
+                                        <td><span data-bind="text:MarketValueOfLandAsPerRAJUK"></span> </td>
+                                        <td><span data-bind="text:MarketValueOfLandAsPerClient"></span> </td>
+                                        <td><span data-bind="text:FlatSize"></span> </td>
+                                        <td><button type="button" aria-label="justify" class="button" data-bind="click:$root.PropertyDetails"><span>Detail</span></button> </td>
+                                        <td><button type="button" aria-label="justify" class="button" data-bind="click:$root.Legal"><span>Detail</span></button> </td>
+                                        <td><button type="button" aria-label="justify" class="button" data-bind="click:$root.Technical"><span>Detail</span></button> </td>
+
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <div class="btn-group" data-bind="visible:IsLppAddVisible">
+                            <button type="button" data-bind="click:PropertyDetails" style="width:200px" class="btnLarge btn-q btn-default" title="Relese Application">Add Property Valuation</button>
+                        </div>
+                    </div>
+                    <!--end SECURITY DETAILS-->
+                    <!--start SECURITY DETAILS-->
+                    <div class="panel panel-default" data-bind="visible:FacilityType() == 2">
+
+                        <div class="panel-heading">
+                            <label>VEHICLE DETAILS (FOR AUTO LOAN ONLY)</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Vehicle Status</th>
+                                        <th>Vehicle Type</th>
+                                        <th>Vehicle Details</th>
+                                        <th>Vendor Details</th>
+                                        <th>Price as per Quotation</th>
+                                        <th>View Details</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:VehiclePrimarySecurities">
+                                    <tr>
+                                        <td><span data-bind="text:VehicleStatusName"></span> </td>
+                                        <td><span data-bind="text:VehicleTypeName"></span> </td>
+                                        <td style="white-space: pre; text-align: left"><span data-bind="text:VehicleDetail"></span> </td>
+                                        <td style="white-space: pre; text-align: left"><span data-bind="text:VendorDetail"></span> </td>
+                                        <td><span data-bind="text:Price"></span></td>
+                                        <td><button type="button" aria-label="justify" class="button" data-bind="click:$root.VehicleSecurityDetails"><span>Detail</span></button> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <!--end SECURITY DETAILS-->
+                    <!--start SECURITY DETAILS-->
+                    <div class="panel panel-default" data-bind="visible:false">
+
+                        <div class="panel-heading">
+                            <label>CONSUMER GOODS DETAILS (LOAN FOR CONSUMER GOODS ONLY)</label>
+                        </div>
+                        <div class="panel-body">
+
+                            <table class="table table-striped table-bordered" width='100%'>
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Vendor Details</th>
+                                        <th>Price as per Quotation</th>
+                                        <th>View Details</th>
+
+
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:ConsumerGoodsPrimarySecurities">
+                                    <tr>
+                                        <td><span data-bind="text:Item"></span></td>
+                                        <td style="white-space: pre; text-align: left"><span data-bind="text:VendorDetail"></span></td>
+                                        <td><span data-bind="text:Price"></span></td>
+                                        <td><button type="button" aria-label="justify" class="button" data-bind="click:$root.ConsumerDetails"><span>Detail</span></button> </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+                        </div>
+                    </div>
+                    <!--end SECURITY DETAILS-->
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="pull-right">
+                        @*<div class="btn-group">
+                            <button type="button" style="width:200px" data-bind="click:OppApproval" class="btn-default btn-q" title="Create Memo">Operation Approval</button>
+                        </div>*@
+                        <div class="btn-group">
+                            <button type="button" style="width: 200px" data-bind="click:PrintProposal" class="btn-default btn-q" title="Create Proposal">Print Proposal</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" style="width: 200px" data-bind="click:PrintOfferLetter" class="btn-default btn-q" title="Create Offer Letter">Print Offer Letter</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" style="width: 100px" data-bind="click:PrintDCL" class="btn-default btn-q" title="Print DCL Report">Print DCL</button>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success" style="width:auto" data-bind="event:{click:FullApplication}">View Application</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="successModal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                <h4 class="modal-title">Response</h4>
+                            </div>
+                            <div class="modal-body" align="center">
+                                <p id="successModalText"></p>
+                                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                            </div>
+                            <div class="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+
+</div>
+
+

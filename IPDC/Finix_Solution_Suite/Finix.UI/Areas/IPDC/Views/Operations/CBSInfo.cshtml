@@ -1,0 +1,264 @@
+﻿<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Operations/CBSInfo.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet"/>
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+@{
+    ViewBag.Title = "CBS Info.";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="cbsInfo">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>CBS Info.</b>
+        </h2>
+    </header>
+    <br />
+    <div>
+        <div class="container">
+            <div class="row">
+                <section class="rm">
+                    <div class="panel-body">
+
+                        <div class="container-fluid ">
+
+                            <div class="col-sm-8">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="headcolor">
+                                        <tr>
+                                            <th class="center">CIF No.</th>
+                                            <th class="center">Applicant Name</th>
+                                            <th class="center">CBS CIF No.</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:applicationCIFList">
+                                        <tr>
+                                            <td style="display:none"><input type="hidden" data-bind="value:Id" /></td>
+                                            <td class="center control-label" data-bind="text: CIFNo"></td>
+                                            <td class="center control-label" data-bind="text: CIFName"></td>
+                                            <td class="center">
+                                                <input type="text" data-bind="value:CBSCIFNo " class="form-control">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <br />
+
+        <!--start APPLICATION DETAILS-->
+        <div class="container">
+            <div class="row">
+
+                <div class="panel-body">
+
+                    <div class="container-fluid ">
+                        <div class="col-sm-8">
+
+
+                            <!--<fieldset>-->
+                            <div class="form-group row row_design">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label duplicateAlignment">CBS Account Opening Date</label>
+                                </div>
+
+
+                                @*<div class="col-sm-6 input-group input-group_cif date" >
+                                    <input type="date" data-bind="date:AccountOpenDate" class="form-control"/>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>*@
+
+                                <div class="col-sm-6" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: AccountOpenDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-bind="datepicker:AccountOpenDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                        <span class="help-block" style="display: none;"></span>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design" data-bind="visible: ProductType()===1">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Instrument No.</label>
+                                </div>
+                                <div class="col-sm-6">
+
+                                    <input type="text" data-bind="value: InstrumentNo" class="form-control"/>
+
+                                </div>
+                                <div class="col-sm-1">
+
+                                </div>
+                            </div>
+                            @*New Field*@
+
+                            <div class="form-group row row_design" data-bind="visible: ProductType()===1">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Instrument Date</label>
+                                </div>
+                                @*<div class="col-sm-6 input-group input-group_cif date" >
+                                    <input type="date" data-bind="date:InstrumentDate" class="form-control"/>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>*@
+
+                                <div class="col-sm-6" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: InstrumentDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-bind="datepicker:InstrumentDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                        <span class="help-block" style="display: none;"></span>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-1">
+
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label">CBS Account No.</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:CBSAccountNo" class="form-control"/>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-5">
+                                    <label class="control-label">CBS Branch ID</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" data-bind="value:CBSBranchId, " class="form-control" />
+                                </div>
+                            </div>
+
+                            <div class="form-group row row_design" data-bind="visible: ProductType()===1">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Maturity Date</label>
+                                </div>
+                                @*<div class="col-sm-6 input-group input-group_cif date">
+                                    <input type="date" data-bind="date:MaturityDate" class="form-control"/>
+                                    <div class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </div>
+                                </div>*@
+                                <div class="col-sm-6" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: MaturityDate">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" data-bind="datepicker:MaturityDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                        <span class="help-block" style="display: none;"></span>
+                                        <div class="input-group-addon">
+                                            <span class="glyphicon glyphicon-calendar"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1">
+
+                                </div>
+                            </div>
+                            <div class="form-group row row_design" data-bind="visible: ProductType()===1">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Instrument Delivery Status</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <select id="LegalStatus" data-bind="options:InstrumentDispatchStatusList, value: InstrumentDispatchStatus, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                    @*options:CallSourceList, value: CallSource, optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--'*@
+                                </div>
+                                <div class="col-sm-1">
+
+                                </div>
+
+                            </div>
+                            <div class="form-group row row_design" data-bind="visible: ProductType()===1">
+
+                                <div class="col-sm-5">
+                                    <label class="control-label">Maturity Amount</label>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="number" data-bind="value: MaturityAmount, valueUpdate:'keyup'" class="form-control hidden"/>
+                                    <input type="text" data-bind="value: MaturityAmountFormatted" class="form-control" />
+                                </div>
+                                <div class="col-sm-1">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group row row_design">
+                            <div class="col-sm-6 pull-right">
+                                <div class="col-sm-offset-6" data-bind="">
+                                    <button type="button" class="btn btn-success btnLarge" data-bind="click:SaveCbsInfo, enable:IsValid, valueUpdate:'keyup'">Save</button>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="successModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Response</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <p id="successModalText"></p>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+

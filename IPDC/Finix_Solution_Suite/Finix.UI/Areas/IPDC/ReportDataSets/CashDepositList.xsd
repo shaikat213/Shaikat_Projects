@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CashDepositList" targetNamespace="http://tempuri.org/CashDepositList.xsd" xmlns:mstns="http://tempuri.org/CashDepositList.xsd" xmlns="http://tempuri.org/CashDepositList.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CashDepositList" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CashDepositList" msprop:Generator_UserDSName="CashDepositList">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DepAppCashDto" msprop:Generator_TableClassName="DepAppCashDtoDataTable" msprop:Generator_TableVarName="tableDepAppCashDto" msprop:Generator_RowChangedName="DepAppCashDtoRowChanged" msprop:Generator_TablePropName="DepAppCashDto" msprop:Generator_RowDeletingName="DepAppCashDtoRowDeleting" msprop:Generator_RowChangingName="DepAppCashDtoRowChanging" msprop:Generator_RowEvHandlerName="DepAppCashDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="DepAppCashDtoRowDeleted" msprop:Generator_RowClassName="DepAppCashDtoRow" msprop:Generator_UserTableName="DepAppCashDto" msprop:Generator_RowEvArgName="DepAppCashDtoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositApplicationId" msprop:Generator_ColumnVarNameInTable="columnDepositApplicationId" msprop:Generator_ColumnPropNameInRow="DepositApplicationId" msprop:Generator_ColumnPropNameInTable="DepositApplicationIdColumn" msprop:Generator_UserColumnName="DepositApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositedTo" msprop:Generator_ColumnVarNameInTable="columnDepositedTo" msprop:Generator_ColumnPropNameInRow="DepositedTo" msprop:Generator_ColumnPropNameInTable="DepositedToColumn" msprop:Generator_UserColumnName="DepositedTo" type="xs:string" minOccurs="0" />
+              <xs:element name="IPDCBankAccount" msprop:Generator_ColumnVarNameInTable="columnIPDCBankAccount" msprop:Generator_ColumnPropNameInRow="IPDCBankAccount" msprop:Generator_ColumnPropNameInTable="IPDCBankAccountColumn" msprop:Generator_UserColumnName="IPDCBankAccount" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositorName" msprop:Generator_ColumnVarNameInTable="columnDepositorName" msprop:Generator_ColumnPropNameInRow="DepositorName" msprop:Generator_ColumnPropNameInTable="DepositorNameColumn" msprop:Generator_UserColumnName="DepositorName" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositorPhone" msprop:Generator_ColumnVarNameInTable="columnDepositorPhone" msprop:Generator_ColumnPropNameInRow="DepositorPhone" msprop:Generator_ColumnPropNameInTable="DepositorPhoneColumn" msprop:Generator_UserColumnName="DepositorPhone" type="xs:string" minOccurs="0" />
+              <xs:element name="CashDepositDate" msprop:Generator_ColumnVarNameInTable="columnCashDepositDate" msprop:Generator_ColumnPropNameInRow="CashDepositDate" msprop:Generator_ColumnPropNameInTable="CashDepositDateColumn" msprop:Generator_UserColumnName="CashDepositDate" type="xs:string" minOccurs="0" />
+              <xs:element name="CashDepositDateTxt" msprop:Generator_ColumnVarNameInTable="columnCashDepositDateTxt" msprop:Generator_ColumnPropNameInRow="CashDepositDateTxt" msprop:Generator_ColumnPropNameInTable="CashDepositDateTxtColumn" msprop:Generator_UserColumnName="CashDepositDateTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositAmount" msprop:Generator_ColumnVarNameInTable="columnDepositAmount" msprop:Generator_ColumnPropNameInRow="DepositAmount" msprop:Generator_ColumnPropNameInTable="DepositAmountColumn" msprop:Generator_UserColumnName="DepositAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositAccntName" msprop:Generator_ColumnVarNameInTable="columnDepositAccntName" msprop:Generator_ColumnPropNameInRow="DepositAccntName" msprop:Generator_ColumnPropNameInTable="DepositAccntNameColumn" msprop:Generator_UserColumnName="DepositAccntName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DepAppCashDtoKey1">
+      <xs:selector xpath=".//mstns:DepAppCashDto" />
+      <xs:field xpath="mstns:Id" />
+      <xs:field xpath="mstns:DepositApplicationId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

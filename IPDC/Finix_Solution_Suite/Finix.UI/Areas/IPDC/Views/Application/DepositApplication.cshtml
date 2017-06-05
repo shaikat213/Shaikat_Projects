@@ -1,0 +1,744 @@
+﻿@*
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+    <script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+    <script src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/knockout-date-bindings.js"></script>
+    <script src="~/Areas/IPDC/Scripts/Application/depositApplication.js"></script>
+*@
+<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+@*<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />*@
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+
+
+@{
+    ViewBag.Title = "Application Deposit";
+    //Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<div id="DepositApplication">
+
+    <div class="">
+        <section class="panel-bodycontent">
+            <header class="panel-heading bodytitle">
+                <h2 class="panel-title font">
+                    <b>Deposit Application</b>
+                </h2>
+            </header>
+            <div class="row">
+                <form class="form-horizontal col-sm-12" role="form">
+
+                    <div id="dismiss" class="container-fluid">
+
+                        <ul class="nav nav-tabs nav-justified" role="tablist">
+                            <li role="presentation" class="active"><a href="#DepositInfo" role="tab" data-toggle="tab" aria-controls="PersonalInformation">Mode of Deposit</a></li>
+                            <li role="presentation"><a href="#DepositInfoCont" role="tab" data-toggle="tab" aria-controls="GuarantorInfo">Deposit Info</a></li>
+                            <li role="presentation"><a href="#NomineeInfo" role="tab" data-toggle="tab" aria-controls="AOApplication">Nominee Info</a></li>
+                            @*<li role="presentation"><a href="#CheckOperation" role="tab" data-toggle="tab" aria-controls="WStatement">Checking & Operations</a></li>*@
+
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="DepositInfo">
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="tab-content">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+                                                        @*<div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label>Mode Of Deposit<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options:ModeOfDeposits,value: ModeOfDeposit, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                </div>
+                                                            </div>*@
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <label>Cheque Deposit</label>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped table-bordered" width='100%'>
+                                                                        <thead class="headcolor">
+                                                                            <tr>
+                                                                                <th>Cheque No.</th>
+                                                                                <th>Cheque Date</th>
+                                                                                <th>Cheque Bank</th>
+                                                                                <th>Deposited To (IPDC Account #)</th>
+                                                                                <th>Deposit Date</th>
+                                                                                <th>Deposit Amount</th>
+                                                                                <th><a class="plus" href='#' data-bind='click: AddChequeDeposits'><span class="glyphicon glyphicon-plus"></span></a></th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody data-bind="foreach:ChequeDeposits">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <input type="text" data-bind="value:ChequeNo" class="form-control" />
+
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: ChequeDate">
+                                                                                        <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:ChequeDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                                        <span class="help-block" style="display: none;"></span>
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" data-bind="value:ChequeBank" class="form-control" />
+                                                                                </td>
+
+
+                                                                                <td>
+
+                                                                                    <select data-bind="options:$parent.ChequeIPDCBankAccounts, value: DepositedTo, optionsValue:'Id',optionsText:'BankName',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: DepositDate">
+                                                                                        <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:DepositDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                                        <span class="help-block" style="display: none;"></span>
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="number" min="0" data-bind="value:DepositAmount, valueUpdate:'keyup'" class="form-control hidden" />
+                                                                                    <input type="text" data-bind="value: ChequDepositAmountFormatted" class="form-control" />
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <a class="plus" href='#' data-bind='click: $parent.AddChequeDeposits'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                                    <a class="minus" href='#' data-bind='click: $parent.RemoveChequeDeposits'><span class="glyphicon glyphicon-minus"></span></a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <label>Transfer Deposit</label>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped table-bordered" width='100%'>
+                                                                        <thead class="headcolor">
+                                                                            <tr>
+                                                                                <th>Transfer Date</th>
+                                                                                <th>Source Bank</th>
+                                                                                <th>Deposited To (IPDC Account #)</th>
+                                                                                <th>Deposit Amount</th>
+                                                                                <th><a class="plus" href='#' data-bind='click: AddTransferDeposits'><span class="glyphicon glyphicon-plus"></span></a></th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody data-bind='foreach:TransferDeposits'>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div class="input-group" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: TransferDate">
+                                                                                        <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:TransferDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                                        <span class="help-block" style="display: none;"></span>
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" data-bind="value:SourceBank" class="form-control" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <select data-bind="options:$parent.TransferIPDCBankAccounts, value: DepositedTo, optionsValue: 'Id',optionsText:'BankName',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" min="0" data-bind="value:DepositAmount, valueUpdate:'keyup'" class="form-control hidden" />
+                                                                                    <input type="text" data-bind="value: TransDepositAmountFormatted" class="form-control" />
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <a class="plus" href='#' data-bind='click: $parent.AddTransferDeposits'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                                    <a class="minus" href='#' data-bind='click: $parent.RemoveTransferDeposits'><span class="glyphicon glyphicon-minus"></span></a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-heading">
+                                                                    <label>Cash Deposit</label>
+                                                                </div>
+                                                                <div class="panel-body">
+                                                                    <table class="table table-striped table-bordered" width='100%'>
+                                                                        <thead class="headcolor">
+                                                                            <tr>
+                                                                                <th>Deposited To (IPDC Account #)</th>
+                                                                                <th>Depositor Name</th>
+                                                                                <th>Phone</th>
+                                                                                <th>Date</th>
+                                                                                <th>Amount</th>
+                                                                                <th><a class="plus" href='#' data-bind='click: AddCashDepositsLine'><span class="glyphicon glyphicon-plus"></span></a></th>
+
+                                                                            </tr>
+                                                                        </thead>
+                                                                        <tbody data-bind='foreach:CashDeposits'>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <select data-bind="options:$parent.CashIPDCBankAccounts, value: DepositedTo, optionsValue: 'Id',optionsText:'BankName',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" data-bind="value:DepositorName" class="form-control" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="text" data-bind="value:DepositorPhone" class="form-control" />
+                                                                                </td>
+                                                                                <td>
+                                                                                    <div class="input-group" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: CashDepositDate">
+                                                                                        <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:CashDepositDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                                        <span class="help-block" style="display: none;"></span>
+                                                                                        <div class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </td>
+                                                                                <td>
+                                                                                    <input type="number" min="0" data-bind="value:DepositAmount, valueUpdate:'keyup'" class="form-control hidden" />
+                                                                                    <input type="text" data-bind="value: CashDepositAmountFormatted" class="form-control" />
+                                                                                </td>
+
+                                                                                <td>
+                                                                                    <a class="plus" href='#' data-bind='click: $parent.AddCashDepositsLine'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                                    <a class="minus" href='#' data-bind='click: $parent.RemoveCashDepositsLine'><span class="glyphicon glyphicon-minus"></span></a>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </tbody>
+                                                                    </table>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+
+                                                            <div class="col-sm-3">
+                                                                <label>Total Deposit Amount<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <span type="text" data-bind="text:TotalDepositAmount" class="form-control hidden"></span>
+                                                                <input type="text" data-bind="value: TotalDepositAmountFormatted" class="form-control" />
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="DepositInfoCont">
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <div class="tab-content">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-body">
+                                                                    <fieldset>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="panal panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <label>
+                                                                                        General Info
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Mode Of Operation<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6" data-bind="">
+                                                                                            <select data-bind="options:ModeOfOperations, value:ModeOfOperation, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                            @*<select data-bind="options:ApplicationTypes, value:ApplicationType, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control" ></select>*@
+
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Special Instruction<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6" data-bind="">
+                                                                                            <input type="text" data-bind="value:SpecialInstructions" class="form-control" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Deposit Class<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6" data-bind="">
+                                                                                            <select data-bind="options:DepositClasses, value: DepositClass, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--',event : {change : chkDepositClass}" class="form-control"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Term (months)</label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <input type="number" data-bind="value:Term, valueUpdate:'keyup'" class="form-control" />
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div data-bind="visible: DepositClass()===1">
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Card Rate (%)<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6">
+                                                                                                <input type="number" data-bind="value:CardRate, valueUpdate:'keyup'" class="form-control"/>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <a target="_blank" class="btn" data-bind="attr:{href:  $root.ViewCardRate($data) }">View Rate Chart </a>
+                                                                                            @*<button type="button" class="btn btn-success btn-q" data-bind="click:ViewCardRate">Rate Chart</button>*@
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Offer Rate<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <input type="number" data-bind="value:OfferRate, valueUpdate:'keyup'" class="form-control" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Rate Variance<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <input type="number" data-bind="value:RateVariance, valueUpdate:'keyup'" class="form-control" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Approved By<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <select data-bind="options:ApprovedByDegList, value: ApprovedBy, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Renewal Option<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <select data-bind="options:RenewalOpts, value: RenewalOpt, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Withdrawal Mode<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <select data-bind="options:WithdrawalModes, value: WithdrawalMode, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--',event :{change : chkEFT}" class="form-control"></select>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div>
+                                                                                            <div class="col-sm-12">
+                                                                                                <div class="col-sm-6">
+                                                                                                    <label class="dfon">CIF Account Title<span class="required">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6" data-bind="">
+                                                                                                    <input type="text" data-bind="value:CIFAccountTitle" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-12">
+                                                                                                <div class="col-sm-6">
+                                                                                                    <label class="dfon">CIF Bank Account No<span class="required">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6" data-bind="">
+                                                                                                    <input type="text" data-bind="value:CIFBankAccNo" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-12" data-bind="visible: WithdrawalMode() === 2">
+                                                                                                <div class="col-sm-6">
+                                                                                                    <label class="dfon">CIF Routing No<span class="required">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6" data-bind="">
+                                                                                                    <input type="text" data-bind="value:CIFRoutingNo" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-12">
+                                                                                                <div class="col-sm-6">
+                                                                                                    <label class="dfon">CIF Bank Branch<span class="required">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6" data-bind="">
+                                                                                                    <input type="text" data-bind="value:CIFBankBranch" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                            <div class="col-sm-12">
+                                                                                                <div class="col-sm-6">
+                                                                                                    <label class="dfon">CIF Bank<span class="required">*</span></label>
+                                                                                                </div>
+                                                                                                <div class="col-sm-6" data-bind="">
+                                                                                                    <input type="text" data-bind="value:CIFBank" class="form-control" />
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div data-bind="visible: DepositClass()===2">
+
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Initial Deposit<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <input type="number" data-bind="value:InitialDeposit, valueUpdate:'keyup'" class="form-control" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Installment Size<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <input type="number" data-bind="value:InstallmentSize, valueUpdate:'keyup'" class="form-control" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Maturity Amount<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <input type="number" data-bind="value:MaturityAmount, valueUpdate:'keyup'" class="form-control hidden" />
+                                                                                                <input type="text" data-bind="value: MaturityAmountFormatted" class="form-control" />
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div>
+                                                                                        <div class="col-sm-12">
+                                                                                            <div class="col-sm-6">
+                                                                                                <label class="dfon">Source of Fund<span class="required">*</span></label>
+                                                                                            </div>
+                                                                                            <div class="col-sm-6" data-bind="">
+                                                                                                <textarea data-bind="value:SourceOfFund" class="form-control"></textarea>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-sm-6">
+                                                                            <div class="panal panel-default" data-bind="visible: ApplicantAge() < 17">
+                                                                                <div class="panel-heading">
+                                                                                    <label>
+                                                                                        Applicant Guardian Info
+                                                                                    </label>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Guardian CIF<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <input data-bind="jqAuto: { value: AppGuiardianCif, source: GetCIFList, inputProp: 'value', labelProp: 'value' }" class="form-control" />
+                                                                                            @*<select data-bind="options:AppGuiardianCifList, value: GuiardianCifId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>*@
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12" data-bind="visible: ApplicantAge() < 17">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Relationship with Applicant <span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+
+                                                                                            <select class="form-control loan" data-bind="options:Relationships, value: RelationshipWithApplicant, optionsValue:'Id', optionsText: 'Name', optionsCaption: '......Choose......'"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+
+                                                                            </div>
+                                                                            <div class="panal panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <label>Other Information</label>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Information of Beneficial Owner<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <textarea data-bind="value:BenificialOwner" class="form-control"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">What is the Source Of Fund<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <textarea data-bind="value:SourceOfFundDetail" class="form-control"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">How Source of Fund has been verified (if applicable)<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <textarea data-bind="value:SourceOfFundVerificationMethod" class="form-control"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Is the Source of fund consistent with the profession of the client? Justify the consistency by giving details description of client profession<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <textarea data-bind="value:SourceOfFundConsistency" class="form-control"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Risk Level<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <select data-bind="options:RiskLevels, value:RiskLevel, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Comment<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <textarea data-bind="value:Remarks" class="form-control"></textarea>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="NomineeInfo">
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <div class="tab-content">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+
+                                                    <div class="panel-heading">
+                                                        <label>Nominees</label>
+                                                    </div>
+                                                    <div class="panel-body">
+
+                                                        <table class="table table-striped table-bordered" width='100%'>
+                                                            <thead class="headcolor">
+                                                                <tr>
+                                                                    <th>Nominee</th>
+                                                                    <th>Relation With Applicant</th>
+                                                                    <th>% Share</th>
+                                                                    <th>Guiardian</th>
+                                                                    <th>Relation With Nominee</th>
+                                                                    <th><a class="plus" href='#' data-bind='click: AddNomineesLine'><span class="glyphicon glyphicon-plus"></span></a></th>
+
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody data-bind="foreach:Nominees">
+                                                                <tr>
+                                                                    <td>
+                                                                        <input data-bind="jqAuto: { value: NomineeCif, source: $parent.GetCIFList, inputProp: 'value', labelProp: 'value' }" class="form-control" />
+                                                                        @*<select data-bind="options:$parent.NomineeCif, value: NomineeCifId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>*@
+                                                                    </td>
+                                                                    <td>
+                                                                        <select class="form-control loan" data-bind="options:$parent.Relationships, value: RelationshipWithApplicant, optionsValue:'Id', optionsText: 'Name', optionsCaption: '......Choose......'"></select>
+
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="number" data-bind="value:PercentageShare, valueUpdate:'keyup'" class="form-control" />
+                                                                    </td>
+                                                                    <td>
+                                                                        <input data-bind="jqAuto: { value: GuiardianCif, source: $parent.GetCIFList, inputProp: 'value', labelProp: 'value' }" class="form-control" />
+                                                                        @*<select data-bind="options:$parent.GuiardianCif, value: GuiardianCifId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>*@
+
+                                                                    </td>
+                                                                    <td>
+                                                                        @*<input type="datetime" data-bind="value:GuidRelationWithNom" class="form-control" />*@
+                                                                        <select class="form-control loan" data-bind="options:$parent.Relationships, value: GuidRelationWithNom, optionsValue:'Id', optionsText: 'Name', optionsCaption: '......Choose......'"></select>
+                                                                    </td>
+
+                                                                    <td>
+                                                                        <a class="plus" href='#' data-bind='click: $parent.AddNomineesLine'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                        <a class="minus" href='#' data-bind='click: $parent.RemoveNomineesLine'><span class="glyphicon glyphicon-minus"></span></a>
+                                                                        <a class="plus" href="#" data-bind="click: $parent.NomineeCIFPDetails, visible: NomineeCifId() > 0" title="Nominee CIF Detail"><span class="glyphicon glyphicon-align-justify"></span></a>
+                                                                        <a class="plus" href="#" data-bind="click: $parent.GuiardianCIFPDetails, visible: GuiardianCifId() > 0" title="Guiardian CIF Detail"><span class="glyphicon glyphicon-align-justify"></span></a>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="tab-pane fade" id="CheckOperation">
+                                <div class="row">
+
+                                    <div class="col-sm-12">
+                                        <div class="tab-content">
+                                            <div class="panel-group">
+                                                <div class="panel panel-default">
+                                                    <div class="panel-body">
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="panel panel-default">
+                                                                <div class="panel-body">
+                                                                    <fieldset>
+                                                                        <div class="col-sm-6">
+                                                                            <div class="panal panel-default">
+                                                                                <div class="panel-heading">
+                                                                                    <label><span class="centerfont">Checking</span></label>
+                                                                                </div>
+                                                                                <div class="panel-body">
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Fund Realization<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <input type="checkbox" data-bind="checked:FundRealization" />
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Date<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6 " style="padding-left:15px; padding-right:15px;">
+                                                                                            <div class="input-group input-group_cif date" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: FundRealizationDate">
+                                                                                                <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:FundRealizationDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                                                                                <span class="help-block" style="display: none;"></span>
+                                                                                                <div class="input-group-addon">
+                                                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Application Status<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <select data-bind="options:ApplicationStatuses, value:ApplicationStatus, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Task Assigned To<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            @*<select data-bind="options:ApprovedByDegList, value: ApprovedBy, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>*@
+                                                                                            <select data-bind="options:TaskAssignedToList, value:TaskAssignedToId, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Checking Section<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <select data-bind="options:SanctionChecks, value:SanctionCheck, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--'" class="form-control"></select>
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                    <div class="col-sm-12">
+
+                                                                                        <div class="col-sm-6">
+                                                                                            <label class="dfon">Section Remarks<span class="required">*</span></label>
+                                                                                        </div>
+                                                                                        <div class="col-sm-6">
+                                                                                            <input type="text" data-bind="value:SanctionRemarks" class="form-control" />
+                                                                                        </div>
+
+                                                                                    </div>
+
+
+                                                                                </div>
+
+                                                                            </div>
+                                                                        </div>
+                                                                    </fieldset>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group row row_design">
+                                <div class="col-sm-9">
+
+                                </div>
+                                <div class="col-sm-3">
+                                    <button type="submit" data-bind="click:Submit" class="btn btn-success">Save</button>
+                                    <button type="reset" data-bind="click:Reset" class="btn btn-default">Reset</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <div>
+        <div id="successModal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Response</h4>
+                    </div>
+                    <div class="modal-body" align="center">
+                        <p id="successModalText"></p>
+                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

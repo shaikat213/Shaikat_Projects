@@ -1,0 +1,337 @@
+﻿
+@{
+    ViewBag.Title = "Document Check List";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+<script src="~/Areas/IPDC/Scripts/Operations/DocumentCheckList.js"></script>
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="DocCheckListVW">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Document Check List</b>
+        </h2>
+    </header>
+
+    <br />
+
+    <div>
+
+
+        <div class="container">
+            <div class="row">
+
+                <section class="rm">
+                    <div class="panel-body">
+
+                        <div class="container-fluid ">
+
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-sm-12">
+
+                                        <div class="form-group row row_design">
+
+                                            <div class="col-sm-2">
+                                                <label class="control-label" style="text-align: left;">Application No. :</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <strong><span data-bind="text:ApplicationNo"></span></strong>
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="control-label" style="text-align: left;">Application Title :</label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <strong><span data-bind="text:AccountTitle"></span></strong>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="form-group row row_design">
+
+                                            <div class="col-sm-2">
+                                                <label class="control-label" style="text-align: left;">Facility :</label>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <strong><span data-bind="text:ProductName"></span></strong>
+                                            </div>
+
+
+                                            <div class="col-sm-3">
+                                                <label class="control-label" style="text-align: left;">Term :</label>
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <strong><span data-bind="text:Term"></span></strong>
+                                            </div>
+                                        </div>
+
+                                        <br />
+
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </section>
+                <br />
+                <div class="form-group row row_design_detail">
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label class="control-label">DCL Date :</label>
+                    </div>
+                    @*<div class="col-sm-3 input-group input-group_cif date" style="padding-left: 15px; padding-right: 15px;">
+
+                            <input type="date" data-bind="date: DCLDate" class="form-control lignHeightDate" />
+
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>*@
+                    <div class="col-sm-3" style="padding-left:15px; padding-right:15px;" data-bind="validationElement: DCLDate">
+                        <div class="input-group">
+                            @*<input type="text" class="form-control" data-bind="datepicker:DCLDate, datepickerOptions: {minDate:moment()}, valueUpdate:'keyup'">
+                            <span class="help-block" style="display: none;"></span>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>*@
+
+                            <input type="text" class="form-control" data-bind="datepicker:DCLDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                            <span class="help-block" style="display: none;"></span>
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @*<div class="form-group row row_design_detail">
+                        <div class="col-sm-2 col-sm-offset-2">
+                            <label class="control-label">Is Approved :</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <input type="checkbox" data-bind="checked: IsApproved">
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        <br />
+        <!--start APPLICATION DETAILS-->
+
+        <div class="panel panel-default">
+
+
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form">
+
+                    <div class="panel-body">
+                        <div class="panel-bodycontent">
+                            <div class="panel-heading row_design_cifNetworth">
+                                <label>Documents</label>
+                            </div>
+                            <table class="table table-striped table-bordered">
+                                <thead class="headcolor">
+                                    <tr>
+                                        @*<th class="col-sm-1"></th>*@
+                                        <th class="col-sm-3">Document</th>
+                                        <th class="col-sm-1">Status</th>
+                                        <th class="col-sm-1">Collection Date</th>
+                                        <th class="col-sm-3">Remarks</th>
+                                        <th class="col-sm-1">
+                                            <a class="plus" href='#' data-bind='click: AddDocuments'><span class="glyphicon glyphicon-plus"></span></a>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:Documents">
+
+                                    <tr>
+                                        @*<td>
+                                                <input type="checkbox" data-bind="checked: IsRequired">
+                                            </td>*@
+                                        <td>
+                                            <input type="text" data-bind="value: Name" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <select class="form-control" data-bind="options:$parent.DocumentStatusList, optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:DocumentStatus,event:{change : IfObtained}"></select>
+                                        </td>
+                                        <td>
+                                            @*<input type="date" data-bind="date:CollectionDate, valueUpdate:'keyup', enable:IfDererred " class="form-control lignHeightDate">*@
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" data-bind="datepicker:CollectionDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup', enable:IfDererred">
+                                                <span class="help-block" style="display: none;"></span>
+                                                <div class="input-group-addon">
+                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <textarea class="form-control" data-bind="value: Remarks"></textarea>
+                                        </td>
+                                        <td>
+                                            <a class="plus" href='#' data-bind='click: $parent.AddDocuments'><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a class="minus" href='#' data-bind='click: $parent.RemoveDocuments'><span class="glyphicon glyphicon-minus"></span></a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    @*<div class="form-group row row_design">
+
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <button type="button" class="btn-q btn-default btnLarge" data-bind="click:SaveCIBOrganizational ">Load Exception</button>
+                            </div>
+
+                        </div>*@
+
+                    <div class="panel-body">
+
+                        <div class="panel-bodycontent">
+                            <div class="panel-heading row_design_cifNetworth">
+                                <label>Exceptions</label>
+                            </div>
+
+                            <div class="panel-body">
+                                <table class="table table-striped table-bordered">
+                                    <thead class="headcolor">
+                                        <tr>
+                                            <th class="col-sm-4">Description</th>
+                                            <th class="col-sm-4">Justification</th>
+                                            <th class="col-sm-1">
+                                                <a class="plus" href='#' data-bind='click: AddExceptions'><span class="glyphicon glyphicon-plus"></span></a>
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody data-bind="foreach:Exceptions">
+                                        <tr>
+                                            <td class="col-sm-4">
+                                                <textarea class="form-control" data-bind="value:Description "></textarea>
+                                            </td>
+                                            <td class="col-sm-4">
+                                                <textarea class="form-control" data-bind="value: Justification"></textarea>
+                                            </td>
+
+                                            <td class="col-sm-1">
+                                                <a class="plus" href='#' data-bind='click: $parent.AddExceptions'><span class="glyphicon glyphicon-plus"></span></a>
+                                                <a class="minus" href='#' data-bind='click: $parent.RemoveExceptions'><span class="glyphicon glyphicon-minus"></span></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+
+                        <div class="panel-bodycontent">
+                            <div class="panel-heading row_design_cifNetworth">
+                                <label>Signatories</label>
+                            </div>
+
+                            <div class="panel-body collapse in" id="signatories">
+                                <div class="form-group row row_design_detail">
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddSignatories'>Add Signatories<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:SignatoryList">
+                                    <div class="form-group row row_design_detail">
+                                        <div class="col-sm-2">
+                                            <label class="control-label">Signatories </label>
+                                        </div>
+                                        <div class="col-sm-9">
+                                            @*<input type="text" class="form-control" data-bind="value:Name"/>*@
+                                            <select data-bind="options:$root.SignatoryListForProp,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SignatoryId" class="form-control"></select>
+                                        </div>
+                                        <div class="col-sm-1" style="text-align: center;">
+                                            <a class="plus" href='#' data-bind='click: $parent.AddSignatories'><span class="glyphicon glyphicon-plus"></span></a>
+                                            <a class="minus" href='#' data-bind='click: $parent.RemoveSignatories'><span class="glyphicon glyphicon-minus"></span></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group row row_design_detail">
+                            <div class="col-sm-2">
+                                <label class="control-label" for="PreparedBy">Prepared By</label>
+                            </div>
+                            <div class="col-sm-2 no-padding">
+                                <input class="form-control" type="text" data-bind="value:PreparedBy" />
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="form-group row row_design_detail">
+                            <div class="col-sm-2 col-sm-offset-2">
+                                <label class="control-label">Approval by :</label>
+                            </div>
+                            <div class="col-sm-3">
+                                <select data-bind=" options: CompanyNameList, value :CompanyId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name' " class=" form-control"></select>
+                            </div>
+                        </div>*@
+
+                    <div class="form-group row row_design">
+                        <div class="col-sm-3 col-sm-offset-8" style="text-align:left">
+                            <button type="button" class="btn btn-success" data-bind="click:SaveDocCheckList">Save</button>
+                            <button type="button" class="btn-q btn-success" data-bind="click:SavePrint">Save & Print</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="docSuccessModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Response</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <p id="docSuccessModalText"></p>
+
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+

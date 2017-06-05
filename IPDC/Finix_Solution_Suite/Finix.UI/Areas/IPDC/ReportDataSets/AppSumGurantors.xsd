@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AppSumGurantors" targetNamespace="http://tempuri.org/AppSumGurantors.xsd" xmlns:mstns="http://tempuri.org/AppSumGurantors.xsd" xmlns="http://tempuri.org/AppSumGurantors.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AppSumGurantors" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AppSumGurantors" msprop:Generator_UserDSName="AppSumGurantors">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="GuarantorDto" msprop:Generator_TableClassName="GuarantorDtoDataTable" msprop:Generator_TableVarName="tableGuarantorDto" msprop:Generator_TablePropName="GuarantorDto" msprop:Generator_RowDeletingName="GuarantorDtoRowDeleting" msprop:Generator_RowChangingName="GuarantorDtoRowChanging" msprop:Generator_RowEvHandlerName="GuarantorDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="GuarantorDtoRowDeleted" msprop:Generator_UserTableName="GuarantorDto" msprop:Generator_RowChangedName="GuarantorDtoRowChanged" msprop:Generator_RowEvArgName="GuarantorDtoRowChangeEvent" msprop:Generator_RowClassName="GuarantorDtoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicationId" msprop:Generator_ColumnVarNameInTable="columnApplicationId" msprop:Generator_ColumnPropNameInRow="ApplicationId" msprop:Generator_ColumnPropNameInTable="ApplicationIdColumn" msprop:Generator_UserColumnName="ApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="LoanApplicationId" msprop:Generator_ColumnVarNameInTable="columnLoanApplicationId" msprop:Generator_ColumnPropNameInRow="LoanApplicationId" msprop:Generator_ColumnPropNameInTable="LoanApplicationIdColumn" msprop:Generator_UserColumnName="LoanApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="GuarantorCifId" msprop:Generator_ColumnVarNameInTable="columnGuarantorCifId" msprop:Generator_ColumnPropNameInRow="GuarantorCifId" msprop:Generator_ColumnPropNameInTable="GuarantorCifIdColumn" msprop:Generator_UserColumnName="GuarantorCifId" type="xs:string" minOccurs="0" />
+              <xs:element name="GuaranteeAmount" msprop:Generator_ColumnVarNameInTable="columnGuaranteeAmount" msprop:Generator_ColumnPropNameInRow="GuaranteeAmount" msprop:Generator_ColumnPropNameInTable="GuaranteeAmountColumn" msprop:Generator_UserColumnName="GuaranteeAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="GuarantorName" msprop:Generator_ColumnVarNameInTable="columnGuarantorName" msprop:Generator_ColumnPropNameInRow="GuarantorName" msprop:Generator_ColumnPropNameInTable="GuarantorNameColumn" msprop:Generator_UserColumnName="GuarantorName" type="xs:string" minOccurs="0" />
+              <xs:element name="CBSCIFNo" msprop:Generator_ColumnVarNameInTable="columnCBSCIFNo" msprop:Generator_ColumnPropNameInRow="CBSCIFNo" msprop:Generator_ColumnPropNameInTable="CBSCIFNoColumn" msprop:Generator_UserColumnName="CBSCIFNo" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="GuarantorDtoKey1">
+      <xs:selector xpath=".//mstns:GuarantorDto" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="GuarantorDtoKey2">
+      <xs:selector xpath=".//mstns:GuarantorDto" />
+      <xs:field xpath="mstns:ApplicationId" />
+    </xs:unique>
+    <xs:unique name="GuarantorDtoKey3">
+      <xs:selector xpath=".//mstns:GuarantorDto" />
+      <xs:field xpath="mstns:LoanApplicationId" />
+    </xs:unique>
+    <xs:unique name="GuarantorDtoKey4">
+      <xs:selector xpath=".//mstns:GuarantorDto" />
+      <xs:field xpath="mstns:GuarantorCifId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

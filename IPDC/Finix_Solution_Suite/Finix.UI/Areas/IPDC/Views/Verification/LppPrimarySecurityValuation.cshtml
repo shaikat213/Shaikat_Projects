@@ -1,0 +1,761 @@
+﻿@{
+    ViewBag.Title = "Lpp Primary Security Valuation Entry";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<script src="~/Areas/IPDC/Scripts/Verification/lppPrimarySecurity.js"></script>
+<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<!---vvvvvvv----Body Main Starts here---vvvvvv----->
+<div class="panel-body">
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#lppPrimarySecurity" role="tab" data-toggle="tab">Primary Security Valuation</a></li>
+            @*<li role="presentation" id="depAppTab" style="display: none;"><a href="#depositApplication" role="tab" data-toggle="tab">Deposit Application</a></li>
+                <li role="presentation" id="lonAppTab" style="display: none;"><a href="#loanApplication" role="tab" data-toggle="tab">Loan Application</a></li>*@
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="lppPrimarySecurity">
+                <section class="panel-bodycontent" id="LppPrimarySecurityVw">
+                    <header class="panel-heading bodytitle">
+                        <h2 class="panel-title font">
+                            <b>LPP Primary Security Valuation</b>
+                        </h2>
+                    </header>
+                    <div class="container">
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="tab-content">
+                                    <div class="panel-group" id="accordion">
+
+                                        <div class="panel panel-default">
+                                            <div class="panel-collapse collapse in">
+                                                <form class="form-horizontal" role="form">
+                                                    <div class="form-group row row_design">
+                                                        <div class="col-sm-3">
+                                                            <label for="LandedPropertyLoanType" class="control-label">Landed Property Loan Type<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: LandedPropertyLoanType">
+                                                            <select class="form-control loan" id="LandedPropertyLoanType" data-bind="options:LandedPropertyLoanTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:LandedPropertyLoanType " disabled=""></select>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="ValuationType" class="control-label">Valuation Type<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ValuationType">
+                                                                <select class="form-control loan" id="ValuationType" data-bind="options:ValuationTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ValuationType "></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="panel-body">
+                                                        <div data-bind="visible:IsCommon">
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Application No :</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ApplicationNo, valueUpdate:'keyup'" class="form-control" id="ApplicationNo" placeholder="Application No" readonly />
+                                                                </div>
+                                                                <div class="form-group row row_design">
+                                                                    <div class="col-sm-offset-1 col-sm-10">
+
+                                                                        <table class="table table-striped table-bordered" width='100%'>
+                                                                            <thead class="headcolor">
+                                                                                <tr>
+
+                                                                                    <th>CIF No.</th>
+                                                                                    <th>Applicant’s Name</th>
+                                                                                    <th>Role</th>
+
+
+                                                                                </tr>
+                                                                            </thead>
+                                                                            <tbody data-bind="foreach:CIFList">
+                                                                                <tr>
+                                                                                    <td><span data-bind="text:CIFNo"></span></td>
+                                                                                    <td><span data-bind="text:ApplicantName"></span></td>
+                                                                                    <td><span data-bind="text:ApplicantRoleName"></span></td>
+                                                                                </tr>
+                                                                            </tbody>
+                                                                        </table>
+                                                                    </div>
+                                                                </div><br />
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="panel-body" data-bind="visible:(ValuationType() === 1)">
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="TotalCost" class="control-label">Total Cost</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: TotalCost">
+                                                                    <input type="number" data-bind="value:TotalCost, valueUpdate:'keyup'" class="form-control" id="TotalCost" placeholder="Total Cost" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="LandedPropertySellertype" class="control-label">Seller type<span class="required">*</span></label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: LandedPropertySellertype">
+                                                                    <select class="form-control loan" id="LandedPropertySellertype" data-bind="options:LandedPropertySellertypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:LandedPropertySellertype, update:'keyup'" disabled=""></select>
+                                                                </div>
+                                                            </div>
+                                                            <div data-bind="visible:IsIndividual">
+                                                                <div class="form-group row row_design">
+
+                                                                    <div class="col-sm-3">
+                                                                        <label for="SellerName" class="control-label">Seller Name</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3" data-bind="validationElement: SellerName">
+                                                                        <input type="text" data-bind="value:SellerName" class="form-control" id="SellerName" placeholder="Seller Name" readonly />
+                                                                    </div>
+                                                                    <div class="col-sm-3">
+                                                                        <label for="SellerPhone" class="control-label">Seller Phone</label>
+                                                                    </div>
+                                                                    <div class="col-sm-3" data-bind="validationElement: SellerPhone">
+                                                                        <input type="number" data-bind="value:SellerPhone" class="form-control" id="SellerPhone" placeholder="Seller Phone" readonly />
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div data-bind="visible:IsDeveloperTakeover">
+
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                                <div class="form-group row row_design_valuation">
+                                                                    <div class="col-sm-4" style="text-align: center">
+                                                                        <label>Project Address</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 1</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.AddressLine1" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 2</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.AddressLine2" class="form-control" readonly />
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 3</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.AddressLine3" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Country</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: CountryIdList, value: ProjectAddress.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control" disabled=""></select>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Division</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: ProjectAddress.DivisionList, value: ProjectAddress.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">District</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: ProjectAddress.DistrictList, value: ProjectAddress.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Thana</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: ProjectAddress.ThanaList, value: ProjectAddress.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Postal Code</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.PostalCode" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Phone</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.PhoneNo" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Cell Phone</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:ProjectAddress.CellPhoneNo" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">E-mail</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="email" data-bind="value:ProjectAddress.Email" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-1">
+
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div data-bind="visible: IsIndividualTakeOver">
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                                <div class="form-group row row_design_valuation">
+                                                                    <div class="col-sm-4" style="text-align: center">
+                                                                        <label>Property Address</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col-sm-4">
+
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 1</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.AddressLine1" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 2</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.AddressLine2" class="form-control" readonly />
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Address line 3</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.AddressLine3" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Country</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: CountryIdList, value: PropertyAddress.CountryId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control" disabled=""></select>
+                                                                </div>
+
+                                                            </div>
+
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Division</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: PropertyAddress.DivisionList, value: PropertyAddress.DivisionId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DivisionNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">District</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: PropertyAddress.DistrictList, value: PropertyAddress.DistrictId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'DistrictNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Thana</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <select data-bind="options: PropertyAddress.ThanaList, value: PropertyAddress.ThanaId, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'ThanaNameEng'" class="form-control" disabled=""></select>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Postal Code</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.PostalCode" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+
+
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Phone</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.PhoneNo" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">Cell Phone</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="text" data-bind="value:PropertyAddress.CellPhoneNo" class="form-control" readonly />
+                                                                </div>
+                                                            </div>
+
+                                                            <div class="form-group row row_design">
+
+                                                                <div class="col-sm-3">
+                                                                    <label class="control-label">E-mail</label>
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <input type="email" data-bind="value:PropertyAddress.Email" class="form-control" readonly />
+                                                                </div>
+                                                                <div class="col-sm-1">
+
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="ContactPerson" class="control-label">Contact Person</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: ContactPerson">
+                                                                    <input type="text" data-bind="value:ContactPerson" class="form-control" id="ContactPerson" placeholder="Contact Person" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="FloorNo" class="control-label">Contact No</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: ContactPersonPhone">
+                                                                    <input type="number" data-bind="value:ContactPersonPhone" class="form-control" id="ContactPersonPhone" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div data-bind="visible:IsDeveloper">
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="DeveloperName" class="control-label">Developer Name</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: DeveloperName">
+                                                                    <input type="text" data-bind="value:DeveloperName" class="form-control" id="DeveloperName" placeholder="Developer Name" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="ProjectName" class="control-label">Project Name</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: ProjectName">
+                                                                    <input type="text" data-bind="value:ProjectName" class="form-control" id="ProjectName" placeholder="Project Name" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div data-bind="visible:(ValuationType() === 1)">
+
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="FlatSize" class="control-label">Flat Size</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: FlatSize">
+                                                                    <input type="number" data-bind="value:FlatSize" class="form-control" id="FlatSize" placeholder="Flat Size" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="FloorNo" class="control-label">Floor No</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: FloorNo">
+                                                                    <input type="number" data-bind="value:FloorNo" class="form-control" id="FloorNo" placeholder="Floor No" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="FlatSide" class="control-label">Flat Side</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: FlatSide">
+                                                                    <input type="text" data-bind="value:FlatSide" class="form-control" id="FlatSide" placeholder="Flat Side" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div data-bind="visible: IsConstEqt">
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="Owner" class="control-label">Owner</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: Owner">
+                                                                    <input type="text" data-bind="value:Owner" class="form-control" id="Owner" placeholder="Owner" readonly />
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div data-bind="visible: (ValuationType() === 2)">
+
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="CurrentWorkingStage" class="control-label">Current Working Stage</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: CurrentWorkingStage">
+                                                                    <input type="text" data-bind="value:CurrentWorkingStage" class="form-control" id="CurrentWorkingStage" placeholder="Current Working Stage" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="CompletedFloors" class="control-label">Completed Floors</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: CompletedFloors">
+                                                                    <input type="number" data-bind="value:CompletedFloors" class="form-control" id="CompletedFloors" placeholder="Completed Floors" readonly />
+                                                                </div>
+                                                            </div>
+                                                            <div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="ProposedFloors" class="control-label">Proposed Floors</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: ProposedFloors">
+                                                                    <input type="number" data-bind="value:ProposedFloors" class="form-control" id="ProposedFloors" placeholder="Proposed Floors" readonly />
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="EstimatedConstructionCost" class="control-label">Estimated Construction Cost</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: EstimatedConstructionCost">
+                                                                    <input type="number" data-bind="value:EstimatedConstructionCost" class="form-control" id="EstimatedConstructionCost" placeholder="Estimated Construction Cost" readonly />
+                                                                </div>
+                                                            </div>
+
+
+                                                        </div>
+                                                    </div>
+                                                    <div data-bind="visible:(ValuationType() === 1)">
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="PropornateLand" class="control-label">Propornate Land</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: PropornateLand">
+                                                                <input type="number" data-bind="value:PropornateLand , valueUpdate:'keyup'" class="form-control" id="PropornateLand" placeholder="Propornate Land">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="FloorNo" class="control-label">Present Market Rate of Land</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: PresentMarketRateOfLand">
+                                                                <input type="number" data-bind="value:PresentMarketRateOfLand , valueUpdate:'keyup'" class="form-control" id="PresentMarketRateOfLand" placeholder="Present Market Rate Of Land">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="PresentMarketValueOfLand" class="control-label">Present Market Value Of Land</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: PresentMarketValueOfLand">
+                                                                <input type="number" data-bind="value:PresentMarketValueOfLand" class="form-control" id="PresentMarketValueOfLand" placeholder="Present Market Value Of Land">
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label class="control-label"><b>Flat Size</b></label>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="FlatSizeWithCommonSpace" class="control-label">Flat Size With Common Space</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: FlatSizeWithCommonSpace">
+                                                                <input type="number" data-bind="value:FlatSizeWithCommonSpace" class="form-control" id="FlatSizeWithCommonSpace" placeholder="Common Space">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="FlatSizeWithoutCommonSpace" class="control-label">Without Common Space</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: FlatSizeWithoutCommonSpace">
+                                                                <input type="number" data-bind="value:FlatSizeWithoutCommonSpace" class="form-control" id="FlatSizeWithoutCommonSpace" placeholder="Without Common Space">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="PerSFTMarketPrice" class="control-label">Per SFT Market Price</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: PerSFTMarketPrice">
+                                                                <input type="number" data-bind="value:PerSFTMarketPrice" class="form-control" id="PerSFTMarketPrice" placeholder="PerSFTMarketPrice">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="MarketPriceOfFlat" class="control-label">Market Price Of Flat</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: MarketPriceOfFlat">
+                                                                <input type="number" data-bind="value:MarketPriceOfFlat" class="form-control" id="MarketPriceOfFlat" placeholder="Market Price Of Flat" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="CarParkingCount" class="control-label">Car Parking Count</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: CarParkingCount">
+                                                                <input type="number" data-bind="value:CarParkingCount" class="form-control" id="CarParkingCount" placeholder="CarParkingCount">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="MarketPriceOfFlat" class="control-label">Car Parking Price</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: CarParkingPrice">
+                                                                <input type="number" data-bind="value:CarParkingPrice" class="form-control" id="CarParkingPrice" placeholder="CarParkingPrice">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="TotalMarketValue" class="control-label">Total Market Value</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: TotalMarketValue">
+                                                                <input type="number" data-bind="value:TotalMarketValue" class="form-control" id="TotalMarketValue" placeholder="TotalMarketValue" readonly />
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="DistressPercentage" class="control-label">Distress Percentage</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: DistressPercentage">
+                                                                <input type="number" min="1" max="100" data-bind="value:DistressPercentage" class="form-control" id="DistressPercentage" placeholder="DistressPercentage">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="DistressValue" class="control-label">Distress Value</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: DistressValue">
+                                                                <input type="number" data-bind="value:DistressValue" class="form-control" id="DistressValue" placeholder="DistressValue" readonly />
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                    <div data-bind="visible:(ValuationType() === 2)">
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                            </div>
+                                                            <div class="col-sm-3" style="text-align: center">
+                                                                <label class="control-label"><b>As Per Plan</b></label>
+                                                            </div>
+                                                            <div class="col-sm-offset-3 col-sm-3" style="text-align: center">
+                                                                <label class="control-label"><b>Physically Found</b></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="AreaOfLandAsPerPlan" class="control-label">Area Of Land (in Katha)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: AreaOfLandAsPerPlan">
+                                                                <input type="number" data-bind="value:AreaOfLandAsPerPlan , valueUpdate:'keyup'" class="form-control" id="AreaOfLandAsPerPlan" placeholder="Area Of Land As Per Plan" >
+                                                            </div>
+
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: AreaOfLandAsPerClient">
+                                                                <input type="number" data-bind="value:AreaOfLandAsPerClient , valueUpdate:'keyup'" class="form-control" id="AreaOfLandAsPerClient" placeholder="Area O fLand As Per Client">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="PerKathaPriceAsPerRAJUK" class="control-label">Price(per Katha)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: PerKathaPriceAsPerRAJUK">
+                                                                <input type="number" data-bind="value:PerKathaPriceAsPerRAJUK , valueUpdate:'keyup'" class="form-control" id="PerKathaPriceAsPerRAJUK" placeholder="Area Of Land As Per Plan">
+                                                            </div>
+
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: PerKathaPriceAsPerClient">
+                                                                <input type="number" data-bind="value:PerKathaPriceAsPerClient , valueUpdate:'keyup'" class="form-control" id="PerKathaPriceAsPerClient" placeholder="Area O fLand As Per Client">
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="MarketValueOfLandAsPerRAJUK" class="control-label">Market Value Of Land</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: MarketValueOfLandAsPerRAJUK">
+                                                                <input type="number" data-bind="value:MarketValueOfLandAsPerRAJUK" class="form-control" id="MarketValueOfLandAsPerRAJUK" placeholder="Market Value" readonly />
+                                                            </div>
+
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: MarketValueOfLandAsPerClient">
+                                                                <input type="number" data-bind="value:MarketValueOfLandAsPerClient" class="form-control" id="MarketValueOfLandAsPerClient" placeholder="Market Value Of Land As Per Client" readonly />
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="BuildUpAreaPerFloorPhysical" class="control-label">Build Up Area(sqft.)</label>
+                                                            </div>
+
+                                                            <div class="col-sm-3" data-bind="validationElement: TotalBuildUpAreaApproved">
+                                                                <input type="number" data-bind="value:TotalBuildUpAreaApproved , valueUpdate:'keyup'" class="form-control" id="TotalBuildUpAreaApproved" placeholder="Total Build Up Area Approved">
+                                                            </div>
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: TotalBuildUpAreaPhysical">
+                                                                <input type="number" data-bind="value:TotalBuildUpAreaPhysical , valueUpdate:'keyup'" class="form-control" id="TotalBuildUpAreaPhysical" placeholder="Land Value">
+                                                            </div>
+                                                        </div>
+                                                        @*<div class="form-group row row_design">
+                                                                <div class="col-sm-3">
+                                                                    <label for="BuildUpAreaPerFloorApproved" class="control-label">As Per RAJUK</label>
+                                                                </div>
+                                                                <div class="col-sm-3" data-bind="validationElement: BuildUpAreaPerFloorApproved">
+                                                                    <input type="number" data-bind="value:BuildUpAreaPerFloorApproved" class="form-control" id="BuildUpAreaPerFloorApproved" placeholder="Build Up Area Per Floor Approved ">
+                                                                </div>
+                                                                <div class="col-sm-3">
+                                                                    <label for="TotalBuildUpAreaApproved" class="control-label">As Per Client</label>
+                                                                </div>
+                                                                <div class="col-sm-4" data-bind="validationElement: BuildUpAreaPerFloorPhysical">
+                                                                    <input type="number" data-bind="value:BuildUpAreaPerFloorPhysical" class="form-control" id="BuildUpAreaPerFloorPhysical" placeholder="Land Value">
+                                                                </div>
+                                                            </div>*@
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="EstimatedConstructionCostPerSFTApproved" class="control-label">Est. Const. Cost(per Sq.ft.)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: EstimatedConstructionCostPerSFTApproved">
+                                                                <input type="number" data-bind="value:EstimatedConstructionCostPerSFTApproved , valueUpdate:'keyup'" class="form-control" id="EstimatedConstructionCostPerSFTApproved" placeholder="SFT Approved">
+                                                            </div>
+
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: EstimatedConstructionCostApproved">
+                                                                <input type="number" data-bind="value:EstimatedConstructionCostApproved , valueUpdate:'keyup'" class="form-control" id="EstimatedConstructionCostApproved" placeholder="Cost Approved">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="EstimatedConstructionCostPerSFTPhysical" class="control-label">Total Construction Cost(BDT)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: EstimatedConstructionCostPerSFTPhysical">
+                                                                <input type="number" data-bind="value:EstimatedConstructionCostPerSFTPhysical" class="form-control" id="EstimatedConstructionCostPerSFTPhysical" placeholder="Land Value" readonly/>
+                                                            </div>
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: EstimatedConstructionCostPhysical">
+                                                                <input type="number" data-bind="value:EstimatedConstructionCostPhysical" class="form-control" id="EstimatedConstructionCostPhysical" placeholder="Land Value" readonly/>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="LandValueAndEstimatedConstructionCostApproved" class="control-label">Land Value + Est. Const. Cost</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: LandValueAndEstimatedConstructionCostApproved">
+                                                                <input type="number" data-bind="value:LandValueAndEstimatedConstructionCostApproved" class="form-control" id="LandValueAndEstimatedConstructionCostApproved" placeholder="Land Value"readonly/>
+                                                            </div>
+                                                            <div class="col-sm-offset-3 col-sm-3" data-bind="validationElement: LandValueAndEstimatedConstructionCostPhysical">
+                                                                <input type="number" data-bind="value:LandValueAndEstimatedConstructionCostPhysical" class="form-control" id="LandValueAndEstimatedConstructionCostPhysical" placeholder="Land Value"readonly/>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div data-bind="visible:IsProjectStatus">
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="ProjectStatus" class="control-label">Project Status</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ProjectStatus">
+                                                                @*<input type="number" data-bind="value:ProjectStatus" class="form-control" id="ProjectStatus" placeholder="ProjectStatus">*@
+                                                                <select class="form-control loan" id="ProjectStatus" data-bind="options:ProjectStatuses,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProjectStatus "></select>
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="ApplicantsFlatStatus" class="control-label">Applicants Flat Status</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: ApplicantsFlatStatus">
+                                                                @*<input type="number" data-bind="value:ApplicantsFlatStatus" class="form-control" id="ApplicantsFlatStatus" placeholder="ApplicantsFlatStatus">*@
+                                                                <select class="form-control loan" id="ApplicantsFlatStatus" data-bind="options:ApplicantsFlatStatuses,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ApplicantsFlatStatus "></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="TotalWIPofFullProject" class="control-label">Total WIP of Full Project(%)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: TotalWIPofFullProject">
+                                                                <input type="number" data-bind="value:TotalWIPofFullProject" min="1" max="100" class="form-control" id="TotalWIPofFullProject" placeholder="TotalWIPofFullProject">
+                                                            </div>
+                                                            <div class="col-sm-3">
+                                                                <label for="TotalWIPofFlat" class="control-label">Total WIP of Flat(%)</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: TotalWIPofFlat">
+                                                                <input type="number" min="1" max="100" data-bind="value:TotalWIPofFlat" class="form-control" id="TotalWIPofFlat" placeholder="TotalWIPofFlat">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="Remarks" class="control-label">Remarks</label>
+                                                            </div>
+                                                            <div class="col-sm-9" data-bind="validationElement: Remarks">
+                                                                <textarea class="form-control" data-bind="value:Remarks" style="min-height: 93px;"></textarea>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-3">
+                                                                <label for="VerificationState" class="control-label">Verification Status</label>
+                                                            </div>
+                                                            <div class="col-sm-3" data-bind="validationElement: VerificationState">
+                                                                @*<input type="number" data-bind="value:VerificationState" class="form-control" id="VerificationState" placeholder="VerificationState">*@
+                                                                <select class="form-control loan" id="VerificationState" data-bind="options:VerificationStates,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:VerificationState "></select>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group">
+                                                        <div id="appSuccessModal" class="modal fade" role="dialog">
+                                                            <div class="modal-dialog modal-sm">
+                                                                <!-- Modal content-->
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                        <h4 class="modal-title">Response</h4>
+                                                                    </div>
+                                                                    <div class="modal-body" align="center">
+                                                                        <p id="appSuccessModalText"></p>
+                                                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-10"></div>
+                                                            <div class="col-sm-2">
+                                                                <button type="button" class="btn btn-success" data-bind="click:Submit">Save</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </form>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+            </div>
+            @*<div class="tab-pane fade" id="depositApplication">
+                    @Html.Partial("~/Areas/IPDC/Views/Application/DepositApplication.cshtml")
+                </div>
+                <div class="tab-pane fade" id="loanApplication">
+                    @Html.Partial("~/Areas/IPDC/Views/Application/LoanApplication.cshtml")
+                </div>*@
+        </div>
+    </div>
+</div>

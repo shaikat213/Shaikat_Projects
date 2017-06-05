@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CifOrganization" targetNamespace="http://tempuri.org/CifOrganization.xsd" xmlns:mstns="http://tempuri.org/CifOrganization.xsd" xmlns="http://tempuri.org/CifOrganization.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CifOrganization" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CifOrganization" msprop:Generator_UserDSName="CifOrganization">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="CIF_OrganizationalDto" msprop:Generator_TableClassName="CIF_OrganizationalDtoDataTable" msprop:Generator_TableVarName="tableCIF_OrganizationalDto" msprop:Generator_RowChangedName="CIF_OrganizationalDtoRowChanged" msprop:Generator_TablePropName="CIF_OrganizationalDto" msprop:Generator_RowDeletingName="CIF_OrganizationalDtoRowDeleting" msprop:Generator_RowChangingName="CIF_OrganizationalDtoRowChanging" msprop:Generator_RowEvHandlerName="CIF_OrganizationalDtoRowChangeEventHandler" msprop:Generator_RowDeletedName="CIF_OrganizationalDtoRowDeleted" msprop:Generator_RowClassName="CIF_OrganizationalDtoRow" msprop:Generator_UserTableName="CIF_OrganizationalDto" msprop:Generator_RowEvArgName="CIF_OrganizationalDtoRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ContactPersonName" msprop:Generator_ColumnVarNameInTable="columnContactPersonName" msprop:Generator_ColumnPropNameInRow="ContactPersonName" msprop:Generator_ColumnPropNameInTable="ContactPersonNameColumn" msprop:Generator_UserColumnName="ContactPersonName" type="xs:string" minOccurs="0" />
+              <xs:element name="ContactPersonCellPhone" msprop:Generator_ColumnVarNameInTable="columnContactPersonCellPhone" msprop:Generator_ColumnPropNameInRow="ContactPersonCellPhone" msprop:Generator_ColumnPropNameInTable="ContactPersonCellPhoneColumn" msprop:Generator_UserColumnName="ContactPersonCellPhone" type="xs:string" minOccurs="0" />
+              <xs:element name="ContactPersonEmail" msprop:Generator_ColumnVarNameInTable="columnContactPersonEmail" msprop:Generator_ColumnPropNameInRow="ContactPersonEmail" msprop:Generator_ColumnPropNameInTable="ContactPersonEmailColumn" msprop:Generator_UserColumnName="ContactPersonEmail" type="xs:string" minOccurs="0" />
+              <xs:element name="ContactPersonDesignation" msprop:Generator_ColumnVarNameInTable="columnContactPersonDesignation" msprop:Generator_ColumnPropNameInRow="ContactPersonDesignation" msprop:Generator_ColumnPropNameInTable="ContactPersonDesignationColumn" msprop:Generator_UserColumnName="ContactPersonDesignation" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CBSCIFNo" msprop:Generator_ColumnVarNameInTable="columnCBSCIFNo" msprop:Generator_ColumnPropNameInRow="CBSCIFNo" msprop:Generator_ColumnPropNameInTable="CBSCIFNoColumn" msprop:Generator_UserColumnName="CBSCIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="CifName" msprop:Generator_ColumnVarNameInTable="columnCifName" msprop:Generator_ColumnPropNameInRow="CifName" msprop:Generator_ColumnPropNameInTable="CifNameColumn" msprop:Generator_UserColumnName="CifName" type="xs:string" minOccurs="0" />
+              <xs:element name="IsEnlistedCompany" msprop:Generator_ColumnVarNameInTable="columnIsEnlistedCompany" msprop:Generator_ColumnPropNameInRow="IsEnlistedCompany" msprop:Generator_ColumnPropNameInTable="IsEnlistedCompanyColumn" msprop:Generator_UserColumnName="IsEnlistedCompany" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyId" msprop:Generator_ColumnVarNameInTable="columnCompanyId" msprop:Generator_ColumnPropNameInRow="CompanyId" msprop:Generator_ColumnPropNameInTable="CompanyIdColumn" msprop:Generator_UserColumnName="CompanyId" type="xs:string" minOccurs="0" />
+              <xs:element name="LegalStatus" msprop:Generator_ColumnVarNameInTable="columnLegalStatus" msprop:Generator_ColumnPropNameInRow="LegalStatus" msprop:Generator_ColumnPropNameInTable="LegalStatusColumn" msprop:Generator_UserColumnName="LegalStatus" type="xs:string" minOccurs="0" />
+              <xs:element name="LegalStatusName" msprop:Generator_ColumnVarNameInTable="columnLegalStatusName" msprop:Generator_ColumnPropNameInRow="LegalStatusName" msprop:Generator_ColumnPropNameInTable="LegalStatusNameColumn" msprop:Generator_UserColumnName="LegalStatusName" type="xs:string" minOccurs="0" />
+              <xs:element name="TradeLicenceNo" msprop:Generator_ColumnVarNameInTable="columnTradeLicenceNo" msprop:Generator_ColumnPropNameInRow="TradeLicenceNo" msprop:Generator_ColumnPropNameInTable="TradeLicenceNoColumn" msprop:Generator_UserColumnName="TradeLicenceNo" type="xs:string" minOccurs="0" />
+              <xs:element name="TradeLicenceDate" msprop:Generator_ColumnVarNameInTable="columnTradeLicenceDate" msprop:Generator_ColumnPropNameInRow="TradeLicenceDate" msprop:Generator_ColumnPropNameInTable="TradeLicenceDateColumn" msprop:Generator_UserColumnName="TradeLicenceDate" type="xs:string" minOccurs="0" />
+              <xs:element name="TradeLicenceDateTxt" msprop:Generator_ColumnVarNameInTable="columnTradeLicenceDateTxt" msprop:Generator_ColumnPropNameInRow="TradeLicenceDateTxt" msprop:Generator_ColumnPropNameInTable="TradeLicenceDateTxtColumn" msprop:Generator_UserColumnName="TradeLicenceDateTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="TL_IssueAuthority" msprop:Generator_ColumnVarNameInTable="columnTL_IssueAuthority" msprop:Generator_ColumnPropNameInRow="TL_IssueAuthority" msprop:Generator_ColumnPropNameInTable="TL_IssueAuthorityColumn" msprop:Generator_UserColumnName="TL_IssueAuthority" type="xs:string" minOccurs="0" />
+              <xs:element name="RegistrationNo" msprop:Generator_ColumnVarNameInTable="columnRegistrationNo" msprop:Generator_ColumnPropNameInRow="RegistrationNo" msprop:Generator_ColumnPropNameInTable="RegistrationNoColumn" msprop:Generator_UserColumnName="RegistrationNo" type="xs:string" minOccurs="0" />
+              <xs:element name="RegistrationDate" msprop:Generator_ColumnVarNameInTable="columnRegistrationDate" msprop:Generator_ColumnPropNameInRow="RegistrationDate" msprop:Generator_ColumnPropNameInTable="RegistrationDateColumn" msprop:Generator_UserColumnName="RegistrationDate" type="xs:string" minOccurs="0" />
+              <xs:element name="RegistrationDateTxt" msprop:Generator_ColumnVarNameInTable="columnRegistrationDateTxt" msprop:Generator_ColumnPropNameInRow="RegistrationDateTxt" msprop:Generator_ColumnPropNameInTable="RegistrationDateTxtColumn" msprop:Generator_UserColumnName="RegistrationDateTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="RegAuthority" msprop:Generator_ColumnVarNameInTable="columnRegAuthority" msprop:Generator_ColumnPropNameInRow="RegAuthority" msprop:Generator_ColumnPropNameInTable="RegAuthorityColumn" msprop:Generator_UserColumnName="RegAuthority" type="xs:string" minOccurs="0" />
+              <xs:element name="RegCountryId" msprop:Generator_ColumnVarNameInTable="columnRegCountryId" msprop:Generator_ColumnPropNameInRow="RegCountryId" msprop:Generator_ColumnPropNameInTable="RegCountryIdColumn" msprop:Generator_UserColumnName="RegCountryId" type="xs:string" minOccurs="0" />
+              <xs:element name="RegCountryName" msprop:Generator_ColumnVarNameInTable="columnRegCountryName" msprop:Generator_ColumnPropNameInRow="RegCountryName" msprop:Generator_ColumnPropNameInTable="RegCountryNameColumn" msprop:Generator_UserColumnName="RegCountryName" type="xs:string" minOccurs="0" />
+              <xs:element name="ETIN" msprop:Generator_ColumnVarNameInTable="columnETIN" msprop:Generator_ColumnPropNameInRow="ETIN" msprop:Generator_ColumnPropNameInTable="ETINColumn" msprop:Generator_UserColumnName="ETIN" type="xs:string" minOccurs="0" />
+              <xs:element name="VATRegNo" msprop:Generator_ColumnVarNameInTable="columnVATRegNo" msprop:Generator_ColumnPropNameInRow="VATRegNo" msprop:Generator_ColumnPropNameInTable="VATRegNoColumn" msprop:Generator_UserColumnName="VATRegNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Website" msprop:Generator_ColumnVarNameInTable="columnWebsite" msprop:Generator_ColumnPropNameInRow="Website" msprop:Generator_ColumnPropNameInTable="WebsiteColumn" msprop:Generator_UserColumnName="Website" type="xs:string" minOccurs="0" />
+              <xs:element name="RegAddressId" msprop:Generator_ColumnVarNameInTable="columnRegAddressId" msprop:Generator_ColumnPropNameInRow="RegAddressId" msprop:Generator_ColumnPropNameInTable="RegAddressIdColumn" msprop:Generator_UserColumnName="RegAddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="RegAddress" msprop:Generator_ColumnVarNameInTable="columnRegAddress" msprop:Generator_ColumnPropNameInRow="RegAddress" msprop:Generator_ColumnPropNameInTable="RegAddressColumn" msprop:Generator_UserColumnName="RegAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficeAddressId" msprop:Generator_ColumnVarNameInTable="columnOfficeAddressId" msprop:Generator_ColumnPropNameInRow="OfficeAddressId" msprop:Generator_ColumnPropNameInTable="OfficeAddressIdColumn" msprop:Generator_UserColumnName="OfficeAddressId" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficeAddress" msprop:Generator_ColumnVarNameInTable="columnOfficeAddress" msprop:Generator_ColumnPropNameInRow="OfficeAddress" msprop:Generator_ColumnPropNameInTable="OfficeAddressColumn" msprop:Generator_UserColumnName="OfficeAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="FactoryAddress" msprop:Generator_ColumnVarNameInTable="columnFactoryAddress" msprop:Generator_ColumnPropNameInRow="FactoryAddress" msprop:Generator_ColumnPropNameInTable="FactoryAddressColumn" msprop:Generator_UserColumnName="FactoryAddress" type="xs:string" minOccurs="0" />
+              <xs:element name="Owners" msprop:Generator_ColumnVarNameInTable="columnOwners" msprop:Generator_ColumnPropNameInRow="Owners" msprop:Generator_ColumnPropNameInTable="OwnersColumn" msprop:Generator_UserColumnName="Owners" type="xs:string" minOccurs="0" />
+              <xs:element name="NumberOfEmployees" msprop:Generator_ColumnVarNameInTable="columnNumberOfEmployees" msprop:Generator_ColumnPropNameInRow="NumberOfEmployees" msprop:Generator_ColumnPropNameInTable="NumberOfEmployeesColumn" msprop:Generator_UserColumnName="NumberOfEmployees" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAsset" msprop:Generator_ColumnVarNameInTable="columnTotalAsset" msprop:Generator_ColumnPropNameInRow="TotalAsset" msprop:Generator_ColumnPropNameInTable="TotalAssetColumn" msprop:Generator_UserColumnName="TotalAsset" type="xs:string" minOccurs="0" />
+              <xs:element name="TotalAssetExcLandAndBuilding" msprop:Generator_ColumnVarNameInTable="columnTotalAssetExcLandAndBuilding" msprop:Generator_ColumnPropNameInRow="TotalAssetExcLandAndBuilding" msprop:Generator_ColumnPropNameInTable="TotalAssetExcLandAndBuildingColumn" msprop:Generator_UserColumnName="TotalAssetExcLandAndBuilding" type="xs:string" minOccurs="0" />
+              <xs:element name="AnnualTurnover" msprop:Generator_ColumnVarNameInTable="columnAnnualTurnover" msprop:Generator_ColumnPropNameInRow="AnnualTurnover" msprop:Generator_ColumnPropNameInTable="AnnualTurnoverColumn" msprop:Generator_UserColumnName="AnnualTurnover" type="xs:string" minOccurs="0" />
+              <xs:element name="BusinessType" msprop:Generator_ColumnVarNameInTable="columnBusinessType" msprop:Generator_ColumnPropNameInRow="BusinessType" msprop:Generator_ColumnPropNameInTable="BusinessTypeColumn" msprop:Generator_UserColumnName="BusinessType" type="xs:string" minOccurs="0" />
+              <xs:element name="BusinessSize" msprop:Generator_ColumnVarNameInTable="columnBusinessSize" msprop:Generator_ColumnPropNameInRow="BusinessSize" msprop:Generator_ColumnPropNameInTable="BusinessSizeColumn" msprop:Generator_UserColumnName="BusinessSize" type="xs:string" minOccurs="0" />
+              <xs:element name="SectorType" msprop:Generator_ColumnVarNameInTable="columnSectorType" msprop:Generator_ColumnPropNameInRow="SectorType" msprop:Generator_ColumnPropNameInTable="SectorTypeColumn" msprop:Generator_UserColumnName="SectorType" type="xs:string" minOccurs="0" />
+              <xs:element name="NBFI_1_SectorCodeId" msprop:Generator_ColumnVarNameInTable="columnNBFI_1_SectorCodeId" msprop:Generator_ColumnPropNameInRow="NBFI_1_SectorCodeId" msprop:Generator_ColumnPropNameInTable="NBFI_1_SectorCodeIdColumn" msprop:Generator_UserColumnName="NBFI_1_SectorCodeId" type="xs:string" minOccurs="0" />
+              <xs:element name="NBFI1SectorCode" msprop:Generator_ColumnVarNameInTable="columnNBFI1SectorCode" msprop:Generator_ColumnPropNameInRow="NBFI1SectorCode" msprop:Generator_ColumnPropNameInTable="NBFI1SectorCodeColumn" msprop:Generator_UserColumnName="NBFI1SectorCode" type="xs:string" minOccurs="0" />
+              <xs:element name="NBFI_2_3_SectorCodeId" msprop:Generator_ColumnVarNameInTable="columnNBFI_2_3_SectorCodeId" msprop:Generator_ColumnPropNameInRow="NBFI_2_3_SectorCodeId" msprop:Generator_ColumnPropNameInTable="NBFI_2_3_SectorCodeIdColumn" msprop:Generator_UserColumnName="NBFI_2_3_SectorCodeId" type="xs:string" minOccurs="0" />
+              <xs:element name="NBFI2SectorCode" msprop:Generator_ColumnVarNameInTable="columnNBFI2SectorCode" msprop:Generator_ColumnPropNameInRow="NBFI2SectorCode" msprop:Generator_ColumnPropNameInTable="NBFI2SectorCodeColumn" msprop:Generator_UserColumnName="NBFI2SectorCode" type="xs:string" minOccurs="0" />
+              <xs:element name="NBDC_SectorCodeId" msprop:Generator_ColumnVarNameInTable="columnNBDC_SectorCodeId" msprop:Generator_ColumnPropNameInRow="NBDC_SectorCodeId" msprop:Generator_ColumnPropNameInTable="NBDC_SectorCodeIdColumn" msprop:Generator_UserColumnName="NBDC_SectorCodeId" type="xs:string" minOccurs="0" />
+              <xs:element name="NBDCSectorCode" msprop:Generator_ColumnVarNameInTable="columnNBDCSectorCode" msprop:Generator_ColumnPropNameInRow="NBDCSectorCode" msprop:Generator_ColumnPropNameInTable="NBDCSectorCodeColumn" msprop:Generator_UserColumnName="NBDCSectorCode" type="xs:string" minOccurs="0" />
+              <xs:element name="DateOfIncorporation" msprop:Generator_ColumnVarNameInTable="columnDateOfIncorporation" msprop:Generator_ColumnPropNameInRow="DateOfIncorporation" msprop:Generator_ColumnPropNameInTable="DateOfIncorporationColumn" msprop:Generator_UserColumnName="DateOfIncorporation" type="xs:string" minOccurs="0" />
+              <xs:element name="DateOfIncorporationTxt" msprop:Generator_ColumnVarNameInTable="columnDateOfIncorporationTxt" msprop:Generator_ColumnPropNameInRow="DateOfIncorporationTxt" msprop:Generator_ColumnPropNameInTable="DateOfIncorporationTxtColumn" msprop:Generator_UserColumnName="DateOfIncorporationTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="RegAddressTxt" msprop:Generator_ColumnVarNameInTable="columnRegAddressTxt" msprop:Generator_ColumnPropNameInRow="RegAddressTxt" msprop:Generator_ColumnPropNameInTable="RegAddressTxtColumn" msprop:Generator_UserColumnName="RegAddressTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="OfficeAddressTxt" msprop:Generator_ColumnVarNameInTable="columnOfficeAddressTxt" msprop:Generator_ColumnPropNameInRow="OfficeAddressTxt" msprop:Generator_ColumnPropNameInTable="OfficeAddressTxtColumn" msprop:Generator_UserColumnName="OfficeAddressTxt" type="xs:string" minOccurs="0" />
+              <xs:element name="BusinessTypeName" msprop:Generator_ColumnVarNameInTable="columnBusinessTypeName" msprop:Generator_ColumnPropNameInRow="BusinessTypeName" msprop:Generator_ColumnPropNameInTable="BusinessTypeNameColumn" msprop:Generator_UserColumnName="BusinessTypeName" type="xs:string" minOccurs="0" />
+              <xs:element name="BusinessSizeName" msprop:Generator_ColumnVarNameInTable="columnBusinessSizeName" msprop:Generator_ColumnPropNameInRow="BusinessSizeName" msprop:Generator_ColumnPropNameInTable="BusinessSizeNameColumn" msprop:Generator_UserColumnName="BusinessSizeName" type="xs:string" minOccurs="0" />
+              <xs:element name="SectorTypeName" msprop:Generator_ColumnVarNameInTable="columnSectorTypeName" msprop:Generator_ColumnPropNameInRow="SectorTypeName" msprop:Generator_ColumnPropNameInTable="SectorTypeNameColumn" msprop:Generator_UserColumnName="SectorTypeName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="CIF_OrganizationalDtoKey1">
+      <xs:selector xpath=".//mstns:CIF_OrganizationalDto" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="CIF_OrganizationalDtoKey2">
+      <xs:selector xpath=".//mstns:CIF_OrganizationalDto" />
+      <xs:field xpath="mstns:CompanyId" />
+    </xs:unique>
+    <xs:unique name="CIF_OrganizationalDtoKey3">
+      <xs:selector xpath=".//mstns:CIF_OrganizationalDto" />
+      <xs:field xpath="mstns:RegCountryId" />
+    </xs:unique>
+    <xs:unique name="CIF_OrganizationalDtoKey4">
+      <xs:selector xpath=".//mstns:CIF_OrganizationalDto" />
+      <xs:field xpath="mstns:RegAddressId" />
+    </xs:unique>
+    <xs:unique name="CIF_OrganizationalDtoKey5">
+      <xs:selector xpath=".//mstns:CIF_OrganizationalDto" />
+      <xs:field xpath="mstns:OfficeAddressId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

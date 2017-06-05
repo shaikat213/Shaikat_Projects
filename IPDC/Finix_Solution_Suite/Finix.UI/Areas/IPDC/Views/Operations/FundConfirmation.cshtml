@@ -1,0 +1,212 @@
+﻿<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Operations/FundConfirmation.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet"/>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet"/>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+@{
+    ViewBag.Title = "Fund Confirmation";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="opFundConfirmation">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Fund Confirmation</b>
+        </h2>
+    </header>
+    <br />
+    <div>
+        <div class="container">
+            <div class="row">
+                <section class="rm">
+                    <div class="panel-body">
+
+                        <div class="container-fluid ">
+
+                            <fieldset>
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label for="" class="control-label" style="text-align: left;"><strong>Application No :</strong></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:ApplicationNo"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;"><strong>Account Title :</strong></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:AccountTitle"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label for="" class="control-label" style="text-align: left;"><strong>Customer Type:</strong></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:CustomerTypeName"></span>
+                                                </div>
+
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;"><strong>Product :</strong></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text: ProductName"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <div class="col-sm-12">
+                                            <div class="form-group row row_design">
+                                                <div class="col-sm-3">
+                                                    <label class="control-label" style="text-align: left;"><strong>Total Deposit Amount:</strong></label>
+                                                </div>
+                                                <div class="col-sm-3">
+                                                    <span data-bind="text:TotalDepositAmount"></span>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <br />
+
+        <!--start APPLICATION DETAILS-->
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <label>Cash Deposit</label>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped table-bordered" width='100%'>
+                    <thead class="headcolor">
+                    <tr>
+                        <th>Deposited To (IPDC Account #)</th>
+                        <th>Date</th>
+                        <th>Amount</th>
+                        <th><a class="plus" href='#' data-bind='click:AddFundingsLine'><span class="glyphicon glyphicon-plus"></span></a></th>
+
+                    </tr>
+                    </thead>
+                    <tbody data-bind='foreach:Fundings'>
+                    <tr>
+                        <td>
+                            <select data-bind="options:$parent.IPDCBankAccounts, value: IPDCBankAccountId, optionsValue: 'Id',optionsText:'BankName',optionsCaption:'--Select--'" class="form-control"></select>
+                        </td>
+                        <td>
+
+                            @*<input type="date" data-bind="date:CreditDate, valueUpdate:'keyup'" class="form-control lignHeightDate"/>
+                            <span class="help-block" style="display: none;"></span>*@
+                            @*<span class="input-group-addon">
+                                        <span class="glyphicon glyphicon-calendar"></span>
+                                    </span>*@
+                            <div class="input-group" style="padding-left:15px; padding-right:15px;">
+                                <input type="text" class="centerAlignment form-control lignHeightDate" data-bind="datepicker:CreditDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                                <span class="help-block" style="display: none;"></span>
+                                <div class="input-group-addon">
+                                    <span class="glyphicon glyphicon-calendar"></span>
+                                </div>
+                            </div>
+
+                        </td>
+                        <td>
+                            <input type="number" min="0" data-bind="value:Amount, valueUpdate:'keyup'" class="form-control"/>
+                        </td>
+
+                        <td>
+                            <a class="plus" href='#' data-bind='click: $parent.AddFundingsLine'><span class="glyphicon glyphicon-plus"></span></a>
+                            <a class="minus" href='#' data-bind='click: $parent.RemovedFundingsLine'><span class="glyphicon glyphicon-minus"></span></a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="form-group row row_design">
+                <div class="col-sm-6">
+                    @*<div class="col-sm-3">
+                        <label class="control-label">Fund Received</label>
+                    </div>
+
+                    <div class="col-sm-3">
+                        <input data-bind="checked:FundReceived" type="checkbox"/>
+
+                    </div>*@
+                </div>
+                <div class="col-sm-6">
+                    <div class="col-sm-offset-6" data-bind="visible:!FundReceived()">
+                        <button type="button" class="btn btn-success btnLarge" data-bind="click:SaveAsDraft, enable:ValidDepositAmount">Save as Draft</button>
+                    </div>
+                    <div class="col-sm-offset-6" data-bind="visible:FundReceived">
+                        <button type="button" class="btn btn-success btnLarge" data-bind="click:SaveAndSubmit, enable:ValidDepositAmount">Save & Submit</button>
+                    </div>
+
+                </div>
+            </div>
+            <br/>
+        </div>
+
+
+        <div>
+            <div id="successModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="successModalText"></p>
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+

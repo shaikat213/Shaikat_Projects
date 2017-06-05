@@ -1,0 +1,354 @@
+﻿@{
+    ViewBag.Title = "Disbursment Memo";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<script src="~/Areas/IPDC/Scripts/Operations/DisbursementMemo.js"></script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .no-right-padding {
+        padding-right: 0;
+    }
+
+    .no-left-padding {
+        padding-left: 0;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .lineHeightDate {
+        line-height: 15px !important;
+    }
+
+    tr > td > input {
+        min-height: 22px;
+    }
+
+    input[type="number"] {
+        text-align: right;
+    }
+</style>
+<div class="panel-body" id="DisbursmentMemoVW">
+    <div class="container-fluid">
+        <div class="panel-bodycontent">
+            <header class="panel-heading bodytitle">
+                <h2 class="panel-title font"><b>Disbursment Memo</b></h2>
+            </header>
+            <div class="panel-body collapse in">
+                <fieldset>
+                    @*<div class="form-group row row_design_detail" style="margin: 0px; font-size: 11px">
+                        <a target="_blank" data-bind="attr: { href: Link1, title1: 'PDF' }">PDF</a>
+                        <a target="_blank" data-bind="attr: { href: Link2, title2: 'Excel' }">Excel</a>
+                        <a target="_blank" data-bind="attr: { href: Link3, title3: 'Word' }">Word</a>
+                    </div>*@
+                    <div class="form-group row row_design">
+                        <div class="col-sm-2">
+                            <label class="control-label">DM Date:</label>
+                        </div>
+                        <div class="col-sm-2 input-group input-group_cif date" data-bind="validationElement: DMDate">
+                            <input type="text" class="form-control" data-bind="datepicker:DMDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                            <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="TrenchNo">Trench No</label>
+                        </div>
+
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="TrenchNo" type="number" data-bind="value:TrenchNo" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label" style="text-align: left;">Disbursment Verified:</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="radio-inline"><input type="radio" value="0" data-bind="checked: IsPartial">Full Disbursment</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="radio-inline"><input type="radio" value="1" data-bind="checked: IsPartial">Partial Disbursment</label>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="TotalLoanAmount">Total Loan Amount</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="TotalLoanAmount" type="number" data-bind="value:TotalLoanAmount" readonly />
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label">Current Disbursement Amount</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="CurrentDisbursementAmount" type="number" min="0" data-bind="value:CurrentDisbursementAmount,valueUpdate : 'keyup'" />
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="TotalDisbursedAmount">Total Disbursed Amount</label>
+                        </div>
+
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="TotalDisbursedAmount" type="number" data-bind="value:TotalDisbursedAmount" readonly />
+                        </div>
+                    </div>
+
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#security">
+                            <h2 class="panel-title font">
+                                <b>Security</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="security">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddSecurityText'>Add Security<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:SecurityTexts">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Security</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddSecurityText'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveSecurityText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#disburseTo">
+                            <h2 class="panel-title font">
+                                <b>Disburse To</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="disburseTo">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddDisburseTo'>Add Disburse To<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:Disburses">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Disburse To</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddDisburseTo'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveDisburseTo'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#exception">
+                            <h2 class="panel-title font">
+                                <b>Exception</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="exception">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddException'>Add Exception<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:Exceptions">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Exception</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddException'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveException'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#docStatus">
+                            <h2 class="panel-title font">
+                                <b>Doc Status</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="docStatus">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddDocStatus'>Add Doc Status<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:DocStatuses">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Doc Status</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddDocStatus'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveDocStatus'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#recommand">
+                            <h2 class="panel-title font">
+                                <b>Recommendations</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="recommand">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddRecommand'>Add Doc Status<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:Recommandations">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Recommendation</label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddRecommand'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.Removerecommand'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <div class="panel-bodycontent">
+                    <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#exclosure">
+                        <h2 class="panel-title font">
+                            <b>Enclosures</b>
+                        </h2>
+                    </header>
+                    <div class="panel-body collapse in" id="exclosure">
+                        <div class="form-group row row_design_detail">
+                            <div>
+                                <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                    <a class="plus" href='#' data-bind='click: AddExclosure'>Add Exclosure<span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                            </div>
+                            <div data-bind="foreach:Exclosures">
+                                <div class="col-sm-2">
+                                    <label class="control-label">Enclosure</label>
+                                </div>
+                                <div class="col-sm-9 no-padding">
+                                    <textarea class="form-control" data-bind="value:Text"></textarea>
+                                </div>
+                                <div class="col-sm-1" style="text-align: center;">
+                                    <a class="plus" href='#' data-bind='click: $parent.AddExclosure'><span class="glyphicon glyphicon-plus"></span></a>
+                                    <a class="minus" href='#' data-bind='click: $parent.RemoveExclosure'><span class="glyphicon glyphicon-minus"></span></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel-bodycontent">
+                        @*data-bind="visible: (FacilityType() != 4)*@
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#signatories">
+                            <h2 class="panel-title font">
+                                <b>Signatories</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="signatories">
+                            <div class="form-group row row_design_detail">
+                                <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                    <a class="plus" href='#' data-bind='click: AddSignatories'>Add Signatories<span class="glyphicon glyphicon-plus"></span></a>
+                                </div>
+                            </div>
+                            <div data-bind="foreach:SignatoryList">
+                                <div class="form-group row row_design_detail">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Signatories </label>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        @*<input type="text" class="form-control" data-bind="value:Name"/>*@
+                                        <select data-bind="options:$root.SignatoryListForProp,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SignatoryId" class="form-control"></select>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddSignatories'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveSignatories'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+                        <div class="col-sm-4"></div>
+
+                        <button type="button" class="btn btn-success btn-q" data-bind="click:SaveNew">Save As</button>
+                        <button type="button" class="btn btn-success btn-q" data-bind="click:SaveMemo">Save</button>
+                        <button type="button" class="btn btn-success btn-q" data-bind="click:PrintMemo">Print Memo</button>
+
+                    </div>
+                    <div class="form-group">
+
+                        <div id="offSuccessModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Response</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <p id="offSuccessModalText"></p>
+
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

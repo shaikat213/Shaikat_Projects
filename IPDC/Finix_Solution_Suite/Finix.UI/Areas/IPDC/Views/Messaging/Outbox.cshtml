@@ -1,0 +1,121 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Finix.IPDC.DTO.IPDCMessagingDto>
+@{
+    ViewBag.Title = "Message Outbox";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var userInfoJson = jss.Serialize(Model);
+}
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Messaging/Outbox.js"></script>
+<link href="~/Content/customassets/css/searchCIFinformation.css" rel="stylesheet" />
+<link href="~/Content/layout-modifications.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/PagedList.css" rel="stylesheet" />
+
+<script>
+
+    var userInfo = JSON.parse('@Html.Raw(userInfoJson)');
+
+</script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .btnLarge {
+        width: 140px !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent" id="outboxvm">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Outbox</b>
+        </h2>
+    </header><br/>
+
+   
+
+    <!--start APPLICATION DETAILS-->
+
+    <div class="container-fluid ">
+
+        <fieldset>
+            <div class="row">
+                <div class="col-sm-12">
+                    @*ApplicationApproval*@
+                    @using (Ajax.BeginForm("Outbox", "Messaging", null))
+                        {
+                    <div class="form-group row row_design">
+                        <div class="col-sm-offset-1 col-sm-1">
+                            <label for="test" class="control-label">Search</label>
+                        </div>
+                        <div class="col-sm-7" data-bind="validationElement:test">
+                            <input type="text" name="searchString" class="form-control" id="searchString" placeholder="Application No" value="@(ViewBag.SearchString ?? String.Empty)">
+                        </div>
+                        <div class="col-sm-2">
+                            <button type="submit" class="btn btn-default">Search</button> @*data-bind="click:Search"*@
+                        </div>
+                    </div>
+                        }
+                    <hr class="horizontal">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <table class="table table-striped table-bordered" frame="box">
+                                <thead class="headcolor">
+                                    <tr>
+                                        <th class="center">To Emp. Name</th>
+                                        <th class="center">To Dsignation</th>
+                                        <th class="center">Application No.</th>
+                                        @*<th class="center">Forward</th>*@
+                                    </tr>
+                                </thead>
+                                <tbody data-bind="foreach:LoadData">
+                                    <tr>
+                                        <td style="display:none"><input type="hidden" data-bind="value:Id" /></td>
+                                        <td class="center" data-bind="text:ToEmpName"></td>
+                                        <td class="center" data-bind="text:ToDesignationName"></td>
+                                        <td class="center" data-bind="text:ApplicationNo"></td>
+                                        @*<td>
+
+                                                <button type="button" class="btn-i btn-info" data-toggle="modal" data-target="#submitModal" data-bind='event:{click:$parent.SetAppId}' title="Submit to CRM">
+                                                    <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                                                </button>
+                                            </td>*@
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="pagination-centered">
+                                @*ApplicationApprovalBM*@
+                                Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                @Html.PagedListPager(Model, page => Url.Action("Outbox",
+                                    new { page, sortOrder = ViewBag.CurrentSort, searchString = ViewBag.SearchString }))
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </fieldset>
+
+    </div>
+
+   
+
+</section>
+
+
+
+
+
+
+

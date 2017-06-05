@@ -1,0 +1,313 @@
+﻿body{
+    font-family: Lucida Grande,Lucida Sans,Arial,sans-serif;
+    color: #000 !important;
+    
+}
+.table > thead > tr > th, .table > tbody > tr > th, 
+.table > tfoot > tr > th, .table > thead > tr > td, 
+.table > tbody > tr > td, .table > tfoot > tr > td{
+    padding: 2px;
+    text-align: center;
+}
+.table{
+    font-size: 12px;
+}
+.btn{
+    /*font-size: 11px;
+    margin-bottom: -1px;*/
+
+    font-size: 12px;
+margin-bottom: -1px;
+
+width: 55px;
+height: 23px;
+}
+.btn-success{
+    margin-bottom: 1px;
+}
+.form-control {
+    height: 100%;
+    font-size: 11px;
+    padding: 2px 3px;
+    margin-bottom: 2px;
+
+}
+
+.ui-widget-header {
+    border: 1px solid #808080;
+    background: #CCCEDB;
+    color: #000;
+    font-weight: bold;
+}
+
+.ui-jqgrid .ui-jqgrid-titlebar {
+    padding: .3em .2em .2em .3em;
+    position: relative;
+    font-size: 12px;
+    border-left: 0 none;
+    border-right: 0 none;
+    border-top: 0 none;
+}
+
+.ui-corner-top{
+    border-top-right-radius: 5px;
+}
+
+.panel-title {
+    font-size: 14px;
+    color: inherit;
+}
+.headcolor {
+    background-color:#ECEBEB;
+    color:#1D5987;
+}
+
+.panel-bodycontent{
+    border: 1px solid #C4C4C4;
+     margin-bottom: 8px;
+     border-radius: 5px;
+     
+}
+
+.panel-heading {
+    padding: 5px 8px;
+    color: #000;
+    font-weight: bold;
+    font-size: 12px;
+    background-color:#CCCEDB;
+    border-bottom: 1px solid #808080;
+}
+
+.form-group {
+    margin-bottom: 0px;
+}
+
+.table > tbody > tr > td {
+    font-size:11px;
+    vertical-align:middle;
+    color:#777;
+}
+.modal-content {
+    font-size:12px;
+    margin-left: 120px;
+    
+}
+
+.modal-dialog-pre {
+   
+    margin-left: 120px;
+    
+}
+
+.modal-dialog-prev {
+   
+    margin-left: 120px;
+    
+}
+
+
+.form-horizontal .control-label {
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+.input-group-addon {
+    padding: 2px 8px;
+}
+
+.table-bordered-st {
+    border: 1px solid #ddd;
+    margin-top: 10px;
+}
+.form-group-last{
+    margin-top:10px;
+}
+
+.form-group-reschedule{
+      margin-top:10px;
+}
+
+.followup {
+background-color:#ECEBEB;
+    color:#1D5987;
+}
+.modal-body {
+    
+    padding: 15px 15px 0px 15px;
+}
+
+.nav > li > a:hover{
+   
+    background-color:none;
+    color:none;
+}
+
+.btn-q{
+    /*font-size: 11px;
+    margin-bottom: -1px;*/
+
+    font-size: 12px;
+    margin-bottom: -1px;
+    width: 102px;
+    height: 23px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color:#fff;
+}
+
+.btn-qpo{
+    /*font-size: 11px;
+    margin-bottom: -1px;*/
+
+    font-size: 12px;
+    margin-bottom: -1px;
+    width: 132px;
+    height: 23px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color:#fff;
+}
+
+.btn-i{
+    /*font-size: 11px;
+    margin-bottom: -1px;*/
+
+    font-size: 12px;
+margin-bottom: -1px;
+
+width: 25px;
+height: 23px;
+border: 1px solid transparent;
+border-radius: 4px;
+}
+
+.modal-dialog-chpass{
+
+    margin-left: 170px;
+    margin-top: 20px;
+}
+
+.modal-header {
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+    border-radius: 4px 4px 0 0;
+    text-align: center;
+    color: #FF1493;
+    text-decoration: none;
+    background-color: #ddd;
+}
+
+.modal-footer-chpass {
+    padding: 20px;
+    text-align: right;
+    border-top: 1px solid #e5e5e5;
+    margin-top: 35px;
+}
+
+.row-chpass {
+    margin-right: -15px;
+    margin-left: -15px;
+    margin-top: -30px;
+    margin-bottom: 40px;
+}
+
+.btn-chpass{
+    display: inline-block;
+    padding: 2px 5px;
+    font-size: 12px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+    cursor: pointer;
+    -moz-user-select: none;
+    background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+    width: 52px;
+    height: 23px;
+}
+
+.btn {
+	/*display: inline-block;
+	padding: 2px 5px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: normal;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;*/
+   }
+
+.user {
+    height: 30px;
+    width: 30px;
+    border-radius: 15px;
+     }
+
+   .logo {
+            height: 50px;
+            width: 133px;
+            margin-left: -5px;
+            margin-top: -10px;
+         }
+
+
+    .btn-success {
+       background-color: #1C5FA3 !important;
+       border-color: #1C5FA3 !important;
+       color:#fff;
+    }
+    .btn-success:hover{
+        background-color: #1C5FA3 !important;
+       border-color: #1C5FA3 !important;
+       color:#fff;
+    }
+
+   .modal-sm {
+        width: 400px;
+   }
+
+   .close {
+    font-size: 20px !important;
+    color: #ff0000 !important;
+    text-shadow: none !important;
+    opacity: 4.5 !important;
+    text-decoration: none !important;
+}
+
+   .btn-default{
+    background-color:green !important;
+     border-color:green !important; 
+     color:#fff !important;
+
+} 
+.btn-default:hover{
+    background-color:green !important;
+     border-color:green !important; 
+     color:#fff !important;
+
+}
+
+button[disabled] {
+    cursor:not-allowed;
+}
+
+.heading {
+    margin-left: 5px;
+}
+.validationMessage{
+    color:red;
+}

@@ -1,0 +1,92 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<Finix.IPDC.DTO.ProductDto>
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<link href="~/Content/customassets/css/salesLead.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Product/GetProducts.js"></script>
+
+<link href="~/Content/customassets/css/searchCIFinformation.css" rel="stylesheet" />
+<link href="~/Content/layout-modifications.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/PagedList.css" rel="stylesheet" />
+
+@*<link href="/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+@{
+    ViewBag.Title = "Product List";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var userInfoJson = jss.Serialize(Model);
+}
+<script>
+    var userInfo = JSON.parse('@Html.Raw(userInfoJson)');
+</script>
+
+<div id="SearchApplicationVm">
+    <section class="rm">
+        <div class="container-fluid ">
+            @using (Ajax.BeginForm("GetProducts", "Product", null))
+            {
+                @*<form class="form-horizontal" role="form" id="employee-info">*@
+                <fieldset>
+                    <div class="row">
+                        <div class="col-sm-8">
+                            @*<div class="form-group row row_design">
+                                <div class="col-sm-offset-1 col-sm-1">
+                                    <label for="test" class="control-label">Search</label>
+                                </div>
+                                <div class="col-sm-3" data-bind="validationElement:test">
+                                    <input type="text" name="test" class="form-control" id="test" placeholder="-----">
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="submit" class="btn btn-default">Search</button> 
+                                </div>
+                            </div>*@
+                            <hr class="horizontal">
+
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <table class="table table-striped table-bordered" frame="box">
+                                        <thead class="headcolor">
+                                            <tr>
+                                                <th class="center">Name</th>
+                                                <th class="center">FacilityTypeName</th>
+                                                <th class="center">ProductTypeNamee</th>
+                                                <th class="center">DepositTypeName</th>
+                                                <th class="center">ApplicationFee</th>
+                                                <th></th>
+                                               
+
+                                            </tr>
+                                        </thead>
+                                        <tbody data-bind="foreach:LoadData">
+                                            <tr>
+                                                <td class="center" data-bind="text: Name"></td>
+                                                <td class="center" data-bind="text: FacilityTypeName"></td>
+                                                <td class="center" data-bind="text: ProductTypeName"></td>
+                                                <td class="center" data-bind="text: DepositTypeName"></td>
+                                                <td class="center" data-bind="text: ApplicationFee"></td>
+                                                <td>
+                                                    <a href='#' data-bind='click: $parent.Details' title="Deatils"><span class="glyphicon glyphicon-th-list"></span></a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="pagination-centered">
+                                        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+                                        @Html.PagedListPager(Model, page => Url.Action("GetProducts",
+                                    new { page, sortOrder = ViewBag.CurrentSort, currentFilter = ViewBag.CurrentFilter }))
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </fieldset>
+                @*</form>*@
+            }
+        </div>
+    </section>
+
+</div>

@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Guarantors" targetNamespace="http://tempuri.org/Guarantors.xsd" xmlns:mstns="http://tempuri.org/Guarantors.xsd" xmlns="http://tempuri.org/Guarantors.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Guarantors" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Guarantors" msprop:Generator_UserDSName="Guarantors">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Guarantors" msprop:Generator_TableClassName="GuarantorsDataTable" msprop:Generator_TableVarName="tableGuarantors" msprop:Generator_RowChangedName="GuarantorsRowChanged" msprop:Generator_TablePropName="_Guarantors" msprop:Generator_RowDeletingName="GuarantorsRowDeleting" msprop:Generator_RowChangingName="GuarantorsRowChanging" msprop:Generator_RowEvHandlerName="GuarantorsRowChangeEventHandler" msprop:Generator_RowDeletedName="GuarantorsRowDeleted" msprop:Generator_RowClassName="GuarantorsRow" msprop:Generator_UserTableName="Guarantors" msprop:Generator_RowEvArgName="GuarantorsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" />
+              <xs:element name="ProposalId" msdata:Caption="LoanApplicationId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msdata:Caption="GuarantorCifId" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="ProfessionName" msdata:Caption="GuaranteeAmount" msprop:Generator_ColumnVarNameInTable="columnProfessionName" msprop:Generator_ColumnPropNameInRow="ProfessionName" msprop:Generator_ColumnPropNameInTable="ProfessionNameColumn" msprop:Generator_UserColumnName="ProfessionName" type="xs:string" minOccurs="0" />
+              <xs:element name="CompanyName" msdata:Caption="Age" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName" type="xs:string" minOccurs="0" />
+              <xs:element name="Designation" msdata:Caption="GuarantorName" msprop:Generator_ColumnVarNameInTable="columnDesignation" msprop:Generator_ColumnPropNameInRow="Designation" msprop:Generator_ColumnPropNameInTable="DesignationColumn" msprop:Generator_UserColumnName="Designation" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicant" msdata:Caption="CIFNo" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicant" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicant" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantColumn" msprop:Generator_UserColumnName="RelationshipWithApplicant" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicantName" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicantName" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicantName" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantNameColumn" msprop:Generator_UserColumnName="RelationshipWithApplicantName" type="xs:string" minOccurs="0" />
+              <xs:element name="Age" msprop:Generator_ColumnVarNameInTable="columnAge" msprop:Generator_ColumnPropNameInRow="Age" msprop:Generator_ColumnPropNameInTable="AgeColumn" msprop:Generator_UserColumnName="Age" type="xs:string" minOccurs="0" />
+              <xs:element name="MonthlyIncome" msprop:Generator_ColumnVarNameInTable="columnMonthlyIncome" msprop:Generator_ColumnPropNameInRow="MonthlyIncome" msprop:Generator_ColumnPropNameInTable="MonthlyIncomeColumn" msprop:Generator_UserColumnName="MonthlyIncome" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Proposal_ClientProfilePK" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Guarantors" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="Proposal_ClientProfileFK">
+      <xs:selector xpath=".//mstns:Guarantors" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

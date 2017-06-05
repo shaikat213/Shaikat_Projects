@@ -1,0 +1,1098 @@
+﻿
+@{
+    ViewBag.Title = "Client Information Edit";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<script src="~/Areas/IPDC/Scripts/CIF/CIF_Edit.js"></script>
+<link href="~/Content/customassets/css/FollowUpScheduleSR.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+
+<style>
+    .sp_height {
+        height: 30px;
+    }
+</style>
+<!---vvvvvvv----Body Main Starts here---vvvvvv----->
+<div class="panel-body">
+    <div class="container-fluid">
+        <ul class="nav nav-tabs nav-justified" role="tablist">
+            <li role="presentation" class="active"><a href="#cif_personal" role="tab" data-toggle="tab">Personal Info.</a></li>
+            <li role="presentation" class="cifpDetails"><a href="#cifOccupation" role="tab" data-toggle="tab">Occupation</a></li>
+            <li role="presentation" class="cifpDetails"><a href="#cifIncomeStatement" role="tab" data-toggle="tab">Income Statement</a></li>
+            <li role="presentation" class="cifpDetails"><a href="#cifNetWorth" role="tab" data-toggle="tab">Net Worth</a></li>
+            <li role="presentation" class="cifpDetails"><a href="#cifReference" role="tab" data-toggle="tab">Reference</a></li>
+            <li role="presentation" class="cifpDetails"><a href="#cifCards" role="tab" data-toggle="tab">Bank Accounts</a></li>
+        </ul>
+        <div class="tab-content">
+            <div class="tab-pane fade active in" id="cif_personal">
+                <section class="panel bodycontent" id="ApplicationVw">
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle">
+                            <h2 class="panel-title font"><b>CIF Personal Information</b></h2>
+                        </header>
+                        <br />
+                        <div class="container-fluid ">
+                            <div id="CIF_Personal" class="col-sm-12" enctype="multipart/form-data">
+                                <form class="form-horizontal" role="form" id="employee-info">
+                                    <fieldset>
+                                        <div class="ds-content">
+
+                                            <div class="row">
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-offset-1 col-sm-2">
+                                                        <div class="col-sm-2 no-left-padding">
+                                                            <img id="cifPhoto" data-bind="attr:{ src:Photo }" style="max-width: 150px; height: auto; display: none;" src="#" alt="Photo Upload" />
+                                                            <img id="cifPhotoOld" data-bind='attr: {src: "/Content/image/cif/"+ PhotoName() }' style="max-width: 150px; height: auto;" alt="" />
+                                                            <input type='file' id="imgInp" />
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <img id="cifSigPhoto" data-bind="attr:{ src:SignaturePhoto }" style="max-width: 150px; height: auto; display: none;" src="#" alt="Photo Upload" />
+                                                        <img id="cifSigPhotoOld" data-bind='attr: {src: "/Content/image/signature/"+ SignaturePhotoName() }' style="max-width: 150px; height: auto;" alt="" />
+                                                        <input type='file' id="imgSigInp" />
+                                                    </div>
+                                                    <div class="col-sm-6">
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="Name">Name<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: Name">
+                                                                <input type="text" data-bind="value:Name" class="form-control" id="Name" placeholder="Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="Name">Title<span class="required"></span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: Title">
+                                                                <input type="text" data-bind="value:Title" class="form-control" id="Title" placeholder="Title">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="FatherName">Father's Name<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: FathersName">
+                                                                <input type="text" data-bind="value:FathersName" class="form-control" id="" placeholder="Father's Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="FathersTitle">Father's Title<span class="required"></span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: FathersTitle">
+                                                                <input type="text" data-bind="value:FathersTitle" class="form-control" id="FathersTitle" placeholder="FathersTitle">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="MothersName">Mother's Name<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: MothersName">
+                                                                <input data-bind="value:MothersName" class="form-control" type="text" id="MothersName" placeholder="Mother's Name">
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group row row_design">
+                                                            <div class="col-sm-4">
+                                                                <label class="control-label" for="FathersTitle">Mother's Title<span class="required"></span></label>
+                                                            </div>
+                                                            <div class="col-sm-6" data-bind="validationElement: MothersTitle">
+                                                                <input type="text" data-bind="value:MothersTitle" class="form-control" id="MothersTitle" placeholder="Mother's Title">
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Name">Name<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: Name">
+                                                            <input type="text" data-bind="value:Name" class="form-control" id="Name" placeholder="Name">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="Name">Title<span class="required"></span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: Title">
+                                                            <input type="text" data-bind="value:Title" class="form-control" id="Title" placeholder="Title">
+                                                        </div>
+                                                    </div>*@
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="FatherName">Father's Name<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: FathersName">
+                                                            <input type="text" data-bind="value:FathersName" class="form-control" id="" placeholder="Father's Name">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="FathersTitle">Father's Title<span class="required"></span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: FathersTitle">
+                                                            <input type="text" data-bind="value:FathersTitle" class="form-control" id="FathersTitle" placeholder="FathersTitle">
+                                                        </div>
+                                                    </div>*@
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="MothersName">Mother's Name<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: MothersName">
+                                                            <input data-bind="value:MothersName" class="form-control" type="text" id="MothersName" placeholder="Mother's Name">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label class="control-label" for="FathersTitle">Mother's Title<span class="required"></span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: MothersTitle">
+                                                            <input type="text" data-bind="value:MothersTitle" class="form-control" id="MothersTitle" placeholder="Mother's Title">
+                                                        </div>
+
+                                                    </div>*@
+
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" for="BirthCountryId">Birth Country<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: BirthCountryId">
+                                                        <select id="BirthCountryId" data-bind="options:CountryList, optionsValue: 'Id',optionsText:'Name', optionsCaption:'--Select--', value:BirthCountryId ,event :{change : ForeignCheck}" class="form-control"></select>
+                                                    </div>
+
+
+                                                    <div class="col-sm-2" data-bind="visible:(BirthCountryId()===1)">
+                                                        <label class="control-label" for="BirthDistrictId">Birth District<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: IsForeign ,visible:(BirthCountryId()===1)">
+                                                        <select id="BirthDistrictId" data-bind="options:BirthDistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:BirthDistrictId " class="form-control"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2" data-bind="visible:!(BirthCountryId()===1)">
+                                                        <label class="control-label" for="BirthDistrictForeign">Foreign Birth District<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: BirthDistrictForeign,visible:!(BirthCountryId()===1) ,valueUpdate :'afterkeydown'">
+                                                        <input data-bind="value: BirthDistrictForeign" id="BirthDistrictForeign" class="form-control" type="text" placeholder="Foreign Birth District ">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" for="NewDateOfBirth">Date of Birth<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3 input-group" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: DateOfBirth">
+                                                        <input type="text" class="form-control" data-bind="datepicker:DateOfBirth, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'" placeholder="Date of Birth">
+                                                        <span class="help-block" style="display: none;"></span>
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-1">
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" for="NumberOfDependents">Number of Dependents<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: NumberOfDependents">
+                                                        <input data-bind="value:NumberOfDependents" class="form-control" type="number" id="NumberOfDependents" placeholder="Dependents Count">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" for="Gender">Gender<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: Gender">
+                                                        <select class="form-control" id="Gender" data-bind="
+                                                                                                              options:GenderList,
+                                                                                                              optionsValue: 'Key',
+                                                                                                              optionsText:'Value',
+                                                                                                              optionsCaption:'--Select--',
+                                                                                                              value:Gender
+                                                                                                            "></select>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label" for="MaritalStatus">Marital Status:<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: MaritalStatus">
+                                                        <select class="form-control" id="MaritalStatus" data-bind="options:MaritalStatusList, optionsValue: 'Key', optionsText:'Value', optionsCaption:'--Select--', value:MaritalStatus"></select>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseName" class="control-label">Spouse Name<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseName">
+
+                                                        <input data-bind="value:SpouseName" class="form-control" type="text" placeholder="Spouse Name">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseTitle" class="control-label">Spouse Title<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseTitle">
+                                                        <input data-bind="value:SpouseTitle" class="form-control" type="text" id="SpouseTitle" placeholder="Spouse Title">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpousePhoneNo" class="control-label">Spouse Phone No<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpousePhoneNo">
+                                                        <input data-bind="value:SpousePhoneNo" class="form-control" type="text" id="SpousePhoneNo" placeholder="Spouse Phone No">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseProfessionId" class="control-label">Spouse Profession<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseProfessionId">
+                                                        <select id="SpouseProfessionId" class="form-control" data-bind="options:SpouseStatusList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:SpouseProfessionId"></select>
+
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseDesignation" class="control-label">Spouse Designation<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseDesignation">
+                                                        <input data-bind="value:SpouseDesignation" class="form-control" type="text" id="SpouseDesignation" placeholder="Spouse Designation">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseCompanyId" class="control-label">Spouse Company<span class="required">*</span></label>
+                                                    </div>
+
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseCompanyName">
+                                                        <input data-bind="value:SpouseCompanyName ,disable :SpouseCompanyEnlisted" class="form-control" type="text" id="SpouseCompanyName" placeholder="Spouse Company Name">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label class="control-label">Company Listed</label>
+                                                    </div>
+
+                                                    <div class="col-sm-1">
+                                                        <input type="checkbox" name="optradio" data-bind="checked:SpouseCompanyEnlisted, valueUpdate: 'keyup'">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                    </div>
+
+                                                    <div class="col-sm-2" data-bind="validationElement: SpouseCompanyEnlisted ,visible: SpouseCompanyEnlisted">
+                                                        <label class="control-label">Company List</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="visible: SpouseCompanyEnlisted">
+                                                        <select class="form-control" id="SpouseCompanyId" data-bind="options:CompanyList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--',value:SpouseCompanyId"></select>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="NationalityId" class="control-label">Nationality<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: NationalityId">
+                                                        <select class="form-control" id="NationalityId" data-bind="options:NationalityList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:NationalityId "></select>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="NIDNo" class="control-label">NID No.<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: NIDNo">
+                                                        <input type="number" min="0" data-bind="value:NIDNo" class="form-control" id="NIDNo" placeholder="Enter NID">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SmartNIDNo" class="control-label">Smart NID No<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SmartNIDNo">
+                                                        <input type="number" data-bind="value:SmartNIDNo" class="form-control" id="SmartNIDNo" placeholder="Enter Smart NID No">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="PassportNo" class="control-label">Passport No<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: PassportNo">
+                                                        <input type="text" data-bind="value:PassportNo ,valueUpdate :'afterkeydown', event: {'keyup': colPassportInfo }" class="form-control" id="PassportNo" placeholder="Enter Passport No">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="DLNo" class="control-label">Driver License<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: DLNo">
+                                                        <input type="text" data-bind="value:DLNo ,valueUpdate :'afterkeydown', event: {'keyup': colDriverLcs }" class="form-control" id="DLNo" placeholder="Enter DlID">
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="form-group row row_design_detail" data-bind="visible:PassportNo().length > 0">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="PassportIssueCountryId" class="control-label">Passport Issue Country<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: PassportIssueCountryId">
+                                                        <select class="form-control" id="PassportIssueCountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PassportIssueCountryId"></select>
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label for="PassportIssueDate" class="control-label">Passport Issue Date<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3 input-group" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: PassportIssueDate">
+                                                        <input type="text" class="form-control" data-bind="datepicker:PassportIssueDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'" placeholder="Passport Issue Date">
+                                                        <span class="help-block" style="display: none;"></span>
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design_detail" data-bind="visible:DLNo().length > 0">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="DLIssueCountryId" class="control-label">License Issue Country<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: DLIssueCountryId">
+                                                        <select class="form-control" id="DLIssueCountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:DLIssueCountryId"></select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="DLIssueDt" class="control-label">License Issue Date<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: DLIssueDate">
+                                                    </div>
+                                                    <div class="col-sm-3 input-group" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: DLIssueDate">
+                                                        <input type="text" class="form-control" data-bind="datepicker:DLIssueDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'" placeholder="Passport Issue Date">
+                                                        <span class="help-block" style="display: none;"></span>
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="BirthRegNo" class="control-label">Birth Reg No<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: BirthRegNo">
+                                                        <input type="text" data-bind="value:BirthRegNo" class="form-control" id="BirthRegNo" placeholder="Enter Birth Reg No">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-offset-1 col-sm-2">
+                                                        <label for="CommissionarCertificateNo" class="control-label">Commissioner Certificate<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: CommissionarCertificateNo">
+                                                        <input type="text" data-bind="value:CommissionarCertificateNo" class="form-control" id="CommissionarCertificateNo" placeholder="Enter Commissionar Certificate No">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="ETIN" class="control-label">ETIN Number<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: ETIN">
+                                                        <input type="text" data-bind="value:ETIN" class="form-control" id="ETIN" placeholder="Enter TIN Number">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-offset-1 col-sm-2">
+                                                        <label for="CommCertIssueDate" class="control-label">Certificate Issue Date<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3 input-group" style="padding-left: 15px; padding-right: 15px;" data-bind="validationElement: CommCertIssueDate">
+                                                        <input type="text" class="form-control" data-bind="datepicker:CommCertIssueDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'" placeholder="Passport Issue Date">
+                                                        <span class="help-block" style="display: none;"></span>
+                                                        <div class="input-group-addon">
+                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-offset-1 col-sm-2">
+                                                        <label for="HighestEducationLevel" class="control-label">Highest Education Level<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: HighestEducationLevel">
+                                                        <select class="form-control" id="HighestEducationLevel" data-bind="options:HighestEducationLevelList,optionsValue: 'Key',optionsText:'Value',optionsCaption:'--Select--', value:HighestEducationLevel"></select>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="HomeOwnership" class="control-label">Home Ownership<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: HomeOwnership">
+                                                        <select class="form-control" id="HomeOwnership" data-bind="options:HomeOwnershipList,optionsValue: 'Key', optionsText:'Value',optionsCaption:'--Select--',value:HomeOwnership "></select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="ResidenceStatus" class="control-label">Residence Status<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: ResidenceStatus">
+                                                        <select class="form-control" id="ResidenceStatus" data-bind="options:ResidenceStatusList,optionsValue: 'Key', optionsText:'Value',optionsCaption:'--Select--',value:ResidenceStatus "></select>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row row_design_detail">
+
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="YearsInCurrentResidence" class="control-label" style="text-align: left;">Years in Current Residence <span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: YearsInCurrentResidence">
+                                                        <select class="form-control" id="YearsInCurrentResidence" data-bind="options:YearsInCurrentResidenceList,optionsValue: 'Id', optionsText:'DisplayName',optionsCaption:'--Select--',value:YearsInCurrentResidence "></select>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-offset-1 col-sm-5">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 sp_height">
+                                                                <label class="control-label"><b>Residence Address:</b></label>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.AddressLine1" class="control-label">Address Line 1</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.AddressLine1">
+                                                                <input type="text" data-bind="value:ResidenceAddress.AddressLine1" class="form-control" placeholder="Line 1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.AddressLine2" class="control-label">Address Line 2</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.AddressLine2">
+                                                                <input type="text" data-bind="value:ResidenceAddress.AddressLine2" class="form-control" placeholder="Line 2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.AddressLine3" class="control-label">Address Line 3<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.AddressLine3">
+                                                                <input type="text" data-bind="value:ResidenceAddress.AddressLine3" class="form-control" placeholder="Line 3">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.CountryId">
+                                                                <select class="form-control" id="ResidenceAddress.CountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ResidenceAddress.CountryId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.DivisionId">
+                                                                <select class="form-control" id="ResidenceAddress.DivisionId" data-bind="options:ResidenceAddress.DivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:ResidenceAddress.DivisionId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.DistrictId">
+                                                                <select class="form-control" id="ResidenceAddress.DistrictId" data-bind="options:ResidenceAddress.DistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ResidenceAddress.DistrictId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.ThanaId">
+                                                                <select class="form-control" id="ResidenceAddress.ThanaId" data-bind="options:ResidenceAddress.ThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:ResidenceAddress.ThanaId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.PostalCode" class="control-label">ZIP/Postal Code<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.PostalCode">
+                                                                <input type="number" data-bind="value:ResidenceAddress.PostalCode" class="form-control" id="ResidenceAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.CellPhoneNo" class="control-label">Mobile<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.CellPhoneNo">
+                                                                <input type="number" data-bind="value:ResidenceAddress.CellPhoneNo" class="form-control" id="ResidenceAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.PhoneNo" class="control-label">Phone</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.PhoneNo">
+                                                                <input type="number" data-bind="value:ResidenceAddress.PhoneNo" class="form-control" id="ResidenceAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="ResidenceAddress.Email" class="control-label">E-mail<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: ResidenceAddress.Email">
+                                                                <input type="email" data-bind="value:ResidenceAddress.Email" class="form-control" id="ResidenceAddress.Email" placeholder="Enter E-mail">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-sm-5">
+                                                        <div class="row">
+                                                            <div class="col-sm-12 sp_height">
+                                                                <div class="row">
+                                                                    <div class="col-sm-5">
+
+                                                                        <label class="control-label"><b>Permanent Address:</b></label>
+                                                                    </div>
+                                                                    <div class="col-sm-5">
+                                                                        <button data-bind="click:UseResidenceAddress" class="btn-large btn-default">Use Residence Address</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.AddressLine1" class="control-label">Address Line 1</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.AddressLine1">
+                                                                <input type="text" data-bind="value:PermanentAddress.AddressLine1" class="form-control" id="PermanentAddress.AddressLine1" placeholder="Line 1">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.AddressLine2" class="control-label">Address Line 2</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.AddressLine2">
+                                                                <input type="text" data-bind="value:PermanentAddress.AddressLine2" class="form-control" placeholder="Line 2">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.AddressLine3" class="control-label">Address Line 3</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.AddressLine3">
+                                                                <input type="text" data-bind="value:PermanentAddress.AddressLine3" class="form-control" id="PermanentAddress.AddressLine3" placeholder="Line 3">
+
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.CountryId">
+                                                                <select class="form-control" id="PermanentAddress.CountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PermanentAddress.CountryId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.DivisionId">
+                                                                <select class="form-control" id="PermanentAddress.DivisionId" data-bind="options:PermanentAddress.DivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:PermanentAddress.DivisionId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.DistrictId">
+                                                                <select class="form-control" id="PermanentAddress.DistrictId" data-bind="options:PermanentAddress.DistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PermanentAddress.DistrictId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.ThanaId">
+                                                                <select class="form-control" id="PermanentAddress.ThanaId" data-bind="options:PermanentAddress.ThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:PermanentAddress.ThanaId"></select>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.PostalCode" class="control-label">ZIP/Postal Code</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.PostalCode">
+                                                                <input type="number" data-bind="value:PermanentAddress.PostalCode" class="form-control" id="PermanentAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.CellPhoneNo" class="control-label">Mobile</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.CellPhoneNo">
+                                                                <input type="number" data-bind="value:PermanentAddress.CellPhoneNo" class="form-control" id="PermanentAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.PhoneNo" class="control-label">Phone</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement:PermanentAddress.PhoneNo">
+                                                                <input type="number" data-bind="value:PermanentAddress.PhoneNo" class="form-control" id="PermanentAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-sm-5">
+                                                                <label for="PermanentAddress.Email" class="control-label">E-mail</label>
+                                                            </div>
+                                                            <div class="col-sm-7" data-bind="validationElement: PermanentAddress.Email">
+                                                                <input type="email" data-bind="value:PermanentAddress.Email" class="form-control" id="PermanentAddress.Email" placeholder="Enter E-mail">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+                                                <br />
+
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.AddressLine3" class="control-label">Address Line 3</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.AddressLine3">
+                                                            <input type="text" data-bind="value:PermanentAddress.AddressLine3" class="form-control" id="PermanentAddress.AddressLine3" placeholder="Line 3">
+
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.AddressLine3" class="control-label">Address Line 3<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.AddressLine3">
+                                                            <input type="text" data-bind="value:ResidenceAddress.AddressLine3" class="form-control" placeholder="Line 3">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>*@
+
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.CountryId">
+                                                            <select class="form-control" id="PermanentAddress.CountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PermanentAddress.CountryId"></select>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.CountryId">
+                                                            <select class="form-control" id="ResidenceAddress.CountryId" data-bind="options:ResidenceCountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ResidenceAddress.CountryId"></select>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.DivisionId">
+                                                            <select class="form-control" id="PermanentAddress.DivisionId" data-bind="options:PermanentAddress.DivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:PermanentAddress.DivisionId"></select>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.DivisionId">
+                                                            <select class="form-control" id="ResidenceAddress.DivisionId" data-bind="options:ResidenceAddress.DivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:ResidenceAddress.DivisionId"></select>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.DistrictId">
+                                                            <select class="form-control" id="PermanentAddress.DistrictId" data-bind="options:PermanentAddress.DistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PermanentAddress.DistrictId"></select>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.DistrictId">
+                                                            <select class="form-control" id="ResidenceAddress.DistrictId" data-bind="options:ResidenceAddress.DistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ResidenceAddress.DistrictId"></select>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.ThanaId">
+                                                            <select class="form-control" id="PermanentAddress.ThanaId" data-bind="options:PermanentAddress.ThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:PermanentAddress.ThanaId"></select>
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.ThanaId">
+                                                            <select class="form-control" id="ResidenceAddress.ThanaId" data-bind="options:ResidenceAddress.ThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:ResidenceAddress.ThanaId"></select>
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.PostalCode" class="control-label">ZIP/Postal Code</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.PostalCode">
+                                                            <input type="number" data-bind="value:PermanentAddress.PostalCode" class="form-control" id="PermanentAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.PostalCode" class="control-label">ZIP/Postal Code<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.PostalCode">
+                                                            <input type="number" data-bind="value:ResidenceAddress.PostalCode" class="form-control" id="ResidenceAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.CellPhoneNo" class="control-label">Mobile</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.CellPhoneNo">
+                                                            <input type="number" data-bind="value:PermanentAddress.CellPhoneNo" class="form-control" id="PermanentAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.CellPhoneNo" class="control-label">Mobile<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.CellPhoneNo">
+                                                            <input type="number" data-bind="value:ResidenceAddress.CellPhoneNo" class="form-control" id="ResidenceAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.PhoneNo" class="control-label">Phone</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement:PermanentAddress.PhoneNo">
+                                                            <input type="number" data-bind="value:PermanentAddress.PhoneNo" class="form-control" id="PermanentAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.PhoneNo" class="control-label">Phone</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.PhoneNo">
+                                                            <input type="number" data-bind="value:ResidenceAddress.PhoneNo" class="form-control" id="ResidenceAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>*@
+
+                                                @*<div class="form-group row row_design_detail">
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                        <div class="col-sm-2">
+                                                            <label for="PermanentAddress.Email" class="control-label">E-mail</label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: PermanentAddress.Email">
+                                                            <input type="email" data-bind="value:PermanentAddress.Email" class="form-control" id="PermanentAddress.Email" placeholder="Enter E-mail">
+                                                        </div>
+
+                                                        <div class="col-sm-2">
+                                                            <label for="ResidenceAddress.Email" class="control-label">E-mail<span class="required">*</span></label>
+                                                        </div>
+                                                        <div class="col-sm-3" data-bind="validationElement: ResidenceAddress.Email">
+                                                            <input type="email" data-bind="value:ResidenceAddress.Email" class="form-control" id="ResidenceAddress.Email" placeholder="Enter E-mail">
+                                                        </div>
+                                                        <div class="col-sm-1">
+                                                        </div>
+                                                    </div>*@
+
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-3">
+                                                        <label class="control-label"><b>Spouse Work Address:</b></label>
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.AddressLine1" class="control-label">Address Line 1</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.AddressLine1">
+                                                        <input type="text" data-bind="value:SpouseWorkAddress.AddressLine1" class="form-control" id="SpouseWorkAddress.AddressLine1" placeholder="Line 1">
+
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.AddressLine2" class="control-label">Address Line 2</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.AddressLine2">
+                                                        <input type="text" data-bind="value:SpouseWorkAddress.AddressLine2" class="form-control" id="SpouseWorkAddress.AddressLine2" placeholder="Line 2">
+
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.AddressLine3" class="control-label">Address Line 3</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.AddressLine3">
+                                                        <input type="text" data-bind="value:SpouseWorkAddress.AddressLine3" class="form-control" id="SpouseWorkAddress.AddressLine3" placeholder="Line 3">
+
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.CountryId">
+                                                        <select class="form-control" id="SpouseWorkAddress.CountryId" data-bind="options:CountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SpouseWorkAddress.CountryId"></select>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.DivisionId">
+                                                        <select class="form-control" id="SpouseWorkAddress.DivisionId" data-bind="options:SpouseWorkAddress.DivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:SpouseWorkAddress.DivisionId"></select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.DistrictId">
+                                                        <select class="form-control" id="SpouseWorkAddress.DistrictId" data-bind="options:SpouseWorkAddress.DistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SpouseWorkAddress.DistrictId"></select>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.ThanaId">
+                                                        <select class="form-control" id="SpouseWorkAddress.ThanaId" data-bind="options:SpouseWorkAddress.ThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:SpouseWorkAddress.ThanaId"></select>
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.PostalCode" class="control-label">ZIP/Postal Code</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.PostalCode">
+                                                        <input type="number" data-bind="value:SpouseWorkAddress.PostalCode" class="form-control" id="SpouseWorkAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.CellPhoneNo" class="control-label">Mobile</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.CellPhoneNo">
+                                                        <input type="number" data-bind="value:SpouseWorkAddress.CellPhoneNo" class="form-control" id="SpouseWorkAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                                    </div>
+
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.PhoneNo" class="control-label">Phone</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement:SpouseWorkAddress.PhoneNo">
+                                                        <input type="number" data-bind="value:SpouseWorkAddress.PhoneNo" class="form-control" id="SpouseWorkAddress.PhoneNo" placeholder="Enter Phone Number">
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group row row_design" data-bind="visible: MaritalStatus() === 1">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="SpouseWorkAddress.Email" class="control-label">E-mail</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: SpouseWorkAddress.Email">
+                                                        <input type="email" data-bind="value:SpouseWorkAddress.Email" class="form-control" id="SpouseWorkAddress.Email" placeholder="Enter E-mail">
+                                                    </div>
+
+
+                                                </div>
+                                                <div class="form-group row row_design_detail">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="ContactAddress" class="control-label" style="text-align: left;">Contact Address (Please check)</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: ContactAddress">
+
+                                                        <input type="radio" data-bind="checked:ContactAddress" value="1" name="Permanent Address" id="ContactAddress">Permanent<br>
+                                                    </div>
+                                                    <div class="col-sm-2" data-bind="validationElement: ContactAddress">
+                                                        <input type="radio" data-bind="checked:ContactAddress" value="2" name="Office Address" id="ContactAddress">Office<br>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: ContactAddress">
+                                                        <input type="radio" data-bind="checked:ContactAddress" value="3" name="Residence Address" id="ContactAddress">Residence<br>
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <br />
+                                                <div class="form-group row row_design">
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="CBSCIFNo" class="control-label">CBS CIF No</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: CBSCIFNo">
+                                                        <input type="text" data-bind="value:CBSCIFNo" class="form-control">
+                                                    </div>
+                                                    <div class="col-sm-2">
+                                                        <label for="CIFNo" class="control-label">CIF No</label>
+                                                    </div>
+                                                    <div class="col-sm-3" data-bind="validationElement: CIFNo">
+                                                        <input type="text" data-bind="value:CIFNo" class="form-control" readonly>
+                                                    </div>
+
+                                                </div>
+                                                <div class="form-group row row_design">
+
+                                                    <div class="col-sm-10">
+
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                        <button type="button" class="btn btn-success" data-bind="click:SaveCif ">Save</button> @*, enable :IsValid*@
+                                                    </div>
+                                                    <div class="col-sm-1">
+                                                    </div>
+                                                </div>
+                                                <div class="form-group">
+                                                    <div id="cifpSuccessModal" class="modal fade" role="dialog">
+                                                        <div class="modal-dialog modal-sm">
+                                                            <!-- Modal content-->
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                                    <h4 class="modal-title">Response</h4>
+                                                                </div>
+                                                                <div class="modal-body" align="center">
+                                                                    <p id="cifpSuccessModalText"></p>
+
+                                                                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+                                    </fieldset>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="tab-pane fade" id="cifIncomeStatement">
+                @Html.Partial("~/Areas/IPDC/Views/CIF/CIFIncomeStatement.cshtml")
+            </div>
+            <div class="tab-pane fade" id="cifNetWorth">
+                @Html.Partial("~/Areas/IPDC/Views/CIF/CIFNetWorth.cshtml")
+            </div>
+            <div class="tab-pane fade" id="cifReference">
+                @Html.Partial("~/Areas/IPDC/Views/CIF/CIFReferences.cshtml")
+            </div>
+            <div class="tab-pane fade" id="cifOccupation">
+                @Html.Partial("~/Areas/IPDC/Views/CIF/Client_Occupation.cshtml")
+            </div>
+            <div class="tab-pane fade" id="cifCards">
+                @Html.Partial("~/Areas/IPDC/Views/CIF/CIFCards.cshtml")
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

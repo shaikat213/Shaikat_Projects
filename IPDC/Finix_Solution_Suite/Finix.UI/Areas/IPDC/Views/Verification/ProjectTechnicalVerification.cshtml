@@ -1,0 +1,376 @@
+﻿
+@{
+    ViewBag.Title = "ProjectTechnicalVerification";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Verification/projectTechnicalVerification.js"></script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+</style>
+
+<section class="panel-bodycontent">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>Project Technical Verification</b>
+        </h2>
+    </header>
+
+
+    <!--start APPLICATION DETAILS-->
+    <div id="ProjectTechVw" class="form-horizontal" enctype="multipart/form-data">
+        <div class="panel panel-default">
+
+            <div class="panel-heading">
+                <label class="headingOcc">TO BE FILLED IN BY TECHNICAL</label>
+            </div>
+            <div class="panel-body">
+
+                <form class="form-horizontal" role="form">
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Plan Approval Authority :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:ProjectApprovalAuthorities,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PlanApprovalAuthority"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Type of Project :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:PropertyTypes,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:ProjectPropertyType"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Area of Land (AS PER PLAN) <b>(Katha)</b>:</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" data-bind="value:AreaOfLandPP" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Access Road Width <b>(Ft)</b>:</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" data-bind="value:AccessRoadWidth" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Approved Total No. of floors :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" data-bind="value:ApprovedNoOfFloors" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Approved No. of Units per floors :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" data-bind="value:ApprovedNoOfUnitsPerFloor" class="form-control" />
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Approved Total No. of units :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" data-bind="value:ApprovedTotalNoOfUnits" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Approved total floor area <b>(Sq. Ft.)</b>:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="number" data-bind="value:ApprovedTotalFloorArea , valueUpdate: 'keyup'" class="form-control" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Deveiation from approved plan :</label>
+                        </div>
+                        @*<div class="col-sm-2">
+                                <label class=""><input type="checkbox" value="true" data-bind="checked:YesDeviatedFromApproved ">Yes</label>
+                            </div>
+                            <div class="col-sm-2">
+                                <label class=""><input type="checkbox" value="false" data-bind="checked:NoDeviatedFromApproved">No</label>
+                            </div>*@
+                        <div class="col-sm-2 no-padding">
+                            <label class="radio-inline"><input type="radio" value="true" data-bind="checked: DeviatedFromApproved">Yes</label>
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="radio-inline"><input type="radio" value="false" data-bind="checked: DeviatedFromApproved">No</label>
+                        </div>
+
+                    </div>
+                    <div data-bind="visible: DeviatedFromApproved() === 'true'">
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Actual Total No. of floors :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:ActualNoOfFloors" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Actual No. of Units per floors :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:ActualNoOfUnitsPerFloor" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Actual Total No. of units :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:ActualTotalNoOfUnits" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Actual total floor area <b>(Sq. Ft.)</b>:</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:ActualTotalFloorArea" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Total Deviation in floor area <b>(Sq. Ft.)</b>:</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:TotalDeviationInFloorArea , valueUpdate: 'keyup'" class="form-control" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group row row_design">
+
+                            <div class="col-sm-3 col-sm-offset-2">
+                                <label for="" class="control-label" style="text-align: left;">Deviation (%) :</label>
+                            </div>
+                            <div class="col-sm-3">
+
+                                <input type="number" data-bind="value:TotalDeviationPercentage" class="form-control" />
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">North Bound :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:PropertyBounds,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:NorthBound"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">South Bound :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:PropertyBounds,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:SouthBound"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">East Bound :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:PropertyBounds,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:EastBound"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">West Bound :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:PropertyBounds,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:WestBound"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Percent of Project Completed :</label>
+                        </div>
+                        <div class="col-sm-3">
+
+                            <input type="number" max="100" min="1" data-bind="value:ProjectCompletionPercentage" class="form-control" />
+                        </div>
+
+                    </div>
+
+
+                    @*<div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Upload Photo :</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="file" name="img" multiple />
+                        </div>*@
+                    <div class="form-group row row_design">
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label">Images:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <input type="file" name="ProjectTechnicalVerificationFile" id="ProjectTechnicalVerificationFile" data-bind="value:ProjectTechnicalVerificationFile" />
+                            <a data-bind="attr:{href:  $root.getEditUrl($data) }, text: ProjectTechnicalVerificationFileName"> </a>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Technical approval status:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <select class="form-control loan" id="" data-bind="options:ApprovalStatuses,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:TechnicalApprovalStatus"></select>
+                            @*<select class="form-control"></select>*@
+                        </div>
+
+                    </div>
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-3 col-sm-offset-2">
+                            <label for="" class="control-label" style="text-align: left;">Remarks:</label>
+                        </div>
+                        <div class="col-sm-3">
+                            <textarea class="form-control" data-bind="value:Remarks"></textarea>
+                            @*<input type="number" max="100" min="1" data-bind="value:ProjectCompletionPercentage" class="form-control" />*@
+                        </div>
+
+                    </div>
+                    <div class="form-group row row_design">
+                        <div class="col-sm-6"></div>
+                        <div class="col-sm-2">
+                            <button type="button" class="btn btn-default" data-bind="click:Create">Save As</button>
+                            <button type="button" class="btn btn-success" data-bind="click:Edit">Save</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div id="SuccessModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Response</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <p id="SuccessModalText"></p>
+
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+
+</section>
+
+
+
+
+
+
+

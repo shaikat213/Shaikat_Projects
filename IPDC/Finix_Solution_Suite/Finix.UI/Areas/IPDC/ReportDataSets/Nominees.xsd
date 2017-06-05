@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Nominees" targetNamespace="http://tempuri.org/Nominees.xsd" xmlns:mstns="http://tempuri.org/Nominees.xsd" xmlns="http://tempuri.org/Nominees.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Nominees" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Nominees" msprop:Generator_UserDSName="Nominees">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="DepositNominee" msprop:Generator_TableClassName="DepositNomineeDataTable" msprop:Generator_TableVarName="tableDepositNominee" msprop:Generator_TablePropName="DepositNominee" msprop:Generator_RowDeletingName="DepositNomineeRowDeleting" msprop:Generator_RowChangingName="DepositNomineeRowChanging" msprop:Generator_RowEvHandlerName="DepositNomineeRowChangeEventHandler" msprop:Generator_RowDeletedName="DepositNomineeRowDeleted" msprop:Generator_UserTableName="DepositNominee" msprop:Generator_RowChangedName="DepositNomineeRowChanged" msprop:Generator_RowEvArgName="DepositNomineeRowChangeEvent" msprop:Generator_RowClassName="DepositNomineeRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="DepositApplicationId" msprop:Generator_ColumnVarNameInTable="columnDepositApplicationId" msprop:Generator_ColumnPropNameInRow="DepositApplicationId" msprop:Generator_ColumnPropNameInTable="DepositApplicationIdColumn" msprop:Generator_UserColumnName="DepositApplicationId" type="xs:string" minOccurs="0" />
+              <xs:element name="NomineeCifId" msprop:Generator_ColumnVarNameInTable="columnNomineeCifId" msprop:Generator_ColumnPropNameInRow="NomineeCifId" msprop:Generator_ColumnPropNameInTable="NomineeCifIdColumn" msprop:Generator_UserColumnName="NomineeCifId" type="xs:string" minOccurs="0" />
+              <xs:element name="NomineeCif" msprop:Generator_ColumnVarNameInTable="columnNomineeCif" msprop:Generator_ColumnPropNameInRow="NomineeCif" msprop:Generator_ColumnPropNameInTable="NomineeCifColumn" msprop:Generator_UserColumnName="NomineeCif" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicant" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicant" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicant" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantColumn" msprop:Generator_UserColumnName="RelationshipWithApplicant" type="xs:string" minOccurs="0" />
+              <xs:element name="RelationshipWithApplicantName" msprop:Generator_ColumnVarNameInTable="columnRelationshipWithApplicantName" msprop:Generator_ColumnPropNameInRow="RelationshipWithApplicantName" msprop:Generator_ColumnPropNameInTable="RelationshipWithApplicantNameColumn" msprop:Generator_UserColumnName="RelationshipWithApplicantName" type="xs:string" minOccurs="0" />
+              <xs:element name="PercentageShare" msprop:Generator_ColumnVarNameInTable="columnPercentageShare" msprop:Generator_ColumnPropNameInRow="PercentageShare" msprop:Generator_ColumnPropNameInTable="PercentageShareColumn" msprop:Generator_UserColumnName="PercentageShare" type="xs:string" minOccurs="0" />
+              <xs:element name="GuiardianCifId" msprop:Generator_ColumnVarNameInTable="columnGuiardianCifId" msprop:Generator_ColumnPropNameInRow="GuiardianCifId" msprop:Generator_ColumnPropNameInTable="GuiardianCifIdColumn" msprop:Generator_UserColumnName="GuiardianCifId" type="xs:string" minOccurs="0" />
+              <xs:element name="GuiardianCif" msprop:Generator_ColumnVarNameInTable="columnGuiardianCif" msprop:Generator_ColumnPropNameInRow="GuiardianCif" msprop:Generator_ColumnPropNameInTable="GuiardianCifColumn" msprop:Generator_UserColumnName="GuiardianCif" type="xs:string" minOccurs="0" />
+              <xs:element name="GuidRelationWithNom" msprop:Generator_ColumnVarNameInTable="columnGuidRelationWithNom" msprop:Generator_ColumnPropNameInRow="GuidRelationWithNom" msprop:Generator_ColumnPropNameInTable="GuidRelationWithNomColumn" msprop:Generator_UserColumnName="GuidRelationWithNom" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="DepositNomineeKey1">
+      <xs:selector xpath=".//mstns:DepositNominee" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="DepositNomineeKey2">
+      <xs:selector xpath=".//mstns:DepositNominee" />
+      <xs:field xpath="mstns:GuiardianCifId" />
+    </xs:unique>
+    <xs:unique name="Constraint1">
+      <xs:selector xpath=".//mstns:DepositNominee" />
+      <xs:field xpath="mstns:DepositApplicationId" />
+      <xs:field xpath="mstns:NomineeCifId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,29 @@
+﻿
+    .row {
+        /*margin-top: 40px;*/
+        padding: 0 10px;
+    }
+
+    .clickable {
+        cursor: pointer;
+    }
+
+    .panel-heading span {
+        margin-top: -20px;
+        font-size: 15px;
+        float: right;
+    }
+
+    .fixed-panel {
+        min-height: 500px;
+        max-height: 500px;
+        overflow-y: auto;
+    }
+
+    .right-align {
+        float: right;
+    }
+    .btn {
+    padding: 2px 12px;
+     }
+

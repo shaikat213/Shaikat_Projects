@@ -1,0 +1,276 @@
+﻿<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/jquery-ui-1.11.4.min.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Scripts/knockout-date-bindings.js"></script>
+<link href="~/Content/customassets/css/salesLead.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/SalesLead/salesLeadAssignment.js"></script>
+@{
+    ViewBag.Title = "LeadAssignment";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+    <!---vvvvvvv----Body Main Starts here---vvvvvv----->
+
+    <section class="panel-bodycontent" style="padding-left: 15px; padding-right: 15px;">
+        <div class="container-fluid ">
+            <div id="leadAssignment">
+
+                <div class="row">
+                    <div>
+                        <!--<section class="panel-bodycontent">-->
+                            <header class="panel-heading bodytitle">
+
+                                <h2 class="panel-title font"><b>Sales Lead List</b></h2>
+
+                            </header>
+                            <div class="body-main-padding">
+
+                                <div class="form-group table-responsive">
+                                    <div class="PrintReport" align="center">
+
+                                        <table class="table table-striped table-bordered">
+                                            <thead class="headcolor">
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Address</th>
+                                                    <th>Thana</th>
+                                                    <th>District</th>
+                                                    <th>Followup Time</th>
+                                                    <th>Lead Type</th>
+                                                    <th>Loan Type</th>
+                                                    <th>Expected Amount</th>
+                                                    <th>Client Type</th>
+                                                    <th>SR</th>
+                                                    <th>Assign</th>
+                                                    <th>Preview</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody data-bind="foreach:SalesLeadList">
+                                                <tr>
+                                                    <td class="fo"><span data-bind="text: Name"></span></td>
+                                                    <td class="fo"><span data-bind="text: Address"></span></td>
+                                                    <td class="fo"><span data-bind="text: ThanaName"></span></td>
+                                                    <td class="fo"><span data-bind="text: DistrictName"></span></td>
+                                                    <td class="fo"><span data-bind="text: moment(FollowUpCallTime).format('HH:mm')"></span></td>
+                                                    <td class="fo"><span data-bind="text: LeadTypeName"></span></td>
+                                                    <td class="fo"><span data-bind="text: ProductName"></span></td>
+                                                    <td class="fo"><span data-bind="text: ExpectedLoanAmount"></span></td>
+                                                    <td class="fo"><span data-bind="text: CustomerSensitivityName"></span></td>
+                                                    <td class="fo">
+                                                        <select data-bind="options: $parent.Employees, optionsCaption:'Select SR', optionsText:'EmployeeName', optionsValue:'EmployeeId', value: EmployeeId" class="form-control"></select> 
+                                                    </td>
+                                                   
+                                                    <td>
+                                                        <button type="button" class="btn btn-warning" aria-label="justify" data-toggle="modal" data-bind="click: $parent.LoadData" data-target="#assignModal">Assign</button>
+                                                    </td>
+                                                    <td>
+                                                        <button type="button" class="btn-i btn-info" aria-label="justify" data-toggle="modal" data-bind="click: $parent.LoadData" data-target="#myModal">
+                                                            <span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div id="myModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog-pre modal-sm">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content" style="width:400px;">
+                                        <div class="modal-header">
+                                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                            <h4 class="modal-title">Preview</h4>
+
+
+                                        </div>
+                                        <div class="modal-body" align="center">
+
+                                            <div class="ui-jqdialog-content ui-widget-content" id="editcntjqGrid">
+                                                <div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Name</label>
+                                                        <span class="col-sm-6" data-bind="text:Name" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Address</label>
+                                                        <span class="col-sm-6" data-bind="text:Address" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Thana</label>
+                                                        <span class="col-sm-6" data-bind="text:ThanaName" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">District</label>
+                                                        <span class="col-sm-6" data-bind="text:DistrictName" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Followup Time</label>
+                                                        <span class="col-sm-6" data-bind="text: FollowUpCallTime" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Lead Type</label>
+                                                        <span class="col-sm-6" data-bind="text:LeadTypeName" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Expected Amount</label>
+                                                        <span class="col-sm-6" data-bind="text:LoanTypeName" style="text-align:left;"></span>
+                                                    </div>
+                                                    <div class="row">
+                                                        <label class="col-sm-6" style="text-align:left;">Client Type</label>
+                                                        <span class="col-sm-6" data-bind="text:CustomerSensitivityName" style="text-align:left;"></span>
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer"></div>
+                                        </div>
+
+                                        <div class="row">
+                                            <label class="col-sm-6"></label>
+                                            <label class="col-sm-2"></label>
+                                            <label class="col-sm-4"><button type="button" class="btn btn-success" data-dismiss="modal">Ok</button></label>
+                                        </div>
+                                        <!-- <button type="button" class="btn btn-success" data-dismiss="modal" >Ok</button>-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!---^^^^^^^----Assign modal start here----^^^^^^^---->
+                            <div id="assignModal" class="modal fade" role="dialog">
+                                <div class="modal-dialog-assign modal-sm">
+
+                                    <!-- Modal content-->
+                                    <div class="modal-content" style="width:800px;">
+                                        <div class="modal-header">
+                                            <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                            <h4 class="modal-title">Assign</h4>
+                                        </div>
+                                        <div class="modal-body" align="center">
+
+                                            <div class="ui-jqdialog-content ui-widget-content" id="editcntjqGrid">
+                                                <div class="row no-margin">
+                                                    <div class="col-xs-8" style="border-right:1px solid #808080;">
+                                                        <h4 class="modal-title">SR</h4>
+                                                        <div class="form-group">
+                                                            <div class='input-group date' id='datetimepicker1'>
+                                                                @*<input type='text' class="form-control" />*@
+                                                                <input data-bind="value:FollowUpTimeTxtLock" id="NextFollowUp" class="form-control" type="text" readonly>
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <table class="table table-striped table-bordered-st">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>Name</th>
+                                                                    <th>Address</th>
+                                                                    <th>Schedule</th>
+
+                                                                </tr>
+                                                            </thead>
+
+
+                                                            <tbody data-bind="foreach:salesAssignmentList">
+                                                                <tr>
+                                                                    <td><span data-bind="text: SalesLeadName"></span></td>
+                                                                    <td><span data-bind="text: SalesLeadAddress"></span></td>
+                                                                    <td><span data-bind="text: moment(FollowUpTime).format('HH:mm')"></span></td>
+                                                        </table>
+                                                    </div>
+                                                    <div class="col-xs-4 ">
+                                                        <h4 class="modal-title">Sales Lead</h4>
+
+                                                        <div class="form-group">
+                                                            <div class='input-group date' id='datetimepicker2'>
+                                                                @*<input type='text' class="form-control"/>*@
+                                                                <input data-bind="value:FollowUpTimeTxtPre" id="NextFollowUpPre" class="form-control" type="text">
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="form-group-last">
+                                                            <div class='input-group date' id='datetimepicker3'>
+                                                                <input data-bind="value:FollowUpTimeTxt" id="NextFollowUpSet" class="form-control" type="text">  @*, event:{ change: getDateWiseTimeSchedule}*@
+                                                                <span class="input-group-addon">
+                                                                    <span class="glyphicon glyphicon-calendar"></span>
+                                                                </span>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group-reschedule">
+                                                            @*<button type="button" class="btn btn-primary">Submit</button>*@
+                                                            <button type="submit" data-bind="click:getDateWiseTimeSchedule" class="btn-q btn-default" style="background-color:#5B7EEA;">Reshedule</button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal-footer">
+                                                
+                                                @*<button type="button" class="btn btn-primary">Submit</button>*@
+                                                <button type="submit" data-bind="click:submit" class="btn btn-success" data-dismiss="modal">Submit</button>
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                            </div>
+                                            <!-- <button type="button" class="btn btn-success" data-dismiss="modal" >Ok</button>-->
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                </div>
+                                <!---^^^^^^^----Assign modal Ends here----^^^^^^^---->
+
+                            <div class="form-group">
+                                <div id="successModal" class="modal fade" role="dialog">
+                                    <div class="modal-dialog modal-sm">
+                                        <!-- Modal content-->
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                                                <h4 class="modal-title">Response</h4>
+                                            </div>
+                                            <div class="modal-body" align="center">
+                                                <p id="successModalText"></p>
+
+                                                <div class="modal-footer">
+                                                </div>
+
+                                                <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                            </div>
+                                            
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+
+                        <!--</section>-->
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+            <!---^^^^^^^----Body Main Ends here----^^^^^^^---->
+        </div>
+
+    </section>
+
+

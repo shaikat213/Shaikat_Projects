@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProposalValuationOtherCosts" targetNamespace="http://tempuri.org/ProposalValuationOtherCosts.xsd" xmlns:mstns="http://tempuri.org/ProposalValuationOtherCosts.xsd" xmlns="http://tempuri.org/ProposalValuationOtherCosts.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProposalValuationOtherCosts" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProposalValuationOtherCosts" msprop:Generator_UserDSName="ProposalValuationOtherCosts">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="ProposalValuationOtherCosts" msprop:Generator_TableClassName="ProposalValuationOtherCostsDataTable" msprop:Generator_TableVarName="tableProposalValuationOtherCosts" msprop:Generator_TablePropName="_ProposalValuationOtherCosts" msprop:Generator_RowDeletingName="ProposalValuationOtherCostsRowDeleting" msprop:Generator_RowChangingName="ProposalValuationOtherCostsRowChanging" msprop:Generator_RowEvHandlerName="ProposalValuationOtherCostsRowChangeEventHandler" msprop:Generator_RowDeletedName="ProposalValuationOtherCostsRowDeleted" msprop:Generator_UserTableName="ProposalValuationOtherCosts" msprop:Generator_RowChangedName="ProposalValuationOtherCostsRowChanged" msprop:Generator_RowEvArgName="ProposalValuationOtherCostsRowChangeEvent" msprop:Generator_RowClassName="ProposalValuationOtherCostsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Details" msprop:Generator_ColumnVarNameInTable="columnDetails" msprop:Generator_ColumnPropNameInRow="Details" msprop:Generator_ColumnPropNameInTable="DetailsColumn" msprop:Generator_UserColumnName="Details" type="xs:string" minOccurs="0" />
+              <xs:element name="Amount" msprop:Generator_ColumnVarNameInTable="columnAmount" msprop:Generator_ColumnPropNameInRow="Amount" msprop:Generator_ColumnPropNameInTable="AmountColumn" msprop:Generator_UserColumnName="Amount" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

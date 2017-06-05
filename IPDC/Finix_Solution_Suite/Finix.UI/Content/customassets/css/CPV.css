@@ -1,0 +1,26 @@
+﻿.rm {
+    background-color:#F8F8F8;
+    border-radius: 0px 0px 0px 0px !important;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+
+.btn-q {
+
+    margin-bottom: 3px;
+}
+
+.headingOcc {
+   
+    padding-left: 100px;
+}
+.headingtbl {
+    padding-left: 50px;
+}
+.radio-inline input[type="radio"] {
+    margin-top: 2px;
+}
+
+
+
+

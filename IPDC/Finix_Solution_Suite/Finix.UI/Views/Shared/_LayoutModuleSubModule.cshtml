@@ -1,0 +1,503 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="~/Content/bootstrap.css" />
+
+    @*<link href="~/Content/bootstrap_new/css/bootstrap.css" rel="stylesheet" />*@
+    <link href="~/Content/layout-modifications.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-2.2.3.js"></script>
+    @*<script src="~/Scripts/tether/tether.min.js"></script>*@
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<script src="~/Content/bootstrap_new/js/bootstrap.js"></script>*@
+    <script src="~/Scripts/knockout-3.4.0.js" type="text/javascript"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js" type="text/javascript"></script>
+    <script src="~/Scripts/knockout.validation.js" type="text/javascript"></script>
+
+    <script type="text/javascript">
+        notificaitonList = [];
+        function VisitUrl(notificationId) {
+            //debugger;
+            var n;
+            console.log(JSON.stringify(notificaitonList));
+            for (var k = 0; k < notificaitonList.length; k++) {
+                if (notificaitonList[k].Id() == notificationId) {
+                    n = notificaitonList[k];
+                    break;
+                }
+            }
+            $('#notification_menu_id').val('');
+            //debugger;
+            var ifrmSrc = $('#ifrm').attr('src');
+            if (ifrmSrc == undefined || ifrmSrc.length == 0) {
+                var info = (n.MenuId() + '#' + n.MenuName() + '#' + n.Url());
+                $('#notification_menu_id').val(info);
+                $('#' + n.SubModuleId()).click(); //trigger sub module.
+            }
+            else {
+
+                var menuInfo = {
+                    Id: n.Id(),
+                    Menu: n.MenuName(),
+                    Url: n.Url()
+                };
+                $('#ifrm')[0].contentWindow.AddTabFromExternal(menuInfo);
+            }
+
+            //make notification as viewed
+            $.ajax({
+                type: "POST",
+                url: '/Auth/Home/MarkAsRead',
+                data: JSON.stringify({ notificationId: n.Id() }),
+                contentType: "application/json"
+            });
+
+            //close the modal
+            //$('#btnClolseNotification').click();
+            $("#lnkRefresh").click();
+
+        }
+        $(document).ready(function () {
+            function Notification(data) {
+                var self = this;
+                self.Id = ko.observable(data.Id);
+                self.RefId = ko.observable(data.RefId);
+                self.SubModuleId = ko.observable(data.SubModuleId);
+                self.MenuId = ko.observable(data.MenuId);
+                self.MenuName = ko.observable(data.MenuName);
+                self.Url = ko.observable(data.Url);
+                self.Parameters = ko.observable(data.Parameters);
+                self.Message = ko.observable(data.Message);
+                return this;
+            }
+            function CategorizedNotifications(data) {
+                var self = this;
+                self.NotificationType = ko.observable(data.NotificationType);
+                self.Notifications = ko.observable([]);
+                var arr = [];
+                $.each(data.Notifications, function (i, v) {
+                    var n = new Notification(v);
+                    arr.push(n);
+                });
+                self.Notifications(arr);
+                self.ShowNotificationModal = function () {
+                    $('#modalHeader').html(self.NotificationType());
+                    notificaitonList = self.Notifications();
+                    var tbl = '<table class="table table-bordered"><thead><tr><th colspan="2">Notification(s)</th></tr></thead> <tbody>';
+                    $.each(self.Notifications(), function (i, v) {
+                        tbl += ('<tr><td>' + v.Message() + '</td><td><a href="#" onclick="VisitUrl(\'' + v.Id() + '\')">View</a></td></tr>');
+                    });
+                    tbl += '</tbody></table>';
+
+                    $('#modalBody').html(tbl);
+                    $('#btnShowModal').click();
+                };
+                return this;
+            }
+            function ViewModel(model) {
+                var self = this;
+                //console.log(model);
+                self.UserName = model.UserName;
+                self.UserImage = model.UserImage;
+                self.ProfilePicture = model.Profilepicture;
+                self.moduleSubModuleList = ko.mapping.fromJS(model.moduleSubModuleList);
+                self.NotificationList = ko.observableArray([]);
+                self.NotificationCount = ko.observable();
+                //console.log(ko.toJSON(self.moduleSubModuleList()));
+                self.setUrl = function (subModule) {
+                    //event.preventDefault();
+                    var url = '/Auth/Home/Menu?smId=' + subModule.Id();
+                    //console.log('url set to menu: ' + url);
+                    $('#ifrm').attr('src', url);
+                    return false;
+                };
+
+                self.logout = function () {
+                    location.href = '/Auth/Login/Logout';
+                };
+                self.chooseApplication = function () {
+                    location.href = '/Auth/Login/ChooseApplication';
+                }
+                self.GetNotifications = function () {
+                    $.getJSON("/Auth/Home/GetNotifications", function (data) {
+                        var arr = [];
+                        $.each(data, function (i, v) {
+                            var n = new CategorizedNotifications(v);
+                            arr.push(n);
+                        });
+                        self.NotificationList(arr);
+                        var c = 0;
+                        $.each(arr, function (i, v) { c += arr[i].Notifications().length; });
+                        self.NotificationCount(c);
+                        console.log(arr);
+                    });
+                };
+
+            }
+            function ChangePasswordViewModel() {
+                var self = this;
+                self.OldPassword = ko.observable('');
+                self.Password = ko.observable('');
+                self.ConfirmPassword = ko.observable('');
+                self.ProfilePicture = ko.observable('');
+                self.IsSave = ko.pureComputed(function () {
+                    if (self.Password().length > 5 && self.Password() === self.ConfirmPassword())
+                        return true;
+                    else
+                        return false;
+                });
+
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#blah').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#imgInp").change(function () {
+                    readURL(this);
+                });
+
+
+                self.Upload = function () {
+                    var file_data = $('#imgInp').prop('files')[0];
+                    var formData = new FormData();
+                    formData.append('Photo', file_data);
+                    $.ajax({
+                        type: "POST",
+                        url: '/Auth/Login/UploadPicture',
+                        data: formData,
+                        contentType: false,//"application/json",
+                        processData: false,
+                        cache: false,
+                        success: function (data) {
+                            $('#SuccessModal').modal('show');
+                            $('#SuccessModalText').text(data.Message);
+                        },
+                        error: function () {
+                            alert(error.status + "<--and--> " + error.statusText);
+                        }
+                    });
+                }
+                self.Submit = function () {
+                    var postData = {
+                        OldPassword: self.OldPassword(),
+                        NewPassword: self.Password(),
+                        ConfirmPassword: self.ConfirmPassword()
+                    };
+                    $.ajax({
+                        type: "POST",
+                        url: '/Auth/Login/ChangePassword',
+                        data: ko.toJSON(postData),
+                        contentType: "application/json",
+                        success: function (data) {
+                            //alert(data.Message);
+                            $('#userSuccessModal').modal('show');
+                            $('#userSuccessModalText').text(data.Message);
+                            self.OldPassword('');
+                            self.Password('');
+                            self.ConfirmPassword('');
+                        },
+                        error: function () {
+                            alert(error.status + "<--and--> " + error.statusText);
+                        }
+                    });
+                }
+            }
+            $.getJSON("/Auth/Home/GetModuleSubModules", function (data) {
+                //console.log(ko.toJSON(data));
+                // bind the datauploadPicture
+                //ko.applyBindings(new ViewModel(data), $("#bs-example-navbar-collapse-1")[0]);
+                // bind the data
+                var vm = new ViewModel(data);
+                ko.applyBindings(vm, $("#bs-example-navbar-collapse-1")[0]);
+                ko.applyBindings(new ChangePasswordViewModel(), $("#changePassword")[0]);
+                ko.applyBindings(new ChangePasswordViewModel(), $("#uploadPicture")[0]);
+                setInterval(function () { vm.GetNotifications(); }, 60 * 1000); /*60 seconds interval*/
+            });
+
+        });
+    </script>
+    <style>
+        .navbar-nav > li > a {
+            /*padding: 0;*/
+        }
+
+        .badge-custom {
+            background-color: #cc1a1a;
+        }
+    </style>
+    <!--<style type="text/css">
+        .logo {
+            height: 50px;
+            width: 133px;
+            margin-left: -5px;
+            margin-top: -10px;
+        }
+
+        .user {
+            height: 30px;
+            width: 30px;
+            border-radius: 15px;
+        }
+    </style>-->
+
+</head>
+<body style="padding-top: 70px">
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div>
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+                </button> <a class="navbar-brand" href="#"><img class="logo" alt="" src="~/Content/image/logo.png" /></a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav" data-bind="foreach: moduleSubModuleList">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+
+                            <span data-bind="text: $data.DisplayName"></span>
+
+                            <strong class="caret"></strong>
+                        </a>
+                        <ul class="dropdown-menu" data-bind="foreach: $data.ChildMenus">
+                            <li>
+                                <a href="#" data-bind="attr: { id: Id}, click:$root.setUrl"><span data-bind="text:$data.DisplayName"></span> </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            @*<img alt="" class="user" src="~/Content/image/user.jpg" />*@
+                            <img id="" class="user" data-bind='attr: {src: "/UploadedFiles/ProfilePicture/"+ ProfilePicture }' alt="~/Content/image/user.jpg" /> @*data-bind="attr:{src: ProfilePicture}"*@
+                            <span data-bind="text:UserName"></span>
+                            <strong class="caret"></strong>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="#" data-bind="click:logout">
+                                    <span>Logout</span>
+                                </a>
+                                <a href="#" data-bind="click:chooseApplication">
+                                    <span>Switch Application</span>
+                                </a>
+                                <a href="#" data-toggle="modal" data-target="#changePassword">Change Password</a>
+                                <a href="#" data-toggle="modal" data-target="#uploadPicture">Upload Profile Picture</a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            <span>Notification(s)</span><span class="badge badge-custom" data-bind="text:NotificationCount"></span>
+                            <strong class="caret"></strong>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li data-bind="foreach: NotificationList">
+                                <a href="#" data-bind="click:ShowNotificationModal">
+                                    <div style="float:left"><span data-bind="text:NotificationType" /></div>
+                                    <div style="float:right" class="badge badge-custom" data-bind="html:Notifications().length" />
+                                    <div style="clear:both" />
+                                </a>
+                            </li>
+                            <hr />
+                            <li><a id="lnkRefresh" href="#" class="pull-right" data-bind="click:GetNotifications">Refresh Now</a></li>
+                        </ul>
+                    </li>
+                </ul>
+
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-md-12">
+                @RenderBody()
+            </div>
+        </div>
+
+
+        <!--start userpassword-->
+        <!--end userpassword-->
+        <!--start userpassword-->
+
+
+
+        <div class="modal fade" id="changePassword" role="dialog">
+            <div class="modal-dialog-chpass modal-sm">
+                <!--Modal content-->
+                <div class="modal-content" style="width: 800px;">
+
+
+                    <div class="modal-header">
+                        <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                        <h4 class="modal-title">Change Password</h4>
+                    </div>
+
+                    <div class="modal-body" align="center" style="padding: 10px 30px 0px 30px;">
+                        <form class="form-horizontal" role="form">
+                            <div class="form-group">
+                                <label for="OldPassword" class="col-lg-3 control-label">Old Password</label>
+                                <div class="col-lg-8" data-bind="validationElement:OldPassword">
+                                    <input class="form-control" type="password" data-bind="value:OldPassword, valueUpdate: 'keyup'" id="oldPassword" name="OldPassword" placeholder="Old Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" for="password">Password</label>
+                                <div class="col-lg-8" data-bind="validationElement:Password">
+                                    <input class="form-control" type="password" data-bind="value:Password, valueUpdate: 'keyup'" id="password" name="Password" placeholder="Password" />
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-3 control-label" for="ConfirmPassword">Confirm Password</label>
+                                <div class="col-lg-8" data-bind="validationElement:ConfirmPassword">
+                                    <input class="form-control" type="password" data-bind="value:ConfirmPassword, valueUpdate: 'keyup'" id="ConfirmPassword" name="ConfirmPassword" placeholder="Password" />
+                                </div>
+                            </div>
+
+
+                        </form>
+
+
+                        <div class="modal-footer-chpass"></div>
+                    </div>
+
+                    <div class="row-chpass">
+                        <label class="col-sm-6"></label>
+                        <label class="col-sm-2"></label>
+                        <div class="col-lg-4">
+
+
+                            <button type="submit" data-bind="click:Submit, enable: IsSave" class="btn-chpass btn-success">Submit</button>
+                            <button type="reset" class="btn-chpass btn-default">Reset</button>
+                            <button type="button" class="btn-chpass btn-danger" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!--end userpassword-->
+
+            <div id="userSuccessModal" class="modal fade" role="dialog">
+                <div class="modal-dialog modal-sm">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Response</h4>
+                        </div>
+                        <div class="modal-body" align="center">
+                            <p id="userSuccessModalText"></p>
+
+                            <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                        </div>
+                        <div class="modal-footer">
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="modal fade" id="uploadPicture" role="dialog" enctype="multipart/form-data">
+        <div class="modal-dialog-chpass modal-sm">
+            <!--Modal content-->
+            <div class="modal-content" style="width:800px;">
+
+
+                <div class="modal-header">
+                    <!--<button type="button" class="close" data-dismiss="modal">&times;</button>-->
+                    <h4 class="modal-title">Upload Profile Picture</h4>
+                </div>
+
+                <div class="modal-body" align="center" style="padding:10px 30px 0px 30px;">
+
+                    <div class="form-group row row_design">
+                        <div class="col-sm-3">
+                            <img id="blah" data-bind="attr:{ src:  ProfilePicture }" style="width: 150px; height: 150px;" src="#" alt="your image" />
+                            <input type='file' id="imgInp" />
+                        </div>
+                    </div>
+                    <div class="modal-footer-chpass"></div>
+                </div>
+
+                <div class="row-chpass">
+                    <label class="col-sm-6"></label>
+                    <label class="col-sm-2"></label>
+                    <div class="col-lg-4">
+                        <button type="submit" data-bind="click:Upload" class="btn-chpass btn-success">Submit</button>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <!--end userpassword-->
+
+    <div id="userSuccessModal" class="modal fade" role="dialog">
+        <div class="modal-dialog modal-sm">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Response</h4>
+                </div>
+                <div class="modal-body" align="center">
+                    <p id="userSuccessModalText"></p>
+
+                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+    <div id="notificationModalDiv">
+        <!-- Trigger the notification modal with a button -->
+        <button id="btnShowModal" type="button" class="btn btn-info btn-lg hidden" data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+        <!-- Modal -->
+        <div id="myModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button id="btnClolseNotification" type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="modalHeader" class="modal-title">Modal Header</h4>
+                    </div>
+                    <div id="modalBody" class="modal-body">
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <input type="hidden" id="notification_menu_id" value="">
+    </div>
+</body>
+</html>

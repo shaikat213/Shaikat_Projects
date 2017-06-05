@@ -1,0 +1,504 @@
+﻿@{
+    ViewBag.Title = "Client Occupation Entry";
+}
+<style>
+    .input-group > input {
+        margin: 0;
+    }
+</style>
+<section class="panel-bodycontent">
+    <header class="panel-heading bodytitle">
+
+        <h2 class="panel-title font">
+            <b>CIF Occupation</b>
+
+        </h2>
+    </header>
+    <br />
+    <div class="container-fluid ">
+        <div class="col-sm-12">
+            <div class="tab-content">
+
+                <div class="panel-group" id="accordion">
+
+                    <form class="form-horizontal" role="form" id="employee-info">
+                        <fieldset>
+                            <div class="ds-content">
+                                <div class="row">
+
+                                    <div class="form-group row row_design_detail">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="OccupationType" class="control-label">Occupation Type<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: OccupationType">
+                                            <select class="form-control" id="OccupationType" data-bind="options:OccupationTypeList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:OccupationType, event:{change : EnableFields} "></select>
+                                        </div>
+                                        <div class="col-sm-2"></div>
+                                        <div class="col-sm-3"></div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design_detail">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible:OccupationType() === 5 || OccupationType() === 7">
+                                            <label for="ProfessionId" class="control-label">Profession<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: ProfessionId ,visible : OccupationType() === 5 || OccupationType() === 7">
+                                            <select class="form-control" id="ProfessionId" data-bind="options:ProfessionList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:ProfessionId "></select>
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible: OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 7 || OccupationType() === 3">
+                                            <label for="Designation" class="control-label" style="text-align: left;">Designation<span class="required"></span></label>
+                                        </div>
+
+                                        <div class="col-sm-3" data-bind="validationElement: Designation , visible: OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 7 || OccupationType() === 3">
+                                            <input data-bind="value:Designation" id="Designation" class="form-control" type="text" placeholder="Designation">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design_detail" data-bind="visible:OccupationType() === 3 || OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 7">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="OrganizationId" class="control-label">Organization<span class="required"></span></label>
+                                        </div>
+
+                                        <div class="col-sm-3" data-bind="validationElement: OrganizationId,visible:EnlistedOrganization">
+                                            <select class="form-control" id="OrganizationId" data-bind="options:OrganizationList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:OrganizationId "></select>
+                                        </div>
+                                        <div class="col-sm-3" id="divTxtOffice1" data-bind="visible:!EnlistedOrganization()">
+                                            <input type="text" data-bind="value: OrganizationName" class="form-control" />
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <label for="EnlistedOrganization" class="control-label" style="text-align: left;">Enlisted Organization<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: EnlistedOrganization">
+                                            <input type="checkbox" id='EnlistedOrganization' name="optradio" data-bind="checked:EnlistedOrganization, valueUpdate: 'keyup'">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div data-bind="visible: OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 3 || OccupationType() === 7">
+
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="control-label"><u><b>Office Address:</b></u></label>
+                                            </div>
+                                            <div class="col-sm-8">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.AddressLine1" class="control-label">Address Line 1</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.AddressLine1">
+                                                <input type="text" data-bind="value:OfficeAddress.AddressLine1,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.AddressLine1" placeholder="Line 1">
+
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.AddressLine2" class="control-label">Address Line 2</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.AddressLine2">
+                                                <input type="text" data-bind="value:OfficeAddress.AddressLine2,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.AddressLine2" placeholder="Line 2">
+
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.AddressLine3" class="control-label">Address Line 3</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.AddressLine3">
+                                                <input type="text" data-bind="value:OfficeAddress.AddressLine3,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.AddressLine3" placeholder="Line 3">
+
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.CountryId" class="control-label">Country<span class="required">*</span></label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.CountryId">
+                                                <select class="form-control" id="OfficeAddress.CountryId" data-bind="options:OfficeCountryList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:OfficeAddress.CountryId ,event: {change: LoadOfficeDivisionByCountry,IsOfcAddressChng}"></select>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.DivisionId" class="control-label">Division<span class="required">*</span></label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.DivisionId">
+                                                <select class="form-control" id="OfficeAddress.DivisionId" data-bind="options:OfficeDivisionList,optionsValue: 'Id',optionsText:'DivisionNameEng',optionsCaption:'--Select--', value:OfficeAddress.DivisionId ,event: {change: getOfficeDistrictByDivision,IsOfcAddressChng}"></select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.DistrictId" class="control-label">District<span class="required">*</span></label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.DistrictId">
+                                                <select class="form-control" id="OfficeAddress.DistrictId" data-bind="options:OfficeDistrictList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:OfficeAddress.DistrictId ,event: {change: getOfficeUpzilaByDistrict,IsOfcAddressChng}"></select>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.ThanaId" class="control-label">Thana<span class="required">*</span></label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.ThanaId">
+                                                <select class="form-control" id="OfficeAddress.ThanaId" data-bind="options:OfficeThanaList,optionsValue: 'Id',optionsText:'ThanaNameEng',optionsCaption:'--Select--', value:OfficeAddress.ThanaId ,event:{change: IsOfcAddressChng}"></select>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.PostalCode" class="control-label">ZIP/Postal Code</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.PostalCode">
+                                                <input type="text" data-bind="value:OfficeAddress.PostalCode,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.PostalCode" placeholder="ZIP/Postal Code">
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.CellPhoneNo" class="control-label">Mobile</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.CellPhoneNo">
+                                                <input type="tel" data-bind="value:OfficeAddress.CellPhoneNo,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.CellPhoneNo" placeholder="Enter Mobile Number">
+                                            </div>
+
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.PhoneNo" class="control-label">Phone</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement:OfficeAddress.PhoneNo">
+                                                <input type="tel" data-bind="value:OfficeAddress.PhoneNo,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.PhoneNo" placeholder="Enter Phone Number">
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                        <div class="form-group row row_design_detail">
+                                            <div class="col-sm-1">
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <label for="OfficeAddress.Email" class="control-label">E-mail</label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: OfficeAddress.Email">
+                                                <input type="email" data-bind="value:OfficeAddress.Email,event:{change: IsOfcAddressChng}" class="form-control" id="OfficeAddress.Email" placeholder="Enter E-mail">
+                                            </div>
+                                            <div class="col-sm-2" data-bind="visible: !OccupationType() === 7 && !OccupationType() === 3">
+                                                <label for="EmploymentStatus" class="control-label" style="text-align: left;">Employment Status<span class="required"></span></label>
+                                            </div>
+                                            <div class="col-sm-3" data-bind="validationElement: EmploymentStatus,visible: !OccupationType() === 7 && !OccupationType() === 3">
+                                                <select class="form-control" id="EmploymentStatus" data-bind="options:EmployeeStatusList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:EmploymentStatus "></select>
+                                            </div>
+                                            <div class="col-sm-1">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 3">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible: !(OccupationType() === 3)">
+                                            <label class="control-label" for="MonthsInCurrentJob">Months In Current Job<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible: OccupationType() === 3">
+                                            <label class="control-label" for="MonthsInCurrentJob">Years in Business<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: MonthsInCurrentJob">
+                                            <input type="text" data-bind="value:MonthsInCurrentJob, visible: !(OccupationType() === 3)" class="form-control" id="MonthsInCurrentJob" placeholder="Months In Current Job">
+                                            <input type="text" data-bind="value:MonthsInCurrentJob, visible: OccupationType() === 3" class="form-control" id="MonthsInCurrentJob" placeholder="Years In Business">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="NameOfPreviousEmployeer">Name of Previous Employer<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: NameOfPreviousEmployeer">
+                                            <input type="text" data-bind="value:NameOfPreviousEmployeer" class="form-control" id="NameOfPreviousEmployeer" placeholder="Name Of Previous Employeer">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:OccupationType() === 1 || OccupationType() === 2 || OccupationType() === 3">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="YearsOfExpInPrevEmp" class="control-label">Expr. In Previous Job<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: YearsOfExpInPrevEmp">
+                                            <input type="text" data-bind="value:YearsOfExpInPrevEmp" class="form-control" id="YearsOfExpInPrevEmp" placeholder="Years Of Experience in previous job">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="TotalYearOfServieExp">Total Year of Service<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: TotalYearOfServieExp">
+                                            <input type="number" data-bind="value:TotalYearOfServieExp" class="form-control" id="TotalYearOfServieExp" placeholder="Total Year Of Service">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible:IsGovtPrivateService">
+                                            <label for="CompanyRetirementAge" class="control-label">Company Retirement Age<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="visible:IsGovtPrivateService, validationElement: CompanyRetirementAge">
+                                            <input type="text" data-bind="value:CompanyRetirementAge" class="form-control" id="CompanyRetirementAge" placeholder="Company Retirement Age">
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible:OccupationType() === 3">
+                                            <label for="LegalStatus" class="control-label">Legal Status<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: LegalStatus, visible:OccupationType() === 3">
+                                            <select class="form-control" id="LegalStatus" data-bind="options:LegalStatusList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:LegalStatus"></select>
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:OccupationType() === 3">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="NumberOfEmployees" class="control-label" style="text-align: left;">Number of Employees<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: NumberOfEmployees">
+                                            <input data-bind="value:NumberOfEmployees" id="NumberOfEmployees" class="form-control" type="number" placeholder="Number Of Employees">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="EquityOrShare">Equity Or Share<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3 input-group" style="padding-left:15px; padding-right:15px;">
+                                            <input type="number" data-bind="value:EquityOrShare" class="form-control" id="EquityOrShare" placeholder="Equity Or Share">
+                                            <span class="help-block" style="display: none;"></span>
+                                            <div class="input-group-addon">
+                                                <span>%</span>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:OccupationType() === 3">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="MainProduct" class="control-label">Main Product<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: MainProduct">
+                                            <input type="text" data-bind="value:MainProduct" class="form-control" id="MainProduct" placeholder="Main Product">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="MainClient">Main Client<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: MainClient">
+                                            <input type="text" data-bind="value:MainClient" class="form-control" id="MainClient" placeholder="Main Client">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design_detail" data-bind="visible: OccupationType() === 7">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="PrimaryIncomeSource" class="control-label">Primary Income Source<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: PrimaryIncomeSource">
+                                            <input type="text" data-bind="value:PrimaryIncomeSource" class="form-control" id="PrimaryIncomeSource" placeholder="Primary Income Source">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label class="control-label" for="OtherIncomeSource">Other Income Source<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: OtherIncomeSource">
+                                            <input type="text" data-bind="value:OtherIncomeSource" class="form-control" id="OtherIncomeSource" placeholder="Other Income Source">
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2" data-bind="validationElement: OtherIncomeSource ,visible: OccupationType() === 6">
+                                            <label for="DescriptionOfOccupation" class="control-label">Description of Occupation<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: DescriptionOfOccupation ,visible: OccupationType() === 6">
+                                            <textarea data-bind="value:DescriptionOfOccupation" class="form-control" id="DescriptionOfOccupation" placeholder="Description Of Occupation"></textarea>
+                                        </div>
+                                        <div class="col-sm-2" data-bind="validationElement: OtherIncomeSource ,visible: OccupationType() === 3">
+                                            <label for="DescriptionOfOccupation" class="control-label">Description of Business<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: DescriptionOfOccupation ,visible: OccupationType() === 3">
+                                            <textarea data-bind="value:DescriptionOfOccupation" class="form-control" id="DescriptionOfOccupation" placeholder="Description Of Business"></textarea>
+                                        </div>
+                                        <div class="col-sm-2" data-bind="validationElement: OtherIncomeSource ,visible: OccupationType() === 7">
+                                            <label for="DescriptionOfOccupation" class="control-label">Description of Profession<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: DescriptionOfOccupation ,visible: OccupationType() === 7">
+                                            <textarea data-bind="value:DescriptionOfOccupation" class="form-control" id="DescriptionOfOccupation" placeholder="Description Of Profession"></textarea>
+                                        </div>
+                                        <div class="col-sm-2" data-bind="visible:IsDirectorChecked">
+                                            <label for="IsDirectorOfAnyBankOrFL" class="control-label" style="text-align: left;">Is Director(Bank/FI)<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: IsDirectorOfAnyBankOrFL,visible:IsDirectorChecked">
+                                            <input type="checkbox" id='IsDirectorOfAnyBankOrFL' name="optradio" data-bind="checked:IsDirectorOfAnyBankOrFL, valueUpdate: 'keyup'">
+                                        </div>
+
+                                        <div class="col-sm-1">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:IsDirectorOfAnyBankOrFL">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="BankOrFLName" class="control-label">Bank or Financial Institute<span class="required">*</span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: BankOrFLName">
+                                            <input type="text" data-bind="value:BankOrFLName" class="form-control" id="BankOrFLName" placeholder="Bank Or Financial Institute Name">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="RoleInBankOrFL" class="control-label" style="text-align: left;">Role In (Bank/FL)<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: RoleInBankOrFL">
+                                            <select class="form-control" id="RoleInBankOrFL" data-bind="options:RoleInBankOrFLList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:RoleInBankOrFL "></select>
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row row_design_detail" data-bind="visible:IsDirectorOfAnyBankOrFL">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-2">
+                                            <label for="RelatedPartyWithIPDC" class="control-label" style="text-align: left;">Related Party With IPDC<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: RelatedPartyWithIPDC">
+                                            <input type="checkbox" id='RelatedPartyWithIPDC' name="optradio" data-bind="checked:RelatedPartyWithIPDC, valueUpdate: 'keyup'">
+                                        </div>
+
+                                        <div class="col-sm-2">
+                                            <label for="RelationshipWithIPDC" class="control-label" style="text-align: left;">Relationship With IPDC<span class="required"></span></label>
+                                        </div>
+                                        <div class="col-sm-3" data-bind="validationElement: RelationshipWithIPDC">
+                                            <select class="form-control" id="RelationshipWithIPDC" data-bind="options:RelationshipWithIPDCList,optionsValue: 'Id', optionsText:'Name',optionsCaption:'--Select--',value:RelationshipWithIPDC "></select>
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row row_design" data-bind="visible:OccupationType() === 8">
+
+                                        <div class="col-sm-offset-1 col-sm-2">
+                                            <label class="control-label"><b>Land Owner Properties</b></label>
+                                        </div>
+                                        <div class="col-sm-9">
+
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row row_design" data-bind="visible:OccupationType() === 8">
+                                        <div class="col-sm-1">
+                                        </div>
+                                        <div class="col-sm-10">
+                                            <div class="form-signin-heading actions-hover">
+                                                <table class="table table-striped table-bordered">
+                                                    <thead class="headcolor">
+                                                        <tr>
+                                                            <th>Number of Floors Rented</th>
+                                                            <th>Rented Property Type</th>
+                                                            <th>Rented Area</th>
+                                                            <th>Construction Completion Year</th>
+                                                            <th>
+                                                                <a class="plus" href='#' data-bind='click: addDetailOfLandProperty'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                <a class="minus" href='#' data-bind='click: removeDetailOfLandProperty'><span class="glyphicon glyphicon-minus"></span></a>
+                                                            </th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody data-bind="foreach:LandOwnerProperties">
+                                                        <tr>
+                                                            <td>
+                                                                <input data-bind="value:NumberOfFloorsRented, valueUpdate:'keyup'" class="form-control" placeholder="Number Of Floors Rented" />
+                                                            </td>
+                                                            <td>
+                                                                <select class="form-control" data-bind="options: $parent.PropertyTypeList, value: RentedPropertyType, optionsValue:'Id', optionsText: 'Name', optionsCaption: '...Choose Property Types...'"></select>
+                                                            </td>
+
+                                                            <td>
+                                                                <input data-bind="value:RentedAreaInSqf, valueUpdate:'keyup'" class="form-control" placeholder="Rented Area In Sqr/Ft" />
+                                                            </td>
+                                                            <td>
+                                                                @*<input id="ConstructionCompletionYear" data-bind="value:ConstructionCompletionYear, valueUpdate:'keyup'" class="form-control" placeholder="Construction Cpmpletion Year"/>*@
+                                                                <select name="yearpicker" id="ConstructionCompletionYear" data-bind="value:ConstructionCompletionYear" class="form-control"></select>
+                                                            </td>
+
+                                                            <td>
+                                                                <a class="plus" href='#' data-bind='click: $parent.addDetailOfLandProperty'><span class="glyphicon glyphicon-plus"></span></a>
+                                                                <a class="minus" href='#' data-bind='click: $parent.removeDetailOfLandProperty'><span class="glyphicon glyphicon-minus"></span></a>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+
+                                                </table>
+
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-1">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-group row row_design">
+                                        <div class="col-sm-10"></div>
+                                        <div class="col-sm-2">
+                                            <button type="button" class="btn btn-success" data-bind="click:SaveClientOrg">Save</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+
+                                        <div id="ciopsuccessModal" class="modal fade" role="dialog">
+                                            <div class="modal-dialog modal-sm">
+
+                                                <!-- Modal content-->
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                        <h4 class="modal-title">Response</h4>
+                                                    </div>
+                                                    <div class="modal-body" align="center">
+                                                        <p id="ciopsuccessModalText"></p>
+
+                                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                                    </div>
+                                                    <div class="modal-footer">
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

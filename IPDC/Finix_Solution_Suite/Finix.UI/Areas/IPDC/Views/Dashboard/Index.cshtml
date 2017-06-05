@@ -1,0 +1,662 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<link href="~/Areas/IPDC/Content/Dashboard/themes/base/jquery-ui.min.css" rel="stylesheet" />
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/Dashboard/metisMenu.min.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/Dashboard/sb-admin-2.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/Dashboard/morris.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/Dashboard/font-awesome.min.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/Dashboard/bootbox.min.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/metisMenu.min.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/raphael.min.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/jquery.flot.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/jquery.flot.time.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/jquery.flot.symbol.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/jquery.flot.axislabels.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/sb-admin-2.js"></script>
+
+<script src="~/Areas/IPDC/Scripts/Dashboard/management.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/management-lead-chart.js"></script>
+<script src="~/Areas/IPDC/Scripts/Dashboard/management-app-chart.js"></script>
+
+<link href="~/Areas/IPDC/Content/Dashboard/tlbm.css" rel="stylesheet" />
+
+<style type="text/css">
+    div.panel {
+        margin-bottom: 1px;
+    }
+
+    div.panel-container {
+        margin-bottom: 10px;
+    }
+    .h1, .h2, .h3, h1, h2, h3 {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+    .dh {
+    font-size: 20px !important;
+}
+    .form-control{
+        height:29px;
+        min-width:167px;
+    }
+    .gh{
+        margin: 0;
+    }
+</style>
+
+@*page contents*@
+
+<div id="page-wrapper">
+    <div class="row form-inline form-group">
+        <div class="col-xs-12">
+            <label>
+                Product
+                <select id="" class="form-control">
+                    <option value="1">Product-1</option>
+                    <option value="2">Product-2</option>
+                    <option value="3">Product-3</option>
+                </select>
+            </label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="panel-container col-xs-12 col-sm-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-phone fa-5x"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
+                            <h2 class="dh">Lead Stage</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="db">Number: </h3>
+                            <h3 class="db"><b>2345</b></h3>
+                        </div>
+
+                        <div class="col-xs-6 text-right pull-right">
+                            <h3 class="db">Amount: </h3>
+                            <h3 class="db">87654</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#mdlLeadStage">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="panel-container col-xs-12 col-sm-6 col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
+                            <h2 class="dh">Application Stage</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="db">Number: </h3>
+                            <h3 class="db"><b>2345</b></h3>
+                        </div>
+
+                        <div class="col-xs-6 text-right pull-right">
+                            <h3 class="db">Amount: </h3>
+                            <h3 class="db">87654</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#mdlAppStage">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="panel-container col-xs-12 col-sm-6 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
+                            <h2 class="dh">Sanction Stage</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="db">Number: </h3>
+                            <h3 class="db"><b>2345</b></h3>
+                        </div>
+
+                        <div class="col-xs-6 text-right pull-right">
+                            <h3 class="db">Amount: </h3>
+                            <h3 class="db">87654</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#mdlSanctionStage">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+        <div class="panel-container col-xs-12 col-sm-6 col-md-3">
+            <div class="panel panel-warning">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            <i class="fa fa-cog fa-5x"></i>
+                        </div>
+                        <div class="col-xs-10 text-right">
+                            <h2 class="dh">Facility Stage</h2>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <h3 class="db">Number: </h3>
+                            <h3 class="db"><b>2345</b></h3>
+                        </div>
+
+                        <div class="col-xs-6 text-right pull-right">
+                            <h3 class="db">Amount: </h3>
+                            <h3 class="db">87654</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a href="#" data-toggle="modal" data-target="#mdlFacilityStage">
+                <div class="panel-footer">
+                    <span class="pull-left">View Details</span>
+                    <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                    <div class="clearfix"></div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="panel panel-danger">
+                <div class="mh panel-heading">
+                    <h4 class="gh">Lead Chart</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="lead-chart">
+
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <p>
+                <label for="amount">Date Range:</label>
+                <input class="dr" type="text" id="amount" readonly style="border:0; font-weight:bold;">
+            </p>
+            <div id="slider-range"></div>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-6">
+            <div class="panel panel-danger">
+                <div class="mh panel-heading">
+
+                    <h4 class="gh">Application Chart</h4>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="flot-chart">
+                        <div class="flot-chart-content" id="app-chart"></div>
+                    </div>
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+
+            <p>
+                <label for="amount2">Date Range:</label>
+                <input class="dr" type="text" id="amount2" readonly style="border:0; font-weight:bold;">
+            </p>
+            <div id="slider-range2"></div>
+        </div>
+
+    </div>
+    <hr />
+</div>
+
+@*first level modals*@
+
+<div class="modal fade" id="mdlLeadStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Lead Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Lead Status</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Open Unassigned</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Open- Not Contacted</td>
+                            <td class="text-right">178</td>
+                            <td class="text-right">651987</td>
+                        </tr>
+                        <tr>
+                            <td>Working- Contacted</td>
+                            <td class="text-right">478</td>
+                            <td class="text-right">6435987</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-toggle="modal" data-target="#mdlLeadDetailStage">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlAppStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Application Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Lead Status</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Open Unassigned</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Open- Not Contacted</td>
+                            <td class="text-right">178</td>
+                            <td class="text-right">651987</td>
+                        </tr>
+                        <tr>
+                            <td>Working- Contacted</td>
+                            <td class="text-right">478</td>
+                            <td class="text-right">6435987</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-toggle="modal" data-target="#mdlAppDetailStage">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlSanctionStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Sanction Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Lead Status</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Open Unassigned</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Open- Not Contacted</td>
+                            <td class="text-right">178</td>
+                            <td class="text-right">651987</td>
+                        </tr>
+                        <tr>
+                            <td>Working- Contacted</td>
+                            <td class="text-right">478</td>
+                            <td class="text-right">6435987</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-toggle="modal" data-target="#mdlSanctionDetailStage">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlFacilityStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Facility Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Lead Status</th>
+                            <th class="text-right">Quantity</th>
+                            <th class="text-right">Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Open Unassigned</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Open- Not Contacted</td>
+                            <td class="text-right">178</td>
+                            <td class="text-right">651987</td>
+                        </tr>
+                        <tr>
+                            <td>Working- Contacted</td>
+                            <td class="text-right">478</td>
+                            <td class="text-right">6435987</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <a href="#" data-toggle="modal" data-target="#mdlFacilityDetailStage">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+@*second level modals*@
+
+<div class="modal fade" id="mdlLeadDetailStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Branchwise Lead Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Branch</th>
+                            <th class="text-right">Open Unassigned</th>
+                            <th class="text-right">Open- Not Contacted</th>
+                            <th class="text-right">Working- Contacted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dhaka</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Chittagong</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Khulna</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlAppDetailStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Branchwise Application Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Branch</th>
+                            <th class="text-right">Open Unassigned</th>
+                            <th class="text-right">Open- Not Contacted</th>
+                            <th class="text-right">Working- Contacted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dhaka</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Chittagong</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Khulna</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlSanctionDetailStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Branchwise Sanction Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Branch</th>
+                            <th class="text-right">Open Unassigned</th>
+                            <th class="text-right">Open- Not Contacted</th>
+                            <th class="text-right">Working- Contacted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dhaka</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Chittagong</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Khulna</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="mdlFacilityDetailStage" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">&times;</span>
+                    <span class="sr-only">Close</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel">Branchwise Facility Stage Details</h4>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="modal-body">
+                <table class="table table-striped table-bordered">
+                    <thead class="headcolor">
+                        <tr>
+                            <th>Branch</th>
+                            <th class="text-right">Open Unassigned</th>
+                            <th class="text-right">Open- Not Contacted</th>
+                            <th class="text-right">Working- Contacted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Dhaka</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Chittagong</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                        <tr>
+                            <td>Khulna</td>
+                            <td class="text-right">718</td>
+                            <td class="text-right">78</td>
+                            <td class="text-right">65987</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

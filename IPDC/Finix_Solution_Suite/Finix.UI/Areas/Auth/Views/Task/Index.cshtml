@@ -1,0 +1,17 @@
+﻿<script src="~/Areas/Auth/Scripts/Task.js"></script>
+<script src="~/Areas/Auth/Scripts/validate.js"></script>
+@{
+    ViewBag.Title = "Task information";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+
+<h2>Task information</h2>
+@*<div class="alert alert-warning fade in">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Attention!</strong>Each role can have one or more tasks.
+        According to the tasklist users can perform different fuctionalities
+    </div>*@
+<div>
+    <table id="jqGrid"></table>
+    <div id="jqControls"></div>
+</div>

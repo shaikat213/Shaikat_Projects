@@ -1,0 +1,221 @@
+﻿
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet"/>
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<link href="~/Content/customassets/css/CPV.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/officeDesignationArea.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+<link href="~/Areas/IPDC/Content/CIB.css" rel="stylesheet" />
+<script src="~/Scripts/KoCustomDateTimePicker.js"></script>
+<script src="~/Areas/IPDC/Scripts/Verification/nidVerification.js"></script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+</style>
+
+@{
+    ViewBag.Title = "NIDVerification";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<section class="panel-bodycontent" id="NidVerificationVw">
+    <header class="panel-heading bodytitle">
+        <h2 class="panel-title font">
+            <b>NID Verification</b>
+        </h2>
+    </header>
+
+    <br />
+
+    <div>
+        <div class="form-group row row_design_detail">
+
+            <div class="col-sm-2 col-sm-offset-2">
+                <label for="ContactAddress" class="control-label" style="text-align: left;">Person Verified :</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationPersonRole" disabled>Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationPersonRole" disabled>Co-Applicant</label>
+            </div>
+            <div class="col-sm-2">
+                <label class="radio-inline"><input type="radio" value="3" data-bind="checked: VerificationPersonRole" disabled>Guarantor</label>
+            </div>
+
+        </div>
+
+
+        <section class="rm">
+            <div class="panel-body">
+
+                <div class="container-fluid ">
+
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-sm-12">
+
+                                <div class="form-group row row_design">
+
+                                    <div class="col-sm-2 col-sm-offset-1">
+                                        <label class="control-label">CIF No :</label>
+                                    </div>
+                                    <div class="col-sm-2">
+                                        <label class="control-label" data-bind="text:CIFNo"></label>
+                                    </div>
+                                    <div class="col-sm-2 col-sm-offset-2">
+                                        <button type="submit" class="btn-q btn-default" data-bind="click:NidHistory">History</button> 
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+
+            </div>
+        </section>
+
+
+        <hr class="horizontal">
+        <div class="row">
+            <div class="col-sm-12">
+               
+
+
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label for="test" class="control-label">Name :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="text" data-bind="value:Name" class="form-control" />
+                    </div>
+                </div>
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label class="control-label">NID Number :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input type="number" data-bind="value:NIDNo" class="form-control" />
+                    </div>
+
+                </div>
+
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label class="control-label">Date of Birth :</label>
+                    </div>
+                    <div class="col-sm-3 input-group input-group_cif date" style="padding-left:15px; padding-right:15px;">
+                        <input type="text" class="form-control" data-bind="datepicker:DateOfBirth, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                    </div>
+
+                </div><br />
+
+                <div class="form-group row row_design_detail">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label for="ContactAddress" class="control-label" style="text-align: left;">Finding :</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked: Finding">Not Found</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked: Finding">Found Ok</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="3" data-bind="checked: Finding">Mismatch</label>
+                    </div>
+
+                </div><br />
+
+                <div class="form-group row row_design_detail">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label for="Remarks" class="control-label" style="text-align: left;">Remark :</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <textarea class="form-control" id="Remarks" data-bind="value:Remarks" type="text"></textarea>
+                    </div>
+
+                </div><br />
+                <div class="form-group row row_design">
+
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label class="control-label">Verification Date :</label>
+                    </div>
+                    <div class="col-sm-3 input-group input-group_cif date" style="padding-left:15px; padding-right:15px;">
+                        <input type="text" class="form-control" data-bind="datepicker:VerificationDate, datepickerOptions: {format: 'DD/MM/YYYY'}, valueUpdate:'keyup'">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-calendar"></span>
+                        </div>
+                    </div>
+
+                </div><br/>
+                <div class="form-group row row_design_detail">
+                    <div class="col-sm-2 col-sm-offset-2">
+                        <label for="VerificationState" class="control-label" style="text-align: left;">Verification Status :</label>
+                    </div>
+                    <div class="col-sm-2">
+
+                        <label class="radio-inline"><input type="radio" value="1" data-bind="checked: VerificationStatus">Verification Pending</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="2" data-bind="checked: VerificationStatus">Verified</label>
+                    </div>
+                    <div class="col-sm-2">
+                        <label class="radio-inline"><input type="radio" value="0" data-bind="checked: VerificationStatus">Not Required</label>
+                    </div>
+
+                </div><br />
+                <div class="form-group row row_design">
+                    
+                    <div class="col-sm-offset-9 col-sm-3">
+                        <button type="button" class="btn-q btn-default" data-bind="click:SubmitNew" style="float:left">Save</button>
+                    
+                        @*<button type="button" class="btn btn-success" data-bind="click:Submit">Save</button>*@
+                    </div>
+                </div>
+
+                    <div id="SuccessModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog modal-sm">
+                            <!-- Modal content-->
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                    <h4 class="modal-title">Response</h4>
+                                </div>
+                                <div class="modal-body" align="center">
+                                    <p id="SuccessModalText"></p>
+
+                                    <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                </div>
+                                <div class="modal-footer">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+        </div>
+    </div>
+
+</section>
+

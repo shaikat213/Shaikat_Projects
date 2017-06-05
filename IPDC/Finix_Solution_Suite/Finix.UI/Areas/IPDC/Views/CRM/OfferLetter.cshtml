@@ -1,0 +1,304 @@
+﻿@{
+    ViewBag.Title = "Offer Letter";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+}
+<link href="~/Areas/IPDC/Content/cif.css" rel="stylesheet" />
+<script src="~/Areas/IPDC/Scripts/addressJsViewModel.js"></script>
+<link href="~/Content/customassets/css/cifIncomeStatement.css" rel="stylesheet" />
+<link href="~/Content/customassets/css/application.css" rel="stylesheet" />
+
+<link href="~/Content/bootstrap-datetimepicker.css" rel="stylesheet" />
+<script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+<script src="~/Scripts/moment.js"></script>
+<script src="~/Areas/IPDC/Scripts/CRM/offerLetter.js"></script>
+<style>
+    .form-control {
+        width: 100% !important;
+    }
+
+    .input-group-addon {
+        padding: 0 5px;
+    }
+
+    .no-padding {
+        padding: 0;
+    }
+
+    .no-right-padding {
+        padding-right: 0;
+    }
+
+    .no-left-padding {
+        padding-left: 0;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+
+    .lineHeightDate {
+        line-height: 15px !important;
+    }
+
+    tr > td > input {
+        min-height: 22px;
+    }
+
+    input[type="number"] {
+        text-align: right;
+    }
+</style>
+<div class="panel-body" id="proposalCreate">
+    <div class="container-fluid">
+        <div class="panel-bodycontent">
+            <header class="panel-heading bodytitle">
+                <h2 class="panel-title font"><b>Offer Letter</b></h2>
+            </header>
+            <div class="panel-body collapse in">
+                <fieldset>
+                    @*<div class="form-group row row_design_detail" style="margin: 0px; font-size: 11px">
+                        <a target="_blank" data-bind="attr: { href: Link1, title1: 'PDF' }">PDF</a>
+                        <a target="_blank" data-bind="attr: { href: Link2, title2: 'Excel' }">Excel</a>
+                        <a target="_blank" data-bind="attr: { href: Link3, title3: 'Word' }">Word</a>
+                    </div>*@
+                    <div class="form-group row row_design_detail">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="OfferLetterDate">Offer Letter Date</label>
+                        </div>
+                        <div class="col-sm-2 no-padding" data-bind="validationElement:OfferLetterDate">
+                            <input type="text" id="OfferLetterDate" data-bind="value:OfferLetterDateTxt" class="form-control" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label">Penal Interest</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" type="number" data-bind="value:PenalInterest" />
+                        </div>
+                        <div class="col-sm-2">
+                            <label class="control-label">No of Advanced Installment</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" type="number" data-bind="value:LoanAdvance" />
+                        </div>
+                    </div>
+                    <div class="form-group row row_design_detail">
+                        <div class="col-sm-2">
+                            <label class="control-label" for="AcceptancePeriod">Acceptance Period</label>
+                        </div>
+
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="AcceptancePeriod" type="number" data-bind="value:AcceptancePeriod" />
+                        </div>
+
+                        <div class="col-sm-2">
+                            <label class="control-label" for="CibAndProcessingFee">Cib & Processing Fee</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <input class="form-control" id="CibAndProcessingFee" type="number" data-bind="value:CibAndProcessingFee" />
+                        </div>
+                        <div class="form-group row row_design_detail">
+                            <div class="col-sm-2">
+                                <label class="control-label">Facility Type</label>
+                            </div>
+                            <div class="col-sm-2">
+                                @*<select data-bind="options:FacilityTypeList, value: FacilityType, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>*@
+                                <input class="form-control" id="FacilityType" type="text" data-bind="value:FacilityTypeName" readonly />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design_detail" data-bind="visible: (FacilityType() == 1)">
+                        <div class="col-sm-2">
+                            <label class="control-label">Purpose</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <select data-bind="options:PurposeList, value:Purpose, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design_detail" data-bind="visible: (FacilityType() == 3)">
+                        <div class="col-sm-2">
+                            <label class="control-label">Bank Account</label>
+                        </div>
+                        <div class="col-sm-2 no-padding">
+                            <select data-bind="options:BankAccountList, value:BankAccount, optionsCaption:'Choose One..', optionsValue:'Id', optionsText: 'Name'" class="form-control"></select>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#early">
+                            <h2 class="panel-title font">
+                                <b>Early Settlement</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="early">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddEarlySettlementText'>Add Early Settlement<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:EarlySettlement">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Offer Letter </label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddEarlySettlementText'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveEarlySettlementText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent" data-bind="visible: (FacilityType() == 1)">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#partialPayment">
+                            <h2 class="panel-title font">
+                                <b>Partial Payment</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="partialPayment">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddPartialText'>Add Partial Payment<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:PartialPayment">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Offer Letter </label>
+                                    </div>
+
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddPartialText'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemovePartialText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent" data-bind="visible: (FacilityType() != 1 )">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#modeOfDisbursment">
+                            <h2 class="panel-title font">
+                                <b>Mode Of Disbursement</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="modeOfDisbursment">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddDisbursmentModetext'>Add Mode Of Disbursment<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:ModeOfDisbursmentList">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Offer Letter </label>
+                                    </div>
+
+
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddDisbursmentModetext'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveDisbursmentModeText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent" data-bind="visible: (FacilityType() == 1)">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#disbursmentCondition">
+                            <h2 class="panel-title font">
+                                <b>Disbusment Conditions</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="disbursmentCondition">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddDisbursmentCndtext'>Add Disbusment Conditions<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:DisbursmentConditionList">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Offer Letter </label>
+                                    </div>
+                                    <div class="col-sm-9 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddDisbursmentCndtext'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveDisbursmentCndText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-bodycontent" data-bind="visible: (FacilityType() != 1)">
+                        <header class="panel-heading bodytitle pointer" data-toggle="collapse" data-target="#doc">
+                            <h2 class="panel-title font">
+                                <b>Documentation</b>
+                            </h2>
+                        </header>
+                        <div class="panel-body collapse in" id="doc">
+                            <div class="form-group row row_design_detail">
+                                <div>
+                                    <div class="col-sm-offset-9 col-sm-3" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: AddDocumentationtext'>Add Documentation<span class="glyphicon glyphicon-plus"></span></a>
+                                    </div>
+                                </div>
+                                <div data-bind="foreach:DocumentationList">
+                                    <div class="col-sm-2">
+                                        <label class="control-label">Offer Letter </label>
+                                    </div>
+                                    <div class="col-sm-4 no-padding">
+                                        <select data-bind="options:$root.PrinterFilteringList,optionsValue: 'Id',optionsText:'Name',optionsCaption:'--Select--', value:PrinterFiltering" class="form-control"></select>
+                                    </div>
+                                    <div class="col-sm-5 no-padding">
+                                        <textarea class="form-control" data-bind="value:Text"></textarea>
+                                    </div>
+                                    <div class="col-sm-1" style="text-align: center;">
+                                        <a class="plus" href='#' data-bind='click: $parent.AddDocumentationtext'><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="minus" href='#' data-bind='click: $parent.RemoveDocumentationText'><span class="glyphicon glyphicon-minus"></span></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group row row_design">
+                        <div class="col-sm-offset-9 col-sm-6">
+                            <button type="button" class="btn btn-success" data-bind="click:SaveOfferLetter">Save</button>
+                            <button type="button" class="btn btn-success btn-q" data-bind="click:SavePrint">Save & Print</button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+
+                        <div id="offSuccessModal" class="modal fade" role="dialog">
+                            <div class="modal-dialog modal-sm">
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                        <h4 class="modal-title">Response</h4>
+                                    </div>
+                                    <div class="modal-body" align="center">
+                                        <p id="offSuccessModalText"></p>
+
+                                        <button type="button" class="btn btn-success" data-dismiss="modal">Ok</button>
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>

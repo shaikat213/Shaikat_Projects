@@ -1,0 +1,395 @@
+﻿@model Finix.IPDC.DTO.DashboardRMDto
+<script src="~/Scripts/highcharts.js"></script>
+<link href="~/Content/customassets/css/dashboardLayout.css" rel="stylesheet" />
+
+@{
+    ViewBag.Title = "DashboardRM";
+    Layout = "~/Views/Shared/_LayoutjqGrid.cshtml";
+    var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+    var modelData = jss.Serialize(Model);
+}
+
+<script>
+    var modelData = JSON.parse('@Html.Raw(modelData)');
+</script>
+<section id="dashboardRM">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <div class="stats_box">
+                            <div class="call_progress">
+                                <div class="stat_text">
+                                    <p>CALLS IN PROGRESS</p>
+                                    <strong class="percent down value-text" data-bind="text: CallsInProgress"></strong>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+
+                    <h5 style="text-align:center !important;">
+                        TOTAL DISBURSEMENT
+                    </h5>
+
+                    <ul class="stats_box">
+                        <li>
+                            <p>MTD BDT. <span class="label label-default" data-bind="text:MTDLoanAmount"></span></p>
+                        </li>
+                        <li>
+                            <p>LMTD BDT. <span class="label label-default" data-bind="text:LMTDLoanAmount"></span></p>
+                        </li>
+
+                    </ul>
+                </div>
+
+                <div class="col-sm-4">
+
+                    <h5 style="text-align:center !important;">
+                        TOTAL DEPOSITS
+                    </h5>
+
+                    <ul class="stats_box">
+                        <li>
+                            <p>MTD BDT. <span class="label label-default" data-bind="text:MTDDepositAmount"></span></p>
+                        </li>
+                        <li>
+                            <p>LMTD BDT. <span class="label label-default" data-bind="text:LMTDDepositAmount"></span></p>
+                        </li>
+
+                    </ul>
+                </div>
+
+
+
+            </div>
+        </div><br />
+
+        <div class="row">
+            <div class="col-sm-10">
+
+                <div class="col-sm-8">
+
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-12">
+                            <strong>LOAN SUMMARY</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+
+                        </div>
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="headcolor">
+                                <tr>
+                                    <th class="col-sm-1 LS">LEADS</th>
+                                    <th class="col-sm-1 LS">APP. FOR SUBMISSION</th>
+                                    <th class="col-sm-2 LS">APP. UNDER PROCESS</th>
+                                    <th class="col-sm-1 LS">LOANS SANCTIONED</th>
+                                    <th class="col-sm-1 LS">READY FOR DISBURSEMENT</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="center LS"><label class="control-label" data-bind="text:ActiveLeadsLoan"></label></td>
+                                    <td class="center LS"><label class="control-label" data-bind="text:UnsubmittedApplicationsLoan"></label></td>
+                                    <td class="center LS"><label class="control-label" data-bind="text:SubmittedToCRMApplications"></label></td>
+                                    <td class="center LS"><label class="control-label" data-bind="text:CRMApprovedApplications"></label></td>
+                                    <td class="center LS"><label class="control-label" data-bind="text:ReadyForDisbursementApplications"></label></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+
+
+                    <div class="form-group row row_design">
+
+                        <div class="col-sm-12">
+
+                            <strong>DEPOSIT SUMMARY</strong>
+                            <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+                        </div>
+
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-striped table-bordered">
+                            <thead class="headcolor">
+                                <tr>
+                                    <th class="col-sm-1 DS">LEADS</th>
+                                    <th class="col-sm-1 DS">APP. SUBMITTED</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="center DS"><label class="control-label" data-bind="text:ActiveLeadsDeposit"></label></td>
+                                    <td class="center DS"><label class="control-label" data-bind="text:SubmittedApplicationsDeposit"></label></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <strong>MY HIGHLIGHTS</strong>
+                    <hr style="margin-top: 0px !important; border-top: 2px solid #eee;" />
+
+                    <div class="col-sm-8">
+                        <!-- column charts group -->
+
+                        <div id="loanHighlights" style="margin: 0 auto; border:1px solid #ECEBEB; margin-left:-15px;"></div>
+
+
+                        <!-- /column charts group -->
+                    </div>
+                    <div class="col-sm-4">
+                        <!-- column charts group -->
+
+                        <div id="depositHighlights" style="margin: 0 auto; border:1px solid #ECEBEB; margin-left:-15px;"></div>
+
+                        <!-- /column charts group -->
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-sm-2">
+                <div class="panel panel-default schedulePanel">
+                    <!-- Default panel contents -->
+                    <div class="panel-heading">TODAY'S SCHEDULE</div>
+                    @*<div class="panel-body">
+                            <p>Cras justo odio</p>
+                        </div>*@
+
+                    <!-- List group -->
+                    <ul class="list-group" data-bind="foreach:Schedules">
+                        <li class="list-group-item">
+                            <div data-bind="text:HeaderText"></div>
+                            <div data-bind="text:PhoneNo"></div>
+                            <div data-bind="text:moment(Schedule).format('DD/MM/YYYY hh:mm A') "></div>
+                            <div data-bind="text:Description"></div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script language="JavaScript">
+    $(document).ready(function () {
+
+        var chart = {
+            type: 'column'
+        };
+        var title = {
+            text: 'LOAN APPLICATIONS'
+        };
+        var subtitle = {
+            text: ''
+        };
+        var xAxis = {
+            categories: ['No. of Lead', 'No. of App. Submitted', 'No. of Disbursement', 'No. of Rejection'],
+            crosshair: true
+        };
+        var yAxis = {
+            min: 0,
+            title: {
+                text: ''
+            }
+        };
+        var tooltip = {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+               '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        };
+        var plotOptions = {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        };
+        var credits = {
+            enabled: false
+        };
+
+        var colors = ['#EC017F','#979797'];
+        var responsive = {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+        };
+
+        var json = {};
+        json.chart = chart;
+        json.title = title;
+        json.subtitle = subtitle;
+        json.tooltip = tooltip;
+        json.xAxis = xAxis;
+        json.yAxis = yAxis;
+        json.colors = colors;
+        json.plotOptions = plotOptions;
+        json.credits = credits;
+        json.responsive = responsive;
+
+        var chart1 = {
+            type: 'column'
+        };
+        var title1 = {
+            text: 'DEPOSIT APPLICATIONS'
+        };
+        var subtitle1 = {
+            text: ''
+        };
+        var xAxis1 = {
+            categories: ['No. of Lead', 'No. of Acc. Opened'],
+            crosshair: true
+        };
+        var yAxis1 = {
+            min: 0,
+            title: {
+                text: ''
+            }
+        };
+        var tooltip1 = {
+            headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+            pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+               '<td style="padding:0"><b>{point.y:.1f} </b></td></tr>',
+            footerFormat: '</table>',
+            shared: true,
+            useHTML: true
+        };
+        var plotOptions1 = {
+            column: {
+                pointPadding: 0.2,
+                borderWidth: 0
+            }
+        };
+        var credits1 = {
+            enabled: false
+        };
+
+        var responsive1 = {
+            rules: [{
+                condition: {
+                    maxWidth: 500
+                },
+                chartOptions: {
+                    legend: {
+                        align: 'center',
+                        verticalAlign: 'bottom',
+                        layout: 'horizontal'
+                    },
+                    yAxis: {
+                        labels: {
+                            align: 'left',
+                            x: 0,
+                            y: -5
+                        },
+                        title: {
+                            text: null
+                        }
+                    },
+                    subtitle: {
+                        text: null
+                    },
+                    credits: {
+                        enabled: false
+                    }
+                }
+            }]
+        };
+
+        var json1 = {};
+        json1.chart = chart1;
+        json1.title = title1;
+        json1.subtitle = subtitle1;
+        json1.tooltip = tooltip1;
+        json1.xAxis = xAxis1;
+        json1.yAxis = yAxis1;
+        json1.colors = colors;
+        json1.plotOptions = plotOptions1;
+        json1.credits = credits1;
+        json1.responsive = responsive1;
+
+
+        function dashboardVM() {
+            var self = this;
+            //console.log(modelData);
+            self.CallsInProgress = ko.observable(modelData.CallsInProgress);
+            self.ActiveLeadsDeposit = ko.observable(modelData.ActiveLeadsDeposit);
+            self.ActiveLeadsLoan = ko.observable(modelData.ActiveLeadsLoan);
+            self.CRMApprovedApplications = ko.observable(modelData.CRMApprovedApplications);
+            self.LMTDDepositAmount = ko.observable(modelData.LMTDDepositAmount);
+            self.LMTDLoanAmount = ko.observable(modelData.LMTDLoanAmount);
+            self.MTDDepositAmount = ko.observable(modelData.MTDDepositAmount);
+            self.MTDLoanAmount = ko.observable(modelData.MTDLoanAmount);
+            self.ReadyForDisbursementApplications = ko.observable(modelData.ReadyForDisbursementApplications);
+            self.SubmittedToCRMApplications = ko.observable(modelData.SubmittedToCRMApplications);
+            self.SubmittedApplicationsDeposit = ko.observable(modelData.SubmittedApplicationsDeposit);
+            self.UnsubmittedApplicationsLoan = ko.observable(modelData.UnsubmittedApplicationsLoan);
+            self.Schedules = ko.observableArray(modelData.Schedules);
+
+            json.series = [{
+                name: 'Month till date',
+                data: [modelData.TotalLeadsLoanMTD, modelData.TotalSubmittedApplicationsLoanMTD, modelData.DisbursementCountMTD, modelData.TotalRejectedApplicationsMTD]
+            }, {
+                name: 'Last month till date',
+                data: [modelData.TotalLeadsLoanLMTD, modelData.TotalSubmittedApplicationsLoanLMTD, modelData.DisbursementCountLMTD, modelData.TotalRejectedApplicationsLMTD]
+            }];
+            $('#loanHighlights').highcharts(json);
+
+            json1.series = [{
+                name: 'Month till date',
+                data: [modelData.TotalLeadsDepositMTD, modelData.TotalAccountsOpenedMTD]
+            }, {
+                name: 'Last month till date',
+                data: [modelData.TotalLeadsDepositLMTD, modelData.TotalAccountsOpenedLMTD]
+            }];
+
+            $('#depositHighlights').highcharts(json1);
+        }
+
+        var dashboard = new dashboardVM();
+        ko.applyBindings(dashboard, document.getElementById('dashboardRM'));
+
+    });
+</script>

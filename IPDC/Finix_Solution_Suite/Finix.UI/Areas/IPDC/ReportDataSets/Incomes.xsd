@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="Incomes" targetNamespace="http://tempuri.org/Incomes.xsd" xmlns:mstns="http://tempuri.org/Incomes.xsd" xmlns="http://tempuri.org/Incomes.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="Incomes" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="Incomes" msprop:Generator_UserDSName="Incomes">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="Incomes" msprop:Generator_TableClassName="IncomesDataTable" msprop:Generator_TableVarName="tableIncomes" msprop:Generator_TablePropName="_Incomes" msprop:Generator_RowDeletingName="IncomesRowDeleting" msprop:Generator_RowChangingName="IncomesRowChanging" msprop:Generator_RowEvHandlerName="IncomesRowChangeEventHandler" msprop:Generator_RowDeletedName="IncomesRowDeleted" msprop:Generator_UserTableName="Incomes" msprop:Generator_RowChangedName="IncomesRowChanged" msprop:Generator_RowEvArgName="IncomesRowChangeEvent" msprop:Generator_RowClassName="IncomesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="Id" msprop:Generator_ColumnVarNameInTable="columnId" msprop:Generator_ColumnPropNameInRow="Id" msprop:Generator_ColumnPropNameInTable="IdColumn" msprop:Generator_UserColumnName="Id" type="xs:string" minOccurs="0" />
+              <xs:element name="ProposalId" msprop:Generator_ColumnVarNameInTable="columnProposalId" msprop:Generator_ColumnPropNameInRow="ProposalId" msprop:Generator_ColumnPropNameInTable="ProposalIdColumn" msprop:Generator_UserColumnName="ProposalId" type="xs:string" minOccurs="0" />
+              <xs:element name="CIFNo" msprop:Generator_ColumnVarNameInTable="columnCIFNo" msprop:Generator_ColumnPropNameInRow="CIFNo" msprop:Generator_ColumnPropNameInTable="CIFNoColumn" msprop:Generator_UserColumnName="CIFNo" type="xs:string" minOccurs="0" />
+              <xs:element name="Name" msprop:Generator_ColumnVarNameInTable="columnName" msprop:Generator_ColumnPropNameInRow="Name" msprop:Generator_ColumnPropNameInTable="NameColumn" msprop:Generator_UserColumnName="Name" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRole" msprop:Generator_ColumnVarNameInTable="columnApplicantRole" msprop:Generator_ColumnPropNameInRow="ApplicantRole" msprop:Generator_ColumnPropNameInTable="ApplicantRoleColumn" msprop:Generator_UserColumnName="ApplicantRole" type="xs:string" minOccurs="0" />
+              <xs:element name="ApplicantRoleName" msprop:Generator_ColumnVarNameInTable="columnApplicantRoleName" msprop:Generator_ColumnPropNameInRow="ApplicantRoleName" msprop:Generator_ColumnPropNameInTable="ApplicantRoleNameColumn" msprop:Generator_UserColumnName="ApplicantRoleName" type="xs:string" minOccurs="0" />
+              <xs:element name="IncomeSource" msprop:Generator_ColumnVarNameInTable="columnIncomeSource" msprop:Generator_ColumnPropNameInRow="IncomeSource" msprop:Generator_ColumnPropNameInTable="IncomeSourceColumn" msprop:Generator_UserColumnName="IncomeSource" type="xs:string" minOccurs="0" />
+              <xs:element name="IncomeAmount" msprop:Generator_ColumnVarNameInTable="columnIncomeAmount" msprop:Generator_ColumnPropNameInRow="IncomeAmount" msprop:Generator_ColumnPropNameInTable="IncomeAmountColumn" msprop:Generator_UserColumnName="IncomeAmount" type="xs:string" minOccurs="0" />
+              <xs:element name="ConsideredPercentage" msprop:Generator_ColumnVarNameInTable="columnConsideredPercentage" msprop:Generator_ColumnPropNameInRow="ConsideredPercentage" msprop:Generator_ColumnPropNameInTable="ConsideredPercentageColumn" msprop:Generator_UserColumnName="ConsideredPercentage" type="xs:string" minOccurs="0" />
+              <xs:element name="Remarks" msprop:Generator_ColumnVarNameInTable="columnRemarks" msprop:Generator_ColumnPropNameInRow="Remarks" msprop:Generator_ColumnPropNameInTable="RemarksColumn" msprop:Generator_UserColumnName="Remarks" type="xs:string" minOccurs="0" />
+              <xs:element name="IsConsidered" msprop:Generator_ColumnVarNameInTable="columnIsConsidered" msprop:Generator_ColumnPropNameInRow="IsConsidered" msprop:Generator_ColumnPropNameInTable="IsConsideredColumn" msprop:Generator_UserColumnName="IsConsidered" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="IncomesKey1">
+      <xs:selector xpath=".//mstns:Incomes" />
+      <xs:field xpath="mstns:Id" />
+    </xs:unique>
+    <xs:unique name="IncomesKey2">
+      <xs:selector xpath=".//mstns:Incomes" />
+      <xs:field xpath="mstns:ProposalId" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
